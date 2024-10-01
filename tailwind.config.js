@@ -7,9 +7,18 @@ module.exports = {
   ],
   theme: {
     extend: {
+      maxWidth: {
+        custom: "1440px",
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primaryColor: "var(--primary-color)",
+        secondaryColor: "var(--secondary-color)",
+        disabledElementColor: "var(--disabled-element-color)",
+        mainTextColor: "var(--main-text-color)",
+        secondTextColor: "var(--second-text-color)",
+        inputBg: "var(--input-bg)",
       },
     },
   },

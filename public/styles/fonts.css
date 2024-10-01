@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "Yekan-Bakh-FaN-Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Yekan-Bakh-FaN-Regular.woff") format("woff");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Yekan-Bakh-FaN-Medium";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Yekan-Bakh-FaN-Medium.woff") format("woff");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Yekan-Bakh-En-Medium";
+  font-style: normal;
+  font-weight: 400;
+  src: url("../fonts/Yekan-Bakh-En-Medium.woff") format("woff");
+  font-display: swap;
+}
