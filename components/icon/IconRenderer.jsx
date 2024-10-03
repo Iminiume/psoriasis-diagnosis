@@ -1,4 +1,5 @@
 "use client";
+
 import { ArrowLeftIcon } from "./ArrowLeftIcon";
 import { PlayIcon } from "./PlayIcon";
 import { EmailIcon } from "./EmailIcon";
@@ -18,7 +19,6 @@ export const IconRenderer = ({ icon }) => {
     user: <UserIcon />,
   };
 
-  
   // If it's a string (icon name), return corresponding icon, otherwise return the icon JSX
   return typeof icon === "string" ? iconsMap[icon] || null : icon;
 };

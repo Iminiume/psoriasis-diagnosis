@@ -1,3 +1,5 @@
+"use client";
+
 import classNames from "classnames";
 import React from "react";
 
@@ -15,7 +17,7 @@ function Button({
       className={classNames(
         "h-[52px] text-nowrap rounded-[0.65rem] px-[40px] py-[15px] disabled:cursor-not-allowed disabled:bg-disabledElementColor",
         {
-          "hover:bg-buttonHover bg-primaryColor text-black shadow-md transition-colors":
+          "bg-primaryColor text-black shadow-md transition-colors hover:bg-buttonHover":
             isPrimary, // Primary state
           "border border-primaryColor text-primaryColor transition-colors hover:bg-primaryColor hover:text-white":
             !isPrimary, // Secondary state

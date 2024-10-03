@@ -17,21 +17,23 @@ const Texts = {
 
 function ThirdSection() {
   return (
-    <div className="flex gap-[4rem] py-[8rem]">
-      {/* Text Box */}
-      <div className="z-30 flex basis-3/4 flex-col gap-[4rem]">
-        <TextIndicator color={"primary"}>{Texts.title}</TextIndicator>
+    <div className="mx-auto py-[8rem]">
+      <div className="flex gap-[4rem]">
+        {/* Text Box */}
+        <div className="z-30 flex basis-3/4 flex-col gap-[4rem]">
+          <TextIndicator color={"primary"}>{Texts.title}</TextIndicator>
 
-        <Text className={"text-[1.5rem]"}>{Texts.description}</Text>
-        <div className="flex gap-6">
-          <Button>{Texts.reserveNow}</Button>
-          <Button mode="secondary">{Texts.moreInfo}</Button>
+          <Text className={"text-[1.5rem]"}>{Texts.description}</Text>
+          <div className="flex gap-6">
+            <Button>{Texts.reserveNow}</Button>
+            <Button mode="secondary">{Texts.moreInfo}</Button>
+          </div>
         </div>
-      </div>
 
-      {/* Image Box */}
-      <div className="basis-1/4">
-        <Image src={ThirdThumbnail} />
+        {/* Image Box */}
+        <div className="basis-1/4">
+          <Image src={ThirdThumbnail} />
+        </div>
       </div>
 
       {/* Background Shadow */}

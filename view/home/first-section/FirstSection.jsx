@@ -18,40 +18,42 @@ const Texts = {
 
 function FirstSection() {
   return (
-    <div className="flex px-4 py-[12rem]">
-      {/* Text Box */}
-      <div className="z-10 flex w-full basis-1/2 flex-col items-center justify-center gap-6 pt-12">
-        <div className="flex flex-col gap-[16px]">
-          <Title className={"text-[100px]"}>{Texts.bigTitle}</Title>
+    <div className="mx-auto px-4 py-[12rem]">
+      <div className="flex">
+        {/* Text Box */}
+        <div className="z-10 flex w-full basis-1/2 flex-col items-center justify-center gap-6 pt-12">
+          <div className="flex flex-col gap-[16px]">
+            <Title className={"text-[100px]"}>{Texts.bigTitle}</Title>
+          </div>
+
+          <div className="flex w-full items-center justify-start gap-6">
+            <Button>
+              <Text>{Texts.reserve}</Text>
+            </Button>
+            <Button mode="secondary">
+              <Text>{Texts.moreInfo}</Text>
+            </Button>
+          </div>
         </div>
 
-        <div className="flex w-full items-center justify-start gap-6">
-          <Button>
-            <Text>{Texts.reserve}</Text>
-          </Button>
-          <Button mode="secondary">
-            <Text>{Texts.moreInfo}</Text>
-          </Button>
+        {/* Image Box */}
+        <div className="relative basis-1/2">
+          <Image
+            alt="big-logo"
+            src={BigLogo}
+            className="absolute right-[9rem] top-[6rem] z-20"
+          ></Image>
+          <Image
+            alt="stats"
+            src={Stats}
+            className="absolute right-0 top-0 z-30"
+          />
+          <Image
+            alt="vector"
+            src={SecondVectorBG}
+            className="absolute right-[8rem] top-[10rem] z-10"
+          />
         </div>
-      </div>
-
-      {/* Image Box */}
-      <div className="relative basis-1/2">
-        <Image
-          alt="big-logo"
-          src={BigLogo}
-          className="absolute right-[9rem] top-[6rem] z-20"
-        ></Image>
-        <Image
-          alt="stats"
-          src={Stats}
-          className="absolute right-0 top-0 z-30"
-        />
-        <Image
-          alt="vector"
-          src={SecondVectorBG}
-          className="absolute right-[8rem] top-[10rem] z-10"
-        />
       </div>
 
       {/* Background Shadow */}

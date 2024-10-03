@@ -8,6 +8,7 @@ const colorClasses = {
   blue: "before:border-blueColor",
   green: "before:border-greenColor",
   orange: "before:border-orangeColor",
+  purple: "before:border-purpleColor",
 };
 
 function TitleIndicator({ color, children }) {

@@ -5,6 +5,7 @@ import Image from "@/components/image";
 import Link from "next/link";
 import React from "react";
 import TextLogo from "@/public/images/textLogo.png";
+import BlueShadowBottom from "@/public/images/blueShadowBottom.png";
 
 const navigationStuffs = [
   { title: "وبلاگ", link: "/blog" },
@@ -72,14 +73,19 @@ const FooterCol = ({ title, itemsList }) => {
 
 function Footer() {
   return (
-    <div className="bg-footerBg mx-auto flex items-start justify-start gap-4 rounded-t-3xl px-[124px] py-[70px] backdrop-blur-[10px]">
-      <div className="flex basis-2/5 flex-col gap-6">
-        <Image src={TextLogo} alt="text-logo" />
-        <Text className={"text-sm opacity-50"}>{Texts.detail}</Text>
+    <div className="container relative mx-auto rounded-t-3xl bg-footerBg py-[70px] backdrop-blur-[10px]">
+      <div className="z-30 flex items-start justify-start gap-4 px-[124px]">
+        <div className="flex basis-2/5 flex-col gap-6">
+          <Image src={TextLogo} alt="text-logo" />
+          <Text className={"text-sm opacity-50"}>{Texts.detail}</Text>
+        </div>
+        <FooterCol title={Texts.navigationTitle} itemsList={navigationStuffs} />
+        <FooterCol title={Texts.policyTitle} itemsList={policyStuffs} />
+        <FooterCol title={Texts.contactUsTitle} itemsList={contactUsStuffs} />
       </div>
-      <FooterCol title={Texts.navigationTitle} itemsList={navigationStuffs} />
-      <FooterCol title={Texts.policyTitle} itemsList={policyStuffs} />
-      <FooterCol title={Texts.contactUsTitle} itemsList={contactUsStuffs} />
+      <div className="absolute bottom-0 z-0">
+        <Image src={BlueShadowBottom} />
+      </div>
     </div>
   );
 }

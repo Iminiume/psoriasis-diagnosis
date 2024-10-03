@@ -18,9 +18,10 @@ module.exports = {
         primaryColor: "var(--primary-color)",
         blueColor: "var(--blue-color)",
         greenColor: "var(--green-color)",
+        darkPinkColor: "var(--dark-pink-color)",
         purpleColor: "var(--purple-color)",
         orangeColor: "var(--orange-color)",
-
+        socialIconBg: "var(--social-icon-bg)",
         navbarBg: "var(--navbar-bg)",
         footerBg: "var(--foter-bg)",
         mainTextColor: "var(--main-text-color)",

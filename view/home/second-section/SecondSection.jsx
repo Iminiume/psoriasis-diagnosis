@@ -13,20 +13,22 @@ const Texts = {
 
 function SecondSection() {
   return (
-    <div className="flex gap-[4rem] py-[16rem]">
-      {/* Image Box */}
-      <div className="mx-auto basis-1/3">
-        <Image
-          alt="second-thumbnail"
-          src={SecondThumbnail}
-          className="rounded-[20px]"
-        />
-      </div>
+    <div className="mx-auto py-[16rem]">
+      <div className="flex gap-[4rem]">
+        {/* Image Box */}
+        <div className="mx-auto basis-1/3">
+          <Image
+            alt="second-thumbnail"
+            src={SecondThumbnail}
+            className="rounded-[20px]"
+          />
+        </div>
 
-      {/* Text Box */}
-      <div className="z-30 flex w-full basis-2/3 flex-col items-start justify-start gap-8">
-        <TitleIndicator color={"blue"}>{Texts.title}</TitleIndicator>
-        <Text className={"text-2xl"}>{Texts.description}</Text>
+        {/* Text Box */}
+        <div className="z-30 flex w-full basis-2/3 flex-col items-start justify-start gap-[4rem]">
+          <TitleIndicator color={"blue"}>{Texts.title}</TitleIndicator>
+          <Text className={"text-2xl"}>{Texts.description}</Text>
+        </div>
       </div>
 
       {/* Background shadow */}
