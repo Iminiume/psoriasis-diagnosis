@@ -4,6 +4,7 @@ import { Text, Title } from "@/components/typography";
 import BigPinkShadow from "@/public/images/bigPinkShadow.png";
 import ThirdThumbnail from "@/public/images/thumbSection3.png";
 import Button from "@/components/button";
+import TextIndicator from "@/components/title-indicator/TitleIndicator";
 
 const Texts = {
   title: "تشخیص بیماری، پیشنهاد درمان",
@@ -19,13 +20,8 @@ function ThirdSection() {
     <div className="flex gap-[4rem] py-[8rem]">
       {/* Text Box */}
       <div className="flex basis-3/4 flex-col gap-[4rem]">
-        <Title
-          className={
-            "relative text-[40px] before:absolute before:top-[4.5rem] before:w-[72px] before:border-[2px] before:border-primaryColor"
-          }
-        >
-          {Texts.title}
-        </Title>
+        <TextIndicator color={"primary"}>{Texts.title}</TextIndicator>
+
         <Text className={"text-[1.5rem]"}>{Texts.description}</Text>
         <div className="flex gap-6">
           <Button>{Texts.reserveNow}</Button>

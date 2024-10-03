@@ -3,6 +3,7 @@ import React from "react";
 import SecondThumbnail from "@/public/images/thumbSection2.png";
 import BlueShadow from "@/public/images/blueShadow.png";
 import { Text, Title } from "@/components/typography";
+import TitleIndicator from "@/components/title-indicator";
 
 const Texts = {
   title: "تشخیص بیماری، پیشنهاد درمان",
@@ -24,13 +25,7 @@ function SecondSection() {
 
       {/* Text Box */}
       <div className="flex w-full basis-2/3 flex-col items-start justify-start gap-8">
-        <Title
-          className={
-            "relative text-[40px] before:absolute before:top-[4.5rem] before:w-[72px] before:border-[2px] before:border-secondaryColor"
-          }
-        >
-          {Texts.title}
-        </Title>
+        <TitleIndicator color={"blue"}>{Texts.title}</TitleIndicator>
         <Text className={"text-2xl"}>{Texts.description}</Text>
       </div>
 

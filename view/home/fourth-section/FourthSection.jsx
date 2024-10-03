@@ -5,6 +5,7 @@ import Image from "next/image";
 import classNames from "classnames";
 import { IconRenderer } from "@/components/icon/IconRenderer";
 import Link from "next/link";
+import TitleIndicator from "@/components/title-indicator";
 
 const Texts = {
   title: "خدمات عمومی ما",
@@ -48,18 +49,12 @@ function FourthSection() {
   return (
     <div className="flex flex-col gap-[58px] py-[8rem]">
       <div className="flex items-center justify-center">
-        <Text
-          className={
-            "before:border-greenColor relative text-[40px] before:absolute before:top-[4.5rem] before:w-[72px] before:border-[2px]"
-          }
-        >
-          {Texts.title}
-        </Text>
+        <TitleIndicator color={"green"}>{Texts.title}</TitleIndicator>
       </div>
 
       <div className="z-30 flex justify-between gap-8">
         {cards.map((item) => (
-          <div className="bg-cardBg flex basis-1/3 flex-col items-center justify-center gap-8 rounded-[2rem] px-6 py-8">
+          <div className="flex basis-1/3 flex-col items-center justify-center gap-8 rounded-[2rem] bg-cardBg px-6 py-8">
             <div className="flex flex-col items-center justify-center gap-4">
               <Image src={item?.iconImage} />
               <Title className={"text-2xl"}>{item?.title}</Title>

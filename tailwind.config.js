@@ -16,7 +16,7 @@ module.exports = {
         background: "var(--background)",
 
         primaryColor: "var(--primary-color)",
-        secondaryColor: "var(--secondary-color)",
+        blueColor: "var(--blue-color)",
         greenColor: "var(--green-color)",
         purpleColor: "var(--purple-color)",
         orangeColor: "var(--orange-color)",
