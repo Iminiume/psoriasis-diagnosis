@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import React from "react";
 import BigLogo from "@/public/images/bigLogo.png";
 import { Text, Title } from "@/components/typography";

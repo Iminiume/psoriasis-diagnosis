@@ -1,7 +1,7 @@
 import { Text, Title } from "@/components/typography";
 import React from "react";
 import IconGlass from "@/public/images/iconImage.png";
-import Image from "next/image";
+import Image from "@/components/image";
 import classNames from "classnames";
 import { IconRenderer } from "@/components/icon/IconRenderer";
 import Link from "next/link";

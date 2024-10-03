@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import React from "react";
 import SecondThumbnail from "@/public/images/thumbSection2.png";
 import BlueShadow from "@/public/images/blueShadow.png";
@@ -24,7 +24,7 @@ function SecondSection() {
       </div>
 
       {/* Text Box */}
-      <div className="flex w-full basis-2/3 flex-col items-start justify-start gap-8">
+      <div className="z-30 flex w-full basis-2/3 flex-col items-start justify-start gap-8">
         <TitleIndicator color={"blue"}>{Texts.title}</TitleIndicator>
         <Text className={"text-2xl"}>{Texts.description}</Text>
       </div>

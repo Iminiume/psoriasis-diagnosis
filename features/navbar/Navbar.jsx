@@ -2,7 +2,7 @@
 import Button from "@/components/button";
 import { IconRenderer } from "@/components/icon/IconRenderer";
 import { Text } from "@/components/typography";
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import React from "react";
 import { useScrollPosition } from "@/utils/useScrollPosition";
@@ -21,14 +21,14 @@ const navbarItems = [
 const Texts = { text: "مراقب باش", comeIn: "وارد شوید" };
 
 const navClassNames = {
-  notScrolled: "h-[150px]",
+  notScrolled: "h-[106px]",
   scrolled:
     "to-[rgba(25, 31, 45, 0) 100%] h-[106px] bg-gradient-to-b from-background backdrop-blur-[12px]",
 };
 
 const imageClassNames = {
-  notScrolled: "border border-primaryColor bg-background",
-  scrolled: "",
+  notScrolled: "border border-primaryColor bg-background translate-y-[17%]",
+  scrolled: "translate-y-[0%]",
 };
 
 const HoverText = ({ children }) => {
@@ -54,7 +54,7 @@ function Navbar() {
           : navClassNames.notScrolled,
       )}
     >
-      <div className="flex justify-between gap-10">
+      <div className="top item flex justify-between gap-10">
         <Link href={"/"}>
           <div
             className={classNames(

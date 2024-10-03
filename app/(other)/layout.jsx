@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
       <body className={`m-0 box-border p-0 text-[14px] antialiased`}>
-        <div className="mx-auto w-full max-w-custom">
+        <div className="mx-auto min-h-screen w-full max-w-custom">
           <Navbar />
           <Suspense fallback={<Loading />}>{children}</Suspense>
           <Footer />

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import React from "react";
 import { Text, Title } from "@/components/typography";
 import BigPinkShadow from "@/public/images/bigPinkShadow.png";
@@ -19,7 +19,7 @@ function ThirdSection() {
   return (
     <div className="flex gap-[4rem] py-[8rem]">
       {/* Text Box */}
-      <div className="flex basis-3/4 flex-col gap-[4rem]">
+      <div className="z-30 flex basis-3/4 flex-col gap-[4rem]">
         <TextIndicator color={"primary"}>{Texts.title}</TextIndicator>
 
         <Text className={"text-[1.5rem]"}>{Texts.description}</Text>

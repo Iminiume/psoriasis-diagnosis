@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/image";
 import React from "react";
 import LoginThumbnail from "@/public/images/loginThumb.png";
 import Link from "next/link";
@@ -18,7 +18,7 @@ const Texts = {
 function LoginLayout() {
   return (
     <div className="mx-auto flex gap-[38px] px-[40px] py-[40px]">
-      <div className="bg-loginBg border-loginBorder relative z-10 flex flex-1 flex-col items-center justify-center rounded-[40px] border backdrop-blur-[54px]">
+      <div className="relative z-10 flex flex-1 flex-col items-center justify-center rounded-[40px] border border-loginBorder bg-loginBg backdrop-blur-[54px]">
         <Link
           href={"/"}
           className="absolute right-[34px] top-[42px] flex gap-2"

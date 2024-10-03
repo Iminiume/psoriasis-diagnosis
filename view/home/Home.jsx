@@ -1,8 +1,12 @@
 import React from "react";
-import FirstSection from "./first-section";
-import SecondSection from "./second-section";
-import ThirdSection from "./third-section";
-import FourthSection from "./fourth-section";
+import dynamic from "next/dynamic";
+
+const FirstSection = dynamic(() => import("./first-section"));
+const SecondSection = dynamic(() => import("./second-section"));
+const ThirdSection = dynamic(() => import("./third-section"));
+const FourthSection = dynamic(() => import("./fourth-section"));
+const FifthSection = dynamic(() => import("./fifth-section"));
+const SixthSection = dynamic(() => import("./sixth-section"));
 
 function Home() {
   return (
@@ -11,6 +15,8 @@ function Home() {
       <SecondSection />
       <ThirdSection />
       <FourthSection />
+      <FifthSection />
+      <SixthSection />
     </div>
   );
 }

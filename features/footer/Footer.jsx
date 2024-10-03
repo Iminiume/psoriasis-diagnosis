@@ -1,7 +1,7 @@
 "use client";
 import { IconRenderer } from "@/components/icon/IconRenderer";
 import { Text, Title } from "@/components/typography";
-import Image from "next/image";
+import Image from "@/components/image";
 import Link from "next/link";
 import React from "react";
 import TextLogo from "@/public/images/textLogo.png";
