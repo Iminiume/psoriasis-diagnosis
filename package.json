@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
-    "@telewebion/ui-component": "^0.2.0",
     "classnames": "^2.5.1",
     "next": "14.2.13",
     "react": "^18",

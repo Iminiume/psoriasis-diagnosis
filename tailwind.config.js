@@ -4,6 +4,8 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./features/**/*.{js,ts,jsx,tsx,mdx}",
+    "./view/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -12,13 +14,27 @@ module.exports = {
       },
       colors: {
         background: "var(--background)",
-        foreground: "var(--foreground)",
+
         primaryColor: "var(--primary-color)",
         secondaryColor: "var(--secondary-color)",
-        disabledElementColor: "var(--disabled-element-color)",
+        greenColor: "var(--green-color)",
+        purpleColor: "var(--purple-color)",
+        orangeColor: "var(--orange-color)",
+
+        navbarBg: "var(--navbar-bg)",
+        footerBg: "var(--foter-bg)",
         mainTextColor: "var(--main-text-color)",
         secondTextColor: "var(--second-text-color)",
+        loginBg: "var(--login-bg)",
+        loginBorder: "var(--login-border)",
+        cardBg: "var(--card-bg)",
+        pinkShadowBg: "var(--ping-shadow-bg)",
         inputBg: "var(--input-bg)",
+        buttonShadow: "var(--button-shadow)",
+        buttonHover: "var(--button-hover)",
+
+        foreground: "var(--foreground)",
+        disabledElementColor: "var(--disabled-element-color)",
       },
     },
   },
