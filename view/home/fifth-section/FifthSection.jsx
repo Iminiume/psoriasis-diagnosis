@@ -81,14 +81,14 @@ function FifthSection() {
   return (
     <div className="mx-auto w-full py-[8rem]">
       <div className="flex flex-col gap-8 px-8">
-        <div className="z-30 flex w-full justify-between">
+        <div className="flex w-full justify-between">
           <TitleIndicator color={"orange"}>{Texts.title}</TitleIndicator>
           <Link className="flex items-center gap-2" href={"/"}>
             <Text className={"text-2xl"}>{Texts.showMore}</Text>
             <IconRenderer icon={"arrowLeft"} />
           </Link>
         </div>
-        <div className="z-30 flex w-full gap-8">
+        <div className="flex w-full gap-8">
           <div className="basis-1/2">
             <Link href={cardsStuffs[0].link}>
               <Card
@@ -126,7 +126,7 @@ function FifthSection() {
         </div>
       </div>
 
-      <div className="absolute left-0 top-[145rem]">
+      <div className="absolute left-0 top-[145rem] z-[-1]">
         <Image src={OrangeShadow} />
       </div>
     </div>

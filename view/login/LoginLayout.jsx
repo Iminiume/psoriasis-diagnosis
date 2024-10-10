@@ -41,7 +41,7 @@ function LoginLayout() {
         <Image alt="login-thumbnail" src={LoginThumbnail} />
       </div>
 
-      <div className="absolute right-0 top-0">
+      <div className="absolute right-0 top-0 z-[-1]">
         <Image alt="pink-shadow" src={PinkShadow}></Image>
       </div>
 

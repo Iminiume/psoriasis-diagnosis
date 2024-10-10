@@ -20,7 +20,7 @@ function ThirdSection() {
     <div className="mx-auto py-[8rem]">
       <div className="flex gap-[4rem]">
         {/* Text Box */}
-        <div className="z-30 flex basis-3/4 flex-col gap-[4rem]">
+        <div className="flex basis-3/4 flex-col gap-[4rem]">
           <TextIndicator color={"primary"}>{Texts.title}</TextIndicator>
 
           <Text className={"text-[1.5rem]"}>{Texts.description}</Text>
@@ -37,7 +37,7 @@ function ThirdSection() {
       </div>
 
       {/* Background Shadow */}
-      <div className="absolute right-0 top-[80rem]">
+      <div className="absolute right-0 top-[80rem] z-[-1]">
         <Image src={BigPinkShadow} />
       </div>
     </div>

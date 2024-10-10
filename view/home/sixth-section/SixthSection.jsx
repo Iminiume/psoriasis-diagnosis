@@ -19,7 +19,7 @@ const socialIcons = [
 function SixthSection() {
   return (
     <div className="mx-auto w-full py-[8rem]">
-      <div className="z-30 flex flex-col items-center justify-center gap-8">
+      <div className="flex flex-col items-center justify-center gap-8">
         <TitleIndicator color={"purple"}>{Texts.news}</TitleIndicator>
         <div className="w-[300px]">
           <Input
@@ -30,10 +30,10 @@ function SixthSection() {
           />
         </div>
 
-        <div className="flex gap-6 z-30">
+        <div className="flex gap-6">
           {socialIcons.map((item) => (
             <Link href={item.link}>
-              <div className="bg-socialIconBg flex h-8 w-8 items-center justify-center rounded text-inputBg">
+              <div className="flex h-8 w-8 items-center justify-center rounded bg-socialIconBg text-inputBg">
                 <IconRenderer icon={item.icon} />
               </div>
             </Link>

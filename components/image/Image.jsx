@@ -9,6 +9,7 @@ function Image({ src, alt, className }) {
     <NextImage
       src={src}
       alt={alt}
+      draggable="false"
       className={classNames("select-none object-cover", className)}
       loading="lazy"
     />

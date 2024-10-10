@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import dynamic from "next/dynamic";
 
 const FirstSection = dynamic(() => import("./first-section"));

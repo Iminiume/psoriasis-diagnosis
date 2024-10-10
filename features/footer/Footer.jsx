@@ -74,7 +74,7 @@ const FooterCol = ({ title, itemsList }) => {
 function Footer() {
   return (
     <div className="container relative mx-auto rounded-t-3xl bg-footerBg py-[70px] backdrop-blur-[10px]">
-      <div className="z-30 flex items-start justify-start gap-4 px-[124px]">
+      <div className="flex items-start justify-start gap-4 px-[124px]">
         <div className="flex basis-2/5 flex-col gap-6">
           <Image src={TextLogo} alt="text-logo" />
           <Text className={"text-sm opacity-50"}>{Texts.detail}</Text>
@@ -83,7 +83,7 @@ function Footer() {
         <FooterCol title={Texts.policyTitle} itemsList={policyStuffs} />
         <FooterCol title={Texts.contactUsTitle} itemsList={contactUsStuffs} />
       </div>
-      <div className="absolute bottom-0 z-0">
+      <div className="absolute bottom-0 z-[-1]">
         <Image src={BlueShadowBottom} />
       </div>
     </div>

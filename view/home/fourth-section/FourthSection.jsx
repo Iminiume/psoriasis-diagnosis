@@ -53,7 +53,7 @@ function FourthSection() {
           <TitleIndicator color={"green"}>{Texts.title}</TitleIndicator>
         </div>
 
-        <div className="z-30 flex justify-between gap-8">
+        <div className="flex justify-between gap-8">
           {cards.map((item) => (
             <div className="flex basis-1/3 flex-col items-center justify-center gap-8 rounded-[2rem] bg-cardBg px-6 py-8">
               <div className="flex flex-col items-center justify-center gap-4">

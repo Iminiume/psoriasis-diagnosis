@@ -25,14 +25,14 @@ function SecondSection() {
         </div>
 
         {/* Text Box */}
-        <div className="z-30 flex w-full basis-2/3 flex-col items-start justify-start gap-[4rem]">
+        <div className="flex w-full basis-2/3 flex-col items-start justify-start gap-[4rem]">
           <TitleIndicator color={"blue"}>{Texts.title}</TitleIndicator>
           <Text className={"text-2xl"}>{Texts.description}</Text>
         </div>
       </div>
 
       {/* Background shadow */}
-      <div className="absolute left-0 top-[20rem]">
+      <div className="absolute left-0 top-[20rem] z-[-1]">
         <Image src={BlueShadow} alt="blue-shadow" />
       </div>
     </div>

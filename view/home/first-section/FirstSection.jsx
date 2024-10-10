@@ -21,7 +21,7 @@ function FirstSection() {
     <div className="mx-auto px-4 py-[12rem]">
       <div className="flex">
         {/* Text Box */}
-        <div className="z-10 flex w-full basis-1/2 flex-col items-center justify-center gap-6 pt-12">
+        <div className="flex w-full basis-1/2 flex-col items-center justify-center gap-6 pt-12">
           <div className="flex flex-col gap-[16px]">
             <Title className={"text-[100px]"}>{Texts.bigTitle}</Title>
           </div>
@@ -57,10 +57,10 @@ function FirstSection() {
       </div>
 
       {/* Background Shadow */}
-      <div className="absolute right-0 top-0 z-0">
+      <div className="absolute right-0 top-0 z-[-1]">
         <Image alt="pink-shadow" src={PinkShadow}></Image>
       </div>
-      <div className="absolute right-0 top-0 z-0">
+      <div className="absolute right-0 top-0 z-[-1]">
         <Image alt="vector" src={VectorBG}></Image>
       </div>
     </div>
