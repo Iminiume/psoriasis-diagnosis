@@ -1,10 +1,11 @@
 "use client";
+
 import React, { useState } from "react";
 import classNames from "classnames";
 
 const InputComponent = ({
   label,
-  type,
+  type = "text",
   value,
   placeholder,
   required = false,
@@ -19,18 +20,17 @@ const InputComponent = ({
   const [inputValue, setInputValue] = useState(value || "");
 
   const handleChange = (e) => {
-    const newValue =
-      type === "number" ? Number(e.target.value) : e.target.value;
+    const newValue = type === "number" ? +e.target.value : e.target.value;
     setInputValue(newValue);
-    onChange(newValue);
+    if (onChange) onChange(newValue);
   };
 
   return (
-    <div className="flex flex-col gap-[8px]">
-      {label && <span className="input-label">{label}</span>}
+    <div className="flex flex-col gap-2">
+      {label && <label className="input-label">{label}</label>}
       <input
         className={classNames(
-          "h-[48px] w-full rounded-md border border-white bg-inputBg px-2",
+          "h-12 w-full rounded-md border border-white bg-inputBg px-2",
           className,
         )}
         type={type}

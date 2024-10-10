@@ -1,5 +1,5 @@
-import Image from "@/components/image";
 import React from "react";
+import Image from "@/components/image";
 import { Text, Title } from "@/components/typography";
 import BigPinkShadow from "@/public/images/bigPinkShadow.png";
 import ThirdThumbnail from "@/public/images/thumbSection3.png";
@@ -9,8 +9,7 @@ import TextIndicator from "@/components/title-indicator/TitleIndicator";
 const Texts = {
   title: "تشخیص بیماری، پیشنهاد درمان",
   description:
-    "ما با استفاده از هوش مصنوعی در تشخیص دقیق تر بیماری و توصیه های درمانی به پزشکان و بیماران  کمک می‌کنیم. ما با استفاده از هوش مصنوعی در تشخیص دقیق تر بیماری و توصیه های درمانی به پزشکان و بیماران  کمک می‌کنیم. ما با استفاده از هوش مصنوعی در تشخیص دقیق تر بیماری و توصیه های درمانی به پزشکان و بیماران  کمک می‌کنیم.",
-
+    "ما با استفاده از هوش مصنوعی در تشخیص دقیق تر بیماری و توصیه های درمانی به پزشکان و بیماران کمک می‌کنیم. ما با استفاده از هوش مصنوعی در تشخیص دقیق تر بیماری و توصیه های درمانی به پزشکان و بیماران کمک می‌کنیم. ما با استفاده از هوش مصنوعی در تشخیص دقیق تر بیماری و توصیه های درمانی به پزشکان و بیماران کمک می‌کنیم.",
   reserveNow: "همین حالا مشاوره بگیر",
   moreInfo: "اطلاعات بیشتر",
 };
@@ -21,9 +20,8 @@ function ThirdSection() {
       <div className="flex gap-[4rem]">
         {/* Text Box */}
         <div className="flex basis-3/4 flex-col gap-[4rem]">
-          <TextIndicator color={"primary"}>{Texts.title}</TextIndicator>
-
-          <Text className={"text-[1.5rem]"}>{Texts.description}</Text>
+          <TextIndicator color="primary">{Texts.title}</TextIndicator>
+          <Text className="text-[1.5rem]">{Texts.description}</Text>
           <div className="flex gap-6">
             <Button>{Texts.reserveNow}</Button>
             <Button mode="secondary">{Texts.moreInfo}</Button>
@@ -32,13 +30,13 @@ function ThirdSection() {
 
         {/* Image Box */}
         <div className="basis-1/4">
-          <Image src={ThirdThumbnail} />
+          <Image src={ThirdThumbnail} alt="Third Thumbnail" />
         </div>
       </div>
 
       {/* Background Shadow */}
       <div className="absolute right-0 top-[80rem] z-[-1]">
-        <Image src={BigPinkShadow} />
+        <Image src={BigPinkShadow} alt="Big Pink Shadow" />
       </div>
     </div>
   );

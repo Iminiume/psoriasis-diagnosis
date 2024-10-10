@@ -20,19 +20,18 @@ function SixthSection() {
   return (
     <div className="mx-auto w-full py-[8rem]">
       <div className="flex flex-col items-center justify-center gap-8">
-        <TitleIndicator color={"purple"}>{Texts.news}</TitleIndicator>
+        <TitleIndicator color="purple">{Texts.news}</TitleIndicator>
+
         <div className="w-[300px]">
           <Input
             placeholder={Texts.email}
-            className={
-              "border-[linear-gradient(225deg, #18C8FF 14.89%, #933FFE 85.85%)] h-14 border"
-            }
+            className="border-[linear-gradient(225deg, #18C8FF 14.89%, #933FFE 85.85%)] h-14 border"
           />
         </div>
 
         <div className="flex gap-6">
-          {socialIcons.map((item) => (
-            <Link href={item.link}>
+          {socialIcons.map((item, index) => (
+            <Link key={index} href={item.link}>
               <div className="flex h-8 w-8 items-center justify-center rounded bg-socialIconBg text-inputBg">
                 <IconRenderer icon={item.icon} />
               </div>
