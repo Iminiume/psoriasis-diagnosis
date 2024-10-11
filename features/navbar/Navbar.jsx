@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useRef, useState } from "react";
 import Link from "next/link";
 import classNames from "classnames";
 
@@ -11,6 +11,7 @@ import { useScrollPosition } from "@/utils/useScrollPosition";
 
 import TextLogo from "@/public/images/textLogo.png";
 import Logo from "@/public/images/logo.png";
+import Drawer from "@/components/drawer";
 
 const navbarItems = [
   { title: "خانه", link: "/" },
@@ -39,10 +40,57 @@ const HoverText = ({ children }) => (
   </Text>
 );
 
+const NavBarContent = ({ toggleMenu }) => (
+  <>
+    <div className="hidden items-center gap-8 lg:flex">
+      {navbarItems.map((item, index) => (
+        <Link href={item.link} key={`navbar-item-${index}`}>
+          <HoverText>{item.title}</HoverText>
+        </Link>
+      ))}
+    </div>
+
+    <div className="lg:hidden">
+      <Button onClick={toggleMenu}>
+        <IconRenderer icon="burger" />
+      </Button>
+    </div>
+
+    <Link href="/login" className="hidden lg:block">
+      <Button mode="primary" className="flex items-center gap-6">
+        <IconRenderer icon="user" />
+        <Text className="font-medium lg:text-2xl">{Texts.comeIn}</Text>
+      </Button>
+    </Link>
+  </>
+);
+
+const NavbarDrawerContents = () => (
+  <div className="flex flex-col items-center justify-center gap-8">
+    {navbarItems.map((item, index) => (
+      <Link href={item.link} key={`navbar-item-${index}`}>
+        <HoverText>{item.title}</HoverText>
+      </Link>
+    ))}
+
+    <Link href="/login">
+      <Button mode="primary" className="flex items-center gap-6">
+        <IconRenderer icon="user" />
+        <Text className="font-medium lg:text-2xl">{Texts.comeIn}</Text>
+      </Button>
+    </Link>
+  </div>
+);
+
 function Navbar() {
   const scrollPosition = useScrollPosition();
-
   const isScrolled = scrollPosition > 48;
+
+  const drawerRef = useRef(null);
+
+  const toggleMenu = () => {
+    drawerRef.current.open();
+  };
 
   return (
     <div
@@ -63,21 +111,12 @@ function Navbar() {
       </Link>
 
       <div className="flex w-full flex-row-reverse items-center justify-between gap-10 lg:flex-row">
-        <div className="hidden items-center gap-8 lg:flex">
-          {navbarItems.map((item, index) => (
-            <Link href={item.link} key={`navbar-item-${index}`}>
-              <HoverText>{item.title}</HoverText>
-            </Link>
-          ))}
-        </div>
-
-        <Link href="/login">
-          <Button mode="primary" className="flex items-center gap-6">
-            <IconRenderer icon="user" />
-            <Text className="font-medium lg:text-2xl">{Texts.comeIn}</Text>
-          </Button>
-        </Link>
+        <NavBarContent toggleMenu={toggleMenu} />
       </div>
+
+      <Drawer ref={drawerRef} direction="left">
+        <NavbarDrawerContents />
+      </Drawer>
     </div>
   );
 }

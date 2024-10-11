@@ -7,6 +7,8 @@ import { LocationIcon } from "./LocationIcon";
 import { PhoneIcon } from "./PhoneIcon";
 import { ChevronRight, ChevronRightIcon } from "./ChevronRightIcon";
 import { UserIcon } from "./UserIcon";
+import { BurgerIcon } from "./BurgerIcon";
+import { XCloseIcon } from "./XCloseIcon";
 
 export const IconRenderer = ({ icon }) => {
   const iconsMap = {
@@ -17,6 +19,8 @@ export const IconRenderer = ({ icon }) => {
     play: <PlayIcon />,
     chevronRight: <ChevronRight />,
     user: <UserIcon />,
+    burger: <BurgerIcon />,
+    xClose: <XCloseIcon />,
   };
 
   // If it's a string (icon name), return corresponding icon, otherwise return the icon JSX

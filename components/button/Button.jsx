@@ -13,23 +13,18 @@ function Button({
   const isPrimary = mode === "primary";
 
   const buttonClass = classNames(
-    "h-13 rounded-lg px-10 py-4 disabled:cursor-not-allowed disabled:bg-disabledElementColor",
+    "h-13 rounded-lg px-10 py-4 disabled:cursor-not-allowed",
     {
       "bg-primaryColor text-black shadow-md transition hover:bg-buttonHover":
-        isPrimary,
+        isPrimary && !disabled,
       "border border-primaryColor text-primaryColor transition hover:bg-primaryColor hover:text-white":
-        !isPrimary,
+        !isPrimary && !disabled,
     },
     className,
   );
 
   return (
-    <button
-      className={buttonClass}
-      disabled={disabled}
-      onClick={onClick}
-      aria-disabled={disabled}
-    >
+    <button className={buttonClass} disabled={disabled} onClick={onClick}>
       {children}
     </button>
   );
