@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Title } from "../typography";
+import Typography from "@/components/typography";
 import classNames from "classnames";
 
 const colorClasses = {
@@ -13,14 +13,17 @@ const colorClasses = {
 
 function TitleIndicator({ color, children }) {
   return (
-    <Title
+    <Typography
+      variant="h1"
+      size="5xl"
+      weight="semibold"
       className={classNames(
-        "relative text-[40px] before:absolute before:top-[4rem] before:w-[72px] before:border-[2px]",
+        "relative before:absolute before:top-[3rem] before:w-[72px] before:border-[2px]",
         colorClasses[color],
       )}
     >
       {children}
-    </Title>
+    </Typography>
   );
 }
 

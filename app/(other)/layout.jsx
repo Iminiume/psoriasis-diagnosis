@@ -14,10 +14,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
-      <body className={`m-0 box-border p-0 text-[14px] antialiased`}>
+      <body className={`m-0 box-border p-0 antialiased`}>
         <div className="mx-auto min-h-screen w-full max-w-custom">
           <Navbar />
-          <Suspense fallback={<Loading />}>{children}</Suspense>
+          <main>
+            <Suspense fallback={<Loading />}>{children}</Suspense>
+          </main>
           <Footer />
         </div>
       </body>

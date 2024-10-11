@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import React from "react";
-import { Text } from "../typography";
+import Typography from "@/components/typography";
 
 const StepProgress = ({ steps, currentStep }) => {
   return (
     <div className="flex flex-col gap-14">
-      {steps.map((item, index) => {
+      {steps?.map((item, index) => {
         const isCurrent = index === currentStep;
         const isLastStep = steps.length - 1 === index;
         const isCompleted = index < currentStep;
@@ -17,28 +17,29 @@ const StepProgress = ({ steps, currentStep }) => {
           >
             <div
               className={classNames(
-                "relative flex h-14 w-14 items-center justify-center rounded-xl border",
-                !isLastStep && "after:absolute after:right-1/2 after:top-full after:h-14 after:border",
+                "relative flex h-14 w-14 items-center justify-center rounded-[22px] border",
+                !isLastStep &&
+                  "after:absolute after:right-1/2 after:top-full after:h-14 after:border",
                 isCompleted
                   ? "border-greenColor text-greenColor after:border-greenColor"
                   : isCurrent
-                  ? "border-white text-white after:border-dashed after:border-secondTextColor"
-                  : "border-secondTextColor text-secondTextColor after:border-dashed after:border-secondTextColor"
+                    ? "border-white text-white after:border-dashed after:border-secondTextColor"
+                    : "border-secondTextColor text-secondTextColor after:border-dashed after:border-secondTextColor",
               )}
             >
               {index + 1}
             </div>
-            <Text
+            <Typography
               className={classNames(
                 isCompleted
                   ? "text-greenColor"
                   : isCurrent
-                  ? "text-white"
-                  : "text-secondTextColor"
+                    ? "text-white"
+                    : "text-secondTextColor",
               )}
             >
               {item.label}
-            </Text>
+            </Typography>
           </div>
         );
       })}

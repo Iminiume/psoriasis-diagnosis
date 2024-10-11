@@ -1,7 +1,7 @@
 import React from "react";
 import { IconRenderer } from "@/components/icon/IconRenderer";
 import TitleIndicator from "@/components/title-indicator";
-import { Text, Title } from "@/components/typography";
+import Typography from "@/components/typography";
 import Image from "@/components/image";
 import Link from "next/link";
 import classNames from "classnames";
@@ -57,9 +57,9 @@ const Card = ({ isLandscape, date, title, description, imageSrc }) => {
         <Image src={imageSrc} alt={title} className="h-full w-full" />
       </div>
       <div className="flex basis-1/2 flex-col gap-3 text-wrap">
-        <Text className="text-[1rem] text-orangeColor">{date}</Text>
-        <Title className="text-2xl">{title}</Title>
-        <Text className="text-[1rem]">{description}</Text>
+        <Typography className="text-orangeColor">{date}</Typography>
+        <Typography size="2xl">{title}</Typography>
+        <Typography>{description}</Typography>
       </div>
     </div>
   );
@@ -71,7 +71,7 @@ function FifthSection() {
       <div className="flex w-full flex-col justify-between gap-8 lg:flex-row">
         <TitleIndicator color="orange">{Texts.title}</TitleIndicator>
         <Link className="flex items-center gap-2" href="/">
-          <Text className="text-2xl">{Texts.showMore}</Text>
+          <Typography size="2xl">{Texts.showMore}</Typography>
           <IconRenderer icon="arrowLeft" />
         </Link>
       </div>

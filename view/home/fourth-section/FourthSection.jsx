@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, Title } from "@/components/typography";
+import Typography from "@/components/typography";
 import Image from "@/components/image";
 import classNames from "classnames";
 import { IconRenderer } from "@/components/icon/IconRenderer";
@@ -60,10 +60,10 @@ function FourthSection() {
           >
             <div className="flex flex-col items-center justify-center gap-4">
               <Image src={item.iconImage} alt={item.title} />
-              <Title className="text-2xl">{item.title}</Title>
-              <Text className="text-center text-[1rem] leading-6">
+              <Typography size="2xl">{item.title}</Typography>
+              <Typography className="text-center leading-6">
                 {item.description}
-              </Text>
+              </Typography>
             </div>
 
             <Link
@@ -73,7 +73,7 @@ function FourthSection() {
                 "flex items-center justify-center gap-1",
               )}
             >
-              <Text className="text-[1rem]">{Texts.more}</Text>
+              <Typography>{Texts.more}</Typography>
               <IconRenderer icon="arrowLeft" />
             </Link>
           </div>

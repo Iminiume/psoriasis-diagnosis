@@ -1,2 +1,1 @@
-export { Title } from "./Typography";
-export { Text } from "./Typography";
+export { default } from "./Typography";

@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 
 import { IconRenderer } from "@/components/icon/IconRenderer";
-import { Text, Title } from "@/components/typography";
+import Typography from "@/components/typography";
 import Image from "@/components/image";
 
 import TextLogo from "@/public/images/textLogo.png";
@@ -41,14 +41,16 @@ const Texts = {
 };
 
 const HoverText = ({ children }) => (
-  <Text className="text-lg transition-colors hover:text-mainTextColor">
+  <Typography size="lg" className="transition-colors hover:text-mainTextColor">
     {children}
-  </Text>
+  </Typography>
 );
 
 const FooterCol = ({ title, itemsList }) => (
   <div className="flex basis-1/5 flex-col items-center justify-center gap-[20px] lg:items-start">
-    <Title className="text-lg text-mainTextColor">{title}</Title>
+    <Typography size="xl" className="text-mainTextColor">
+      {title}
+    </Typography>
     <div className="flex flex-col items-center justify-center gap-[10px] text-secondTextColor lg:items-start">
       {itemsList.map((item, index) => (
         <div className="flex gap-[10px]" key={`footer-item-${index}`}>
@@ -62,7 +64,7 @@ const FooterCol = ({ title, itemsList }) => (
               <HoverText>{item.title}</HoverText>
             </Link>
           ) : (
-            <Text className="text-lg">{item.title}</Text>
+            <Typography size="lg">{item.title}</Typography>
           )}
         </div>
       ))}
@@ -72,11 +74,13 @@ const FooterCol = ({ title, itemsList }) => (
 
 function Footer() {
   return (
-    <div className="relative rounded-t-3xl bg-footerBg py-[70px] backdrop-blur-[10px]">
+    <footer className="relative rounded-t-3xl bg-footerBg py-[70px] backdrop-blur-[10px]">
       <div className="flex flex-col items-center justify-center gap-4 px-8 lg:flex-row lg:items-start lg:justify-start lg:px-[124px]">
         <div className="flex basis-2/5 flex-col items-center gap-6 lg:items-start">
           <Image src={TextLogo} alt="text-logo" />
-          <Text className="text-sm opacity-50">{Texts.detail}</Text>
+          <Typography size="sm" className="opacity-50">
+            {Texts.detail}
+          </Typography>
         </div>
         <FooterCol title={Texts.navigationTitle} itemsList={navigationLinks} />
         <FooterCol title={Texts.policyTitle} itemsList={policyLinks} />
@@ -85,7 +89,7 @@ function Footer() {
       <div className="absolute bottom-0 z-[-1]">
         <Image src={BlueShadowBottom} alt="blue-shadow" />
       </div>
-    </div>
+    </footer>
   );
 }
 

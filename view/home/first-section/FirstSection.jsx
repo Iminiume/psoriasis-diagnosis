@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "@/components/image";
 import Button from "@/components/button";
-import { Text, Title } from "@/components/typography";
+import Typography from "@/components/typography";
 
 import BigLogo from "@/public/images/bigLogo.png";
 import Stats from "@/public/images/stats.png";
@@ -10,7 +10,6 @@ import VectorBG from "@/public/images/vector.png";
 import SecondVectorBG from "@/public/images/vector2.png";
 
 const Texts = {
-  smallTitle: "مبتلایان به پسوریازیس",
   bigTitle: "همــــــــــــــــیار پسوریازیس",
   reserve: "همین حالا مشاوره بگیر",
   moreInfo: "اطلاعات بیشتر",
@@ -22,15 +21,19 @@ function FirstSection() {
       <div className="flex">
         {/* Text Box */}
         <div className="flex w-full basis-full flex-col items-center justify-center gap-6 pt-12 lg:basis-1/2">
-          <Title className="text-center text-[4rem] lg:text-start lg:text-[7rem]">
+          <Typography
+            weight="bold"
+            size="7xl"
+            className="text-center lg:text-start lg:text-[7rem]"
+          >
             {Texts.bigTitle}
-          </Title>
+          </Typography>
           <div className="flex w-full items-center justify-center gap-6 lg:justify-start">
             <Button>
-              <Text>{Texts.reserve}</Text>
+              <Typography>{Texts.reserve}</Typography>
             </Button>
             <Button mode="secondary">
-              <Text>{Texts.moreInfo}</Text>
+              <Typography>{Texts.moreInfo}</Typography>
             </Button>
           </div>
         </div>

@@ -2,7 +2,7 @@ import Image from "@/components/image";
 import React from "react";
 import LoginThumbnail from "@/public/images/loginThumb.png";
 import Link from "next/link";
-import { Text } from "@/components/typography";
+import Typography from "@/components/typography";
 import Logo from "@/public/images/logo.png";
 import FormModule from "./form-module";
 import { IconRenderer } from "@/components/icon/IconRenderer";
@@ -21,14 +21,14 @@ function LoginLayout() {
       <div className="relative z-10 flex flex-1 flex-col items-center justify-center rounded-[40px] border border-loginBorder bg-loginBg backdrop-blur-[54px]">
         <Link href="/" className="absolute right-[34px] top-[42px] flex gap-2">
           <IconRenderer icon="chevronRight" />
-          <Text className="text-[16px]">{Texts.goBack}</Text>
+          <Typography>{Texts.goBack}</Typography>
         </Link>
 
         <div className="flex w-full flex-col px-[109px]">
           <div className="flex items-center justify-center gap-4">
-            <Text className="text-[24px]">{Texts.to}</Text>
+            <Typography size="2xl">{Texts.to}</Typography>
             <Image alt="logo" src={Logo} />
-            <Text className="text-[24px]">{Texts.welcome}</Text>
+            <Typography size="2xl">{Texts.welcome}</Typography>
           </div>
           <FormModule />
         </div>

@@ -1,5 +1,6 @@
 "use client";
 import Home from "@/view/home";
+import UiComponents from "@/view/ui-components";
 import { useEffect, useState } from "react";
 
 export default function HomePage() {
@@ -10,8 +11,9 @@ export default function HomePage() {
   }, []);
 
   if (!isClient) {
-    return null; 
+    return null;
   }
-  
+
   return <Home />;
+  // return <UiComponents />;
 }

@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 import Button from "@/components/button";
 import { IconRenderer } from "@/components/icon/IconRenderer";
-import { Text } from "@/components/typography";
+import Typography from "@/components/typography";
 import Image from "@/components/image";
 import { useScrollPosition } from "@/utils/useScrollPosition";
 
@@ -35,9 +35,12 @@ const imageClassNames = {
 };
 
 const HoverText = ({ children }) => (
-  <Text className="text-lg text-secondTextColor transition-colors hover:text-mainTextColor">
+  <Typography
+    size="lg"
+    className="text-secondTextColor transition-colors hover:text-mainTextColor"
+  >
     {children}
-  </Text>
+  </Typography>
 );
 
 const NavBarContent = ({ toggleMenu }) => (
@@ -59,7 +62,9 @@ const NavBarContent = ({ toggleMenu }) => (
     <Link href="/login" className="hidden lg:block">
       <Button mode="primary" className="flex items-center gap-6">
         <IconRenderer icon="user" />
-        <Text className="font-medium lg:text-2xl">{Texts.comeIn}</Text>
+        <Typography size="2xl" weight="medium">
+          {Texts.comeIn}
+        </Typography>
       </Button>
     </Link>
   </>
@@ -76,7 +81,9 @@ const NavbarDrawerContents = () => (
     <Link href="/login">
       <Button mode="primary" className="flex items-center gap-6">
         <IconRenderer icon="user" />
-        <Text className="font-medium lg:text-2xl">{Texts.comeIn}</Text>
+        <Typography size="2xl" weight="medium">
+          {Texts.comeIn}
+        </Typography>
       </Button>
     </Link>
   </div>
@@ -93,7 +100,7 @@ function Navbar() {
   };
 
   return (
-    <div
+    <header
       className={classNames(
         "sticky right-0 top-0 z-40 mx-auto flex w-full max-w-custom items-center justify-around gap-10 rounded-b-3xl px-8",
         isScrolled ? navClassNames.scrolled : navClassNames.notScrolled,
@@ -117,7 +124,7 @@ function Navbar() {
       <Drawer ref={drawerRef} direction="left">
         <NavbarDrawerContents />
       </Drawer>
-    </div>
+    </header>
   );
 }
 

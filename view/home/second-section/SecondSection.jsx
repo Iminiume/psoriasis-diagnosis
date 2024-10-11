@@ -2,7 +2,7 @@ import React from "react";
 import Image from "@/components/image";
 import SecondThumbnail from "@/public/images/thumbSection2.png";
 import BlueShadow from "@/public/images/blueShadow.png";
-import { Text, Title } from "@/components/typography";
+import Typography from "@/components/typography";
 import TitleIndicator from "@/components/title-indicator";
 
 const Texts = {
@@ -26,7 +26,7 @@ function SecondSection() {
       {/* Text Box */}
       <div className="flex w-full basis-2/3 flex-col items-center justify-start gap-[4rem] lg:items-start">
         <TitleIndicator color="blue">{Texts.title}</TitleIndicator>
-        <Text className="text-2xl">{Texts.description}</Text>
+        <Typography size="2xl">{Texts.description}</Typography>
       </div>
 
       {/* Background Shadow */}

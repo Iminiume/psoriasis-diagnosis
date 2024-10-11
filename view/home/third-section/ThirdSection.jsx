@@ -1,10 +1,10 @@
 import React from "react";
 import Image from "@/components/image";
-import { Text, Title } from "@/components/typography";
+import Typography from "@/components/typography";
 import BigPinkShadow from "@/public/images/bigPinkShadow.png";
 import ThirdThumbnail from "@/public/images/thumbSection3.png";
 import Button from "@/components/button";
-import TextIndicator from "@/components/title-indicator/TitleIndicator";
+import TitleIndicator from "@/components/title-indicator";
 
 const Texts = {
   title: "تشخیص بیماری، پیشنهاد درمان",
@@ -24,8 +24,8 @@ function ThirdSection() {
 
       {/* Text Box */}
       <div className="flex basis-3/4 flex-col items-center gap-[4rem] lg:items-start">
-        <TextIndicator color="primary">{Texts.title}</TextIndicator>
-        <Text className="text-[1.5rem]">{Texts.description}</Text>
+        <TitleIndicator color="primary">{Texts.title}</TitleIndicator>
+        <Typography size="2xl">{Texts.description}</Typography>
         <div className="flex gap-6">
           <Button>{Texts.reserveNow}</Button>
           <Button mode="secondary">{Texts.moreInfo}</Button>

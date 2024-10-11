@@ -1,7 +1,7 @@
 "use client";
 import Button from "@/components/button";
 import Input from "@/components/input";
-import { Text, Title } from "@/components/typography";
+import Typography from "@/components/typography";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -36,9 +36,9 @@ function FormModule() {
 
   return (
     <div className="flex flex-col gap-8 pt-[81px]">
-      <Title className={"text-[58px]"}>
+      <Typography size="6xl">
         {isEnteringNumber ? Texts.login : Texts.sentCode}
-      </Title>
+      </Typography>
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <Input
           placeholder="09123456789"
@@ -46,9 +46,9 @@ function FormModule() {
         />
         <div className="flex justify-end">
           <Button mode={"primary"} onClick="submit">
-            <Text className={"font-bold"}>
+            <Typography weight="bold">
               {isEnteringNumber ? Texts.getCode : Texts.confirm}
-            </Text>
+            </Typography>
           </Button>
         </div>
       </form>
