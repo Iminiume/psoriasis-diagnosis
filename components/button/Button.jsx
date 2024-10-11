@@ -2,14 +2,15 @@
 
 import React, { memo } from "react";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
-function Button({
+const Button = ({
   mode = "primary",
   children,
   className,
   disabled = false,
   onClick,
-}) {
+}) => {
   const isPrimary = mode === "primary";
 
   const buttonClass = classNames(
@@ -28,6 +29,14 @@ function Button({
       {children}
     </button>
   );
-}
+};
+
+Button.propTypes = {
+  mode: PropTypes.oneOf[("primary", "secondary")],
+  children: PropTypes.node.isRequired,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+  className: PropTypes.string,
+};
 
 export default memo(Button);

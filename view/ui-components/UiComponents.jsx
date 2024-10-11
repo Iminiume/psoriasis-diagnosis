@@ -1,6 +1,8 @@
+"use client";
+
 import Button from "@/components/button";
 import Drawer from "@/components/drawer";
-import { IconRenderer } from "@/components/icon/IconRenderer";
+import IconRenderer from "@/components/icon/IconRenderer";
 import StepProgress from "@/components/step-progress";
 import TitleIndicator from "@/components/title-indicator";
 import Typography from "@/components/typography";

@@ -1,5 +1,5 @@
 import React from "react";
-import { IconRenderer } from "@/components/icon/IconRenderer";
+import IconRenderer from "@/components/icon/IconRenderer";
 import TitleIndicator from "@/components/title-indicator";
 import Typography from "@/components/typography";
 import Image from "@/components/image";

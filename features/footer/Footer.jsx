@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 
-import { IconRenderer } from "@/components/icon/IconRenderer";
+import IconRenderer from "@/components/icon/IconRenderer";
 import Typography from "@/components/typography";
 import Image from "@/components/image";
 

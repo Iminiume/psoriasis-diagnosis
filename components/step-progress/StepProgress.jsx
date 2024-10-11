@@ -1,6 +1,7 @@
 import classNames from "classnames";
 import React from "react";
 import Typography from "@/components/typography";
+import PropTypes from "prop-types";
 
 const StepProgress = ({ steps, currentStep }) => {
   return (
@@ -47,4 +48,8 @@ const StepProgress = ({ steps, currentStep }) => {
   );
 };
 
+StepProgress.propTypes = {
+  steps: PropTypes.array,
+  currentStep: PropTypes.number,
+};
 export default StepProgress;

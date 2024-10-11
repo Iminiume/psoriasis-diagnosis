@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 const Typography = ({
-  variant,
+  variant = "p",
   size = "md",
   weight = "normal",
-  className,
+  className = "",
   children,
 }) => {
   const Tag = variant || "p";
@@ -58,14 +58,6 @@ Typography.propTypes = {
   weight: PropTypes.oneOf(["light", "normal", "medium", "semibold", "bold"]),
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-};
-
-// Default props
-Typography.defaultProps = {
-  variant: "p",
-  size: "medium",
-  weight: "normal",
-  className: "",
 };
 
 export default Typography;

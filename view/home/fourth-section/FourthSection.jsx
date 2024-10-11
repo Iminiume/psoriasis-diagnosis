@@ -2,7 +2,7 @@ import React from "react";
 import Typography from "@/components/typography";
 import Image from "@/components/image";
 import classNames from "classnames";
-import { IconRenderer } from "@/components/icon/IconRenderer";
+import IconRenderer from "@/components/icon/IconRenderer";
 import Link from "next/link";
 import TitleIndicator from "@/components/title-indicator";
 import IconGlass from "@/public/images/iconImage.png";

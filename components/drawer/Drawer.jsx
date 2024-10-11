@@ -1,6 +1,7 @@
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { createPortal } from "react-dom";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
 const Drawer = forwardRef(
   ({ direction = "right", children, className }, ref) => {
@@ -63,5 +64,15 @@ const Drawer = forwardRef(
     );
   },
 );
+
+Drawer.propTypes = {
+  direction: PropTypes.oneOf(["right", "left", "bottom", "top"]),
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  ref: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]),
+};
 
 export default Drawer;

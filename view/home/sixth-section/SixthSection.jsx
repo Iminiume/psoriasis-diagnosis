@@ -1,4 +1,4 @@
-import { IconRenderer } from "@/components/icon/IconRenderer";
+import IconRenderer from "@/components/icon/IconRenderer";
 import Input from "@/components/input";
 import TitleIndicator from "@/components/title-indicator";
 import Link from "next/link";

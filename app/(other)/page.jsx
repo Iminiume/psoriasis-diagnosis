@@ -1,9 +1,8 @@
 "use client";
 import Home from "@/view/home";
-import UiComponents from "@/view/ui-components";
 import { useEffect, useState } from "react";
 
-export default function HomePage() {
+function Page() {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -15,5 +14,6 @@ export default function HomePage() {
   }
 
   return <Home />;
-  // return <UiComponents />;
 }
+
+export default Page;

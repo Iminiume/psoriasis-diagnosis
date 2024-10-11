@@ -2,6 +2,7 @@
 import React from "react";
 import Typography from "@/components/typography";
 import classNames from "classnames";
+import PropTypes from "prop-types";
 
 const colorClasses = {
   primary: "before:border-primaryColor",
@@ -11,7 +12,7 @@ const colorClasses = {
   purple: "before:border-purpleColor",
 };
 
-function TitleIndicator({ color, children }) {
+const TitleIndicator = ({ color, children }) => {
   return (
     <Typography
       variant="h1"
@@ -25,6 +26,11 @@ function TitleIndicator({ color, children }) {
       {children}
     </Typography>
   );
-}
+};
+
+TitleIndicator.propTypes = {
+  color: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
 
 export default TitleIndicator;

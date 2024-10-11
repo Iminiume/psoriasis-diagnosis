@@ -4,7 +4,7 @@ import Link from "next/link";
 import classNames from "classnames";
 
 import Button from "@/components/button";
-import { IconRenderer } from "@/components/icon/IconRenderer";
+import IconRenderer from "@/components/icon/IconRenderer";
 import Typography from "@/components/typography";
 import Image from "@/components/image";
 import { useScrollPosition } from "@/utils/useScrollPosition";
