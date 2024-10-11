@@ -16,6 +16,11 @@ module.exports = {
         orangeShadow: "url(/images/orangeShadow.png)",
         pinkShadow: "url(/images/pinkShadow.png)",
       },
+      aspectRatio: {
+        "4/3": "4 / 3",
+        "16/9": "16 / 9",
+        "1/1": "1 / 1",
+      },
       maxWidth: {
         custom: "1440px",
       },

@@ -7,7 +7,6 @@ import StepProgress from "@/components/step-progress";
 import TitleIndicator from "@/components/title-indicator";
 import Typography from "@/components/typography";
 import React, { useRef, useState } from "react";
-
 const icons = [
   "arrowLeft",
   "burger",
@@ -27,7 +26,6 @@ const typographySizes = [
   { size: "7xl" },
   { size: "6xl" },
   { size: "5xl" },
-  { size: "4xl" },
   { size: "4xl" },
   { size: "3xl" },
   { size: "2xl" },
@@ -49,7 +47,7 @@ function UiComponents() {
   const drawerRef = useRef();
 
   return (
-    <div className="flex flex-col gap-8 px-8 py-16">
+    <div className="flex flex-col gap-16 px-8 py-16">
       <div className="flex flex-col gap-4">
         <TitleIndicator>Typography component</TitleIndicator>
         {typographySizes.map((item) => (

@@ -4,12 +4,21 @@ import React, { memo } from "react";
 import NextImage from "next/image";
 import classNames from "classnames";
 
-function Image({ src, alt, className }) {
+function Image({
+  src,
+  alt,
+  className,
+  draggable = false,
+  sizes,
+  priority = false,
+}) {
   return (
     <NextImage
       src={src}
       alt={alt}
-      draggable={false}
+      sizes={sizes}
+      draggable={draggable}
+      priority={priority}
       className={classNames("select-none object-cover", className)}
       loading="lazy"
     />
