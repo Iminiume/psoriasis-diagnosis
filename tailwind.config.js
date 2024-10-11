@@ -9,6 +9,13 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        blueShadow: "url(/images/blueShadow.png)",
+        bigPinkShadow: "url(/images/bigPinkShadow.png)",
+        blueShadowBottom: "url(/images/blueShadowBottom.png)",
+        orangeShadow: "url(/images/orangeShadow.png)",
+        pinkShadow: "url(/images/pinkShadow.png)",
+      },
       maxWidth: {
         custom: "1440px",
       },

@@ -47,9 +47,9 @@ const HoverText = ({ children }) => (
 );
 
 const FooterCol = ({ title, itemsList }) => (
-  <div className="flex basis-1/5 flex-col gap-[20px]">
+  <div className="flex basis-1/5 flex-col items-center justify-center gap-[20px] lg:items-start">
     <Title className="text-lg text-mainTextColor">{title}</Title>
-    <div className="flex flex-col gap-[10px] text-secondTextColor">
+    <div className="flex flex-col items-center justify-center gap-[10px] text-secondTextColor lg:items-start">
       {itemsList.map((item, index) => (
         <div className="flex gap-[10px]" key={`footer-item-${index}`}>
           {item.icon && (
@@ -72,9 +72,9 @@ const FooterCol = ({ title, itemsList }) => (
 
 function Footer() {
   return (
-    <div className="container relative mx-auto rounded-t-3xl bg-footerBg py-[70px] backdrop-blur-[10px]">
-      <div className="flex items-start justify-start gap-4 px-[124px]">
-        <div className="flex basis-2/5 flex-col gap-6">
+    <div className="relative rounded-t-3xl bg-footerBg py-[70px] backdrop-blur-[10px]">
+      <div className="flex flex-col items-center justify-center gap-4 px-8 lg:flex-row lg:items-start lg:justify-start lg:px-[124px]">
+        <div className="flex basis-2/5 flex-col items-center gap-6 lg:items-start">
           <Image src={TextLogo} alt="text-logo" />
           <Text className="text-sm opacity-50">{Texts.detail}</Text>
         </div>

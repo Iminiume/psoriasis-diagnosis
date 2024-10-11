@@ -67,32 +67,29 @@ const Card = ({ isLandscape, date, title, description, imageSrc }) => {
 
 function FifthSection() {
   return (
-    <div className="mx-auto w-full py-[8rem]">
-      <div className="flex flex-col gap-8 px-8">
-        <div className="flex w-full justify-between">
-          <TitleIndicator color="orange">{Texts.title}</TitleIndicator>
-          <Link className="flex items-center gap-2" href="/">
-            <Text className="text-2xl">{Texts.showMore}</Text>
-            <IconRenderer icon="arrowLeft" />
-          </Link>
-        </div>
-
-        <div className="flex w-full gap-8">
-          <div className="basis-1/2">
-            <Link href={cardsData[0].link}>
-              <Card {...cardsData[0]} />
-            </Link>
-          </div>
-          <div className="flex basis-1/2 flex-col justify-between gap-8">
-            {cardsData.slice(1).map((card, index) => (
-              <Link key={index} href={card.link}>
-                <Card {...card} />
-              </Link>
-            ))}
-          </div>
-        </div>
+    <div className="flex flex-col gap-8 px-8 py-[8rem]">
+      <div className="flex w-full flex-col justify-between gap-8 lg:flex-row">
+        <TitleIndicator color="orange">{Texts.title}</TitleIndicator>
+        <Link className="flex items-center gap-2" href="/">
+          <Text className="text-2xl">{Texts.showMore}</Text>
+          <IconRenderer icon="arrowLeft" />
+        </Link>
       </div>
 
+      <div className="flex w-full flex-col gap-8 lg:flex-row">
+        <div className="basis-1/2">
+          <Link href={cardsData[0].link}>
+            <Card {...cardsData[0]} />
+          </Link>
+        </div>
+        <div className="flex basis-1/2 flex-col justify-between gap-8">
+          {cardsData.slice(1).map((card, index) => (
+            <Link key={index} href={card.link}>
+              <Card {...card} />
+            </Link>
+          ))}
+        </div>
+      </div>
       <div className="absolute left-0 top-[145rem] z-[-1]">
         <Image src={OrangeShadow} />
       </div>

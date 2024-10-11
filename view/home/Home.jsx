@@ -10,14 +10,14 @@ const SixthSection = dynamic(() => import("./sixth-section"));
 
 function Home() {
   return (
-    <div className="container mx-auto">
+    <>
       <FirstSection />
       <SecondSection />
       <ThirdSection />
       <FourthSection />
       <FifthSection />
       <SixthSection />
-    </div>
+    </>
   );
 }
 

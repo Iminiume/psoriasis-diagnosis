@@ -28,8 +28,9 @@ const navClassNames = {
 };
 
 const imageClassNames = {
-  notScrolled: "border border-primaryColor bg-background translate-y-[17%]",
-  scrolled: "translate-y-0",
+  notScrolled:
+    "border border-primaryColor bg-background translate-y-[17%] h-[165px] w-[122px]",
+  scrolled: "translate-y-0 h-[106px] w-[122px]",
 };
 
 const HoverText = ({ children }) => (
@@ -46,39 +47,37 @@ function Navbar() {
   return (
     <div
       className={classNames(
-        "sticky right-0 top-0 z-40 mx-auto flex w-full items-center justify-around gap-10 rounded-b-3xl",
+        "sticky right-0 top-0 z-40 mx-auto flex w-full max-w-custom items-center justify-around gap-10 rounded-b-3xl px-8",
         isScrolled ? navClassNames.scrolled : navClassNames.notScrolled,
       )}
     >
-      <div className="flex items-center gap-10">
-        <Link href="/">
-          <div
-            className={classNames(
-              "rounded-bl-3xl px-6 py-4",
-              isScrolled
-                ? imageClassNames.scrolled
-                : imageClassNames.notScrolled,
-            )}
-          >
-            <Image src={isScrolled ? Logo : TextLogo} alt="logo" />
-          </div>
-        </Link>
+      <Link href="/">
+        <div
+          className={classNames(
+            "rounded-bl-3xl px-6 py-4",
+            isScrolled ? imageClassNames.scrolled : imageClassNames.notScrolled,
+          )}
+        >
+          <Image src={isScrolled ? Logo : TextLogo} alt="logo" />
+        </div>
+      </Link>
 
-        <div className="flex items-center gap-8">
+      <div className="flex w-full flex-row-reverse items-center justify-between gap-10 lg:flex-row">
+        <div className="hidden items-center gap-8 lg:flex">
           {navbarItems.map((item, index) => (
             <Link href={item.link} key={`navbar-item-${index}`}>
               <HoverText>{item.title}</HoverText>
             </Link>
           ))}
         </div>
-      </div>
 
-      <Link href="/login">
-        <Button mode="primary" className="flex items-center gap-6">
-          <IconRenderer icon="user" />
-          <Text className="text-2xl font-medium">{Texts.comeIn}</Text>
-        </Button>
-      </Link>
+        <Link href="/login">
+          <Button mode="primary" className="flex items-center gap-6">
+            <IconRenderer icon="user" />
+            <Text className="font-medium lg:text-2xl">{Texts.comeIn}</Text>
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 }

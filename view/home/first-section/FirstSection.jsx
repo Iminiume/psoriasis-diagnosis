@@ -18,12 +18,14 @@ const Texts = {
 
 function FirstSection() {
   return (
-    <div className="mx-auto px-4 py-[12rem]">
+    <div className="px-8 py-[12rem]">
       <div className="flex">
         {/* Text Box */}
-        <div className="flex w-full basis-1/2 flex-col items-center justify-center gap-6 pt-12">
-          <Title className="text-[100px]">{Texts.bigTitle}</Title>
-          <div className="flex w-full items-center justify-start gap-6">
+        <div className="flex w-full basis-full flex-col items-center justify-center gap-6 pt-12 lg:basis-1/2">
+          <Title className="text-center text-[4rem] lg:text-start lg:text-[7rem]">
+            {Texts.bigTitle}
+          </Title>
+          <div className="flex w-full items-center justify-center gap-6 lg:justify-start">
             <Button>
               <Text>{Texts.reserve}</Text>
             </Button>
@@ -34,7 +36,7 @@ function FirstSection() {
         </div>
 
         {/* Image Box */}
-        <div className="relative basis-1/2">
+        <div className="relative hidden basis-1/2 lg:block">
           <Image
             alt="big-logo"
             src={BigLogo}

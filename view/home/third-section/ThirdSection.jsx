@@ -16,21 +16,19 @@ const Texts = {
 
 function ThirdSection() {
   return (
-    <div className="mx-auto py-[8rem]">
-      <div className="flex gap-[4rem]">
-        {/* Text Box */}
-        <div className="flex basis-3/4 flex-col gap-[4rem]">
-          <TextIndicator color="primary">{Texts.title}</TextIndicator>
-          <Text className="text-[1.5rem]">{Texts.description}</Text>
-          <div className="flex gap-6">
-            <Button>{Texts.reserveNow}</Button>
-            <Button mode="secondary">{Texts.moreInfo}</Button>
-          </div>
-        </div>
+    <div className="flex flex-col gap-[4rem] px-8 py-[8rem] lg:flex-row-reverse">
+      {/* Image Box */}
+      <div className="flex basis-1/4 items-center justify-center">
+        <Image src={ThirdThumbnail} alt="Third Thumbnail" />
+      </div>
 
-        {/* Image Box */}
-        <div className="basis-1/4">
-          <Image src={ThirdThumbnail} alt="Third Thumbnail" />
+      {/* Text Box */}
+      <div className="flex basis-3/4 flex-col items-center gap-[4rem] lg:items-start">
+        <TextIndicator color="primary">{Texts.title}</TextIndicator>
+        <Text className="text-[1.5rem]">{Texts.description}</Text>
+        <div className="flex gap-6">
+          <Button>{Texts.reserveNow}</Button>
+          <Button mode="secondary">{Texts.moreInfo}</Button>
         </div>
       </div>
 

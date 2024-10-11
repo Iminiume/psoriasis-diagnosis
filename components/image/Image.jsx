@@ -12,8 +12,6 @@ function Image({ src, alt, className }) {
       draggable={false}
       className={classNames("select-none object-cover", className)}
       loading="lazy"
-      placeholder="blur"
-      blurDataURL="/path-to-placeholder.jpg" // Replace with your placeholder
     />
   );
 }
