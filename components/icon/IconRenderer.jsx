@@ -1,39 +1,32 @@
 "use client";
 
-import { ArrowLeftIcon } from "./ArrowLeftIcon";
-import { PlayIcon } from "./PlayIcon";
-import { EmailIcon } from "./EmailIcon";
-import { LocationIcon } from "./LocationIcon";
-import { PhoneIcon } from "./PhoneIcon";
-import { ChevronRight } from "./ChevronRightIcon";
-import { UserIcon } from "./UserIcon";
-import { BurgerIcon } from "./BurgerIcon";
-import { XCloseIcon } from "./XCloseIcon";
 import PropTypes from "prop-types";
-import { WarningCircleIcon } from "./WarningCircleIcon";
-import { InfoCircleIcon } from "./InfoCircleIcon";
-import { CheckCircleIcon } from "./CheckCircleIcon";
-import { ErrorCircleIcon } from "./ErrorCircleIcon";
+import { useState, useEffect } from "react";
 
 const IconRenderer = ({ icon }) => {
-  const iconsMap = {
-    phone: <PhoneIcon />,
-    location: <LocationIcon />,
-    email: <EmailIcon />,
-    arrowLeft: <ArrowLeftIcon />,
-    play: <PlayIcon />,
-    chevronRight: <ChevronRight />,
-    user: <UserIcon />,
-    burger: <BurgerIcon />,
-    xClose: <XCloseIcon />,
-    warningCircle: <WarningCircleIcon />,
-    infoCircle: <InfoCircleIcon />,
-    checkCircle: <CheckCircleIcon />,
-    errorCircle: <ErrorCircleIcon />,
-  };
+  const [IconComponent, setIconComponent] = useState(null);
 
-  // If it's a string (icon name), return corresponding icon, otherwise return the icon JSX
-  return typeof icon === "string" ? iconsMap[icon] || null : icon;
+  useEffect(() => {
+    if (typeof icon === "string") {
+   
+      const loadIcon = async () => {
+        try {
+          const { [icon]: LoadedIcon } = await import(`./iconNames.jsx`);
+          setIconComponent(() => LoadedIcon);
+        } catch (error) {
+          console.error(`Error loading icon: ${icon}`, error);
+          setIconComponent(null); 
+        }
+      };
+
+      loadIcon();
+    } else {
+      setIconComponent(() => icon); 
+    }
+  }, [icon]);
+  if (!IconComponent) return null;
+
+  return <IconComponent />;
 };
 
 IconRenderer.propTypes = {

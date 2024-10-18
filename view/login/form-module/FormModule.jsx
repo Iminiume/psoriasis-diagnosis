@@ -107,7 +107,7 @@ function FormModule() {
             label={Texts.inputLabel}
           />
         ) : (
-          <div className="flex flex-row-reverse justify-between gap-8">
+          <div className="flex flex-row-reverse justify-between">
             {otpDigits.map((digit, index) => (
               <Input
                 key={index}
@@ -116,7 +116,7 @@ function FormModule() {
                 onChange={(value) => handleOtpChange(index, value)}
                 maxLength={1}
                 type="text"
-                className="text-center"
+                className="w-[58px] text-center"
                 ref={(el) => (inputRefs.current[index] = el)}
               />
             ))}

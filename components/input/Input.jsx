@@ -23,7 +23,7 @@ const InputComponent = forwardRef(
         <input
           ref={ref}
           className={classNames(
-            "h-12 w-full rounded-md border border-white bg-inputBg px-2",
+            "h-12 rounded-md border border-white bg-inputBg px-2",
             className,
           )}
           type={type}
