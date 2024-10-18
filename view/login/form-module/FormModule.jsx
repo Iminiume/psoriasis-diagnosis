@@ -1,9 +1,13 @@
 "use client";
+import LoginAPI from "@/api/login";
 import Button from "@/components/button";
 import Input from "@/components/input";
+import Notification from "@/components/notification";
 import Typography from "@/components/typography";
+import { useAuthContext } from "@/utils/useAuthContext";
+import { useNotification } from "@/utils/useNotification";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Texts = {
   login: "ورود",
@@ -12,25 +16,80 @@ const Texts = {
   sentCode: "کد ارسالی",
   enterSentCode: "رمز عبور ارسال شده را وارد کنید",
   confirm: "تایید",
+  wrongOtp: "کد وارد شده اشتباه می باشد!",
 };
 
 function FormModule() {
-  const [isEnteringNumber, setIsEnteringNumber] = useState(true);
-  const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [otpDigits, setOtpDigits] = useState(["", "", "", ""]);
+  const [isEnteringNumber, setIsEnteringNumber] = useState(true);
+
+  const router = useRouter();
+  const inputRefs = useRef([]);
+
+  const { state, login } = useAuthContext();
+  const { addNotification } = useNotification();
+
+  const {
+    data: sendOtpData,
+    loading: sendingOtp,
+    error: sendOtpError,
+    refetch: sendOtp,
+  } = LoginAPI.Login({ phoneNumber });
+  const {
+    data: verifyOtpData,
+    loading: verifyingOtp,
+    error: verifyOtpError,
+    refetch: verifyOtp,
+  } = LoginAPI.VerifyOtp({ phoneNumber, otp: otpDigits.join("") });
 
   useEffect(() => {
-    setIsMounted(true); // Ensures that the component is mounted
+    setIsMounted(true);
   }, []);
 
-  const handleSubmit = (event) => {
-    event.preventDefault(); // Prevents default form submission
+  useEffect(() => {
+    if (!sendingOtp && !sendOtpError && sendOtpData) {
+      setIsEnteringNumber(false);
+    }
+  }, [sendingOtp, sendOtpError, sendOtpData]);
+
+  useEffect(() => {
+    if (state.isLoggedIn) {
+      router.push("/");
+    }
+  }, [state]);
+
+  useEffect(() => {
+    if (verifyOtpData && !verifyOtpError && !verifyingOtp) {
+      login(verifyOtpData?.token);
+    }
+    if (verifyOtpError) {
+      addNotification({
+        id: Date.now(),
+        type: "error",
+        message: Texts.wrongOtp,
+      });
+    }
+  }, [verifyOtpData, verifyOtpError, verifyingOtp]);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     if (isMounted) {
       if (isEnteringNumber) {
-        setIsEnteringNumber(false);
+        sendOtp();
       } else {
-        router.push("/");
+        verifyOtp();
       }
+    }
+  };
+
+  const handleOtpChange = (index, value) => {
+    const newOtpDigits = [...otpDigits];
+    newOtpDigits[index] = value.replace(/\D/g, "");
+    setOtpDigits(newOtpDigits);
+    if (value && index < otpDigits.length - 1) {
+      inputRefs.current[index + 1].focus();
     }
   };
 
@@ -40,12 +99,36 @@ function FormModule() {
         {isEnteringNumber ? Texts.login : Texts.sentCode}
       </Typography>
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-        <Input
-          placeholder="09123456789"
-          label={isEnteringNumber ? Texts.inputLabel : Texts.enterSentCode}
-        />
+        {isEnteringNumber ? (
+          <Input
+            placeholder="09123456789"
+            value={phoneNumber}
+            onChange={(value) => setPhoneNumber(value)}
+            label={Texts.inputLabel}
+          />
+        ) : (
+          <div className="flex flex-row-reverse justify-between gap-8">
+            {otpDigits.map((digit, index) => (
+              <Input
+                key={index}
+                placeholder="-"
+                value={digit}
+                onChange={(value) => handleOtpChange(index, value)}
+                maxLength={1}
+                type="text"
+                className="text-center"
+                ref={(el) => (inputRefs.current[index] = el)}
+              />
+            ))}
+          </div>
+        )}
+
         <div className="flex justify-end">
-          <Button mode={"primary"} onClick="submit">
+          <Button
+            mode={"primary"}
+            type="submit"
+            disabled={sendingOtp || verifyingOtp}
+          >
             <Typography weight="bold">
               {isEnteringNumber ? Texts.getCode : Texts.confirm}
             </Typography>

@@ -12,6 +12,7 @@ import { useScrollPosition } from "@/utils/useScrollPosition";
 import TextLogo from "@/public/images/textLogo.png";
 import Logo from "@/public/images/logo.png";
 import Drawer from "@/components/drawer";
+import { useAuthContext } from "@/utils/useAuthContext";
 
 const navbarItems = [
   { title: "خانه", link: "/" },
@@ -43,6 +44,19 @@ const HoverText = ({ children }) => (
   </Typography>
 );
 
+const LoginButton = ({}) => {
+  return (
+    <Link href="/login" className="hidden lg:block">
+      <Button mode="primary" className="flex items-center gap-6">
+        <IconRenderer icon="user" />
+        <Typography size="2xl" weight="medium">
+          {Texts.comeIn}
+        </Typography>
+      </Button>
+    </Link>
+  );
+};
+
 const NavBarContent = ({ toggleMenu }) => (
   <>
     <div className="hidden items-center gap-8 lg:flex">
@@ -59,14 +73,7 @@ const NavBarContent = ({ toggleMenu }) => (
       </Button>
     </div>
 
-    <Link href="/login" className="hidden lg:block">
-      <Button mode="primary" className="flex items-center gap-6">
-        <IconRenderer icon="user" />
-        <Typography size="2xl" weight="medium">
-          {Texts.comeIn}
-        </Typography>
-      </Button>
-    </Link>
+    <LoginButton />
   </>
 );
 
@@ -78,22 +85,16 @@ const NavbarDrawerContents = () => (
       </Link>
     ))}
 
-    <Link href="/login">
-      <Button mode="primary" className="flex items-center gap-6">
-        <IconRenderer icon="user" />
-        <Typography size="2xl" weight="medium">
-          {Texts.comeIn}
-        </Typography>
-      </Button>
-    </Link>
+    <LoginButton />
   </div>
 );
 
 function Navbar() {
-  const scrollPosition = useScrollPosition();
-  const isScrolled = scrollPosition > 48;
-
   const drawerRef = useRef(null);
+  const scrollPosition = useScrollPosition();
+  const { state, login } = useAuthContext();
+
+  const isScrolled = scrollPosition > 48;
 
   const toggleMenu = () => {
     drawerRef.current.open();

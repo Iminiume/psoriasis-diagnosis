@@ -9,8 +9,10 @@ export const metadata = {
 export default function Layout({ children }) {
   return (
     <html lang="en" dir="rtl">
-      <body className={`relative m-0 box-border p-0 text-[16px] antialiased`}>
-        <div className="mx-auto max-w-custom">{children}</div>
+      <body
+        className={`relative m-0 box-border min-h-screen p-0 text-[16px] antialiased`}
+      >
+        <main className="mx-auto h-full max-w-custom">{children}</main>
       </body>
     </html>
   );

@@ -10,6 +10,10 @@ import { UserIcon } from "./UserIcon";
 import { BurgerIcon } from "./BurgerIcon";
 import { XCloseIcon } from "./XCloseIcon";
 import PropTypes from "prop-types";
+import { WarningCircleIcon } from "./WarningCircleIcon";
+import { InfoCircleIcon } from "./InfoCircleIcon";
+import { CheckCircleIcon } from "./CheckCircleIcon";
+import { ErrorCircleIcon } from "./ErrorCircleIcon";
 
 const IconRenderer = ({ icon }) => {
   const iconsMap = {
@@ -22,6 +26,10 @@ const IconRenderer = ({ icon }) => {
     user: <UserIcon />,
     burger: <BurgerIcon />,
     xClose: <XCloseIcon />,
+    warningCircle: <WarningCircleIcon />,
+    infoCircle: <InfoCircleIcon />,
+    checkCircle: <CheckCircleIcon />,
+    errorCircle: <ErrorCircleIcon />,
   };
 
   // If it's a string (icon name), return corresponding icon, otherwise return the icon JSX

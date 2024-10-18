@@ -21,6 +21,17 @@ module.exports = {
         "16/9": "16 / 9",
         "1/1": "1 / 1",
       },
+      keyframes: {
+        fadeIn: {
+          "0%": { opacity: "0%" },
+          "100%": { opacity: "100%" },
+        },
+        progress: {
+          from: { width: "100%" },
+          to: { width: "0%" },
+        },
+      },
+      animation: { fadeIn: "fadeIn 0.1s ease-in-out" },
       maxWidth: {
         custom: "1440px",
       },

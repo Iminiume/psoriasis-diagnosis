@@ -1,10 +1,12 @@
-import "@/public/styles/fonts.css";
-import "@/public/styles/globals.css";
+import { Suspense } from "react";
 
+import { AuthProvider } from "@/context/authContext/authProvider";
 import Navbar from "@/features/navbar";
 import Footer from "@/features/footer";
-import { Suspense } from "react";
 import Loading from "./loading";
+
+import "@/public/styles/globals.css";
+import "@/public/styles/fonts.css";
 
 export const metadata = {
   title: "Hoorie Masoorian Medical",
