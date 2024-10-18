@@ -44,9 +44,9 @@ const HoverText = ({ children }) => (
   </Typography>
 );
 
-const LoginButton = ({}) => {
+const LoginButton = ({ className }) => {
   return (
-    <Link href="/login" className="hidden lg:block">
+    <Link href="/login" className={className}>
       <Button mode="primary" className="flex items-center gap-6">
         <IconRenderer icon="user" />
         <Typography size="2xl" weight="medium">
@@ -73,12 +73,12 @@ const NavBarContent = ({ toggleMenu }) => (
       </Button>
     </div>
 
-    <LoginButton />
+    <LoginButton className={"hidden lg:block"} />
   </>
 );
 
 const NavbarDrawerContents = () => (
-  <div className="flex flex-col items-center justify-center gap-8">
+  <div className="flex min-w-[128px] flex-col items-center justify-center gap-8">
     {navbarItems.map((item, index) => (
       <Link href={item.link} key={`navbar-item-${index}`}>
         <HoverText>{item.title}</HoverText>

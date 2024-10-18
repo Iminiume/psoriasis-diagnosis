@@ -34,7 +34,7 @@ function LoginLayout() {
         </div>
       </div>
 
-      <div className="z-10 flex-1 rounded-[40px]">
+      <div className="z-10 hidden flex-1 rounded-[40px] lg:block">
         <Image alt="login-thumbnail" src={LoginThumbnail} />
       </div>
 
