@@ -47,7 +47,7 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@5.34.199.51 << 'EOF'
-            cd ~/masoorian_web
+            cd ~/masoorian_web/masoorian-medical
             git pull origin main 
             docker-compose -f docker-compose.yml up -d build
           EOF
