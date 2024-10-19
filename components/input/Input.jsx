@@ -37,5 +37,6 @@ const InputComponent = forwardRef(
     );
   },
 );
+InputComponent.displayName = "InputComponent";
 
 export default InputComponent;

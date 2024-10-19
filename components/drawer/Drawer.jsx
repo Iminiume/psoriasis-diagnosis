@@ -65,6 +65,8 @@ const Drawer = forwardRef(
   },
 );
 
+Drawer.displayName = "Drawer";
+
 Drawer.propTypes = {
   direction: PropTypes.oneOf(["right", "left", "bottom", "top"]),
   className: PropTypes.string,
