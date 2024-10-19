@@ -1,4 +1,8 @@
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = (phase, { defaultConfig }) => {};
+const nextConfig = {
+  /* config options here */
+};
+
+module.exports = nextConfig;

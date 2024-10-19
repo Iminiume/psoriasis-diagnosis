@@ -29,7 +29,7 @@ const InputComponent = forwardRef(
           type={type}
           required={required}
           disabled={disabled}
-          onChange={(e) => onChange(e.target.value)}
+          onChange={(e) => onChange(e?.target.value)}
           autoComplete={autoComplete}
           {...rest}
         />
