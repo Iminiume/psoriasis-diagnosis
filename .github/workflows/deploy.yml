@@ -41,6 +41,17 @@ jobs:
       - name: Push Docker image
         run: docker push iminiume/masoorian-web-image:latest
 
+      # Setup SSH agent and add private key
+      - name: Setup SSH for deployment
+        uses: webfactory/ssh-agent@v0.8.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      # Add server to known_hosts
+      - name: Add server to known hosts
+        run: |
+          ssh-keyscan -H 5.34.199.51 >> ~/.ssh/known_hosts
+
       # Optional: Deploy to a server (replace with your actual deployment steps)
       - name: Deploy to server
         run: |
