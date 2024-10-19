@@ -1,33 +1,18 @@
-# Stage 1: Build the Next.js application
+# Build stage
 FROM node:18-alpine AS builder
-
-# Set working directory
 WORKDIR /app
-
-# Install dependencies
-COPY package.json package-lock.json ./
-RUN npm ci
-
-# Copy project files
+COPY package*.json ./
+RUN npm install
 COPY . .
-
-# Build the project
 RUN npm run build
 
-# Stage 2: Run the Next.js application
+# Production stage
 FROM node:18-alpine
-
-# Set working directory
 WORKDIR /app
-
-# Install production dependencies only
-COPY package.json package-lock.json ./
-RUN npm ci --only=production
-
-# Copy the built application from the builder stage
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.js ./next.config.js
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
 
-# Start the application
 CMD ["npm", "start"]
