@@ -29,8 +29,5 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.js ./next.config.js
 
-# Expose the port Next.js will run on
-EXPOSE 3000
-
 # Start the application
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
