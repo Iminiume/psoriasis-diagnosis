@@ -51,8 +51,8 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -o StrictHostKeyChecking=no ubuntu@5.34.199.51 << 'EOF'
-          docker pull iminiume/masoorian-web-image:latest
-          docker stop masoorian-web || true
-          docker rm masoorian-web || true
-          docker run -d -p 3000:3000 --name masoorian-web iminiume/masoorian-web-image:latest
+          sudo docker pull iminiume/masoorian-web-image:latest
+          sudo docker stop masoorian-web || true
+          sudo docker rm masoorian-web || true
+          sudo docker run -d -p 3000:3000 --name masoorian-web iminiume/masoorian-web-image:latest
           EOF
