@@ -5,7 +5,7 @@ FROM node:18-alpine AS builder
 WORKDIR /app
 
 # Install dependencies
-COPY package.json yarn.lock ./
+COPY package.json package-lock.json ./
 RUN npm ci
 
 # Copy project files
