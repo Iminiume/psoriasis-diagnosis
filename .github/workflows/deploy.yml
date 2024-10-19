@@ -44,9 +44,9 @@ jobs:
       # Optional: Deploy to a server (replace with your actual deployment steps)
       - name: Deploy to server
         run: |
-          ssh user@your-server.com << 'EOF'
+          ssh ubuntu@5.34.199.51 << 'EOF'
           docker pull iminiume/masoorian-web-image:latest
-          docker stop your-container-name || true
-          docker rm your-container-name || true
-          docker run -d -p 3000:3000 --name your-container-name iminiume/masoorian-web-image:latest
+          docker stop masoorian-web || true
+          docker rm masoorian-web || true
+          docker run -d -p 3000:3000 --name masoorian-web iminiume/masoorian-web-image:latest
           EOF
