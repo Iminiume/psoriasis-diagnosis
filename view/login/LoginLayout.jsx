@@ -24,7 +24,7 @@ function LoginLayout() {
           <Typography>{Texts.goBack}</Typography>
         </Link>
 
-        <div className="flex w-full flex-col px-[109px]">
+        <div className="flex w-full basis-1/2 flex-col items-center justify-center px-[50px] py-[80px] lg:px-[110px]">
           <div className="flex items-center justify-center gap-4">
             <Typography size="2xl">{Texts.to}</Typography>
             <Image alt="logo" src={Logo} />
@@ -34,7 +34,7 @@ function LoginLayout() {
         </div>
       </div>
 
-      <div className="z-10 hidden flex-1 rounded-[40px] lg:block">
+      <div className="z-10 hidden basis-1/2 rounded-[40px] lg:block">
         <Image alt="login-thumbnail" src={LoginThumbnail} />
       </div>
 

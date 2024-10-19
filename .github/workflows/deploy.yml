@@ -1,0 +1,52 @@
+name: Deploy Next.js with Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          cache: "npm"
+
+      # Install dependencies
+      - name: Install dependencies
+        run: npm ci
+
+      # Build the project
+      - name: Build project
+        run: npm run build
+
+      # Log in to DockerHub
+      - name: Log in to DockerHub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      # Build Docker image
+      - name: Build Docker image
+        run: docker build -t iminiume/masoorian-web-image:latest .
+
+      # Push Docker image to DockerHub
+      - name: Push Docker image
+        run: docker push iminiume/masoorian-web-image:latest
+
+      # Optional: Deploy to a server (replace with your actual deployment steps)
+      - name: Deploy to server
+        run: |
+          ssh user@your-server.com << 'EOF'
+          docker pull iminiume/masoorian-web-image:latest
+          docker stop your-container-name || true
+          docker rm your-container-name || true
+          docker run -d -p 3000:3000 --name your-container-name iminiume/masoorian-web-image:latest
+          EOF

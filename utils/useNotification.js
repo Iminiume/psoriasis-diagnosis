@@ -2,8 +2,9 @@ import { NotificationContext } from "@/context/notificationContext";
 import { useContext } from "react";
 
 export const useNotification = () => {
-  if (!NotificationContext) {
+  const context = useContext(NotificationContext);
+  if (!context) {
     throw Error("No NotificationContext");
   }
-  return useContext(NotificationContext);
+  return context;
 };

@@ -13,7 +13,7 @@ const statusStyles = {
 const icons = {
   success: "checkCircle",
   error: "errorCircle",
-  warning: "warningCircle",
+  warning: "warning",
   info: "infoCircle",
 };
 
@@ -33,7 +33,7 @@ const Notification = ({ message, type, duration = 5000, onClose }) => {
   const notificationElement = (
     <div
       className={classNames(
-        "animate-fadeIn fixed right-4 top-4 z-40 w-[20rem] max-w-md rounded-lg border-l-4 p-4 shadow-lg transition-opacity",
+        "fixed bottom-4 right-4 z-40 w-[20rem] max-w-md animate-fadeIn rounded-lg border-l-4 p-4 shadow-lg transition-opacity",
         statusStyles[type],
         showNotification ? "opacity-100" : "opacity-0",
       )}

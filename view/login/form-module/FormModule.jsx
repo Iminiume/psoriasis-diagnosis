@@ -94,7 +94,7 @@ function FormModule() {
   };
 
   return (
-    <div className="flex flex-col gap-8 pt-[81px]">
+    <div className="flex w-full flex-col gap-8 pt-[81px]">
       <Typography size="6xl">
         {isEnteringNumber ? Texts.login : Texts.sentCode}
       </Typography>

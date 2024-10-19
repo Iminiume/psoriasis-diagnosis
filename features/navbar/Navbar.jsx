@@ -1,18 +1,19 @@
 "use client";
-import React, { useRef, useState } from "react";
-import Link from "next/link";
+import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 import Button from "@/components/button";
 import IconRenderer from "@/components/icon/IconRenderer";
 import Typography from "@/components/typography";
 import Image from "@/components/image";
+import Drawer from "@/components/drawer";
 import { useScrollPosition } from "@/utils/useScrollPosition";
+import { useAuthContext } from "@/utils/useAuthContext";
 
 import TextLogo from "@/public/images/textLogo.png";
 import Logo from "@/public/images/logo.png";
-import Drawer from "@/components/drawer";
-import { useAuthContext } from "@/utils/useAuthContext";
 
 const navbarItems = [
   { title: "خانه", link: "/" },
@@ -21,19 +22,23 @@ const navbarItems = [
   { title: "درباره ما", link: "/about-us" },
 ];
 
-const Texts = { comeIn: "وارد شوید" };
+const Texts = { comeIn: "وارد شوید", logOut: "خروج" };
 
-const navClassNames = {
-  notScrolled: "h-[106px]",
-  scrolled:
-    "h-[106px] bg-gradient-to-b from-background to-[rgba(25, 31, 45, 0) 100%] backdrop-blur-[12px]",
-};
+const navStyles = (isScrolled) =>
+  classNames(
+    "sticky right-0 top-0 z-40 mx-auto flex w-full max-w-custom items-center justify-around gap-10 rounded-b-3xl px-8",
+    isScrolled
+      ? "h-[106px] bg-gradient-to-b from-background to-[rgba(25, 31, 45, 0) 100%] backdrop-blur-[12px]"
+      : "h-[106px]",
+  );
 
-const imageClassNames = {
-  notScrolled:
-    "border border-primaryColor bg-background translate-y-[17%] h-[165px] w-[122px]",
-  scrolled: "translate-y-0 h-[106px] w-[122px]",
-};
+const logoStyles = (isScrolled) =>
+  classNames(
+    "rounded-bl-3xl px-6 py-4",
+    isScrolled
+      ? "translate-y-0 h-[106px] w-[122px]"
+      : "border border-primaryColor bg-background translate-y-[17%] h-[165px] w-[122px]",
+  );
 
 const HoverText = ({ children }) => (
   <Typography
@@ -44,86 +49,99 @@ const HoverText = ({ children }) => (
   </Typography>
 );
 
-const LoginButton = ({ className }) => {
-  return (
-    <Link href="/login" className={className}>
-      <Button mode="primary" className="flex items-center gap-6">
-        <IconRenderer icon="user" />
-        <Typography size="2xl" weight="medium">
-          {Texts.comeIn}
-        </Typography>
-      </Button>
+const NavbarItems = () =>
+  navbarItems.map((item, index) => (
+    <Link href={item.link} key={`navbar-item-${index}`}>
+      <HoverText>{item.title}</HoverText>
     </Link>
-  );
-};
+  ));
 
-const NavBarContent = ({ toggleMenu }) => (
+const LoginButton = ({ isLoggedIn, onClick }) => (
+  <Button mode="primary" className="flex items-center gap-6" onClick={onClick}>
+    <IconRenderer icon={isLoggedIn ? "exit" : "user"} />
+    <Typography size="2xl" weight="medium">
+      {isLoggedIn ? Texts.logOut : Texts.comeIn}
+    </Typography>
+  </Button>
+);
+
+const LinkLoginButton = ({ isLoggedIn, href, onClick, className }) => (
+  <Link href={href} className={className}>
+    <LoginButton isLoggedIn={isLoggedIn} onClick={onClick} />
+  </Link>
+);
+
+const NavBarContent = ({ toggleMenu, isLoggedIn, handleLogOut }) => (
   <>
     <div className="hidden items-center gap-8 lg:flex">
-      {navbarItems.map((item, index) => (
-        <Link href={item.link} key={`navbar-item-${index}`}>
-          <HoverText>{item.title}</HoverText>
-        </Link>
-      ))}
+      <NavbarItems />
     </div>
-
     <div className="lg:hidden">
       <Button onClick={toggleMenu}>
         <IconRenderer icon="burger" />
       </Button>
     </div>
-
-    <LoginButton className={"hidden lg:block"} />
+    <LinkLoginButton
+      className="hidden lg:block"
+      isLoggedIn={isLoggedIn}
+      href={isLoggedIn ? "/" : "/login"}
+      onClick={isLoggedIn ? handleLogOut : null}
+    />
   </>
 );
 
-const NavbarDrawerContents = () => (
+const NavbarDrawerContents = ({ isLoggedIn, handleLogOut }) => (
   <div className="flex min-w-[128px] flex-col items-center justify-center gap-8">
-    {navbarItems.map((item, index) => (
-      <Link href={item.link} key={`navbar-item-${index}`}>
-        <HoverText>{item.title}</HoverText>
-      </Link>
-    ))}
-
-    <LoginButton />
+    <NavbarItems />
+    <LinkLoginButton
+      isLoggedIn={isLoggedIn}
+      href={isLoggedIn ? "/" : "/login"}
+      onClick={isLoggedIn ? handleLogOut : null}
+    />
   </div>
 );
 
 function Navbar() {
   const drawerRef = useRef(null);
-  const scrollPosition = useScrollPosition();
-  const { state, login } = useAuthContext();
 
+  const scrollPosition = useScrollPosition();
   const isScrolled = scrollPosition > 48;
 
-  const toggleMenu = () => {
-    drawerRef.current.open();
+  const { state, logout } = useAuthContext();
+  const isLoggedIn = state?.isLoggedIn;
+
+  const router = useRouter();
+
+  const handleLogOut = () => {
+    logout();
+    if (router) {
+      router.refresh(); // Only reload if the router is ready
+    }
   };
 
+  const toggleMenu = () => drawerRef.current?.open();
+
   return (
-    <header
-      className={classNames(
-        "sticky right-0 top-0 z-40 mx-auto flex w-full max-w-custom items-center justify-around gap-10 rounded-b-3xl px-8",
-        isScrolled ? navClassNames.scrolled : navClassNames.notScrolled,
-      )}
-    >
+    <header className={navStyles(isScrolled)}>
       <Link href="/">
-        <div
-          className={classNames(
-            "rounded-bl-3xl px-6 py-4",
-            isScrolled ? imageClassNames.scrolled : imageClassNames.notScrolled,
-          )}
-        >
+        <div className={logoStyles(isScrolled)}>
           <Image src={isScrolled ? Logo : TextLogo} alt="logo" />
         </div>
       </Link>
 
       <div className="flex w-full flex-row-reverse items-center justify-between gap-10 lg:flex-row">
-        <NavBarContent toggleMenu={toggleMenu} />
+        <NavBarContent
+          toggleMenu={toggleMenu}
+          isLoggedIn={isLoggedIn}
+          handleLogOut={handleLogOut}
+        />
       </div>
 
       <Drawer ref={drawerRef} direction="left">
-        <NavbarDrawerContents />
+        <NavbarDrawerContents
+          isLoggedIn={isLoggedIn}
+          handleLogOut={handleLogOut}
+        />
       </Drawer>
     </header>
   );

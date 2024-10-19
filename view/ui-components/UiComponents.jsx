@@ -3,9 +3,11 @@
 import Button from "@/components/button";
 import Drawer from "@/components/drawer";
 import IconRenderer from "@/components/icon/IconRenderer";
+import Input from "@/components/input";
 import StepProgress from "@/components/step-progress";
 import TitleIndicator from "@/components/title-indicator";
 import Typography from "@/components/typography";
+import { useNotification } from "@/utils/useNotification";
 import React, { useRef, useState } from "react";
 const icons = [
   "arrowLeft",
@@ -17,6 +19,11 @@ const icons = [
   "play",
   "user",
   "xClose",
+  "exit",
+  "warning",
+  "infoCircle",
+  "errorCircle",
+  "checkCircle",
 ];
 
 const typographySizes = [
@@ -45,6 +52,7 @@ const steps = [
 function UiComponents() {
   const [prSteps, setPrSteps] = useState(0);
   const drawerRef = useRef();
+  const { addNotification } = useNotification();
 
   return (
     <div className="flex flex-col gap-16 px-8 py-16">
@@ -74,7 +82,7 @@ function UiComponents() {
 
       <div className="flex flex-col gap-8">
         <TitleIndicator>Icon Component</TitleIndicator>
-        <div className="flex gap-8">
+        <div className="flex flex-wrap gap-8">
           {icons.map((icon) => (
             <div className="flex flex-col items-center justify-center gap-2">
               <IconRenderer icon={icon} />
@@ -92,6 +100,25 @@ function UiComponents() {
           disabled={prSteps === steps.length}
         >
           Next
+        </Button>
+      </div>
+
+      <div className="flex flex-col gap-8">
+        <TitleIndicator>Input Component</TitleIndicator>
+
+        <Input label="Simple input" />
+        <Input label="Disabled input" disabled />
+      </div>
+
+      <div className="flex flex-col gap-8">
+        <TitleIndicator>Notifiaction Component</TitleIndicator>
+        <Button
+          onClick={() =>
+            addNotification({ type: "error", message: "خطا", id: Date.now() })
+          }
+          disabled={prSteps === steps.length}
+        >
+          Show Notificaiton
         </Button>
       </div>
     </div>

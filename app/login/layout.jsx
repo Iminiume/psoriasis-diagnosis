@@ -10,7 +10,7 @@ export default function Layout({ children }) {
   return (
     <html lang="en" dir="rtl">
       <body
-        className={`relative m-0 box-border min-h-screen p-0 text-[16px] antialiased`}
+        className={`relative m-0 box-border min-h-screen p-0 antialiased`}
       >
         <main className="mx-auto h-full max-w-custom">{children}</main>
       </body>

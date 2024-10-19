@@ -19,7 +19,7 @@ const TitleIndicator = ({ color, children }) => {
       size="5xl"
       weight="semibold"
       className={classNames(
-        "relative before:absolute before:top-[3rem] before:w-[72px] before:border-[2px]",
+        "relative before:absolute before:top-[3.25rem] before:w-[72px] before:border-[2px]",
         colorClasses[color],
       )}
     >
