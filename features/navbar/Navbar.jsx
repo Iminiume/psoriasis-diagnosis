@@ -10,7 +10,7 @@ import Typography from "@/components/typography";
 import Image from "@/components/image";
 import Drawer from "@/components/drawer";
 import { useScrollPosition } from "@/utils/useScrollPosition";
-import { useAuthContext } from "@/utils/useAuthContext";
+import { useAuthContext } from "@/utils/context/useAuthContext";
 
 import TextLogo from "@/public/images/textLogo.png";
 import Logo from "@/public/images/logo.png";

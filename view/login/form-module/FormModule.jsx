@@ -4,8 +4,8 @@ import Button from "@/components/button";
 import Input from "@/components/input";
 import Notification from "@/components/notification";
 import Typography from "@/components/typography";
-import { useAuthContext } from "@/utils/useAuthContext";
-import { useNotification } from "@/utils/useNotification";
+import { useAuthContext } from "@/utils/context/useAuthContext";
+import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
@@ -29,7 +29,7 @@ function FormModule() {
   const inputRefs = useRef([]);
 
   const { state, login } = useAuthContext();
-  const { addNotification } = useNotification();
+  const { addNotification } = useNotificationContext();
 
   const {
     data: sendOtpData,

@@ -37,26 +37,4 @@ const Typography = ({
   return <Tag className={typographyClasses}>{children}</Tag>;
 };
 
-// PropTypes for validation
-Typography.propTypes = {
-  variant: PropTypes.oneOf(["h1", "h2", "h3", "h4", "h5", "h6", "p", "span"]),
-  size: PropTypes.oneOf([
-    "sm",
-    "md",
-    "lg",
-    "xl",
-    "2xl",
-    "3xl",
-    "4xl",
-    "5xl",
-    "6xl",
-    "7xl",
-    "8xl",
-    "9xl",
-  ]),
-  weight: PropTypes.oneOf(["light", "normal", "medium", "semibold", "bold"]),
-  className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
-
 export default Typography;

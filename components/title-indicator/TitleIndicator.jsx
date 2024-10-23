@@ -28,9 +28,4 @@ const TitleIndicator = ({ color, children }) => {
   );
 };
 
-TitleIndicator.propTypes = {
-  color: PropTypes.string,
-  children: PropTypes.node.isRequired,
-};
-
 export default TitleIndicator;

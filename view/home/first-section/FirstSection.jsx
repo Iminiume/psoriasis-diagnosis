@@ -17,7 +17,7 @@ const Texts = {
 
 function FirstSection() {
   return (
-    <div className="px-8 py-[12rem]">
+    <div className="px-8 pb-12">
       <div className="flex">
         {/* Text Box */}
         <div className="flex w-full basis-full flex-col items-center justify-center gap-6 pt-12 lg:basis-1/2">
@@ -44,11 +44,6 @@ function FirstSection() {
             alt="big-logo"
             src={BigLogo}
             className="absolute right-[9rem] top-[6rem] z-20"
-          />
-          <Image
-            alt="stats"
-            src={Stats}
-            className="absolute right-0 top-0 z-30"
           />
           <Image
             alt="second-vector-bg"

@@ -2,16 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    padding-right: 0 !important;
+    overflow: auto !important;
+  }
+}
+
 :root {
   --background: #191f2d;
+  --foreground: #171717;
 
   --primary-color: #ff4187;
+
+  --main-text-color: white;
+  --second-text-color: #99a8c9;
 
   --blue-color: #194cc2;
   --green-color: #2dc071;
   --orange-color: #f9693e;
   --dark-pink-color: #d251a9;
   --purple-color: #7f56d9;
+  --red-color: #e74040;
+
   --ping-shadow-bg: linear-gradient(
     180deg,
     #191f2d 0%,
@@ -23,15 +36,12 @@
   --card-bg: #1c1a23;
   --navbar-bg: linear-gradient(180deg, #191f2d 0%, rgba(25, 31, 45, 0) 100%);
   --foter-bg: #0b0b0f33;
-  --main-text-color: white;
-  --second-text-color: #99a8c9;
+
   --social-icon-bg: #cfcfcf;
 
   --login-bg: #191f2d33;
   --login-border: #ffffff9c;
   --disabled-element-color: #737373;
-
-  --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {

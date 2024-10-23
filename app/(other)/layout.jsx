@@ -12,9 +12,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
-      <body className={`relative m-0 box-border p-0 antialiased`}>
+      <body
+        className={`m-0 box-border flex min-h-screen flex-col p-0 antialiased`}
+      >
         <Navbar />
-        <main className="mx-auto min-h-screen w-full max-w-custom">
+        <main className="mx-auto w-full max-w-custom flex-grow py-24">
           {children}
         </main>
         <Footer />

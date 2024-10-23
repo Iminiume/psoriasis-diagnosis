@@ -2,8 +2,9 @@ import { useContext } from "react";
 import AuthContext from "@/context/authContext/authContext";
 
 export const useAuthContext = () => {
-  if (!AuthContext) {
+  const context = useContext(AuthContext);
+  if (!context) {
     throw Error("No AuthContext");
   }
-  return useContext(AuthContext);
+  return context;
 };

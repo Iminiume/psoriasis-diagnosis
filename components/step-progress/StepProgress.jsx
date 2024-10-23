@@ -48,8 +48,4 @@ const StepProgress = ({ steps, currentStep }) => {
   );
 };
 
-StepProgress.propTypes = {
-  steps: PropTypes.array,
-  currentStep: PropTypes.number,
-};
 export default StepProgress;

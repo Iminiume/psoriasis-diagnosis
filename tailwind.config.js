@@ -37,18 +37,24 @@ module.exports = {
       },
       colors: {
         background: "var(--background)",
+        foreground: "var(--foreground)",
 
         primaryColor: "var(--primary-color)",
+
+        mainTextColor: "var(--main-text-color)",
+        secondTextColor: "var(--second-text-color)",
+
         blueColor: "var(--blue-color)",
         greenColor: "var(--green-color)",
         darkPinkColor: "var(--dark-pink-color)",
         purpleColor: "var(--purple-color)",
         orangeColor: "var(--orange-color)",
+        redColor: "var(--red-color)",
+
         socialIconBg: "var(--social-icon-bg)",
         navbarBg: "var(--navbar-bg)",
         footerBg: "var(--foter-bg)",
-        mainTextColor: "var(--main-text-color)",
-        secondTextColor: "var(--second-text-color)",
+
         loginBg: "var(--login-bg)",
         loginBorder: "var(--login-border)",
         cardBg: "var(--card-bg)",
@@ -56,8 +62,6 @@ module.exports = {
         inputBg: "var(--input-bg)",
         buttonShadow: "var(--button-shadow)",
         buttonHover: "var(--button-hover)",
-
-        foreground: "var(--foreground)",
         disabledElementColor: "var(--disabled-element-color)",
       },
     },

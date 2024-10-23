@@ -231,3 +231,89 @@ export const exit = () => (
     />
   </svg>
 );
+
+export const pill = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    width="111"
+    height="110"
+    viewBox="0 0 111 110"
+    stroke="currentColor"
+  >
+    <path
+      d="M61.5401 61.0411L35.3672 34.8682"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M77.4307 55L81.1429 51.2878C89.7302 42.7005 89.7302 28.7778 81.1429 20.1905V20.1905C72.5556 11.6032 58.6329 11.6032 50.0456 20.1905L20.6905 49.5455C12.1032 58.1328 12.1032 72.0555 20.6905 80.6428V80.6428C29.2778 89.2301 43.2005 89.2301 51.7878 80.6428L55.5 76.9307"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <circle
+      cx="76.125"
+      cy="75.625"
+      r="20.625"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M76.1237 68.75V82.5"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M69.25 75.6252H83"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
+export const stethoScope = () => (
+  <svg
+    width="111"
+    height="110"
+    viewBox="0 0 111 110"
+    fill="none"
+    stroke="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M97.9785 53.7726C102.453 58.2473 102.453 65.5023 97.9785 69.9771C93.5038 74.4518 86.2488 74.4518 81.774 69.9771C77.2993 65.5023 77.2993 58.2473 81.774 53.7726C86.2488 49.2978 93.5038 49.2978 97.9785 53.7726"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M28.0013 13.75H18.8346C13.7701 13.75 9.66797 17.8521 9.66797 22.9167V41.25C9.66797 56.4392 21.9788 68.75 37.168 68.75C52.3571 68.75 64.668 56.4392 64.668 41.25V22.9167C64.668 17.8521 60.5659 13.75 55.5013 13.75H46.3346"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M89.8763 73.3333V74.4792C89.8763 89.0358 78.0788 100.833 63.5221 100.833C48.9655 100.833 37.168 89.0358 37.168 74.4792V68.75"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M27.9987 9.1665V18.3332"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M46.3346 9.1665V18.3332"
+      stroke-width="3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);

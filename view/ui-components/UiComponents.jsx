@@ -7,7 +7,7 @@ import Input from "@/components/input";
 import StepProgress from "@/components/step-progress";
 import TitleIndicator from "@/components/title-indicator";
 import Typography from "@/components/typography";
-import { useNotification } from "@/utils/useNotification";
+import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import React, { useRef, useState } from "react";
 const icons = [
   "arrowLeft",
@@ -52,10 +52,10 @@ const steps = [
 function UiComponents() {
   const [prSteps, setPrSteps] = useState(0);
   const drawerRef = useRef();
-  const { addNotification } = useNotification();
+  const { addNotification } = useNotificationContext();
 
   return (
-    <div className="flex flex-col gap-16 px-8 py-16">
+    <div className="flex flex-col gap-16 px-8">
       <div className="flex flex-col gap-4">
         <TitleIndicator>Typography component</TitleIndicator>
         {typographySizes.map((item) => (
@@ -106,8 +106,12 @@ function UiComponents() {
       <div className="flex flex-col gap-8">
         <TitleIndicator>Input Component</TitleIndicator>
 
-        <Input label="Simple input" />
+        <Input label="Simple input" placeholder="09218239745" />
         <Input label="Disabled input" disabled />
+        <Input
+          label="Validate input"
+          validateInput={(value) => value.length > 3}
+        />
       </div>
 
       <div className="flex flex-col gap-8">
