@@ -14,10 +14,11 @@ function Layout({ children }) {
   if (!isClient) {
     return null;
   }
-
   return (
     <html lang="en" dir="rtl">
-      <body className={`m-0 box-border p-0 text-[14px] antialiased`}>
+      <body
+        className={`m-0 box-border flex min-h-screen flex-col p-0 antialiased`}
+      >
         <AuthProvider>
           <UserProvider>
             <NotificationProvider>{children}</NotificationProvider>

@@ -24,7 +24,6 @@ const Input = forwardRef(function Input(
   ref,
 ) {
   const [isValid, setIsValid] = useState(null);
-  console.log(isValid);
   const handleChange = (value) => {
     if (onChange) onChange(value);
 

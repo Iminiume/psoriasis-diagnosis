@@ -6,34 +6,36 @@ import Typography from "@/components/typography";
 import TitleIndicator from "@/components/title-indicator";
 
 const Texts = {
-  title: "تشخیص بیماری، پیشنهاد درمان",
+  title: "تخمین و تشخیص بیماری",
   description:
-    "ما با استفاده از هوش مصنوعی در تشخیص دقیق تر بیماری و توصیه های درمانی به پزشکان و بیماران کمک می‌کنیم",
+    "ما با استفاده از اطلاعات شما و با نظر پزشک متخصص میزان ابتلا به پسوریازیس را تخمین میزنیم و نوع پسوریازیس را تعیین میکنیم.",
 };
 
 function SecondSection() {
   return (
-    <div className="flex flex-col gap-[4rem] px-8 py-[16rem] lg:flex-row">
-      {/* Image Box */}
-      <div className="mx-auto basis-1/3">
-        <Image
-          alt="second-thumbnail"
-          src={SecondThumbnail}
-          className="rounded-[20px]"
-        />
-      </div>
+    <section className="relative px-8 py-[16rem]">
+      <div className="mx-auto flex max-w-custom flex-col gap-[4rem] lg:flex-row">
+        {/* Image Box */}
+        <div className="mx-auto basis-1/3">
+          <Image
+            alt="second-thumbnail"
+            src={SecondThumbnail}
+            className="rounded-[20px]"
+          />
+        </div>
 
-      {/* Text Box */}
-      <div className="flex w-full basis-2/3 flex-col items-center justify-start gap-[4rem] lg:items-start">
-        <TitleIndicator color="blue">{Texts.title}</TitleIndicator>
-        <Typography size="2xl">{Texts.description}</Typography>
+        {/* Text Box */}
+        <div className="flex w-full basis-2/3 flex-col items-center justify-start gap-[4rem] lg:items-start">
+          <TitleIndicator color="blue">{Texts.title}</TitleIndicator>
+          <Typography size="2xl">{Texts.description}</Typography>
+        </div>
       </div>
 
       {/* Background Shadow */}
-      <div className="absolute left-0 top-[20rem] z-[-1]">
+      <div className="absolute left-0 top-0 z-[-1] -translate-y-[30%]">
         <Image src={BlueShadow} alt="blue-shadow" />
       </div>
-    </div>
+    </section>
   );
 }
 

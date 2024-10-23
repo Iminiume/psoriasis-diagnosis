@@ -9,13 +9,18 @@ const FifthSection = dynamic(() => import("./fifth-section"));
 const SixthSection = dynamic(() => import("./sixth-section"));
 
 function Home() {
+  {
+    /* <div className="absolute right-0 top-0 z-[-1]">
+        <Image alt="vector" src={VectorBG} />
+      </div> */
+  }
   return (
     <>
       <FirstSection />
       <SecondSection />
       <ThirdSection />
       <FourthSection />
-      <FifthSection />
+      {/* <FifthSection /> */}
       <SixthSection />
     </>
   );

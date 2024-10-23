@@ -16,9 +16,7 @@ export default function RootLayout({ children }) {
         className={`m-0 box-border flex min-h-screen flex-col p-0 antialiased`}
       >
         <Navbar />
-        <main className="mx-auto w-full max-w-custom flex-grow py-24">
-          {children}
-        </main>
+        <main className="w-full flex-grow">{children}</main>
         <Footer />
       </body>
     </html>

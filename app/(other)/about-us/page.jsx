@@ -1,7 +1,8 @@
+import AboutUsLayout from "@/view/about-us/AboutUsLayout";
 import React from "react";
 
 function Page() {
-  return <div className="">Page</div>;
+  return <AboutUsLayout />;
 }
 
 export default Page;
