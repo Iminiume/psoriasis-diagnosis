@@ -2,12 +2,12 @@
 import LoginAPI from "@/api/login";
 import Button from "@/components/button";
 import Input from "@/components/input";
-import Notification from "@/components/notification";
 import Typography from "@/components/typography";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
+import Jwt from "jsonwebtoken";
 
 const Texts = {
   login: "ورود",
@@ -56,7 +56,12 @@ function FormModule() {
 
   useEffect(() => {
     if (state.isLoggedIn) {
-      router.push("/");
+      const decodedToken = Jwt.decode(verifyOtpData?.token);
+      if (decodedToken.role) {
+        router.push("/");
+      } else {
+        router.push("/login/role-selection");
+      }
     }
   }, [state]);
 
@@ -107,7 +112,7 @@ function FormModule() {
             label={Texts.inputLabel}
           />
         ) : (
-          <div className="flex flex-row-reverse justify-between">
+          <div className="flex flex-row-reverse justify-center gap-8">
             {otpDigits.map((digit, index) => (
               <Input
                 key={index}

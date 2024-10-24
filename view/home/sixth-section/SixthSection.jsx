@@ -18,7 +18,7 @@ const socialIcons = [
 
 function SixthSection() {
   return (
-    <section className="relative px-8 py-[8rem]">
+    <section className="relative px-8 py-[5rem]">
       <div className="mx-auto flex max-w-custom flex-col items-center justify-center gap-8">
         <TitleIndicator color="purple">{Texts.news}</TitleIndicator>
 

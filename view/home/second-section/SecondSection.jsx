@@ -13,7 +13,7 @@ const Texts = {
 
 function SecondSection() {
   return (
-    <section className="relative px-8 py-[16rem]">
+    <section className="relative px-8 py-[8rem]">
       <div className="mx-auto flex max-w-custom flex-col gap-[4rem] lg:flex-row">
         {/* Image Box */}
         <div className="mx-auto basis-1/3">

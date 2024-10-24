@@ -1,8 +1,7 @@
 import React from "react";
-import LoginForm from "@/view/login-form";
 
 function Page() {
-  return <LoginForm />;
+  return <div>salam</div>;
 }
 
 export default Page;

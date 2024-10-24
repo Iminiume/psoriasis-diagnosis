@@ -6,6 +6,7 @@ import IconRenderer from "@/components/icon/IconRenderer";
 import Link from "next/link";
 import TitleIndicator from "@/components/title-indicator";
 import IconGlass from "@/public/images/iconImage.png";
+import OrangeShadow from "@/public/images/orangeShadow.png";
 
 const Texts = {
   title: "خدمات عمومی ما",
@@ -47,7 +48,10 @@ const colorClasses = {
 
 function FourthSection() {
   return (
-    <section className="relative px-8 py-[8rem]" id="public-service">
+    <section
+      className="bg-contain relative bg-orangeShadow bg-no-repeat px-8 py-[8rem]"
+      id="public-service"
+    >
       <div className="mx-auto flex max-w-custom flex-col gap-[4.2rem]">
         <div className="flex items-center justify-center">
           <TitleIndicator color="green">{Texts.title}</TitleIndicator>
@@ -83,6 +87,10 @@ function FourthSection() {
           ))}
         </div>
       </div>
+
+      {/* <div className="absolute left-0 top-0 z-[-1] -translate-y-[35%]">
+        <Image src={OrangeShadow} />
+      </div> */}
     </section>
   );
 }

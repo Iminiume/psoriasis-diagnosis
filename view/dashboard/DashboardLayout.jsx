@@ -4,12 +4,18 @@ import { useUserContext } from "@/utils/context/useUserContext";
 import RoleCard from "@/components/role-card";
 import StepProgress from "@/components/step-progress";
 
-function LoginForm() {
+const steps = [
+  { label: "تشکیل پرونده", link: "/dashboard/fill-form" },
+  { label: "تشخیص بیماری", link: "/dashboard/disease-diagnosis" },
+  { label: "تشخیص نوع پسوریازیس", link: "" },
+  { label: "بارگذاری تصویر", link: "" },
+  { label: "دریافت توصیه", link: "" },
+];
+
+function DashboardLayout({ children }) {
   const { state, dispatch } = useUserContext();
-  const [formData, setFormData] = useState({
-    // Initialize form fields
-  });
-  console.log(state);
+  const [formData, setFormData] = useState({});
+
   const handleSubmit = async () => {
     const completeData = {
       ...formData,
@@ -42,18 +48,20 @@ function LoginForm() {
   return (
     <section className="h-screen bg-pinkShadow bg-contain bg-right bg-no-repeat px-8 py-8">
       <div className="mx-auto flex h-full max-w-custom gap-10">
-        <div className="flex basis-1/4 flex-col">
+        <div className="flex basis-1/4 flex-col gap-12">
           <RoleCard
             icon={state.role === "patient" ? "pill" : "stethoScope"}
             text={state.role === "patient" ? "بیمار" : "دکتر"}
             isSelected
           />
-          <StepProgress />
+          <StepProgress steps={steps} />
         </div>
-        <div className="h-full basis-3/4 rounded-[32px] border"></div>
+        <div className="h-full basis-3/4 rounded-[32px] border p-8">
+          {children}
+        </div>
       </div>
     </section>
   );
 }
 
-export default LoginForm;
+export default DashboardLayout;

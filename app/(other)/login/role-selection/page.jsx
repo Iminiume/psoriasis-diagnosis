@@ -3,16 +3,17 @@
 import React, { useEffect } from "react";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import RoleSelectionLayout from "@/view/role-selection/RoleSelectionLayout";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function Page() {
+  const router = useRouter();
   const { state } = useAuthContext();
 
-  //   useEffect(() => {
-  //     if (!state.isLoading) {
-  //       redirect("/login");
-  //     }
-  //   }, [state]);
+  // useEffect(() => {
+  //   if (!state.isLoggedIn) {
+  //     router.push("/login");
+  //   }
+  // }, [state]);
 
   return <RoleSelectionLayout />;
 }

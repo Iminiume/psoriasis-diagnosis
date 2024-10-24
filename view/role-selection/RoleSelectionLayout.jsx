@@ -19,16 +19,15 @@ function RoleSelectionLayout() {
   const [isSelected, setIsSelected] = useState(undefined);
   const { state, dispatch } = useUserContext();
   const router = useRouter();
-  console.log(isSelected);
+
   const handleConfirm = () => {
     dispatch({ type: "SET_ROLE", payload: isSelected });
-    // Redirect to the form page
-    router.push(`/login/form?role=${isSelected}`);
+    router.push(`/dashboard/fill-form?role=${isSelected}`);
   };
 
   return (
     <section className="relative h-full bg-pinkShadow bg-contain bg-right bg-no-repeat px-8 py-20">
-      <div className="mx-auto flex max-w-custom flex-col items-start justify-center gap-10">
+      <div className="mx-auto flex max-w-custom flex-col items-center justify-center gap-10">
         <Typography
           size="6xl"
           weight="bold"
@@ -36,7 +35,7 @@ function RoleSelectionLayout() {
         >
           {text.chooseRole}
         </Typography>
-        <div className="flex w-full flex-col items-center gap-16 lg:flex-row">
+        <div className="flex w-full flex-col items-center justify-center gap-16 lg:flex-row">
           {roles.map((item, i) => {
             return (
               <RoleCard

@@ -2,6 +2,7 @@ import classNames from "classnames";
 import React from "react";
 import Typography from "@/components/typography";
 import PropTypes from "prop-types";
+import Link from "next/link";
 
 const StepProgress = ({ steps, currentStep }) => {
   return (
@@ -30,17 +31,19 @@ const StepProgress = ({ steps, currentStep }) => {
             >
               {index + 1}
             </div>
-            <Typography
-              className={classNames(
-                isCompleted
-                  ? "text-greenColor"
-                  : isCurrent
-                    ? "text-white"
-                    : "text-secondTextColor",
-              )}
-            >
-              {item.label}
-            </Typography>
+            <Link href={item.link}>
+              <Typography
+                className={classNames(
+                  isCompleted
+                    ? "text-greenColor"
+                    : isCurrent
+                      ? "text-white"
+                      : "text-secondTextColor transition-colors hover:text-white",
+                )}
+              >
+                {item.label}
+              </Typography>
+            </Link>
           </div>
         );
       })}
