@@ -2,7 +2,6 @@
 import React from "react";
 import Typography from "@/components/typography";
 import classNames from "classnames";
-import PropTypes from "prop-types";
 
 const colorClasses = {
   primary: "before:border-primaryColor",
@@ -12,15 +11,16 @@ const colorClasses = {
   purple: "before:border-purpleColor",
 };
 
-const TitleIndicator = ({ color, children }) => {
+const TitleIndicator = ({ color, children, className }) => {
   return (
     <Typography
       variant="h1"
       size="5xl"
       weight="semibold"
       className={classNames(
-        "relative before:absolute before:top-[3.25rem] before:w-[72px] before:border-[2px]",
+        "relative text-center leading-normal before:absolute before:top-[4rem] before:w-[72px] before:border-[2px]",
         colorClasses[color],
+        className,
       )}
     >
       {children}

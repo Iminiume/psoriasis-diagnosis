@@ -27,7 +27,9 @@ function SecondSection() {
         {/* Text Box */}
         <div className="flex w-full basis-2/3 flex-col items-center justify-start gap-[4rem] lg:items-start">
           <TitleIndicator color="blue">{Texts.title}</TitleIndicator>
-          <Typography size="2xl">{Texts.description}</Typography>
+          <Typography size="2xl" className="text-center lg:text-start">
+            {Texts.description}
+          </Typography>
         </div>
       </div>
 

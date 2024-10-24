@@ -1,5 +1,6 @@
-// utils/useUserContext.js
-import { createContext, useContext, useReducer } from "react";
+"use client";
+
+import { useReducer } from "react";
 import UserContext from "./userContext";
 
 // Define initial state

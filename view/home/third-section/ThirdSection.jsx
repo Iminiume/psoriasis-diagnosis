@@ -28,7 +28,9 @@ function ThirdSection() {
         {/* Text Box */}
         <div className="flex basis-3/4 flex-col items-center gap-[4rem] lg:items-start">
           <TitleIndicator color="primary">{Texts.title}</TitleIndicator>
-          <Typography size="2xl">{Texts.description}</Typography>
+          <Typography size="2xl" className="text-center lg:text-start">
+            {Texts.description}
+          </Typography>
           <div className="flex gap-6">
             <Button>{Texts.reserveNow}</Button>
             <Button

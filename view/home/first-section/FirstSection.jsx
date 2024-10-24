@@ -22,11 +22,10 @@ function FirstSection() {
       style={{ height: "calc(100vh - 106px)" }}
     >
       <div className="mx-auto flex h-full max-w-custom items-center justify-center">
-        {/* Text Box */}
         <div className="flex w-full basis-full flex-col items-center justify-center gap-6 pt-12 lg:basis-1/2">
           <Typography
             weight="bold"
-            size="7xl"
+            size="6xl"
             className="text-center lg:text-start lg:text-[7rem]"
           >
             {Texts.bigTitle}
@@ -41,7 +40,6 @@ function FirstSection() {
           </div>
         </div>
 
-        {/* Image Box */}
         <div className="hidden h-full basis-1/2 lg:flex lg:items-center lg:justify-center">
           <div className="relative h-[534px] w-full">
             <Image

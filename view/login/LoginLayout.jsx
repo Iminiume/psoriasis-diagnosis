@@ -17,35 +17,44 @@ const Texts = {
 
 function LoginLayout() {
   return (
-    <div className="mx-auto flex gap-[38px] px-[40px] py-[40px]">
-      <div className="relative z-10 flex flex-1 flex-col items-center justify-center rounded-[40px] border border-loginBorder bg-loginBg backdrop-blur-[54px]">
-        <Link href="/" className="absolute right-[34px] top-[42px] flex gap-2">
-          <IconRenderer icon="chevronRight" />
-          <Typography>{Texts.goBack}</Typography>
-        </Link>
+    <section className="relative h-screen overflow-hidden px-8 py-[40px]">
+      <div className="mx-auto flex h-full max-w-custom gap-[38px]">
+        <div className="relative flex h-full flex-1 flex-col items-center justify-center rounded-3xl border border-loginBorder bg-loginBg backdrop-blur-[54px]">
+          <Link
+            href="/"
+            className="absolute right-[34px] top-[42px] flex gap-2"
+          >
+            <IconRenderer icon="chevronRight" />
+            <Typography>{Texts.goBack}</Typography>
+          </Link>
 
-        <div className="flex w-full basis-1/2 flex-col items-center justify-center px-[50px] py-[80px] lg:px-[110px]">
-          <div className="flex items-center justify-center gap-4">
-            <Typography size="2xl">{Texts.to}</Typography>
-            <Image alt="logo" src={Logo} />
-            <Typography size="2xl">{Texts.welcome}</Typography>
+          <div className="flex w-full basis-1/2 flex-col items-center justify-center px-8">
+            <div className="flex items-center justify-center gap-4">
+              <Typography size="2xl">{Texts.to}</Typography>
+              <Image alt="logo" src={Logo} />
+              <Typography size="2xl">{Texts.welcome}</Typography>
+            </div>
+            <FormModule />
           </div>
-          <FormModule />
         </div>
-      </div>
 
-      <div className="z-10 hidden basis-1/2 rounded-[40px] lg:block">
-        <Image alt="login-thumbnail" src={LoginThumbnail} />
+        <div className="hidden h-full basis-1/2 overflow-hidden rounded-3xl lg:block">
+          <Image
+            alt="login-thumbnail"
+            src={LoginThumbnail}
+            className="h-full w-full object-cover"
+          />
+        </div>
       </div>
 
       <div className="absolute right-0 top-0 z-[-1]">
         <Image alt="pink-shadow" src={PinkShadow} />
       </div>
 
-      <div className="absolute right-0 top-0">
+      <div className="absolute right-0 top-0 z-[-1]">
         <Image alt="vector-background" src={VectorBG} />
       </div>
-    </div>
+    </section>
   );
 }
 

@@ -1,19 +1,15 @@
-"use client";
-import { AuthProvider } from "@/context/authContext";
-import { NotificationProvider } from "@/context/notificationContext";
-import { UserProvider } from "@/context/userContext";
-import React, { useEffect, useState } from "react";
+import { AuthProvider } from "@/context/auth-context";
+import { NotificationProvider } from "@/context/notification-context";
+import { UserProvider } from "@/context/user-context";
+import ClientLayout from "@/features/client-layout";
+import React from "react";
 
-function Layout({ children }) {
-  const [isClient, setIsClient] = useState(false);
+export const metadata = {
+  title: "Hoorie Masoorian Medical",
+  description: "Website",
+};
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null;
-  }
+function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
       <body
@@ -21,7 +17,9 @@ function Layout({ children }) {
       >
         <AuthProvider>
           <UserProvider>
-            <NotificationProvider>{children}</NotificationProvider>
+            <NotificationProvider>
+              <ClientLayout>{children}</ClientLayout>
+            </NotificationProvider>
           </UserProvider>
         </AuthProvider>
       </body>
@@ -29,4 +27,4 @@ function Layout({ children }) {
   );
 }
 
-export default Layout;
+export default RootLayout;

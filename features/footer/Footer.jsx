@@ -64,7 +64,9 @@ const FooterCol = ({ title, itemsList }) => (
               <HoverText>{item.title}</HoverText>
             </Link>
           ) : (
-            <Typography size="lg">{item.title}</Typography>
+            <Typography size="lg" className="text-center lg:text-start">
+              {item.title}
+            </Typography>
           )}
         </div>
       ))}
@@ -78,7 +80,10 @@ function Footer() {
       <div className="flex flex-col items-center justify-center gap-4 px-8 lg:flex-row lg:items-start lg:justify-start lg:px-[124px]">
         <div className="flex basis-2/5 flex-col items-center gap-6 lg:items-start">
           <Image src={TextLogo} alt="text-logo" />
-          <Typography size="sm" className="opacity-50">
+          <Typography
+            size="sm"
+            className="text-center opacity-50 lg:text-start"
+          >
             {Texts.detail}
           </Typography>
         </div>

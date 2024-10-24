@@ -1,15 +1,11 @@
+"use client";
 import Navbar from "@/features/navbar";
 import Footer from "@/features/footer";
 
 import "@/public/styles/globals.css";
 import "@/public/styles/fonts.css";
 
-export const metadata = {
-  title: "Hoorie Masoorian Medical",
-  description: "Website",
-};
-
-export default function RootLayout({ children }) {
+export default function Layout({ children }) {
   return (
     <html lang="en" dir="rtl">
       <body

@@ -61,10 +61,10 @@ function FourthSection() {
             >
               <div className="flex flex-col items-center justify-center gap-4">
                 <Image src={item.iconImage} alt={item.title} />
-                <Typography size="2xl" className="text-center">
+                <Typography size="2xl" className="text-center lg:text-start">
                   {item.title}
                 </Typography>
-                <Typography className="text-center leading-6">
+                <Typography className="text-center lg:text-start">
                   {item.description}
                 </Typography>
               </div>
