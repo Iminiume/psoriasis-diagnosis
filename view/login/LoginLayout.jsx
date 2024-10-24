@@ -17,7 +17,7 @@ const Texts = {
 
 function LoginLayout() {
   return (
-    <section className="relative h-screen overflow-hidden px-8 py-[40px]">
+    <section className="relative h-screen overflow-hidden px-8 py-8">
       <div className="mx-auto flex h-full max-w-custom gap-[38px]">
         <div className="relative flex h-full flex-1 flex-col items-center justify-center rounded-3xl border border-loginBorder bg-loginBg backdrop-blur-[54px]">
           <Link

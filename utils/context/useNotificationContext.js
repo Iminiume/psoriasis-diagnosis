@@ -1,3 +1,5 @@
+"use client";
+
 import { NotificationContext } from "@/context/notification-context";
 import { useContext } from "react";
 

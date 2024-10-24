@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useUserContext } from "@/utils/context/useUserContext";
 import RoleCard from "@/components/role-card";
+import StepProgress from "@/components/step-progress";
 
 function LoginForm() {
   const { state, dispatch } = useUserContext();
@@ -37,13 +38,21 @@ function LoginForm() {
       // Handle error (e.g., show a notification)
     }
   };
+  console.log(state.role);
   return (
-    <div className="flex gap-10">
-      <div className="basis-1/4">
-        <RoleCard />
+    <section className="h-screen bg-pinkShadow bg-contain bg-right bg-no-repeat px-8 py-8">
+      <div className="mx-auto flex h-full max-w-custom gap-10">
+        <div className="flex basis-1/4 flex-col">
+          <RoleCard
+            icon={state.role === "patient" ? "pill" : "stethoScope"}
+            text={state.role === "patient" ? "بیمار" : "دکتر"}
+            isSelected
+          />
+          <StepProgress />
+        </div>
+        <div className="h-full basis-3/4 rounded-[32px] border"></div>
       </div>
-      <div className="basis-3/4"></div>
-    </div>
+    </section>
   );
 }
 

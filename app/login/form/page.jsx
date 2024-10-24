@@ -1,4 +1,3 @@
-// pages/login/form.js
 import React from "react";
 import LoginForm from "@/view/login-form";
 

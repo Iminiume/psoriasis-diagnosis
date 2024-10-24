@@ -16,7 +16,7 @@ import TextLogo from "@/public/images/textLogo.png";
 import Logo from "@/public/images/logo.png";
 
 const navbarItems = [
-  { title: "خدمات عمومی", link: "#public-service" },
+  { title: "خدمات عمومی", link: "/#public-service" },
   { title: "خدمات تخصصی بیماران", link: "/learn" },
   { title: "راهنمای سامانه", link: "/suggestions" },
   { title: "درباره ما", link: "/about-us" },
