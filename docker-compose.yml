@@ -4,12 +4,11 @@ services:
   web:
     build: .
     container_name: masoorian_web
-    volumes:
-      - ./:/app
     ports:
       - "3000:3000"
     networks:
       - masoorian-medical
+    restart: always
 
   nginx:
     image: docker.io/nginx:latest
@@ -21,6 +20,7 @@ services:
       - web
     networks:
       - masoorian-medical
+    restart: always
 
 networks:
   masoorian-medical:
