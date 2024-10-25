@@ -1,4 +1,4 @@
-export const arrowLeft = () => (
+const arrowLeft = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -15,7 +15,7 @@ export const arrowLeft = () => (
   </svg>
 );
 
-export const burger = () => (
+const burger = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -32,7 +32,7 @@ export const burger = () => (
   </svg>
 );
 
-export const checkCircle = () => (
+const checkCircle = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -49,7 +49,7 @@ export const checkCircle = () => (
   </svg>
 );
 
-export const chevronRight = () => (
+const chevronRight = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -64,7 +64,7 @@ export const chevronRight = () => (
   </svg>
 );
 
-export const email = () => (
+const email = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -76,7 +76,7 @@ export const email = () => (
   </svg>
 );
 
-export const errorCircle = () => (
+const errorCircle = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -93,7 +93,7 @@ export const errorCircle = () => (
   </svg>
 );
 
-export const infoCircle = () => (
+const infoCircle = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -110,7 +110,7 @@ export const infoCircle = () => (
   </svg>
 );
 
-export const location = () => (
+const location = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -132,7 +132,7 @@ export const location = () => (
   </svg>
 );
 
-export const phone = () => (
+const phone = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -149,7 +149,7 @@ export const phone = () => (
   </svg>
 );
 
-export const play = () => (
+const play = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
@@ -164,7 +164,7 @@ export const play = () => (
   </svg>
 );
 
-export const user = () => (
+const user = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -181,7 +181,7 @@ export const user = () => (
   </svg>
 );
 
-export const warning = () => (
+const warning = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -198,7 +198,7 @@ export const warning = () => (
   </svg>
 );
 
-export const xClose = () => (
+const xClose = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -215,7 +215,7 @@ export const xClose = () => (
   </svg>
 );
 
-export const exit = () => (
+const exit = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -232,7 +232,7 @@ export const exit = () => (
   </svg>
 );
 
-export const pill = () => (
+const pill = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
@@ -276,7 +276,7 @@ export const pill = () => (
   </svg>
 );
 
-export const stethoScope = () => (
+const stethoScope = () => (
   <svg
     width="111"
     height="110"
@@ -317,3 +317,22 @@ export const stethoScope = () => (
     />
   </svg>
 );
+
+export const iconRegistry = {
+  arrowLeft,
+  burger,
+  checkCircle,
+  chevronRight,
+  email,
+  errorCircle,
+  infoCircle,
+  location,
+  phone,
+  play,
+  user,
+  warning,
+  xClose,
+  exit,
+  pill,
+  stethoScope,
+};

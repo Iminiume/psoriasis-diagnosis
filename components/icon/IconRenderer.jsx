@@ -1,32 +1,17 @@
 "use client";
 
 import PropTypes from "prop-types";
-import { useState, useEffect } from "react";
+import { iconRegistry } from "./iconNames";
 
 const IconRenderer = ({ icon }) => {
-  const [IconComponent, setIconComponent] = useState(null);
+  const SelectedIcon = iconRegistry[icon];
 
-  useEffect(() => {
-    if (typeof icon === "string") {
-   
-      const loadIcon = async () => {
-        try {
-          const { [icon]: LoadedIcon } = await import(`./iconNames.jsx`);
-          setIconComponent(() => LoadedIcon);
-        } catch (error) {
-          console.error(`Error loading icon: ${icon}`, error);
-          setIconComponent(null); 
-        }
-      };
+  if (!SelectedIcon) {
+    console.warn(`Icon "${iconName}" not found`);
+    return null;
+  }
 
-      loadIcon();
-    } else {
-      setIconComponent(() => icon); 
-    }
-  }, [icon]);
-  if (!IconComponent) return null;
-
-  return <IconComponent />;
+  return <SelectedIcon />;
 };
 
 IconRenderer.propTypes = {
