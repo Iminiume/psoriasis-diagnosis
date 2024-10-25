@@ -45,7 +45,7 @@ jobs:
         run: docker-compose -f docker-compose.yml build
 
       - name: Tag Docker image
-        run: docker tag masoorian-web-image:latest iminiume/masoorian-web-image:latest
+        run: docker tag masoorian_web:latest iminiume/masoorian-web-image:latest
 
       - name: Push image to Docker hub
         run: docker push iminiume/masoorian-web-image:latest
