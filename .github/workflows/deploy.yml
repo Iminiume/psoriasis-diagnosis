@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 18
           cache: "npm"
-
+          # docker-compose up --build -d
   deploy:
     runs-on: ubuntu-latest
 
@@ -35,5 +35,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no root@138.68.177.169 -p 7450 << 'EOF'
           cd ~/masoorian_mdical/masoorian-medical
           git pull origin main
-          docker-compose up --build -d
+          npm run build && npm run start
+
           EOF
