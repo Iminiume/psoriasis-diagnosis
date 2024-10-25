@@ -8,6 +8,8 @@ services:
       - ./:/app
     ports:
       - "3000:3000"
+    networks:
+      - masoorian-medical
 
   nginx:
     image: docker.io/nginx:latest
@@ -17,3 +19,9 @@ services:
       - "80:80"
     depends_on:
       - web
+    networks:
+      - masoorian-medical
+
+networks:
+  masoorian-medical:
+    driver: bridge
