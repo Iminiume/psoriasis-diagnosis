@@ -1,4 +1,4 @@
-name: Deploying project
+name: Deploy masoorian project
 
 on:
   push:
