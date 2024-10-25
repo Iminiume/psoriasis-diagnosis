@@ -56,7 +56,7 @@ jobs:
         run: docker tag masoorian-medical-web:latest docker.io/iminiume/masoorian-web-image:latest
 
       - name: Push image to Docker hub
-        run: docker push iminiume/masoorian-web-image:latest
+        run: docker push docker.io/iminiume/masoorian-web-image:latest
 
   deploy:
     runs-on: ubuntu-latest
