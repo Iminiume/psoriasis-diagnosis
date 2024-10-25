@@ -42,11 +42,11 @@ const typographySizes = [
 ];
 
 const steps = [
-  { label: "مجتبی" },
-  { label: "مجتبی" },
-  { label: "مجتبی" },
-  { label: "مجتبی" },
-  { label: "مجتبی" },
+  { label: "مجتبی", link: "/ui-component" },
+  { label: "مجتبی", link: "/ui-component" },
+  { label: "مجتبی", link: "/ui-component" },
+  { label: "مجتبی", link: "/ui-component" },
+  { label: "مجتبی", link: "/ui-component" },
 ];
 
 function UiComponents() {

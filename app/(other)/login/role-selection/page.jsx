@@ -9,11 +9,11 @@ function Page() {
   const router = useRouter();
   const { state } = useAuthContext();
 
-  // useEffect(() => {
-  //   if (!state.isLoggedIn) {
-  //     router.push("/login");
-  //   }
-  // }, [state]);
+  useEffect(() => {
+    if (!state?.isLoggedIn) {
+      router.push("/login");
+    }
+  }, [state]);
 
   return <RoleSelectionLayout />;
 }

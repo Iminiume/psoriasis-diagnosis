@@ -57,7 +57,7 @@ function FormModule() {
   useEffect(() => {
     if (state.isLoggedIn) {
       const decodedToken = Jwt.decode(verifyOtpData?.token);
-      if (decodedToken.role) {
+      if (decodedToken?.role) {
         router.push("/");
       } else {
         router.push("/login/role-selection");
