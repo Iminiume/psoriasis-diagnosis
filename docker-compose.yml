@@ -18,9 +18,3 @@ services:
       - "80:80"
     depends_on:
       - nextjs
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
