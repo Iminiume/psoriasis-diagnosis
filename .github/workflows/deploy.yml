@@ -1,4 +1,4 @@
-name: Deploy Next.js with Docker
+name: Deploying project
 
 on:
   push:
@@ -46,7 +46,7 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh -o StrictHostKeyChecking=no root@138.68.177.169 << 'EOF'
+          ssh -o StrictHostKeyChecking=no root@138.68.177.169 -p 7450 << 'EOF'
             cd ~/masoorian_mdical/masoorian-medical
             git pull origin main 
             sudo docker-compose up -d
