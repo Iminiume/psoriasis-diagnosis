@@ -35,5 +35,5 @@ jobs:
           ssh -o StrictHostKeyChecking=no root@138.68.177.169 -p 7450 << 'EOF'
           cd ~/masoorian_mdical/masoorian-medical
           git pull origin main
-          docker-compose up --build -d --force-recreate --no-cache 
+          docker-compose up --build -d --no-cache 
           EOF
