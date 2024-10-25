@@ -35,6 +35,9 @@ jobs:
           ssh -o StrictHostKeyChecking=no root@138.68.177.169 -p 7450 << 'EOF'
           cd ~/masoorian_mdical/masoorian-medical
           git pull origin main
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install 18
           npm run build && npm run start
           EOF
