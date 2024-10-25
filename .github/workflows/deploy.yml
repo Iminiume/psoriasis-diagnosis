@@ -19,19 +19,17 @@ jobs:
           node-version: 18
           cache: "npm"
 
-      # - name: Log in to Docker Hub
-      #   run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      # - name: Build Docker image
-      #   run: docker-compose -f docker-compose.yml build
+      - name: Build Docker image
+        run: docker-compose -f docker-compose.yml build
 
-      # - name: Tag Docker image
-      #   run: docker tag masoorian-web-image:latest iminiume/masoorian-web-image:latest
+      - name: Tag Docker image
+        run: docker tag masoorian-web-image:latest iminiume/masoorian-web-image:latest
 
-      # - name: Push image to Docker hub
-      #   run: docker push iminiume/masoorian-web-image:latest
-
-      # sudo docker pull iminiume/masoorian-web-image:latest
+      - name: Push image to Docker hub
+        run: docker push iminiume/masoorian-web-image:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,5 +47,6 @@ jobs:
           ssh -o StrictHostKeyChecking=no root@138.68.177.169 -p 7450 << 'EOF'
             cd ~/masoorian_mdical/masoorian-medical
             git pull origin main 
+            sudo docker pull iminiume/masoorian-web-image:latest
             docker-compose up -d
           EOF
