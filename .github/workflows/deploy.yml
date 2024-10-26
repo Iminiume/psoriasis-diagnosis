@@ -39,5 +39,10 @@ jobs:
           export NVM_DIR="$HOME/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install 18
-          npm run build && npm run start
+          npm install
+          npm run build
+          npm install -g pm2
+          pm2 stop masoorian-medical || true
+          pm2 start npm --name "masoorian-medical" -- run start
+          pm2 save
           EOF
