@@ -112,7 +112,7 @@ function FormModule() {
             label={Texts.inputLabel}
           />
         ) : (
-          <div className="flex flex-row-reverse justify-center gap-8">
+          <div className="flex flex-row-reverse justify-between md:justify-center md:gap-8">
             {otpDigits.map((digit, index) => (
               <Input
                 key={index}
