@@ -22,7 +22,7 @@ function RoleSelectionLayout() {
 
   const handleConfirm = () => {
     dispatch({ type: "SET_ROLE", payload: isSelected });
-    router.push(`/dashboard/fill-form?role=${isSelected}`);
+    router.push(`/dashboard/fill-form`);
   };
 
   return (

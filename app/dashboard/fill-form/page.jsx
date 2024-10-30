@@ -1,7 +1,8 @@
+import FillForm from "@/view/dashboard/fill-form";
 import React from "react";
 
 function Page() {
-  return <div>salam</div>;
+  return <FillForm />;
 }
 
 export default Page;
