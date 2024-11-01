@@ -2,6 +2,12 @@ services:
   web:
     build: .
     container_name: masoorian_web
+    restart: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
 
   nginx:
     image: docker.io/nginx:latest
@@ -11,4 +17,6 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - web
+      web:
+        condition: service_healthy
+    restart: always
