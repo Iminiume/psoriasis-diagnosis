@@ -18,13 +18,13 @@ function RootLayout({ children }) {
       <body
         className={`m-0 box-border flex min-h-screen flex-col p-0 antialiased`}
       >
-        <ClientLayout>
-          <UserProvider>
-            <AuthProvider>
-              <NotificationProvider>{children}</NotificationProvider>
-            </AuthProvider>
-          </UserProvider>
-        </ClientLayout>
+        {/* <ClientLayout> */}
+        <UserProvider>
+          <AuthProvider>
+            <NotificationProvider>{children}</NotificationProvider>
+          </AuthProvider>
+        </UserProvider>
+        {/* </ClientLayout> */}
       </body>
     </html>
   );
