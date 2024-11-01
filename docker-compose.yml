@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   web:
     build: .
@@ -14,4 +12,3 @@ services:
       - "80:80"
     depends_on:
       - web
-
