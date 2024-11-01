@@ -29,12 +29,12 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const token = getCookie("token");
-    const decodedToken = JWT.decode(token);
+    const decodedToken = token ? JWT.decode(token) : null;
     if (token) {
       dispatch({ type: "LOGIN", payload: token });
-      if (decodedToken.role) setRole(decodedToken.role);
+      if (decodedToken?.role) setRole(decodedToken.role);
     } else {
-      dispatch({ type: "LOGOUT" });
+      dispatch({ type: "SET_LOADING", payload: false });
     }
   }, []);
 

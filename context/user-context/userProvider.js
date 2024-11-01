@@ -30,6 +30,8 @@ export const UserProvider = ({ children }) => {
     if (role) {
       dispatch({ type: "SET_ROLE", payload: role });
       dispatch({ type: "SET_LOADING", payload: false });
+    } else {
+      dispatch({ type: "SET_LOADING", payload: false });
     }
   }, [role]);
 

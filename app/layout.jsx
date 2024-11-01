@@ -22,11 +22,11 @@ function RootLayout({ children }) {
         className={`m-0 box-border flex min-h-screen flex-col p-0 antialiased`}
       >
         <ClientLayout>
-          {/* <UserProvider> */}
+          <UserProvider>
             <AuthProvider>
-              <NotificationProvider>salam</NotificationProvider>
+              <NotificationProvider>{children}</NotificationProvider>
             </AuthProvider>
-          {/* </UserProvider> */}
+          </UserProvider>
         </ClientLayout>
       </body>
     </html>
