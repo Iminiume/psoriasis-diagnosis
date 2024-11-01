@@ -35,7 +35,7 @@ function ThirdSection() {
             <Button>{Texts.reserveNow}</Button>
             <Button
               mode="secondary"
-              onClick={() => router.push("/login/form?role=patient")}
+              onClick={() => router.replace("/login")}
             >
               {Texts.moreInfo}
             </Button>

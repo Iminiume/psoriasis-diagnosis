@@ -11,6 +11,7 @@ function ClientLayout({ children }) {
   if (!isClient) {
     return null;
   }
+
   return children;
 }
 

@@ -1,14 +1,13 @@
 "use client";
 
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import UserContext from "./userContext";
+import useLocalStorage from "@/utils/hooks/useLocalStorage";
 
 // Define initial state
 const initialState = {
-  isAuthenticated: false,
-  isLoading: true,
   role: null,
-  userData: null,
+  loading: true,
 };
 
 // Define actions
@@ -16,12 +15,8 @@ const userReducer = (state, action) => {
   switch (action.type) {
     case "SET_ROLE":
       return { ...state, role: action.payload };
-    case "SET_USER_DATA":
-      return { ...state, userData: action.payload };
-    case "AUTH_SUCCESS":
-      return { ...state, isAuthenticated: true, isLoading: false };
-    case "AUTH_FAIL":
-      return { ...state, isAuthenticated: false, isLoading: false };
+    case "SET_LOADING":
+      return { ...state, loading: action.payload };
     default:
       return state;
   }
@@ -29,10 +24,24 @@ const userReducer = (state, action) => {
 
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
+  const [role, setRoleLS, removeRole] = useLocalStorage("role", null);
+
+  useEffect(() => {
+    if (role) {
+      dispatch({ type: "SET_ROLE", payload: role });
+      dispatch({ type: "SET_LOADING", payload: false });
+    }
+  }, [role]);
+
+  const setRole = (user) => {
+    setRoleLS(user);
+    dispatch({ type: "SET_ROLE", payload: role });
+    dispatch({ type: "SET_LOADING", payload: false });
+  };
 
   return (
-    <UserContext.Provider value={{ state, dispatch }}>
-      {children}
+    <UserContext.Provider value={{ state, setRole, removeRole }}>
+      {!state.loading && children}
     </UserContext.Provider>
   );
 };

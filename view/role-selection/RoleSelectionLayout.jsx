@@ -2,28 +2,35 @@
 import Button from "@/components/button/Button";
 import RoleCard from "@/components/role-card";
 import Typography from "@/components/typography";
+import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useUserContext } from "@/utils/context/useUserContext";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import PinkShadow from "@/public/images/pinkShadow.png";
-import Image from "@/components/image";
+import React, { useEffect, useState } from "react";
 
 const roles = [
-  { text: "بیمار", icon: "pill", value: "patient" },
-  { text: "پزشک", icon: "stethoScope", value: "doctor" },
+  { text: "بیمار", icon: "pill", value: "Patient" },
+  { text: "پزشک", icon: "stethoScope", value: "Doctor" },
 ];
 
 const text = { chooseRole: "نقش خود را انتخاب کنید", confirm: "تایید" };
 
 function RoleSelectionLayout() {
   const [isSelected, setIsSelected] = useState(undefined);
-  const { state, dispatch } = useUserContext();
+  const { setRole } = useUserContext();
+  const { state } = useAuthContext();
+
   const router = useRouter();
 
   const handleConfirm = () => {
-    dispatch({ type: "SET_ROLE", payload: isSelected });
-    router.push(`/dashboard/fill-form`);
+    setRole(isSelected);
+    router.replace(`/dashboard/fill-form`);
   };
+
+  useEffect(() => {
+    if (!state.token) {
+      router.replace("/login");
+    }
+  }, [state]);
 
   return (
     <section className="relative h-full bg-pinkShadow bg-contain bg-right bg-no-repeat px-8 py-20">

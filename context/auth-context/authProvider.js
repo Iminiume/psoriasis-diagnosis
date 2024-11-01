@@ -1,19 +1,23 @@
 "use client";
 import React, { useReducer, useEffect } from "react";
-import { setCookie, getCookie, removeCookie } from "@/utils/useCookie";
+import { setCookie, getCookie, removeCookie } from "@/utils/hooks/useCookie";
 import AuthContext from "./authContext";
+import { useUserContext } from "@/utils/context/useUserContext";
+import JWT from "jsonwebtoken";
 
 const initialState = {
-  isLoggedIn: false,
   token: null,
+  loading: true,
 };
 
 const authReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN":
-      return { ...state, isLoggedIn: true, token: action.payload };
+      return { ...state, token: action.payload, loading: false };
     case "LOGOUT":
-      return { ...state, isLoggedIn: false, token: null };
+      return { ...state, token: null };
+    case "SET_LOADING":
+      return { ...state, loading: action.payload };
     default:
       return state;
   }
@@ -21,29 +25,39 @@ const authReducer = (state, action) => {
 
 export const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
+  const { setRole, removeRole } = useUserContext();
 
   useEffect(() => {
     const token = getCookie("token");
+    const decodedToken = JWT.decode(token);
     if (token) {
       dispatch({ type: "LOGIN", payload: token });
+      if (decodedToken.role) setRole(decodedToken.role);
     } else {
       dispatch({ type: "LOGOUT" });
     }
   }, []);
 
   const login = (token) => {
-    setCookie("token", token);
+    const decodedToken = JWT.decode(token);
+    setToken(token);
     dispatch({ type: "LOGIN", payload: token });
+    setRole(decodedToken.role);
   };
 
   const logout = () => {
     removeCookie("token");
+    removeRole();
     dispatch({ type: "LOGOUT" });
   };
 
+  const setToken = (token) => {
+    setCookie("token", token);
+  };
+
   return (
-    <AuthContext.Provider value={{ state, login, logout }}>
-      {children}
+    <AuthContext.Provider value={{ state, login, logout, setToken }}>
+      {!state.loading && children}
     </AuthContext.Provider>
   );
 };

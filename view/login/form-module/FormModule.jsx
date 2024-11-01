@@ -8,6 +8,7 @@ import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import Jwt from "jsonwebtoken";
+import { useUserContext } from "@/utils/context/useUserContext";
 
 const Texts = {
   login: "ورود",
@@ -20,7 +21,6 @@ const Texts = {
 };
 
 function FormModule() {
-  const [isMounted, setIsMounted] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const [otpDigits, setOtpDigits] = useState(["", "", "", ""]);
   const [isEnteringNumber, setIsEnteringNumber] = useState(true);
@@ -45,22 +45,18 @@ function FormModule() {
   } = LoginAPI.VerifyOtp({ phoneNumber, otp: otpDigits.join("") });
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
     if (!sendingOtp && !sendOtpError && sendOtpData) {
       setIsEnteringNumber(false);
     }
   }, [sendingOtp, sendOtpError, sendOtpData]);
 
   useEffect(() => {
-    if (state.isLoggedIn) {
-      const decodedToken = Jwt.decode(verifyOtpData?.token);
+    if (state.token) {
+      const decodedToken = Jwt.decode(state.token);
       if (decodedToken?.role) {
-        router.push("/");
+        router.replace("/dashboard");
       } else {
-        router.push("/login/role-selection");
+        router.replace("/login/role-selection");
       }
     }
   }, [state]);
@@ -80,12 +76,10 @@ function FormModule() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (isMounted) {
-      if (isEnteringNumber) {
-        sendOtp();
-      } else {
-        verifyOtp();
-      }
+    if (isEnteringNumber) {
+      sendOtp();
+    } else {
+      verifyOtp();
     }
   };
 

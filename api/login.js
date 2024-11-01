@@ -1,4 +1,4 @@
-import useAxios from "@/utils/useAxios";
+import useAxios from "@/utils/hooks/useAxios";
 
 const LoginAPI = {};
 

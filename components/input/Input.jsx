@@ -33,20 +33,30 @@ const Input = forwardRef(function Input(
     }
   };
 
+  const inputClasses = classNames(
+    "transition-colors focus:outline-none",
+    {
+      // Style for regular text input
+      "h-12 rounded-md border border-[#465370] px-2 focus:border-white active:border-white":
+        type !== "radio",
+      // Style for radio input
+      "h-6 w-6 rounded border border-[#465370] appearance-none checked:bg-primaryColor checked:border-primaryColor focus:outline-none":
+        type === "radio",
+    },
+    disabled
+      ? "cursor-not-allowed border-none bg-[#252932]"
+      : type !== "radio" && "bg-inputBg",
+    isValid === true && "border-greenColor text-greenColor",
+    isValid === false && "border-redColor text-redColor",
+    className,
+  );
+
   return (
     <div className="flex flex-col gap-2">
       {label && <label className="input-label">{label}</label>}
       <input
         ref={ref}
-        className={classNames(
-          "h-12 rounded-md border border-[#465370] px-2 transition-colors focus:border-white active:border-white",
-          disabled
-            ? "cursor-not-allowed border-none bg-[#252932]"
-            : "bg-inputBg",
-          isValid === true && "border-greenColor text-greenColor",
-          isValid === false && "border-redColor text-redColor",
-          className,
-        )}
+        className={inputClasses}
         type={type}
         required={required}
         disabled={disabled}

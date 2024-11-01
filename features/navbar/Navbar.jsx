@@ -9,7 +9,7 @@ import IconRenderer from "@/components/icon/IconRenderer";
 import Typography from "@/components/typography";
 import Image from "@/components/image";
 import Drawer from "@/components/drawer";
-import { useScrollPosition } from "@/utils/useScrollPosition";
+import { useScrollPosition } from "@/utils/hooks/useScrollPosition";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 
 import TextLogo from "@/public/images/textLogo.png";
@@ -108,7 +108,7 @@ function Navbar() {
   const isScrolled = scrollPosition > 48;
 
   const { state, logout } = useAuthContext();
-  const isLoggedIn = state?.isLoggedIn;
+  const isLoggedIn = state?.token;
 
   const router = useRouter();
 
