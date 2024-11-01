@@ -24,7 +24,7 @@ function RootLayout({ children }) {
         <ClientLayout>
           {/* <UserProvider> */}
             <AuthProvider>
-              <NotificationProvider>{children}</NotificationProvider>
+              <NotificationProvider>salam</NotificationProvider>
             </AuthProvider>
           {/* </UserProvider> */}
         </ClientLayout>
