@@ -96,9 +96,10 @@ function DiseaseDiagnosis() {
     setFormPercentage((yesCount / FormItems.length) * 100);
     modalRef.current.open();
   };
+
   const MakeFormRow = ({ item, index }) => {
     return (
-      <div className="flex h-[80px] items-center justify-between border-t border-[#737373] p-4">
+      <div className="flex min-h-[80px] items-center justify-between gap-6 border-t border-[#737373] p-4">
         <div className="flex gap-6">
           <span className="w-[40px] text-center">
             <Typography size="2xl">{TwoDigitNumber(index + 1)}</Typography>
