@@ -114,6 +114,19 @@ function FillFormLayout() {
     );
   }, [formValues]);
 
+  useEffect(() => {
+    if (data) {
+      setToken(data?.token);
+      handleOpenModal();
+    } else if (error) {
+      addNotification({
+        id: Date.now(),
+        type: "error",
+        message: Texts.fillFormError,
+      });
+    }
+  }, [data, error]);
+
   const handleChange = (key, value, type) => {
     setFormValues((prev) => ({
       ...prev,
@@ -132,19 +145,6 @@ function FillFormLayout() {
       });
     }
   };
-
-  useEffect(() => {
-    if (data) {
-      setToken(data?.token);
-      handleOpenModal();
-    } else if (error) {
-      addNotification({
-        id: Date.now(),
-        type: "error",
-        message: Texts.fillFormError,
-      });
-    }
-  }, [data, error]);
 
   const handleCloseModal = () => {
     modalRef.current.close();
@@ -225,8 +225,8 @@ function FillFormLayout() {
                     label={item.label}
                     placeholder={item.placeholder}
                     type={item.type}
-                    onChange={(value) =>
-                      handleChange(item.key, value, item.type)
+                    onChange={(e) =>
+                      handleChange(item.key, e.target.value, item.type)
                     }
                   />
                 )}

@@ -68,11 +68,11 @@ function FormModule() {
     }
   };
 
-  const handleOtpChange = (index, value) => {
+  const handleOtpChange = (index, e) => {
     const newOtpDigits = [...otpDigits];
-    newOtpDigits[index] = value.replace(/\D/g, "");
+    newOtpDigits[index] = e.target.value.replace(/\D/g, "");
     setOtpDigits(newOtpDigits);
-    if (value && index < otpDigits.length - 1) {
+    if (e.target.value && index < otpDigits.length - 1) {
       inputRefs.current[index + 1].focus();
     }
   };
@@ -87,7 +87,7 @@ function FormModule() {
           <Input
             placeholder="09123456789"
             value={phoneNumber}
-            onChange={(value) => setPhoneNumber(value)}
+            onChange={(e) => setPhoneNumber(e.target.value)}
             label={Texts.inputLabel}
           />
         ) : (
@@ -97,7 +97,7 @@ function FormModule() {
                 key={index}
                 placeholder="-"
                 value={digit}
-                onChange={(value) => handleOtpChange(index, value)}
+                onChange={(e) => handleOtpChange(index, e)}
                 maxLength={1}
                 type="text"
                 className="w-[58px] text-center"

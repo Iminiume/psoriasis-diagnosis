@@ -24,12 +24,12 @@ const Input = forwardRef(function Input(
   ref,
 ) {
   const [isValid, setIsValid] = useState(null);
-  const handleChange = (value) => {
-    if (onChange) onChange(value);
+  const handleChange = (e) => {
+    if (onChange) onChange(e);
 
     // Validate input based on the passed validation function
     if (validateInput) {
-      setIsValid(validateInput(value));
+      setIsValid(validateInput(e));
     }
   };
 
@@ -60,7 +60,7 @@ const Input = forwardRef(function Input(
         type={type}
         required={required}
         disabled={disabled}
-        onChange={(e) => handleChange(e?.target.value)}
+        onChange={(e) => handleChange(e)}
         autoComplete={autoComplete}
         placeholder={placeholder}
         {...rest}
