@@ -11,6 +11,7 @@ function Image({
   draggable = false,
   sizes,
   priority = false,
+  ...rest
 }) {
   return (
     <NextImage
@@ -21,6 +22,7 @@ function Image({
       priority={priority}
       className={classNames("select-none object-cover", className)}
       loading="lazy"
+      {...rest}
     />
   );
 }

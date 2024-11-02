@@ -22,6 +22,7 @@ function UploadImage() {
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const [progress, setProgress] = useState(0);
   const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
   const modalRef = useRef();
   const [serverData, setServerData] = useState(null);
   const { state } = useAuthContext();
@@ -39,6 +40,7 @@ function UploadImage() {
       setFile(formData);
       setIsFileUploaded(true);
       setProgress(0);
+      setPreviewUrl(URL.createObjectURL(selectedFile));
     }
   };
 
@@ -46,15 +48,7 @@ function UploadImage() {
     if (!file) return;
 
     try {
-      refetch({
-        data: file,
-        onUploadProgress: (progressEvent) => {
-          const percentComplete = Math.round(
-            (progressEvent.loaded * 100) / progressEvent.total,
-          );
-          setProgress(percentComplete);
-        },
-      });
+      refetch();
 
       if (data) {
         setServerData(data);
@@ -92,9 +86,19 @@ function UploadImage() {
 
       {/* Image Upload Input and Progress Bar */}
       <div className="flex flex-grow items-center justify-center px-8">
-        <div className="relative flex h-[15rem] w-[30rem] flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-primaryColor bg-[#26335D] p-8">
+        <div className="relative flex min-h-[15rem] min-w-[30rem] flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-primaryColor bg-[#26335D] p-8">
           <div>
-            <Image src={ImageUpload} />
+            {isFileUploaded ? (
+              <Image
+                src={previewUrl}
+                alt="Uploaded Preview"
+                width={500}
+                height={300}
+                className="object-contain"
+              />
+            ) : (
+              <Image src={ImageUpload} alt="Upload Icon" />
+            )}
           </div>
 
           <div className="flex flex-wrap justify-center gap-1">
