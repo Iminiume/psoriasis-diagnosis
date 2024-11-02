@@ -9,6 +9,7 @@ import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import React, { useEffect, useRef, useState } from "react";
 import ModalContent from "../dashboard-modal-content";
 import { Consts, FormItems } from "./consts";
+import Datepicker from "@/components/datepicker";
 
 function FillFormLayout() {
   const { state: authState, setToken } = useAuthContext();
@@ -47,7 +48,7 @@ function FillFormLayout() {
   const handleChange = (key, value, type) => {
     setFormValues((prev) => ({
       ...prev,
-      [key]: type === "date" ? new Date(value).toISOString() : value,
+      [key]: type === "date" ? value.toDate() : value,
     }));
   };
 
@@ -96,7 +97,16 @@ function FillFormLayout() {
 
             return (
               <div key={item.label} className={`${colSpanClass} flex flex-col`}>
-                {item.type === "radio" ? (
+                {item.type === "date" ? (
+                  <div className="flex flex-col">
+                    <label className="mb-2 font-medium">{item.label}</label>
+                    <Datepicker
+                      value={formValues[item.key]}
+                      onChange={(date) => handleChange(item.key, date, "date")}
+                      placeholder={item.placeholder}
+                    />
+                  </div>
+                ) : item.type === "radio" ? (
                   <div>
                     <label className="mb-2 font-medium">{item.label}</label>
                     <div className="flex gap-4">
