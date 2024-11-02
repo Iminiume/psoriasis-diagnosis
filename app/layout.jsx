@@ -16,8 +16,7 @@ export const metadata = {
 function RootLayout({ children }) {
   return (
     <html lang="en" dir="rtl">
-      <link rel="icon" href="/images/logo.png" sizes="any" />
-
+      <link rel="icon" href="/favicon.ico" sizes="any" />
       <body
         className={`m-0 box-border flex min-h-screen flex-col p-0 antialiased`}
       >
