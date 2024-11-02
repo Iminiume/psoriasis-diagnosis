@@ -11,8 +11,8 @@ import { useUserContext } from "@/utils/context/useUserContext";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
-const text = {
-  title: "اطالاعات خود را وارد کنید",
+const Texts = {
+  title: "اطلاعات خود را وارد کنید",
   subTitle: "تکمیل پرونده الکترونیکی سلامت",
   continue: "ادامه",
   confirmAndContinue: "تایید و ادامه",
@@ -22,7 +22,7 @@ const text = {
   formModalCompleted: "پرونده الکترونیک سلامت برای شما ایجاد شد.",
 };
 
-const formText = [
+const FormItems = [
   {
     label: "نام",
     placeholder: "نام خود را وارد کنید",
@@ -96,7 +96,6 @@ const formText = [
 ];
 
 function FillFormLayout() {
-  const { state, dispatch } = useUserContext();
   const { state: authState, setToken } = useAuthContext();
   const router = useRouter();
   const [formValues, setFormValues] = useState({});
@@ -109,11 +108,7 @@ function FillFormLayout() {
   const modalRef = useRef(null);
 
   useEffect(() => {
-    if (!state.role) router.replace("/login/role-selection");
-  }, [state]);
-
-  useEffect(() => {
-    const requiredFields = formText.map((item) => item.key);
+    const requiredFields = FormItems.map((item) => item.key);
     setIsFormComplete(
       requiredFields.every((key) => formValues[key] !== undefined),
     );
@@ -133,7 +128,7 @@ function FillFormLayout() {
       addNotification({
         id: Date.now(),
         type: "error",
-        message: text.fillFormIncomplete,
+        message: Texts.fillFormIncomplete,
       });
     }
   };
@@ -146,7 +141,7 @@ function FillFormLayout() {
       addNotification({
         id: Date.now(),
         type: "error",
-        message: text.fillFormError,
+        message: Texts.fillFormError,
       });
     }
   }, [data, error]);
@@ -169,15 +164,15 @@ function FillFormLayout() {
             </span>
           </div>
           <div>
-            <Typography>{text.formModalCompleted}</Typography>
+            <Typography>{Texts.formModalCompleted}</Typography>
           </div>
         </div>
         <div className="flex justify-between gap-3 pt-8">
           <Button mode="primary" onClick={() => router.replace("/dashboard")}>
-            {text.confirmAndContinue}
+            {Texts.confirmAndContinue}
           </Button>
           <Button mode="secondary" onClick={handleCloseModal}>
-            {text.edit}
+            {Texts.edit}
           </Button>
         </div>
       </div>
@@ -185,60 +180,70 @@ function FillFormLayout() {
   };
 
   return (
-    <div className="flex flex-col gap-10">
-      <div className="flex flex-col gap-6">
+    <div className="flex h-full flex-col gap-10">
+      {/* Title Section */}
+      <div className="flex flex-col gap-6 p-8">
         <Typography size="5xl" weight="bold">
-          {text.title}
+          {Texts.title}
         </Typography>
         <Typography size="3xl" className="text-[#8D8D8D]">
-          {text.subTitle}
+          {Texts.subTitle}
         </Typography>
       </div>
-      <div className="grid grid-cols-4 gap-6">
-        {formText.map((item) => {
-          const colSpanClass = {
-            "1/4": "col-span-1",
-            "1/2": "col-span-2",
-            full: "col-span-4",
-          }[item.width];
 
-          return (
-            <div key={item.label} className={`${colSpanClass} flex flex-col`}>
-              {item.type === "radio" ? (
-                <div>
-                  <label className="mb-2 font-medium">{item.label}</label>
-                  <div className="flex gap-4">
-                    {item.options.map((option) => (
-                      <Input
-                        type="radio"
-                        name={item.key}
-                        label={option.label}
-                        value={option.value}
-                        checked={formValues[item.key] === option.value}
-                        onChange={() => handleChange(item.key, option.value)}
-                      />
-                    ))}
+      {/* Dynamic Input Container */}
+      <div className="scrollbar-hide flex-grow overflow-y-auto px-8">
+        <div className="grid grid-cols-4 gap-6">
+          {FormItems.map((item) => {
+            const colSpanClass = {
+              "1/4": "col-span-1",
+              "1/2": "col-span-2",
+              full: "col-span-4",
+            }[item.width];
+
+            return (
+              <div key={item.label} className={`${colSpanClass} flex flex-col`}>
+                {item.type === "radio" ? (
+                  <div>
+                    <label className="mb-2 font-medium">{item.label}</label>
+                    <div className="flex gap-4">
+                      {item.options.map((option) => (
+                        <Input
+                          key={option.label}
+                          type="radio"
+                          name={item.key}
+                          label={option.label}
+                          value={option.value}
+                          checked={formValues[item.key] === option.value}
+                          onChange={() => handleChange(item.key, option.value)}
+                        />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ) : (
-                <Input
-                  label={item.label}
-                  placeholder={item.placeholder}
-                  type={item.type}
-                  onChange={(value) => handleChange(item.key, value, item.type)}
-                />
-              )}
-            </div>
-          );
-        })}
+                ) : (
+                  <Input
+                    label={item.label}
+                    placeholder={item.placeholder}
+                    type={item.type}
+                    onChange={(value) =>
+                      handleChange(item.key, value, item.type)
+                    }
+                  />
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
 
-      <div className="flex w-full justify-end">
+      {/* Submit Button Section */}
+      <div className="flex w-full justify-end bg-[#1E253A] p-8">
         <Button onClick={handleSubmit} disabled={!isFormComplete || loading}>
-          {text.continue}
+          {Texts.continue}
         </Button>
       </div>
 
+      {/* Modal */}
       <Modal ref={modalRef}>
         <FormModalContent />
       </Modal>

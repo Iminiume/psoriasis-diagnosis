@@ -5,10 +5,7 @@ import Input from "@/components/input";
 import Typography from "@/components/typography";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
-import Jwt from "jsonwebtoken";
-import { useUserContext } from "@/utils/context/useUserContext";
 
 const Texts = {
   login: "ورود",
@@ -25,10 +22,9 @@ function FormModule() {
   const [otpDigits, setOtpDigits] = useState(["", "", "", ""]);
   const [isEnteringNumber, setIsEnteringNumber] = useState(true);
 
-  const router = useRouter();
   const inputRefs = useRef([]);
 
-  const { state, login } = useAuthContext();
+  const { login } = useAuthContext();
   const { addNotification } = useNotificationContext();
 
   const {
@@ -49,17 +45,6 @@ function FormModule() {
       setIsEnteringNumber(false);
     }
   }, [sendingOtp, sendOtpError, sendOtpData]);
-
-  useEffect(() => {
-    if (state.token) {
-      const decodedToken = Jwt.decode(state.token);
-      if (decodedToken?.role) {
-        router.replace("/dashboard");
-      } else {
-        router.replace("/login/role-selection");
-      }
-    }
-  }, [state]);
 
   useEffect(() => {
     if (verifyOtpData && !verifyOtpError && !verifyingOtp) {

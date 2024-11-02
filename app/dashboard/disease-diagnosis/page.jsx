@@ -1,7 +1,8 @@
+import DiseaseDiagnosis from "@/view/dashboard/disease-diagnosis";
 import React from "react";
 
 function Page() {
-  return <div>Page</div>;
+  return <DiseaseDiagnosis />;
 }
 
 export default Page;

@@ -17,7 +17,6 @@ const text = { chooseRole: "نقش خود را انتخاب کنید", confirm: 
 function RoleSelectionLayout() {
   const [isSelected, setIsSelected] = useState(undefined);
   const { setRole } = useUserContext();
-  const { state } = useAuthContext();
 
   const router = useRouter();
 
@@ -25,12 +24,6 @@ function RoleSelectionLayout() {
     setRole(isSelected);
     router.replace(`/dashboard/fill-form`);
   };
-
-  useEffect(() => {
-    if (!state.token) {
-      router.replace("/login");
-    }
-  }, [state]);
 
   return (
     <section className="relative h-full bg-pinkShadow bg-contain bg-right bg-no-repeat px-8 py-20">

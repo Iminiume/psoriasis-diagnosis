@@ -25,7 +25,7 @@ function DashboardLayout({ children }) {
           />
           <StepProgress steps={steps} />
         </div>
-        <div className="h-full basis-3/4 rounded-[32px] border p-8">
+        <div className="h-full basis-3/4 overflow-hidden rounded-[32px] border">
           {children}
         </div>
       </div>
