@@ -5,18 +5,11 @@ import Input from "@/components/input";
 import Modal from "@/components/modal";
 import Typography from "@/components/typography";
 import { useAuthContext } from "@/utils/context/useAuthContext";
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import ImageUpload from "@/public/images/UploadImage.png";
 import Image from "@/components/image";
-const Texts = {
-  title: "ارسال عکس",
-  subTitle: "عکس ضایعه پوستی خود را ارسال کنید",
-  send: "ارسال",
-  forUploading: "برای آپلود عکس",
-  click: "کلیک کنید",
-  drag: "یا فایل را اینجا رها کنید",
-  result: "نتیجه",
-};
+import ModalContent from "../dashboard-modal-content";
+import { Consts, PsoriazisTypes } from "./consts";
 
 function UploadImage() {
   const [isFileUploaded, setIsFileUploaded] = useState(false);
@@ -24,13 +17,19 @@ function UploadImage() {
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const modalRef = useRef();
-  const [serverData, setServerData] = useState(null);
   const { state } = useAuthContext();
 
   const { data, loading, error, refetch } = PatientAPI.UploadImage({
     token: state.token,
     file,
   });
+
+  const handleModalClose = () => modalRef.current.close();
+  const handleModalOpen = () => modalRef.current.open();
+
+  useEffect(() => {
+    if (data && !loading && !error) handleModalOpen();
+  }, [data, loading, error]);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
@@ -49,38 +48,38 @@ function UploadImage() {
 
     try {
       refetch();
-
-      if (data) {
-        setServerData(data);
-        modalRef.current.open();
-      }
     } catch (err) {
       console.error("Upload failed", err);
     }
   };
 
-  const ModalContent = useCallback(
-    () => (
-      <div className="flex flex-col">
-        <div className="border-b border-[#737373] pb-8">
-          <Typography weight="bold" size="2xl">
-            {Texts.result}
-          </Typography>
-        </div>
-        <div>{serverData}</div>
-      </div>
-    ),
-    [serverData],
-  );
+  const handleModalContent = () => {
+    if (!data) return;
+
+    const diagnosisType = PsoriazisTypes.find((type) => type.value === data);
+
+    return (
+      <ModalContent
+        title={
+          Consts.result +
+          " " +
+          (diagnosisType ? diagnosisType.title : Consts.notDeterminedFa) +
+          " " +
+          Consts.is
+        }
+        handleModalClose={handleModalClose}
+      />
+    );
+  };
 
   return (
     <div className="flex h-full flex-col gap-10">
       <div className="flex flex-col gap-6 p-8">
         <Typography size="5xl" weight="bold">
-          {Texts.title}
+          {Consts.title}
         </Typography>
         <Typography size="3xl" className="text-[#8D8D8D]">
-          {Texts.subTitle}
+          {Consts.subTitle}
         </Typography>
       </div>
 
@@ -103,13 +102,13 @@ function UploadImage() {
 
           <div className="flex flex-wrap justify-center gap-1">
             <Typography size="xl" weight="bold">
-              {Texts.forUploading}
+              {Consts.forUploading}
             </Typography>
             <Typography size="xl" weight="bold" className="text-primaryColor">
-              {Texts.click}
+              {Consts.click}
             </Typography>
             <Typography size="xl" weight="bold">
-              {Texts.drag}
+              {Consts.drag}
             </Typography>
           </div>
 
@@ -135,14 +134,12 @@ function UploadImage() {
       {/* Button Section */}
       <div className="flex w-full justify-end bg-[#1E253A] p-8">
         <Button onClick={handleSubmit} disabled={!isFileUploaded}>
-          {Texts.send}
+          {Consts.send}
         </Button>
       </div>
 
       {/* Modal Component */}
-      <Modal ref={modalRef}>
-        <ModalContent />
-      </Modal>
+      <Modal ref={modalRef}>{handleModalContent()}</Modal>
     </div>
   );
 }

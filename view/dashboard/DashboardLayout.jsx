@@ -7,7 +7,7 @@ import StepProgress from "@/components/step-progress";
 const steps = [
   { label: "تشکیل پرونده", link: "/dashboard/fill-form" },
   { label: "تشخیص بیماری", link: "/dashboard/disease-diagnosis" },
-  { label: "تشخیص نوع پسوریازیس", link: "/dashboard/pesoriasis" },
+  { label: "تشخیص نوع پسوریازیس", link: "/dashboard/disease-type-diagnosis" },
   { label: "بارگذاری تصویر", link: "/dashboard/upload-image" },
   { label: "دریافت توصیه", link: "/dashboard/recieve-advice" },
 ];

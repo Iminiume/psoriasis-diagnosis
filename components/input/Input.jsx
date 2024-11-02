@@ -36,12 +36,10 @@ const Input = forwardRef(function Input(
   const inputClasses = classNames(
     "transition-colors focus:outline-none",
     {
-      // Style for regular text input
       "h-12 rounded-md border border-[#465370] px-2 focus:border-white active:border-white":
-        type !== "radio",
-      // Style for radio input
+        type !== "radio" && type !== "checkbox",
       "h-6 w-6 rounded border border-[#465370] appearance-none checked:bg-primaryColor checked:border-primaryColor focus:outline-none":
-        type === "radio",
+        type === "radio" || type === "checkbox",
     },
     disabled
       ? "cursor-not-allowed border-none bg-[#252932]"
