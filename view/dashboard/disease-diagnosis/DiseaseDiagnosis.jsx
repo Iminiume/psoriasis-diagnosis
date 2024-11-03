@@ -5,8 +5,9 @@ import Modal from "@/components/modal";
 import Typography from "@/components/typography";
 import { TwoDigitNumber } from "@/utils/twoDigit";
 import React, { useRef, useState } from "react";
-import ModalContent from "../dashboard-modal-content";
+import ModalContent from "../components/modal-content";
 import { Consts, FormItems } from "./consts";
+import DashboardRenderer from "../components/dashboard-renderer/DashboardRenderer";
 
 function DiseaseDiagnosis() {
   const [selectedAnswers, setSelectedAnswers] = useState(
@@ -80,38 +81,21 @@ function DiseaseDiagnosis() {
   };
 
   return (
-    <div className="flex h-full flex-col gap-10">
-      {/* Titles Section */}
-      <div className="flex flex-col gap-6 p-8">
-        <Typography size="5xl" weight="bold">
-          {Consts.title}
-        </Typography>
-        <Typography size="3xl" className="text-primaryColor">
-          {Consts.subTitle}
-        </Typography>
+    <DashboardRenderer
+      title={Consts.title}
+      subTitle={Consts.subTitle}
+      handleSubmit={handleSubmit}
+      isButtonDisabled={!isFormComplete}
+    >
+      <div className="flex w-full justify-end gap-10 px-5 py-2">
+        <Typography size="lg">{Consts.yes}</Typography>
+        <Typography size="lg">{Consts.no}</Typography>
       </div>
-
-      {/* Form Items Section with Dynamic Scroll */}
-      <div className="scrollbar-hide flex-grow overflow-y-auto px-8">
-        <div className="flex w-full justify-end gap-10 px-5 py-2">
-          <Typography size="lg">{Consts.yes}</Typography>
-          <Typography size="lg">{Consts.no}</Typography>
-        </div>
-        {FormItems.map((item, index) => (
-          <MakeFormRow key={index} item={item} index={index} />
-        ))}
-      </div>
-
-      {/* Button Section */}
-      <div className="flex w-full justify-end bg-[#1E253A] p-8">
-        <Button onClick={handleSubmit} disabled={!isFormComplete}>
-          {Consts.continue}
-        </Button>
-      </div>
-
-      {/* Modal Component */}
+      {FormItems.map((item, index) => (
+        <MakeFormRow key={index} item={item} index={index} />
+      ))}
       <Modal ref={modalRef}>{handleModaContent()}</Modal>
-    </div>
+    </DashboardRenderer>
   );
 }
 

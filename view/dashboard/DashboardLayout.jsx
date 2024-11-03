@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useUserContext } from "@/utils/context/useUserContext";
 import RoleCard from "@/components/role-card";
 import StepProgress from "@/components/step-progress";
@@ -13,7 +13,7 @@ const steps = [
 ];
 
 function DashboardLayout({ children }) {
-  const { state, dispatch } = useUserContext();
+  const { state } = useUserContext();
   return (
     <section className="h-screen bg-pinkShadow bg-contain bg-right bg-no-repeat px-8 py-8">
       <div className="mx-auto flex h-full max-w-custom gap-10">

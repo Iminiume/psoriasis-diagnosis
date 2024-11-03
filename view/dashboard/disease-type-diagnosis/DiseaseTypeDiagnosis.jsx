@@ -7,8 +7,9 @@ import Typography from "@/components/typography";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { TwoDigitNumber } from "@/utils/twoDigit";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import ModalContent from "../dashboard-modal-content";
+import ModalContent from "../components/modal-content";
 import { Consts, FormItems, PsoriazisTypes } from "./consts";
+import DashboardRenderer from "../components/dashboard-renderer/DashboardRenderer";
 
 function DiseaseTypeDiagnosis() {
   const [selectedAnswers, setSelectedAnswers] = useState({});
@@ -108,34 +109,18 @@ function DiseaseTypeDiagnosis() {
   };
 
   return (
-    <div className="flex h-full flex-col gap-10">
-      {/* Titles Section */}
-      <div className="flex flex-col gap-6 p-8">
-        <Typography size="5xl" weight="bold">
-          {Consts.title}
-        </Typography>
-        <Typography size="3xl" className="text-primaryColor">
-          {Consts.subTitle}
-        </Typography>
-      </div>
-
-      {/* Form Items Section with Dynamic Scroll */}
-      <div className="scrollbar-hide flex-grow overflow-y-auto px-8">
-        {FormItems.map((item, index) => (
-          <MakeFormRow key={index} item={item} index={index} />
-        ))}
-      </div>
-
-      {/* Button Section */}
-      <div className="flex w-full justify-end bg-[#1E253A] p-8">
-        <Button onClick={handleSubmit} disabled={!isFormComplete}>
-          {Consts.continue}
-        </Button>
-      </div>
-
-      {/* Modal Component */}
+    <DashboardRenderer
+      title={Consts.title}
+      subTitle={Consts.subTitle}
+      isButtonDisabled={!isFormComplete || loading}
+      handleSubmit={handleSubmit}
+      loading={loading}
+    >
+      {FormItems.map((item, index) => (
+        <MakeFormRow key={index} item={item} index={index} />
+      ))}
       <Modal ref={modalRef}>{handleModalContent()}</Modal>
-    </div>
+    </DashboardRenderer>
   );
 }
 

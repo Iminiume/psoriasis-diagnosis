@@ -1,4 +1,4 @@
-export const Consts = {
+export const Consts = Object.freeze({
   title: "به سوالات زیر پاسخ دهید",
   subTitle: "لطفا به تمامی سوالات زیر با بله یا خیر با دقت پاسخ دهید",
   yes: "بله",
@@ -10,7 +10,7 @@ export const Consts = {
   isAfflicted: "شما به بیماری پسوریازیس مبتلا هستید",
   notAfflicted: "شما به بیماری پسوریازیس مبتلا نیستید",
   confirmIsOnDoctor: "تشخیص نهایی بیماری شما بر عهده پزشک می باشد",
-};
+});
 
 export const FormItems = [
   {

@@ -4,7 +4,7 @@ import LoginThumbnail from "@/public/images/loginThumb.png";
 import Link from "next/link";
 import Typography from "@/components/typography";
 import Logo from "@/public/images/logo.png";
-import FormModule from "./form-module";
+import FormModule from "./components/form-module";
 import IconRenderer from "@/components/icon/IconRenderer";
 import PinkShadow from "@/public/images/pinkShadow.png";
 import VectorBG from "@/public/images/vector.png";

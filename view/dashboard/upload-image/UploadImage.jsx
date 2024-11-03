@@ -8,8 +8,9 @@ import { useAuthContext } from "@/utils/context/useAuthContext";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import ImageUpload from "@/public/images/UploadImage.png";
 import Image from "@/components/image";
-import ModalContent from "../dashboard-modal-content";
+import ModalContent from "../components/modal-content";
 import { Consts, PsoriazisTypes } from "./consts";
+import DashboardRenderer from "../components/dashboard-renderer/DashboardRenderer";
 
 function UploadImage() {
   const [isFileUploaded, setIsFileUploaded] = useState(false);
@@ -73,18 +74,14 @@ function UploadImage() {
   };
 
   return (
-    <div className="flex h-full flex-col gap-10">
-      <div className="flex flex-col gap-6 p-8">
-        <Typography size="5xl" weight="bold">
-          {Consts.title}
-        </Typography>
-        <Typography size="3xl" className="text-[#8D8D8D]">
-          {Consts.subTitle}
-        </Typography>
-      </div>
-
-      {/* Image Upload Input and Progress Bar */}
-      <div className="flex flex-grow items-center justify-center px-8">
+    <DashboardRenderer
+      title={Consts.title}
+      subTitle={Consts.subTitle}
+      handleSubmit={handleSubmit}
+      isButtonDisabled={!isFileUploaded || loading}
+      loading={loading}
+    >
+      <div className="flex h-full items-center justify-center">
         <div className="relative flex min-h-[15rem] min-w-[30rem] flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-primaryColor bg-[#26335D] p-8">
           <div>
             {isFileUploaded ? (
@@ -131,16 +128,8 @@ function UploadImage() {
         </div>
       </div>
 
-      {/* Button Section */}
-      <div className="flex w-full justify-end bg-[#1E253A] p-8">
-        <Button onClick={handleSubmit} disabled={!isFileUploaded}>
-          {Consts.send}
-        </Button>
-      </div>
-
-      {/* Modal Component */}
       <Modal ref={modalRef}>{handleModalContent()}</Modal>
-    </div>
+    </DashboardRenderer>
   );
 }
 

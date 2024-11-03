@@ -1,11 +1,12 @@
 import useAxios from "@/utils/hooks/useAxios";
 
 const LoginAPI = {};
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 LoginAPI.Login = ({ phoneNumber }) => {
   return useAxios(
     {
-      url: "http://5.34.199.51:3000/api/login",
+      url: `${API_BASE_URL}/api/login`,
       method: "POST",
       data: { phoneNumber: phoneNumber },
     },
@@ -18,7 +19,7 @@ LoginAPI.Login = ({ phoneNumber }) => {
 LoginAPI.VerifyOtp = ({ phoneNumber, otp }) => {
   return useAxios(
     {
-      url: "http://5.34.199.51:3000/api/verify_otp",
+      url: `${API_BASE_URL}/api/verify_otp`,
       method: "POST",
       data: { phoneNumber: phoneNumber, otp: otp },
     },

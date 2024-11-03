@@ -1,4 +1,4 @@
-export const Consts = {
+export const Consts = Object.freeze({
   title: "لطفا به سوالات زیر جواب دهید",
   subTitle: "می‌توانید برای هر سوال، چند گزینه را انتخاب کنید.",
   continue: "ادامه",
@@ -8,7 +8,7 @@ export const Consts = {
   is: "است",
   shouldCheckedByDoctor:
     "نوع بیماری شما بر عهده پزشک است؛ ضمنا اطلاعات شما برای پزشک ارسال خواهد شد ، پس از تایید پزشک و اعلام نوع نهایی بیماری، شما می توانید به پنل دریافت توصیه دسترسی داشته باشید.",
-};
+});
 
 export const FormItems = [
   {

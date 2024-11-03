@@ -8,9 +8,9 @@ import "@/public/styles/fonts.css";
 import "@/public/styles/globals.css";
 
 export const metadata = {
-  title: "Hamyar Pesooriazis",
+  title: "Hamyar Psoriasis",
   description:
-    "This website is for detecting whether you have pesooriazis or not",
+    "This website is for detecting whether you have psoriasis or not",
 };
 
 function RootLayout({ children }) {

@@ -1,4 +1,4 @@
-export const Consts = {
+export const Consts = Object.freeze({
   title: "ارسال عکس",
   subTitle: "عکس ضایعه پوستی خود را ارسال کنید",
   send: "ارسال",
@@ -7,7 +7,8 @@ export const Consts = {
   drag: "یا فایل را اینجا رها کنید",
   result: "تشخیص احتمالی سیستم بر اساس عکس شما نوع",
   is: "است",
-};
+});
+
 export const PsoriazisTypes = [
   { value: "Inverse", title: "Inverse" },
   { value: "Plaque", title: "Plaque" },

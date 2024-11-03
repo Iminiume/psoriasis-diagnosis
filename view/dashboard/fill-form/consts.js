@@ -1,4 +1,4 @@
-export const Consts = {
+export const Consts = Object.freeze({
   title: "اطلاعات خود را وارد کنید",
   subTitle: "تکمیل پرونده الکترونیکی سلامت",
   continue: "ادامه",
@@ -7,7 +7,7 @@ export const Consts = {
   fillFormIncomplete: "لطفا فرم را کامل کنید",
   fillFormError: "مشکلی در ارسال فرم بوجود آمده، لطفا مجددا تلاش کنید",
   formModalCompleted: "پرونده الکترونیک سلامت برای شما ایجاد شد.",
-};
+});
 
 export const FormItems = [
   {
