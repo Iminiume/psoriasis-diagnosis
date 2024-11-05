@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import SectionLayout from "../components/section-layout/SectionLayout";
+import SectionLayout from "../components/section-layout";
 import { Consts, FormItems } from "./consts";
 import Link from "next/link";
 import StepCard from "../components/step-card";

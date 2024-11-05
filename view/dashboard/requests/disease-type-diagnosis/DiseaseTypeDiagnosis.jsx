@@ -9,7 +9,7 @@ import { TwoDigitNumber } from "@/utils/twoDigit";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import ModalContent from "../../components/modal-content";
 import { Consts, FormItems, PsoriazisTypes } from "./consts";
-import DashboardRenderer from "../../components/section-layout/SectionLayout";
+import DashboardRenderer from "../../components/section-layout";
 
 function DiseaseTypeDiagnosis() {
   const [selectedAnswers, setSelectedAnswers] = useState({});

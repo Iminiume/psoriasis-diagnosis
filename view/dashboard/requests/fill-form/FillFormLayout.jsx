@@ -8,7 +8,7 @@ import React, { useEffect, useRef, useState } from "react";
 import ModalContent from "../../components/modal-content";
 import { Consts, FormItems } from "./consts";
 import Datepicker from "@/components/datepicker";
-import DashboardRenderer from "../../components/section-layout/SectionLayout";
+import DashboardRenderer from "../../components/section-layout";
 
 function FillFormLayout() {
   const { state: authState, setToken } = useAuthContext();

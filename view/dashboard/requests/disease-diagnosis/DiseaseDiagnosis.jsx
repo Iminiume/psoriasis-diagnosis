@@ -7,7 +7,7 @@ import { TwoDigitNumber } from "@/utils/twoDigit";
 import React, { useRef, useState } from "react";
 import ModalContent from "../../components/modal-content";
 import { Consts, FormItems } from "./consts";
-import DashboardRenderer from "../../components/section-layout/SectionLayout";
+import DashboardRenderer from "../../components/section-layout";
 
 function DiseaseDiagnosis() {
   const [selectedAnswers, setSelectedAnswers] = useState(

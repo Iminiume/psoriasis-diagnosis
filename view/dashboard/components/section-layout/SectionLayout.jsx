@@ -30,7 +30,7 @@ function SectionLayout({
       </div>
 
       {hasButton && (
-        <div className="flex w-full items-center justify-between border-t border-[#737373] bg-[#1E253A] p-8">
+        <div className="flex w-full items-center justify-between p-8">
           <div className="h-12 w-12">{loading && <Loading />}</div>
           <Button onClick={handleSubmit} disabled={isButtonDisabled}>
             {Consts.send}

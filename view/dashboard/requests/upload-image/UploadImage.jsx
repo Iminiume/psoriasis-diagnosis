@@ -10,7 +10,7 @@ import ImageUpload from "@/public/images/UploadImage.png";
 import Image from "@/components/image";
 import ModalContent from "../../components/modal-content";
 import { Consts, PsoriazisTypes } from "./consts";
-import DashboardRenderer from "../../components/section-layout/SectionLayout";
+import DashboardRenderer from "../../components/section-layout";
 
 function UploadImage() {
   const [isFileUploaded, setIsFileUploaded] = useState(false);
