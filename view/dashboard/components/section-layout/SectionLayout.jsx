@@ -5,7 +5,7 @@ import React from "react";
 import { Consts } from "./consts";
 import Loading from "@/app/dashboard/loading";
 
-function DashboardRenderer({
+function SectionLayout({
   title,
   subTitle,
   children,
@@ -41,4 +41,4 @@ function DashboardRenderer({
   );
 }
 
-export default DashboardRenderer;
+export default SectionLayout;

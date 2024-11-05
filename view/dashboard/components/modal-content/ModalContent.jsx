@@ -42,7 +42,7 @@ const ModalContent = ({
       <div className="flex w-full justify-center gap-4 pt-4">
         <Button
           mode="primary"
-          onClick={() => router.replace("/dashboard")}
+          onClick={() => router.replace("/dashboard/requests")}
           className="basis-1/2"
         >
           {Consts.confirmAndContinue}

@@ -6,16 +6,7 @@ import Typography from "@/components/typography";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import React, { useEffect, useRef, useState } from "react";
-
-const Texts = {
-  login: "ورود",
-  getCode: "دریافت کد",
-  inputLabel: "شماره تلفن",
-  sentCode: "کد ارسالی",
-  enterSentCode: "رمز عبور ارسال شده را وارد کنید",
-  confirm: "تایید",
-  wrongOtp: "کد وارد شده اشتباه می باشد!",
-};
+import { Consts } from "./consts";
 
 function FormModule() {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -27,18 +18,15 @@ function FormModule() {
   const { login } = useAuthContext();
   const { addNotification } = useNotificationContext();
 
-  const {
-    data: sendOtpData,
-    loading: sendingOtp,
-    error: sendOtpError,
-    refetch: sendOtp,
-  } = LoginAPI.Login({ phoneNumber });
-  const {
-    data: verifyOtpData,
-    loading: verifyingOtp,
-    error: verifyOtpError,
-    refetch: verifyOtp,
-  } = LoginAPI.VerifyOtp({ phoneNumber, otp: otpDigits.join("") });
+  const [
+    { data: sendOtpData, loading: sendingOtp, error: sendOtpError },
+    sendOtp,
+  ] = LoginAPI.Login({ phoneNumber });
+
+  const [
+    { data: verifyOtpData, loading: verifyingOtp, error: verifyOtpError },
+    verifyOtp,
+  ] = LoginAPI.VerifyOtp({ phoneNumber, otp: otpDigits.join("") });
 
   useEffect(() => {
     if (!sendingOtp && !sendOtpError && sendOtpData) {
@@ -54,7 +42,7 @@ function FormModule() {
       addNotification({
         id: Date.now(),
         type: "error",
-        message: Texts.wrongOtp,
+        message: Consts.wrongOtp,
       });
     }
   }, [verifyOtpData, verifyOtpError, verifyingOtp]);
@@ -80,7 +68,7 @@ function FormModule() {
   return (
     <div className="flex w-full flex-col gap-8 pt-[81px]">
       <Typography size="6xl">
-        {isEnteringNumber ? Texts.login : Texts.sentCode}
+        {isEnteringNumber ? Consts.login : Consts.sentCode}
       </Typography>
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         {isEnteringNumber ? (
@@ -88,7 +76,7 @@ function FormModule() {
             placeholder="09123456789"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            label={Texts.inputLabel}
+            label={Consts.inputLabel}
           />
         ) : (
           <div className="flex flex-row-reverse justify-between md:justify-center md:gap-8">
@@ -114,7 +102,7 @@ function FormModule() {
             disabled={sendingOtp || verifyingOtp}
           >
             <Typography weight="bold">
-              {isEnteringNumber ? Texts.getCode : Texts.confirm}
+              {isEnteringNumber ? Consts.getCode : Consts.confirm}
             </Typography>
           </Button>
         </div>

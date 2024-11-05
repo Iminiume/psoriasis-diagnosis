@@ -8,12 +8,7 @@ import FormModule from "./components/form-module";
 import IconRenderer from "@/components/icon/IconRenderer";
 import PinkShadow from "@/public/images/pinkShadow.png";
 import VectorBG from "@/public/images/vector.png";
-
-const Texts = {
-  goBack: "بازگشت",
-  to: "به",
-  welcome: "خوش آمدید",
-};
+import { Consts } from "./consts";
 
 function LoginLayout() {
   return (
@@ -25,14 +20,14 @@ function LoginLayout() {
             className="absolute right-[34px] top-[42px] flex gap-2"
           >
             <IconRenderer icon="chevronRight" />
-            <Typography>{Texts.goBack}</Typography>
+            <Typography>{Consts.goBack}</Typography>
           </Link>
 
           <div className="flex w-full basis-1/2 flex-col items-center justify-center px-8">
             <div className="flex items-center justify-center gap-4">
-              <Typography size="2xl">{Texts.to}</Typography>
+              <Typography size="2xl">{Consts.to}</Typography>
               <Image alt="logo" src={Logo} />
-              <Typography size="2xl">{Texts.welcome}</Typography>
+              <Typography size="2xl">{Consts.welcome}</Typography>
             </div>
             <FormModule />
           </div>

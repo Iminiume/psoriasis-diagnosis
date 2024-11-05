@@ -15,6 +15,8 @@ module.exports = {
         blueShadowBottom: "url(/images/blueShadowBottom.png)",
         orangeShadow: "url(/images/orangeShadow.png)",
         pinkShadow: "url(/images/pinkShadow.png)",
+        "custom-gradient":
+          "linear-gradient(180deg, rgba(38, 34, 80, 0.65) 0%, rgba(27, 25, 66, 0.85) 57.44%, #17163B 100%)",
       },
       aspectRatio: {
         "4/3": "4 / 3",
@@ -54,8 +56,8 @@ module.exports = {
         socialIconBg: "var(--social-icon-bg)",
         navbarBg: "var(--navbar-bg)",
         footerBg: "var(--foter-bg)",
-
         loginBg: "var(--login-bg)",
+        
         loginBorder: "var(--login-border)",
         cardBg: "var(--card-bg)",
         pinkShadowBg: "var(--ping-shadow-bg)",

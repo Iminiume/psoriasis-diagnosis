@@ -7,9 +7,9 @@ import Typography from "@/components/typography";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { TwoDigitNumber } from "@/utils/twoDigit";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import ModalContent from "../components/modal-content";
+import ModalContent from "../../components/modal-content";
 import { Consts, FormItems, PsoriazisTypes } from "./consts";
-import DashboardRenderer from "../components/dashboard-renderer/DashboardRenderer";
+import DashboardRenderer from "../../components/section-layout/SectionLayout";
 
 function DiseaseTypeDiagnosis() {
   const [selectedAnswers, setSelectedAnswers] = useState({});
@@ -17,7 +17,7 @@ function DiseaseTypeDiagnosis() {
   const modalRef = useRef();
   const { state } = useAuthContext();
 
-  const { data, error, loading, refetch } = PatientAPI.DiagnosisType({
+  const [{ data, error, loading }, refetch] = PatientAPI.DiagnosisType({
     formValues: selectedAnswers,
     token: state.token,
   });

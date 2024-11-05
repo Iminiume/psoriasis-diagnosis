@@ -5,9 +5,9 @@ import Modal from "@/components/modal";
 import Typography from "@/components/typography";
 import { TwoDigitNumber } from "@/utils/twoDigit";
 import React, { useRef, useState } from "react";
-import ModalContent from "../components/modal-content";
+import ModalContent from "../../components/modal-content";
 import { Consts, FormItems } from "./consts";
-import DashboardRenderer from "../components/dashboard-renderer/DashboardRenderer";
+import DashboardRenderer from "../../components/section-layout/SectionLayout";
 
 function DiseaseDiagnosis() {
   const [selectedAnswers, setSelectedAnswers] = useState(

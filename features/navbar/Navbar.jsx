@@ -4,9 +4,6 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
-import Button from "@/components/button";
-import IconRenderer from "@/components/icon/IconRenderer";
-import Typography from "@/components/typography";
 import Image from "@/components/image";
 import Drawer from "@/components/drawer";
 import { useScrollPosition } from "@/utils/hooks/useScrollPosition";
@@ -14,15 +11,8 @@ import { useAuthContext } from "@/utils/context/useAuthContext";
 
 import TextLogo from "@/public/images/textLogo.png";
 import Logo from "@/public/images/logo.png";
-
-const navbarItems = [
-  { title: "خدمات عمومی", link: "/#public-service" },
-  { title: "خدمات تخصصی بیماران", link: "/learn" },
-  { title: "راهنمای سامانه", link: "/suggestions" },
-  { title: "درباره ما", link: "/about-us" },
-];
-
-const Texts = { comeIn: "وارد شوید", logOut: "خروج" };
+import NavbarContent from "./components/navbar-content";
+import DrawerContent from "./components/drawer-content";
 
 const navStyles = (isScrolled) =>
   classNames(
@@ -40,67 +30,6 @@ const logoStyles = (isScrolled) =>
       : "border border-primaryColor bg-background translate-y-[17%] h-[165px] w-[122px]",
   );
 
-const HoverText = ({ children }) => (
-  <Typography
-    size="lg"
-    className="text-secondTextColor transition-colors hover:text-mainTextColor"
-  >
-    {children}
-  </Typography>
-);
-
-const NavbarItems = () =>
-  navbarItems.map((item, index) => (
-    <Link href={item.link} key={`navbar-item-${index}`}>
-      <HoverText>{item.title}</HoverText>
-    </Link>
-  ));
-
-const LoginButton = ({ isLoggedIn, onClick }) => (
-  <Button mode="primary" className="flex items-center gap-6" onClick={onClick}>
-    <IconRenderer icon={isLoggedIn ? "exit" : "user"} />
-    <Typography size="2xl" weight="medium">
-      {isLoggedIn ? Texts.logOut : Texts.comeIn}
-    </Typography>
-  </Button>
-);
-
-const LinkLoginButton = ({ isLoggedIn, href, onClick, className }) => (
-  <Link href={href} className={className}>
-    <LoginButton isLoggedIn={isLoggedIn} onClick={onClick} />
-  </Link>
-);
-
-const NavBarContent = ({ toggleMenu, isLoggedIn, handleLogOut }) => (
-  <>
-    <div className="hidden items-center gap-8 lg:flex">
-      <NavbarItems />
-    </div>
-    <div className="lg:hidden">
-      <Button onClick={toggleMenu}>
-        <IconRenderer icon="burger" />
-      </Button>
-    </div>
-    <LinkLoginButton
-      className="hidden lg:block"
-      isLoggedIn={isLoggedIn}
-      href={isLoggedIn ? "/" : "/login"}
-      onClick={isLoggedIn ? handleLogOut : null}
-    />
-  </>
-);
-
-const NavbarDrawerContents = ({ isLoggedIn, handleLogOut }) => (
-  <div className="flex min-w-[128px] flex-col items-center justify-center gap-8">
-    <NavbarItems />
-    <LinkLoginButton
-      isLoggedIn={isLoggedIn}
-      href={isLoggedIn ? "/" : "/login"}
-      onClick={isLoggedIn ? handleLogOut : null}
-    />
-  </div>
-);
-
 function Navbar() {
   const drawerRef = useRef(null);
 
@@ -115,11 +44,11 @@ function Navbar() {
   const handleLogOut = () => {
     logout();
     if (router) {
-      router.refresh(); // Only reload if the router is ready
+      router.refresh();
     }
   };
 
-  const toggleMenu = () => drawerRef.current?.open();
+  const handleDrawerOpen = () => drawerRef.current?.open();
 
   return (
     <header className={navStyles(isScrolled)}>
@@ -130,18 +59,15 @@ function Navbar() {
       </Link>
 
       <div className="flex w-full flex-row-reverse items-center justify-between gap-10 lg:flex-row">
-        <NavBarContent
-          toggleMenu={toggleMenu}
+        <NavbarContent
+          handleDrawerOpen={handleDrawerOpen}
           isLoggedIn={isLoggedIn}
           handleLogOut={handleLogOut}
         />
       </div>
 
       <Drawer ref={drawerRef} direction="left">
-        <NavbarDrawerContents
-          isLoggedIn={isLoggedIn}
-          handleLogOut={handleLogOut}
-        />
+        <DrawerContent isLoggedIn={isLoggedIn} handleLogOut={handleLogOut} />
       </Drawer>
     </header>
   );

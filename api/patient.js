@@ -51,4 +51,14 @@ PatientAPI.UploadImage = ({ file, token }) => {
   );
 };
 
+PatientAPI.GetPatient = ({ token }) => {
+  return useAxios({
+    url: `${API_BASE_URL}/api/get_patient`,
+    method: "GET",
+    headers: {
+      Auth: token,
+    },
+  });
+};
+
 export default PatientAPI;

@@ -1,22 +1,20 @@
 "use client";
 import PatientAPI from "@/api/patient";
-import Button from "@/components/button";
 import Input from "@/components/input";
 import Modal from "@/components/modal";
-import Typography from "@/components/typography";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import React, { useEffect, useRef, useState } from "react";
-import ModalContent from "../components/modal-content";
+import ModalContent from "../../components/modal-content";
 import { Consts, FormItems } from "./consts";
 import Datepicker from "@/components/datepicker";
-import DashboardRenderer from "../components/dashboard-renderer/DashboardRenderer";
+import DashboardRenderer from "../../components/section-layout/SectionLayout";
 
 function FillFormLayout() {
   const { state: authState, setToken } = useAuthContext();
   const [formValues, setFormValues] = useState({});
   const [isFormComplete, setIsFormComplete] = useState(false);
-  const { data, loading, error, refetch } = PatientAPI.CreatePatient({
+  const [{ data, loading, error }, refetch] = PatientAPI.CreatePatient({
     formValues,
     token: authState.token,
   });
@@ -49,7 +47,7 @@ function FillFormLayout() {
   const handleChange = (key, value, type) => {
     setFormValues((prev) => ({
       ...prev,
-      [key]: type === "date" ? value.toDate() : value,
+      [key]: type === "date" ? value?.toDate() : value,
     }));
   };
 

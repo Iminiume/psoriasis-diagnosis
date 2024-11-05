@@ -318,6 +318,55 @@ const stethoScope = () => (
   </svg>
 );
 
+const request = () => (
+  <svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M13.0004 16.4925C13.0488 17.4935 13.448 18.4456 14.1278 19.182C14.6708 19.8127 15.3188 20.3449 16.043 20.7549C16.6737 21.1067 17.4466 21.084 18.0555 20.6956C18.712 20.276 19.3023 19.7609 19.8068 19.1672C20.4992 18.4383 20.9216 17.4945 21.0038 16.4925C21.0085 15.8964 20.7856 15.3209 20.3805 14.8835C19.9913 14.4594 19.4434 14.2159 18.8677 14.2112C18.1449 14.1607 17.4464 14.483 17.0158 15.0657L17.0021 15.0858L16.9882 15.0657C16.5964 14.5144 15.956 14.1941 15.2798 14.2112C14.6719 14.2009 14.0858 14.438 13.656 14.8681C13.2262 15.2983 12.9896 15.8845 13.0004 16.4925Z"
+      stroke="#FAFAFA"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M13 9.99923H17.0017"
+      stroke="#FAFAFA"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M7 9.72507L7.91938 10.5534L9.77015 8.88672"
+      stroke="#FAFAFA"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M9.99901 21.0038H7.99818C5.2356 21.0038 2.99609 18.7643 2.99609 16.0018V7.99842C2.99609 5.23585 5.2356 2.99634 7.99818 2.99634H16.0015C18.7641 2.99634 21.0036 5.23585 21.0036 7.99842V10.9997"
+      stroke="#FAFAFA"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M7 14.7273L7.91938 15.5556L9.77015 13.8889"
+      stroke="#FAFAFA"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+);
+
 export const iconRegistry = {
   arrowLeft,
   burger,
@@ -329,6 +378,7 @@ export const iconRegistry = {
   location,
   phone,
   play,
+  request,
   user,
   warning,
   xClose,

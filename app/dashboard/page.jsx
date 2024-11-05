@@ -1,7 +1,8 @@
+import MainDashbaord from "@/view/dashboard/main-dashbaord";
 import React from "react";
 
 function Page() {
-  return <div>salam</div>;
+  return <MainDashbaord />;
 }
 
 export default Page;

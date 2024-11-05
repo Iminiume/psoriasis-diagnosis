@@ -1,4 +1,4 @@
-import DiseaseTypeDiagnosis from "@/view/dashboard/disease-type-diagnosis";
+import DiseaseTypeDiagnosis from "@/view/dashboard/requests/disease-type-diagnosis";
 import React from "react";
 
 function Page() {

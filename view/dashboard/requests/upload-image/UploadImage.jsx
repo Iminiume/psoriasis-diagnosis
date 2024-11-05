@@ -8,9 +8,9 @@ import { useAuthContext } from "@/utils/context/useAuthContext";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import ImageUpload from "@/public/images/UploadImage.png";
 import Image from "@/components/image";
-import ModalContent from "../components/modal-content";
+import ModalContent from "../../components/modal-content";
 import { Consts, PsoriazisTypes } from "./consts";
-import DashboardRenderer from "../components/dashboard-renderer/DashboardRenderer";
+import DashboardRenderer from "../../components/section-layout/SectionLayout";
 
 function UploadImage() {
   const [isFileUploaded, setIsFileUploaded] = useState(false);
@@ -85,6 +85,7 @@ function UploadImage() {
         <div className="relative flex min-h-[15rem] min-w-[30rem] flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-primaryColor bg-[#26335D] p-8">
           <div>
             {isFileUploaded ? (
+              // TODO: Should change this section to react drop zone and react dnd
               <Image
                 src={previewUrl}
                 alt="Uploaded Preview"

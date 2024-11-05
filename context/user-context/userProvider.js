@@ -7,6 +7,7 @@ import useLocalStorage from "@/utils/hooks/useLocalStorage";
 // Define initial state
 const initialState = {
   role: null,
+  userData: null,
   loading: true,
 };
 
@@ -15,6 +16,8 @@ const userReducer = (state, action) => {
   switch (action.type) {
     case "SET_ROLE":
       return { ...state, role: action.payload };
+    case "SET_USER_DATA":
+      return { ...state, userData: action.payload };
     case "SET_LOADING":
       return { ...state, loading: action.payload };
     default:
@@ -42,7 +45,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <UserContext.Provider value={{ state, setRole, removeRole }}>
+    <UserContext.Provider value={{ state, setRole, removeRole, dispatch }}>
       {!state.loading && children}
     </UserContext.Provider>
   );
