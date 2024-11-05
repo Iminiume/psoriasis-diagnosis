@@ -20,7 +20,7 @@ function UploadImage() {
   const modalRef = useRef();
   const { state } = useAuthContext();
 
-  const { data, loading, error, refetch } = PatientAPI.UploadImage({
+  const [{ data, loading, error }, refetch] = PatientAPI.UploadImage({
     token: state.token,
     file,
   });
