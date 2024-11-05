@@ -22,7 +22,7 @@ function RoleSelectionLayout() {
 
   const handleConfirm = () => {
     setRole(isSelected);
-    router.replace(`/dashboard/fill-form`);
+    router.replace(`/dashboard/requests/fill-form`);
   };
 
   return (
