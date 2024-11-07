@@ -49,29 +49,29 @@ jobs:
 
             function docker_login() {
               echo "Logging into Docker registry..."
-              echo "mahdimahdavimaz" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "fz4rhsAbFOgjOcQuA1!" --password-stdin
+              echo "$DOCKER_PASSWORD" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin
             }
-
+          
             function pull_docker_image() {
               echo "Pulling the latest Docker image..."
               sudo docker pull registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
             }
-
+          
             function stop_old_container() {
               echo "Stopping any existing container..."
               sudo docker stop masoorian-web || true
             }
-
+          
             function remove_old_container() {
               echo "Removing old container..."
               sudo docker rm masoorian-web || true
             }
-
+          
             function run_new_container() {
               echo "Starting the new container..."
               sudo docker run -d --name masoorian-web -p 3001:3001 registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
             }
-
+          
             # Execute the functions in order
             docker_login
             pull_docker_image
