@@ -52,8 +52,8 @@ jobs:
 
             set -x
 
-            export DOCKER_USERNAME="${DOCKER_USERNAME}"
-            export DOCKER_PASSWORD="${DOCKER_PASSWORD}"
+            export DOCKER_USERNAME="$DOCKER_USERNAME"
+            export DOCKER_PASSWORD="$DOCKER_PASSWORD"
 
             if [[ -z "${DOCKER_USERNAME}" ]]; then
               echo "DOCKER_USERNAME is not set. Please check your GitHub Secrets."
