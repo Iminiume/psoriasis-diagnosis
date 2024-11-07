@@ -45,8 +45,8 @@ jobs:
 
       - name: Deploy to server
         env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          DOCKER_USERNAME: mahdimahdavimaz
+          DOCKER_PASSWORD: fz4rhsAbFOgjOcQuA1!
         run: |
           ssh -o StrictHostKeyChecking=no root@139.59.166.85 << 'EOF'
 
