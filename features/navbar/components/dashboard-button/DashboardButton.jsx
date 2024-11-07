@@ -2,11 +2,16 @@ import Button from "@/components/button";
 import Link from "next/link";
 import React from "react";
 import { Consts } from "../../consts";
+import Typography from "@/components/typography";
 
 function DashboardButton() {
   return (
     <Link href={"/dashboard"}>
-      <Button mode="secondary">{Consts.dashboard}</Button>
+      <Button mode="secondary">
+        <Typography size="2xl" weight="medium">
+          {Consts.dashboard}
+        </Typography>
+      </Button>
     </Link>
   );
 }

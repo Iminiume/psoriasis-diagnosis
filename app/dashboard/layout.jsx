@@ -7,13 +7,14 @@ import DashboardLayout from "@/view/dashboard/DashboardLayout";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Loading from "../loading";
+import { RoleEnum } from "@/utils/enum/role-enum";
 
 export default function Layout({ children }) {
   const { state, dispatch } = useUserContext();
   const { state: authState } = useAuthContext();
   const router = useRouter();
 
-  const [{ data, error, loading }] = PatientAPI.GetPatient({
+  const [{ data, error, loading }, refetch] = PatientAPI.GetPatient({
     token: authState.token,
   });
 
@@ -22,11 +23,14 @@ export default function Layout({ children }) {
     else {
       if (!state.role) router.replace("/login/role-selection");
     }
-  }, [state]);
+  }, [state, authState]);
 
   useEffect(() => {
-    dispatch({ type: "SET_USER_DATA", payload: data });
-  }, [data]);
+    if (state.role === RoleEnum.PATIENT) {
+      refetch();
+      dispatch({ type: "SET_USER_DATA", payload: data });
+    }
+  }, [state.role]);
 
   if (loading) return <Loading />;
 

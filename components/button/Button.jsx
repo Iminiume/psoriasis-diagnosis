@@ -17,11 +17,12 @@ function Button({
 
     isPrimary &&
       !disabled &&
-      "bg-primaryColor text-black transition hover:bg-buttonHover",
+      "border border-primaryColor bg-primaryColor text-black transition hover:bg-buttonHover",
     !isPrimary &&
       !disabled &&
       "border border-primaryColor text-primaryColor transition hover:bg-primaryColor hover:text-white",
-    disabled && "bg-disabledElementColor text-black",
+    disabled &&
+      "bg-disabledElementColor border border-disabledElementColor text-black",
     className,
   );
 

@@ -1,1 +1,3 @@
-export const Consts = Object.freeze({ newRequest: "درخواست جدید" });
+export const Consts = Object.freeze({
+  welcome: "به داشبورد همیار پسوریازیس خوش آمدید",
+});

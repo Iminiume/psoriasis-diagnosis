@@ -20,9 +20,11 @@ function SectionLayout({
         <Typography size="5xl" weight="bold">
           {title}
         </Typography>
-        <Typography size="2xl" className="text-primaryColor">
-          {subTitle}
-        </Typography>
+        {subTitle && (
+          <Typography size="2xl" className="text-primaryColor">
+            {subTitle}
+          </Typography>
+        )}
       </div>
 
       <div className="flex-grow overflow-y-auto px-8 scrollbar-hide">

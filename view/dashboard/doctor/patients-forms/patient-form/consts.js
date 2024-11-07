@@ -1,0 +1,17 @@
+export const Consts = Object.freeze({
+  title: "پرونده بیمار",
+  firstName: "نام: ",
+  lastName: "نام خانوادگی: ",
+  diseaseType: "نوع بیماری: ",
+  diseaseTypeBasedOnImage: "نوع بیماری بر اساس عکس: ",
+  uploadedImage: "عکس آپلود شده: ",
+  status: "وضعیت: ",
+  isVerified: "تایید شده",
+  notVerified: "تایید نشده",
+  addComment: "اضافه کردن کامنت",
+  enterCommentHere: "کامنت خود را اینجا وارد کنید",
+  isThisVerified: "آیا پیشنهاد سامانه را تایید می کنید؟",
+  yes: "بله",
+  no: "خیر",
+  formModalCompleted: "کامنت شما برای بیمار ثبت شد",
+});

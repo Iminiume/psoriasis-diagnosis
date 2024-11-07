@@ -9,21 +9,31 @@ import { usePathname } from "next/navigation";
 import classNames from "classnames";
 import ActiveMark from "@/public/images/activeMark.png";
 import { Items } from "./consts";
+import { useUserContext } from "@/utils/context/useUserContext";
+import { RoleEnum, RoleEnumFa } from "@/utils/enum/role-enum";
 
 function DashboardLayout({ children, data }) {
   const pathname = usePathname();
+  const { state } = useUserContext();
+  const { role } = state;
+
+  const roleBasedItems = Items.filter((item) => {
+    if (role === RoleEnum.PATIENT && item.forPatient) return true;
+    if (role === RoleEnum.DOCTOR && item.forDoctor) return true;
+    return false;
+  });
 
   return (
     <section className="h-screen bg-pinkShadow bg-contain bg-right bg-no-repeat lg:px-8">
       <div className="mx-auto flex h-full max-w-custom">
-        <div className="bg-custom-gradient flex h-full w-[300px] flex-col justify-start gap-12 py-12">
+        <div className="flex h-full w-[300px] flex-col justify-start gap-12 bg-custom-gradient py-12">
           <div className="self-center">
             <Link href="/">
               <Image src={TextLogo} />
             </Link>
           </div>
           <div>
-            {Items.map((item) => {
+            {roleBasedItems.map((item) => {
               const isActive = pathname === item.link;
               return (
                 <div
@@ -48,7 +58,15 @@ function DashboardLayout({ children, data }) {
         </div>
 
         <div className="h-full w-[calc(100%-300px)] overflow-hidden">
-          <div className="bg-custom-gradient flex h-24 items-center justify-end px-8">
+          <div className="flex h-24 items-center justify-between bg-custom-gradient px-8">
+            <div>
+              <Typography>
+                {role === RoleEnum.PATIENT
+                  ? RoleEnumFa.PATIENT
+                  : RoleEnum.DOCTOR}
+              </Typography>
+            </div>
+
             <div className="flex items-center gap-1">
               <IconRenderer icon="user" />
               <Typography>{data?.FirstName}</Typography>

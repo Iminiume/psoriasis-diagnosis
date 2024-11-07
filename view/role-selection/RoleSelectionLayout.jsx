@@ -4,6 +4,7 @@ import RoleCard from "@/components/role-card";
 import Typography from "@/components/typography";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useUserContext } from "@/utils/context/useUserContext";
+import { RoleEnum } from "@/utils/enum/role-enum";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
@@ -17,12 +18,16 @@ const text = { chooseRole: "نقش خود را انتخاب کنید", confirm: 
 function RoleSelectionLayout() {
   const [isSelected, setIsSelected] = useState(undefined);
   const { setRole } = useUserContext();
+  const { state } = useUserContext();
+  const { role } = state;
 
   const router = useRouter();
 
   const handleConfirm = () => {
     setRole(isSelected);
-    router.replace(`/dashboard/requests/fill-form`);
+    role === RoleEnum.PATIENT
+      ? router.replace(`/dashboard/patient/fill-form`)
+      : router.replace("/dashboard/doctor/fill-form");
   };
 
   return (
