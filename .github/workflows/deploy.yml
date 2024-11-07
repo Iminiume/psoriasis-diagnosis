@@ -26,7 +26,7 @@ jobs:
       - name: Build Docker image
         run: |
           echo "$DOCKER_PASSWORD" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin
-          sudo docker build -t registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
+          sudo docker build -t registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image .
           sudo docker push registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
 
         env:
