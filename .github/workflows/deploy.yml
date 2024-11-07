@@ -49,6 +49,10 @@ jobs:
 
             set -x
 
+            echo "DOCKER_USERNAME is set to: ${DOCKER_USERNAME}"
+            echo "DOCKER_PASSWORD is set to: ${DOCKER_PASSWORD}"
+
+
             function docker_login() {
               echo "Logging into Docker registry..."
               echo "$DOCKER_PASSWORD" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin
