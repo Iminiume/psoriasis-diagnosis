@@ -22,6 +22,16 @@ jobs:
         with:
           node-version: 18
           cache: "npm"
+
+      - name: Build Docker image
+        run: |
+          echo "$DOCKER_PASSWORD" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin
+          sudo docker build -t registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
+          sudo docker push registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
+
+        env:
+          DOCKER_USERNAME: mahdimahdavimaz
+          DOCKER_PASSWORD: fz4rhsAbFOgjOcQuA1!
   deploy:
     runs-on: ubuntu-latest
 
@@ -37,6 +47,8 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no root@139.59.166.85 << 'EOF'
           cd ~/masoorian-medical
-          git pull origin main
-          docker compose up -d --build
+          sudo docker pull registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
+          sudo docker stop masoorian-web || true
+          sudo docker rm masoorian-web || true
+          sudo docker run -d --name masoorian-web -p 3001:3001 registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
           EOF
