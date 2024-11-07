@@ -46,11 +46,39 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -o StrictHostKeyChecking=no root@139.59.166.85 << 'EOF'
-          echo "$DOCKER_PASSWORD" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin && \
-          sudo docker pull registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image && \
-          sudo docker stop masoorian-web || true && \
-          sudo docker rm masoorian-web || true && \
-          sudo docker run -d --name masoorian-web -p 3001:3001 registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
+
+            function docker_login() {
+              echo "Logging into Docker registry..."
+              echo "$DOCKER_PASSWORD" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin
+            }
+
+            function pull_docker_image() {
+              echo "Pulling the latest Docker image..."
+              sudo docker pull registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
+            }
+
+            function stop_old_container() {
+              echo "Stopping any existing container..."
+              sudo docker stop masoorian-web || true
+            }
+
+            function remove_old_container() {
+              echo "Removing old container..."
+              sudo docker rm masoorian-web || true
+            }
+
+            function run_new_container() {
+              echo "Starting the new container..."
+              sudo docker run -d --name masoorian-web -p 3001:3001 registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
+            }
+
+            # Execute the functions in order
+            docker_login
+            pull_docker_image
+            stop_old_container
+            remove_old_container
+            run_new_container
+
           EOF
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
