@@ -1,7 +1,8 @@
+import DoctorRequestsLayout from "@/view/dashboard/doctor/requests";
 import React from "react";
 
 function Page() {
-  return <div>Page</div>;
+  return <DoctorRequestsLayout />;
 }
 
 export default Page;

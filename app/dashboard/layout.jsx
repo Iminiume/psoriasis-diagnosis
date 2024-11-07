@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Loading from "../loading";
 import { RoleEnum } from "@/utils/enum/role-enum";
+import { PatientProvider } from "@/context/patient-context";
 
 export default function Layout({ children }) {
   const { state, dispatch } = useUserContext();
@@ -27,8 +28,13 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     if (state.role === RoleEnum.PATIENT) {
-      refetch();
       dispatch({ type: "SET_USER_DATA", payload: data });
+    }
+  }, [data, state.role]);
+
+  useEffect(() => {
+    if (state.role === RoleEnum.PATIENT) {
+      refetch();
     }
   }, [state.role]);
 
@@ -36,7 +42,9 @@ export default function Layout({ children }) {
 
   return (
     <main className="w-full flex-grow">
-      <DashboardLayout data={data}>{children}</DashboardLayout>
+      <PatientProvider>
+        <DashboardLayout data={data}>{children}</DashboardLayout>
+      </PatientProvider>
     </main>
   );
 }

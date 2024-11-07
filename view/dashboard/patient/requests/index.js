@@ -1,1 +1,1 @@
-export { default } from "./RequestsLayout";
+export { default } from "./PatientRequestsLayout";

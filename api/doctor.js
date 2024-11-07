@@ -3,7 +3,7 @@ import useAxios from "@/utils/hooks/useAxios";
 const DoctorAPI = {};
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-DoctorAPI.CreateDoctor = ({ formValues, token }) => {
+DoctorAPI.CreateDoctor = ({ token }) => {
   return useAxios(
     {
       url: `${API_BASE_URL}/api/create_doctor`,
@@ -11,7 +11,21 @@ DoctorAPI.CreateDoctor = ({ formValues, token }) => {
       headers: {
         Auth: token,
       },
-      data: formValues,
+    },
+    {
+      manual: true,
+    },
+  );
+};
+
+DoctorAPI.CreatePatient = ({ token }) => {
+  return useAxios(
+    {
+      url: `${API_BASE_URL}/api/doctor_create_patient`,
+      method: "POST",
+      headers: {
+        Auth: token,
+      },
     },
     {
       manual: true,
@@ -34,15 +48,29 @@ DoctorAPI.AddComment = ({ token }) => {
   );
 };
 
-DoctorAPI.UploadImage = ({}) => {
+DoctorAPI.DiagnosisType = ({ token }) => {
   return useAxios(
     {
-      url: `${API_BASE_URL}/api/diagnosis_image`,
+      url: `${API_BASE_URL}/api/doctor_diagnosis`,
       method: "POST",
       headers: {
         Auth: token,
       },
-      data: file,
+    },
+    {
+      manual: true,
+    },
+  );
+};
+
+DoctorAPI.UploadImage = ({ token }) => {
+  return useAxios(
+    {
+      url: `${API_BASE_URL}/api/doctor_diagnosis_image`,
+      method: "POST",
+      headers: {
+        Auth: token,
+      },
     },
     {
       manual: true,

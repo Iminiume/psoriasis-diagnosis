@@ -1,5 +1,4 @@
 "use client";
-import PatientAPI from "@/api/patient";
 import Input from "@/components/input";
 import Modal from "@/components/modal";
 import Typography from "@/components/typography";
@@ -9,14 +8,21 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import ModalContent from "../../../components/modal-content";
 import { Consts, FormItems, PsoriazisTypes } from "./consts";
 import SectionLayout from "../../../components/section-layout";
+import DoctorAPI from "@/api/doctor";
+import { useRouter } from "next/navigation";
+import { usePatientContext } from "@/utils/context/usePatientContext";
+import { useNotificationContext } from "@/utils/context/useNotificationContext";
 
 function DiseaseTypeDiagnosis() {
   const [selectedAnswers, setSelectedAnswers] = useState({});
   const [isFormComplete, setIsFormComplete] = useState(false);
   const modalRef = useRef();
   const { state } = useAuthContext();
+  const { patientData } = usePatientContext();
+  const router = useRouter();
+  const { addNotification } = useNotificationContext();
 
-  const [{ data, error, loading }, refetch] = PatientAPI.DiagnosisType({
+  const [{ data, error, loading }, refetch] = DoctorAPI.DiagnosisType({
     token: state.token,
   });
 
@@ -26,6 +32,16 @@ function DiseaseTypeDiagnosis() {
   useEffect(() => {
     if (!loading && data && !error) handleModalOpen();
   }, [data, error, loading]);
+  useEffect(() => {
+    if (!patientData) {
+      router.replace("/dashboard/doctor/requests/create-patient");
+      addNotification({
+        id: Date.now(),
+        type: "error",
+        message: Consts.noPatientError,
+      });
+    }
+  }, [patientData]);
 
   const handleChange = useCallback((questionKey, value) => {
     setSelectedAnswers((prevAnswers) => {
@@ -46,8 +62,12 @@ function DiseaseTypeDiagnosis() {
   }, []);
 
   const handleSubmit = () => {
+    const payload = {
+      user_info: patientData,
+      diagnosis: selectedAnswers,
+    };
     try {
-      refetch({ data: selectedAnswers });
+      refetch({ data: payload });
     } catch (err) {
       console.error(err);
     }

@@ -1,5 +1,4 @@
 "use client";
-import PatientAPI from "@/api/patient";
 import Input from "@/components/input";
 import Modal from "@/components/modal";
 import Typography from "@/components/typography";
@@ -10,16 +9,17 @@ import Image from "@/components/image";
 import { Consts, PsoriazisTypes } from "./consts";
 import ModalContent from "@/view/dashboard/components/modal-content";
 import SectionLayout from "@/view/dashboard/components/section-layout";
+import DoctorAPI from "@/api/doctor";
 
 function UploadImage() {
   const [isFileUploaded, setIsFileUploaded] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [phoneNumber, setPhoneNumber] = useState(null);
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const modalRef = useRef();
   const { state } = useAuthContext();
 
-  const [{ data, loading, error }, refetch] = PatientAPI.UploadImage({
+  const [{ data, loading, error }, refetch] = DoctorAPI.UploadImage({
     token: state.token,
   });
 
@@ -37,13 +37,13 @@ function UploadImage() {
       formData.append("file", selectedFile);
       setFile(formData);
       setIsFileUploaded(true);
-      setProgress(0);
       setPreviewUrl(URL.createObjectURL(selectedFile));
     }
   };
 
   const handleSubmit = async () => {
-    if (!file) return;
+    if (!file || !phoneNumber) return;
+    file.append("phone_number", phoneNumber);
 
     try {
       refetch({ data: file });
@@ -70,16 +70,23 @@ function UploadImage() {
       />
     );
   };
-
   return (
     <SectionLayout
       title={Consts.title}
       subTitle={Consts.subTitle}
       handleSubmit={handleSubmit}
-      isButtonDisabled={!isFileUploaded || loading}
+      isButtonDisabled={!isFileUploaded || loading || !phoneNumber}
       loading={loading}
     >
-      <div className="flex h-full items-center justify-center">
+      <div className="flex h-full flex-col items-center justify-center gap-8">
+        <div className="min-w-[30rem]">
+          <Input
+            label={Consts.patientPhoneNumber}
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            placeholder={Consts.patientPhoneNumberPlaceHolder}
+          />
+        </div>
         <div className="relative flex min-h-[15rem] min-w-[30rem] flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-primaryColor bg-[#26335D] p-8">
           <div>
             {isFileUploaded ? (
@@ -113,17 +120,6 @@ function UploadImage() {
             onChange={handleFileChange}
             className="absolute right-0 top-0 h-full w-full cursor-pointer opacity-0"
           />
-
-          {progress > 0 && (
-            <div className="relative mt-4 w-full">
-              <div className="h-2 w-full rounded bg-gray-200">
-                <div
-                  style={{ width: `${progress}%` }}
-                  className="h-2 rounded bg-blue-500"
-                ></div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 

@@ -15,7 +15,6 @@ function FillFormLayout() {
   const [formValues, setFormValues] = useState({});
   const [isFormComplete, setIsFormComplete] = useState(false);
   const [{ data, loading, error }, refetch] = PatientAPI.CreatePatient({
-    formValues,
     token: authState.token,
   });
   const { addNotification } = useNotificationContext();
@@ -53,7 +52,7 @@ function FillFormLayout() {
 
   const handleSubmit = async () => {
     if (isFormComplete) {
-      refetch();
+      refetch({ data: formValues });
     } else {
       addNotification({
         id: Date.now(),

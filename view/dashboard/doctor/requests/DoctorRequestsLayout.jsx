@@ -4,14 +4,12 @@ import SectionLayout from "../../components/section-layout";
 import { Consts, FormItems } from "./consts";
 import Link from "next/link";
 import StepCard from "../../components/step-card";
-import { useUserContext } from "@/utils/context/useUserContext";
 
-function RequestsLayout() {
-  const { state } = useUserContext();
+function DoctorRequestsLayout() {
   return (
     <SectionLayout hasButton={false} title={Consts.title}>
       <div className="flex flex-wrap justify-center gap-[30px]">
-        {FormItems(!state?.userData?.IsVerifiedByDoctor).map((item) =>
+        {FormItems.map((item) =>
           item.disabled ? (
             <div key={item.label} className="pointer-events-none">
               <StepCard
@@ -35,4 +33,4 @@ function RequestsLayout() {
   );
 }
 
-export default RequestsLayout;
+export default DoctorRequestsLayout;

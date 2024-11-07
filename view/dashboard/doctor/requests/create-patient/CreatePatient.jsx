@@ -4,21 +4,23 @@ import Modal from "@/components/modal";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import React, { useEffect, useRef, useState } from "react";
-import ModalContent from "../../components/modal-content";
+import ModalContent from "@/view/dashboard/components/modal-content";
 import { Consts, FormItems } from "./consts";
 import Datepicker from "@/components/datepicker";
-import SectionLayout from "../../components/section-layout";
+import SectionLayout from "@/view/dashboard/components/section-layout";
 import DoctorAPI from "@/api/doctor";
+import { usePatientContext } from "@/utils/context/usePatientContext";
 
-function FillFormLayout() {
+function CreatePatient() {
   const { state: authState, setToken } = useAuthContext();
   const [formValues, setFormValues] = useState({});
   const [isFormComplete, setIsFormComplete] = useState(false);
-  const [{ data, loading, error }, refetch] = DoctorAPI.CreateDoctor({
+  const [{ data, loading, error }, refetch] = DoctorAPI.CreatePatient({
     token: authState.token,
   });
   const { addNotification } = useNotificationContext();
   const modalRef = useRef(null);
+  const { setPatientData } = usePatientContext();
 
   const handleModalClose = () => modalRef.current.close();
   const handleModalOpen = () => modalRef.current.open();
@@ -32,7 +34,6 @@ function FillFormLayout() {
 
   useEffect(() => {
     if (data) {
-      setToken(data?.token);
       handleModalOpen();
     } else if (error) {
       addNotification({
@@ -53,6 +54,7 @@ function FillFormLayout() {
   const handleSubmit = async () => {
     if (isFormComplete) {
       refetch({ data: formValues });
+      setPatientData(formValues);
     } else {
       addNotification({
         id: Date.now(),
@@ -60,6 +62,15 @@ function FillFormLayout() {
         message: Consts.fillFormIncomplete,
       });
     }
+  };
+
+  const handleModalContent = () => {
+    return (
+      <ModalContent
+        title={Consts.formModalCompleted}
+        handleModalClose={handleModalClose}
+      />
+    );
   };
 
   return (
@@ -121,14 +132,9 @@ function FillFormLayout() {
         })}
       </div>
 
-      <Modal ref={modalRef}>
-        <ModalContent
-          title={Consts.formModalCompleted}
-          handleModalClose={handleModalClose}
-        />
-      </Modal>
+      <Modal ref={modalRef}>{handleModalContent()}</Modal>
     </SectionLayout>
   );
 }
 
-export default FillFormLayout;
+export default CreatePatient;

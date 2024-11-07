@@ -1,81 +1,58 @@
 "use client";
-import React from "react";
-import Image from "@/components/image";
-import TextLogo from "@/public/images/textLogo.png";
+import React, { useRef } from "react";
 import Typography from "@/components/typography";
-import Link from "next/link";
 import IconRenderer from "@/components/icon/IconRenderer";
-import { usePathname } from "next/navigation";
-import classNames from "classnames";
-import ActiveMark from "@/public/images/activeMark.png";
-import { Items } from "./consts";
 import { useUserContext } from "@/utils/context/useUserContext";
 import { RoleEnum, RoleEnumFa } from "@/utils/enum/role-enum";
+import Drawer from "@/components/drawer";
+import Button from "@/components/button";
+import DashboardSidebarContent from "./components/dashboard-sidebar-content";
 
 function DashboardLayout({ children, data }) {
-  const pathname = usePathname();
   const { state } = useUserContext();
   const { role } = state;
+  const drawerRef = useRef(null);
 
-  const roleBasedItems = Items.filter((item) => {
-    if (role === RoleEnum.PATIENT && item.forPatient) return true;
-    if (role === RoleEnum.DOCTOR && item.forDoctor) return true;
-    return false;
-  });
+  const handleDrawerOpen = () => drawerRef.current.open();
+  const handleDrawerClose = () => drawerRef.current.close();
 
   return (
     <section className="h-screen bg-pinkShadow bg-contain bg-right bg-no-repeat lg:px-8">
       <div className="mx-auto flex h-full max-w-custom">
-        <div className="flex h-full w-[300px] flex-col justify-start gap-12 bg-custom-gradient py-12">
-          <div className="self-center">
-            <Link href="/">
-              <Image src={TextLogo} />
-            </Link>
-          </div>
-          <div>
-            {roleBasedItems.map((item) => {
-              const isActive = pathname === item.link;
-              return (
-                <div
-                  className={classNames(
-                    "relative px-[40px] py-[20px]",
-                    isActive ? "text-primaryColor" : "",
-                  )}
-                >
-                  <Link href={item.link} className="flex gap-4">
-                    <IconRenderer icon="request" />
-                    <Typography>{item.label}</Typography>
-                  </Link>
-                  {isActive && (
-                    <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                      <Image src={ActiveMark} />
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
+        <div className="hidden h-full w-[300px] flex-col justify-start gap-12 bg-custom-gradient py-12 lg:flex">
+          <DashboardSidebarContent />
         </div>
 
-        <div className="h-full w-[calc(100%-300px)] overflow-hidden">
+        <div className="h-full w-full overflow-hidden lg:w-[calc(100%-300px)]">
           <div className="flex h-24 items-center justify-between bg-custom-gradient px-8">
+            <div className="block lg:hidden">
+              <Button onClick={() => handleDrawerOpen()}>
+                <IconRenderer icon="burger" />
+              </Button>
+            </div>
             <div>
               <Typography>
                 {role === RoleEnum.PATIENT
                   ? RoleEnumFa.PATIENT
-                  : RoleEnum.DOCTOR}
+                  : RoleEnumFa.DOCTOR}
               </Typography>
             </div>
-
-            <div className="flex items-center gap-1">
-              <IconRenderer icon="user" />
-              <Typography>{data?.FirstName}</Typography>
-              <Typography>{data?.LastName}</Typography>
+            <div className="flex gap-6">
+              <div className="flex items-center gap-1">
+                <IconRenderer icon="user" />
+                <Typography>{data?.FirstName}</Typography>
+                <Typography>{data?.LastName}</Typography>
+              </div>
             </div>
           </div>
           <div className="h-[calc(100%-6rem)]">{children}</div>
         </div>
       </div>
+      <Drawer ref={drawerRef} direection="right">
+        <div className="flex flex-col justify-start gap-12 py-12">
+          <DashboardSidebarContent />
+        </div>
+      </Drawer>
     </section>
   );
 }

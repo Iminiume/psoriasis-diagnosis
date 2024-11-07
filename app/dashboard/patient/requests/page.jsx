@@ -1,8 +1,8 @@
-import RequestsLayout from "@/view/dashboard/patient/requests/RequestsLayout";
+import PatientRequestsLayout from "@/view/dashboard/patient/requests";
 import React from "react";
 
 function page() {
-  return <RequestsLayout />;
+  return <PatientRequestsLayout />;
 }
 
 export default page;

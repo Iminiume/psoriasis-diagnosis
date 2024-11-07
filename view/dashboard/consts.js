@@ -12,12 +12,6 @@ export const Items = [
     forPatient: true,
   },
   {
-    label: "سوالات متداول",
-    link: "/dashboard/questions",
-    icon: "request",
-    forPatient: true,
-  },
-  {
     label: "تشکیل / ویرایش پرونده",
     link: "/dashboard/doctor/fill-form",
     icon: "request",

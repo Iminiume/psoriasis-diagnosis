@@ -3,7 +3,7 @@ import useAxios from "@/utils/hooks/useAxios";
 const PatientAPI = {};
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
-PatientAPI.CreatePatient = ({ formValues, token }) => {
+PatientAPI.CreatePatient = ({ token }) => {
   return useAxios(
     {
       url: `${API_BASE_URL}/api/create_health_file`,
@@ -11,7 +11,6 @@ PatientAPI.CreatePatient = ({ formValues, token }) => {
       headers: {
         Auth: token,
       },
-      data: formValues,
     },
     {
       manual: true,
@@ -19,7 +18,7 @@ PatientAPI.CreatePatient = ({ formValues, token }) => {
   );
 };
 
-PatientAPI.DiagnosisType = ({ formValues, token }) => {
+PatientAPI.DiagnosisType = ({ token }) => {
   return useAxios(
     {
       url: `${API_BASE_URL}/api/diagnosis`,
@@ -27,7 +26,6 @@ PatientAPI.DiagnosisType = ({ formValues, token }) => {
       headers: {
         Auth: token,
       },
-      data: formValues,
     },
     {
       manual: true,
@@ -35,7 +33,7 @@ PatientAPI.DiagnosisType = ({ formValues, token }) => {
   );
 };
 
-PatientAPI.UploadImage = ({ file, token }) => {
+PatientAPI.UploadImage = ({ token }) => {
   return useAxios(
     {
       url: `${API_BASE_URL}/api/diagnosis_image`,
@@ -43,7 +41,6 @@ PatientAPI.UploadImage = ({ file, token }) => {
       headers: {
         Auth: token,
       },
-      data: file,
     },
     {
       manual: true,

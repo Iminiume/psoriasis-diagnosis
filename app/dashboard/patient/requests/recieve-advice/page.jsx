@@ -1,7 +1,8 @@
+import RecieveAdvice from "@/view/dashboard/patient/requests/recieve-advice";
 import React from "react";
 
 function Page() {
-  return <div>Page</div>;
+  return <RecieveAdvice />;
 }
 
 export default Page;

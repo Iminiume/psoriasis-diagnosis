@@ -16,7 +16,7 @@ function SectionLayout({
 }) {
   return (
     <div className="flex h-full flex-col gap-10">
-      <div className="flex flex-col gap-6 p-8">
+      <div className="flex flex-col gap-6 p-8 text-center lg:text-start">
         <Typography size="5xl" weight="bold">
           {title}
         </Typography>
