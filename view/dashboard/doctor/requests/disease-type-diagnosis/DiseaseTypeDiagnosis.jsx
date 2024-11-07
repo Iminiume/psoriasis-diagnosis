@@ -19,8 +19,8 @@ function DiseaseTypeDiagnosis() {
   const modalRef = useRef();
   const { state } = useAuthContext();
   const { patientData } = usePatientContext();
-  const router = useRouter();
   const { addNotification } = useNotificationContext();
+  const router = useRouter();
 
   const [{ data, error, loading }, refetch] = DoctorAPI.DiagnosisType({
     token: state.token,
@@ -32,6 +32,7 @@ function DiseaseTypeDiagnosis() {
   useEffect(() => {
     if (!loading && data && !error) handleModalOpen();
   }, [data, error, loading]);
+  
   useEffect(() => {
     if (!patientData) {
       router.replace("/dashboard/doctor/requests/create-patient");
