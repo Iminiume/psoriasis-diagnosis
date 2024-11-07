@@ -49,7 +49,7 @@ jobs:
 
             function docker_login() {
               echo "Logging into Docker registry..."
-              echo "$DOCKER_PASSWORD" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin
+              echo "mahdimahdavimaz" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "fz4rhsAbFOgjOcQuA1!" --password-stdin
             }
 
             function pull_docker_image() {
