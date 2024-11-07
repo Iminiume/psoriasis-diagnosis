@@ -13,6 +13,7 @@ import DoctorAPI from "@/api/doctor";
 import { usePatientContext } from "@/utils/context/usePatientContext";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import { useRouter } from "next/navigation";
+import { psoriazisType } from "@/utils/psoriazisType";
 
 function UploadImage() {
   const [isFileUploaded, setIsFileUploaded] = useState(false);
@@ -71,9 +72,8 @@ function UploadImage() {
   const handleModalContent = () => {
     if (!data) return;
 
-    const diagnosisType = PsoriazisTypes.find((type) =>
-      data.includes(type.value),
-    );
+    const diagnosisType = psoriazisType(data);
+
     return (
       <ModalContent
         title={

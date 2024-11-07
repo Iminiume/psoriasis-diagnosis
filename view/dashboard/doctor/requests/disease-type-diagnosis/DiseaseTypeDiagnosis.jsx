@@ -12,6 +12,7 @@ import DoctorAPI from "@/api/doctor";
 import { useRouter } from "next/navigation";
 import { usePatientContext } from "@/utils/context/usePatientContext";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
+import { psoriazisType } from "@/utils/psoriazisType";
 
 function DiseaseTypeDiagnosis() {
   const [selectedAnswers, setSelectedAnswers] = useState({});
@@ -32,7 +33,7 @@ function DiseaseTypeDiagnosis() {
   useEffect(() => {
     if (!loading && data && !error) handleModalOpen();
   }, [data, error, loading]);
-  
+
   useEffect(() => {
     if (!patientData) {
       router.replace("/dashboard/doctor/requests/create-patient");
@@ -76,10 +77,7 @@ function DiseaseTypeDiagnosis() {
 
   const handleModalContent = () => {
     if (!data) return;
-
-    const diagnosisType = PsoriazisTypes.find(
-      (type) => data.diagnosis === type.value,
-    );
+    const diagnosisType = psoriazisType(data.diagnosis);
 
     return (
       <ModalContent

@@ -10,6 +10,7 @@ import Image from "@/components/image";
 import { Consts, PsoriazisTypes } from "./consts";
 import ModalContent from "@/view/dashboard/components/modal-content";
 import SectionLayout from "@/view/dashboard/components/section-layout";
+import { psoriazisType } from "@/utils/psoriazisType";
 
 function UploadImage() {
   const [isFileUploaded, setIsFileUploaded] = useState(false);
@@ -54,9 +55,8 @@ function UploadImage() {
 
   const handleModalContent = () => {
     if (!data) return;
-    const diagnosisType = PsoriazisTypes.find((type) =>
-      data.includes(type.value),
-    );
+    const diagnosisType = psoriazisType(data);
+
     return (
       <ModalContent
         title={

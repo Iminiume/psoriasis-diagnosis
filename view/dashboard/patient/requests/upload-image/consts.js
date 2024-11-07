@@ -8,12 +8,3 @@ export const Consts = Object.freeze({
   result: "تشخیص احتمالی سیستم بر اساس عکس شما نوع",
   is: "است",
 });
-
-export const PsoriazisTypes = [
-  { value: "Inverse", title: "Inverse" },
-  { value: "Plaque", title: "Plaque" },
-  { value: "Guttate", title: "Guttate" },
-  { value: "Pustular", title: "Pustular" },
-  { value: "Erythrodermic", title: "Erythrodermic" },
-  { value: "Nail", title: "Nail" },
-];

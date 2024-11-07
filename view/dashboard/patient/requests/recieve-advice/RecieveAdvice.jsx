@@ -10,7 +10,6 @@ import Button from "@/components/button";
 function RecieveAdvice() {
   const { state } = useUserContext();
   const { userData } = state;
-  console.log(userData);
   return (
     <SectionLayout title={Consts.title}>
       <div className="flex h-full flex-col justify-between">

@@ -8,7 +8,6 @@ import { useUserContext } from "@/utils/context/useUserContext";
 
 function PatientRequestsLayout() {
   const { state } = useUserContext();
-  console.log(state);
   return (
     <SectionLayout hasButton={false} title={Consts.title}>
       <div className="flex flex-wrap justify-center gap-[30px]">

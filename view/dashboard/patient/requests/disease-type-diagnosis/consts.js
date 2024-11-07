@@ -138,11 +138,3 @@ export const FormItems = [
   },
 ];
 
-export const PsoriazisTypes = [
-  { value: "Inverse Psoriasis", title: "Inverse" },
-  { value: "Plaque Psoriasis", title: "Plaque" },
-  { value: "Guttate Psoriasis", title: "Guttate" },
-  { value: "Pustular Psoriasis", title: "Pustular" },
-  { value: "Erythrodermic Psoriasis", title: "Erythrodermic" },
-  { value: "Nail Psoriasis", title: "Nail" },
-];

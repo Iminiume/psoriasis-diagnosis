@@ -9,13 +9,6 @@ export const Consts = Object.freeze({
   is: "است",
   patientPhoneNumber: "شماره تلفن",
   patientPhoneNumberPlaceHolder: "شماره تلفن بیمار را وارد کنید",
+  noPatientError:
+    "پرونده ای برای بیمار ساخته نشده، لطفا بعد از تشکیل پرونده به صفحه ی تشخیص نوع بیماری برگردید",
 });
-
-export const PsoriazisTypes = [
-  { value: "Inverse", title: "Inverse" },
-  { value: "Plaque", title: "Plaque" },
-  { value: "Guttate", title: "Guttate" },
-  { value: "Pustular", title: "Pustular" },
-  { value: "Erythrodermic", title: "Erythrodermic" },
-  { value: "Nail", title: "Nail" },
-];

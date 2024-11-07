@@ -9,6 +9,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import ModalContent from "../../../components/modal-content";
 import { Consts, FormItems, PsoriazisTypes } from "./consts";
 import SectionLayout from "../../../components/section-layout";
+import { psoriazisType } from "@/utils/psoriazisType";
 
 function DiseaseTypeDiagnosis() {
   const [selectedAnswers, setSelectedAnswers] = useState({});
@@ -56,9 +57,7 @@ function DiseaseTypeDiagnosis() {
   const handleModalContent = () => {
     if (!data) return;
 
-    const diagnosisType = PsoriazisTypes.find(
-      (type) => data.diagnosis === type.value,
-    );
+    const diagnosisType = psoriazisType(data.diagnosis);
 
     return (
       <ModalContent
