@@ -44,10 +44,16 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to server
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           ssh -o StrictHostKeyChecking=no root@139.59.166.85 << 'EOF'
 
             set -x
+
+            export DOCKER_USERNAME="${DOCKER_USERNAME}"
+            export DOCKER_PASSWORD="${DOCKER_PASSWORD}"
 
             if [[ -z "${DOCKER_USERNAME}" ]]; then
               echo "DOCKER_USERNAME is not set. Please check your GitHub Secrets."
@@ -87,6 +93,3 @@ jobs:
             run_new_container
 
           EOF
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
