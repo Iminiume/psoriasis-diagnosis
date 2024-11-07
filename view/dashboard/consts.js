@@ -7,7 +7,7 @@ export const Items = [
   },
   {
     label: "درخواست های من",
-    link: "/dashboard",
+    link: "/dashboard/patient/requests",
     icon: "request",
     forPatient: true,
   },
