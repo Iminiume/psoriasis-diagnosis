@@ -3,7 +3,7 @@
  */
 const nextConfig = {
   images: {
-    domains: ["5.34.199.51"], // Add your server IP here
+    domains: ["hamyarpsoriasis.ir", "188.121.106.125"], // Add your server IP here
   },
 };
 

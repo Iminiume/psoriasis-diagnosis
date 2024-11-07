@@ -19,13 +19,12 @@ function RoleSelectionLayout() {
   const [isSelected, setIsSelected] = useState(undefined);
   const { setRole } = useUserContext();
   const { state } = useUserContext();
-  const { role } = state;
 
   const router = useRouter();
 
   const handleConfirm = () => {
     setRole(isSelected);
-    role === RoleEnum.PATIENT
+    isSelected === RoleEnum.PATIENT
       ? router.replace(`/dashboard/patient/fill-form`)
       : router.replace("/dashboard/doctor/fill-form");
   };
