@@ -28,6 +28,9 @@ jobs:
           echo "$DOCKER_PASSWORD" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin && \
           sudo docker build -t registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image . && \
           sudo docker push registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,3 +52,6 @@ jobs:
           sudo docker rm masoorian-web || true && \
           sudo docker run -d --name masoorian-web -p 3001:3001 registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
           EOF
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
