@@ -55,8 +55,9 @@ function UploadImage() {
   const handleModalContent = () => {
     if (!data) return;
 
-    const diagnosisType = PsoriazisTypes.find((type) => type.value === data);
-
+    const diagnosisType = PsoriazisTypes.find((type) =>
+      data.includes(type.value),
+    );
     return (
       <ModalContent
         title={

@@ -3,7 +3,18 @@
  */
 const nextConfig = {
   images: {
-    domains: ["hamyarpsoriasis.ir", "188.121.106.125"], // Add your server IP here
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "188.121.106.125",
+        pathname: "/api/get_image/**",
+      },
+      {
+        protocol: "https",
+        hostname: "hamyarpsoriasis.ir",
+        pathname: "/api/get_image/**",
+      },
+    ],
   },
 };
 
