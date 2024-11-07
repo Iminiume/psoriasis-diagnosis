@@ -23,14 +23,14 @@ jobs:
           node-version: 18
           cache: "npm"
 
-      - name: Build Docker image
-        run: |
-          echo "$DOCKER_PASSWORD" | docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin && \
-          docker build -t registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image . && \
-          docker push registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      # - name: Build Docker image
+      #   run: |
+      #     echo "$DOCKER_PASSWORD" | docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin && \
+      #     docker build -t registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image . && \
+      #     docker push registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
+      #   env:
+      #     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
   deploy:
     runs-on: ubuntu-latest
