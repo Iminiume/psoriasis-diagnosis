@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: masoorian-main
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
