@@ -46,7 +46,7 @@ jobs:
       - name: Deploy to server
         run: |
           ssh -o StrictHostKeyChecking=no root@139.59.166.85 << 'EOF'
-          cd ~/masoorian-medical
+          echo "$DOCKER_PASSWORD" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin
           sudo docker pull registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
           sudo docker stop masoorian-web || true
           sudo docker rm masoorian-web || true
