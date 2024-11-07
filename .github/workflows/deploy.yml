@@ -49,9 +49,10 @@ jobs:
 
             set -x
 
-            echo "DOCKER_USERNAME is set to: ${DOCKER_USERNAME}"
-            echo "DOCKER_PASSWORD is set to: ${DOCKER_PASSWORD}"
-
+            if [[ -z "${DOCKER_USERNAME}" ]]; then
+              echo "DOCKER_USERNAME is not set. Please check your GitHub Secrets."
+              exit 1
+            fi
 
             function docker_login() {
               echo "Logging into Docker registry..."
