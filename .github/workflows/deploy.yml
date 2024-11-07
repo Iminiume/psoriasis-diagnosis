@@ -23,14 +23,14 @@ jobs:
           node-version: 18
           cache: "npm"
 
-      # - name: Build Docker image
-      #   run: |
-      #     echo "$DOCKER_PASSWORD" | docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin && \
-      #     docker build -t registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image . && \
-      #     docker push registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
-      #   env:
-      #     DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      #     DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build Docker image
+        run: |
+          echo "$DOCKER_PASSWORD" | docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin && \
+          docker build -t registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image . && \
+          docker push registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -44,15 +44,19 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to server
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           ssh -o StrictHostKeyChecking=no root@139.59.166.85 << 'EOF'
 
+            set -x
+
+            if [[ -z "${DOCKER_USERNAME}" || -z "${DOCKER_PASSWORD}" ]]; then
+              echo "Environment variables are not set on the server."
+              exit 1
+            fi
+
             function docker_login() {
               echo "Logging into Docker registry..."
-              echo "fz4rhsAbFOgjOcQuA1!" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "mahdimahdavimaz" --password-stdin
+              echo "$DOCKER_PASSWORD" | sudo docker login registry.hamdocker.ir/mahdimahdavimaz -u "$DOCKER_USERNAME" --password-stdin
             }
 
             function pull_docker_image() {
