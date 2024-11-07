@@ -6,6 +6,8 @@ import { Consts } from "./consts";
 import IconRenderer from "@/components/icon/IconRenderer";
 import Image from "@/components/image";
 import SuccessImage from "@/public/images/successImage.png";
+import { useUserContext } from "@/utils/context/useUserContext";
+import { RoleEnum } from "@/utils/enum/role-enum";
 
 const ModalContent = ({
   title,
@@ -14,6 +16,8 @@ const ModalContent = ({
   handleModalClose,
 }) => {
   const router = useRouter();
+  const { state } = useUserContext();
+  const { role } = state;
 
   return (
     <div className="flex min-w-[30rem] flex-col items-center justify-center gap-4">
@@ -42,7 +46,13 @@ const ModalContent = ({
       <div className="flex w-full justify-center gap-4 pt-4">
         <Button
           mode="primary"
-          onClick={() => router.replace("/dashboard/patient/requests")}
+          onClick={() =>
+            router.replace(
+              role === RoleEnum.PATIENT
+                ? "/dashboard/patient/requests"
+                : "/dashboard/doctor/requests",
+            )
+          }
           className="basis-1/2"
         >
           {Consts.confirmAndContinue}
