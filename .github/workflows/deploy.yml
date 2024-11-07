@@ -52,3 +52,6 @@ jobs:
           sudo docker rm masoorian-web || true
           sudo docker run -d --name masoorian-web -p 3001:3001 registry.hamdocker.ir/mahdimahdavimaz/masoorian-web-image
           EOF
+        env:
+          DOCKER_USERNAME: mahdimahdavimaz
+          DOCKER_PASSWORD: fz4rhsAbFOgjOcQuA1!
