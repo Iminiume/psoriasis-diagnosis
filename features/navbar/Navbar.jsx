@@ -9,8 +9,6 @@ import Drawer from "@/components/drawer";
 import { useScrollPosition } from "@/utils/hooks/useScrollPosition";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 
-import TextLogo from "@/public/images/textLogo.png";
-import Logo from "@/public/images/logo.png";
 import NavbarContent from "./components/navbar-content";
 import DrawerContent from "./components/drawer-content";
 
@@ -27,7 +25,7 @@ const logoStyles = (isScrolled) =>
     "rounded-bl-3xl px-6 py-4",
     isScrolled
       ? "translate-y-0 h-[106px] w-[122px]"
-      : "border border-primaryColor bg-background translate-y-[17%] h-[165px] w-[122px]",
+      : "border border-primaryColor bg-background translate-y-7 translate-x-[1px] h-[165px] w-[122px]",
   );
 
 function Navbar() {
@@ -54,7 +52,13 @@ function Navbar() {
     <header className={navStyles(isScrolled)}>
       <Link href="/">
         <div className={logoStyles(isScrolled)}>
-          <Image src={isScrolled ? Logo : TextLogo} alt="logo" />
+          <Image
+            src={isScrolled ? "/images/logo.png" : "/images/textLogo.png"}
+            width={72}
+            height={isScrolled ? 72 : 130}
+            alt="logo"
+            priority
+          />
         </div>
       </Link>
 

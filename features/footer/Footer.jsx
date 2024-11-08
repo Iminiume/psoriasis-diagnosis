@@ -6,39 +6,8 @@ import IconRenderer from "@/components/icon/IconRenderer";
 import Typography from "@/components/typography";
 import Image from "@/components/image";
 
-import TextLogo from "@/public/images/textLogo.png";
 import BlueShadowBottom from "@/public/images/blueShadowBottom.png";
-
-const navigationLinks = [
-  { title: "وبلاگ", link: "/blog" },
-  { title: "نقشه", link: "/map" },
-  { title: "درباره ما", link: "/about-us" },
-  { title: "تماس با ما", link: "/contact-us" },
-];
-
-const policyLinks = [
-  { title: "حریم خصوصی", link: "/policy" },
-  { title: "سوالات متداول", link: "/qa" },
-  { title: "درباره ما", link: "/about-us" },
-  { title: "ثبت شکایت", link: "/nemidoonam" },
-];
-
-const contactDetails = [
-  { title: "111222333", icon: "phone" },
-  {
-    title: "ایران،‌ تهران، خیابان ایرانشهر، کوچه صبوری، پلاک ۷، طبقه ۴",
-    icon: "location",
-  },
-  { title: "Masourian@gmail.com", icon: "email" },
-];
-
-const Texts = {
-  navigationTitle: "مراقبت کن",
-  policyTitle: "حقوق و قوانین",
-  contactUsTitle: "تماس با ما",
-  detail:
-    "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است",
-};
+import { Consts, ContactDetails, NavigationLinks, PolicyLinks } from "./consts";
 
 const HoverText = ({ children }) => (
   <Typography size="lg" className="transition-colors hover:text-mainTextColor">
@@ -79,17 +48,23 @@ function Footer() {
     <footer className="relative w-full rounded-t-3xl bg-footerBg py-[70px] backdrop-blur-[10px]">
       <div className="flex flex-col items-center justify-center gap-4 px-8 lg:flex-row lg:items-start lg:justify-start lg:px-[124px]">
         <div className="flex basis-2/5 flex-col items-center gap-6 lg:items-start">
-          <Image src={TextLogo} alt="text-logo" />
+          <Image
+            src="/images/textLogo.png"
+            alt="text-logo"
+            priority
+            width={72}
+            height={130}
+          />
           <Typography
             size="sm"
             className="text-center opacity-50 lg:text-start"
           >
-            {Texts.detail}
+            {Consts.detail}
           </Typography>
         </div>
-        <FooterCol title={Texts.navigationTitle} itemsList={navigationLinks} />
-        <FooterCol title={Texts.policyTitle} itemsList={policyLinks} />
-        <FooterCol title={Texts.contactUsTitle} itemsList={contactDetails} />
+        <FooterCol title={Consts.navigationTitle} itemsList={NavigationLinks} />
+        <FooterCol title={Consts.policyTitle} itemsList={PolicyLinks} />
+        <FooterCol title={Consts.contactUsTitle} itemsList={ContactDetails} />
       </div>
       <div className="absolute bottom-0 right-1/2 z-[-1] translate-x-1/2">
         <Image src={BlueShadowBottom} alt="blue-shadow" />

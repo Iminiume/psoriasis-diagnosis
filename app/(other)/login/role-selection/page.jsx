@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useEffect } from "react";
-import RoleSelectionLayout from "@/view/role-selection/RoleSelectionLayout";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+
+const RoleSelectionLayout = dynamic(() => import("@/view/role-selection"));
 
 function Page() {
   const { state } = useAuthContext();

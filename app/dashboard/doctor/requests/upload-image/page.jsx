@@ -1,5 +1,9 @@
-import UploadImage from "@/view/dashboard/doctor/requests/upload-image";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const UploadImage = dynamic(
+  () => import("@/view/dashboard/doctor/requests/upload-image"),
+);
 
 function Page() {
   return <UploadImage />;

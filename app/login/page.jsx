@@ -1,6 +1,9 @@
 "use client";
+import dynamic from "next/dynamic";
 import React from "react";
-import LoginLayout from "@/view/login";
+
+const LoginLayout = dynamic(() => import("@/view/login"));
+
 function LoginPage() {
   return <LoginLayout />;
 }

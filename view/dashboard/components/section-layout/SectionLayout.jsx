@@ -3,7 +3,11 @@ import Button from "@/components/button/Button";
 import Typography from "@/components/typography";
 import React from "react";
 import { Consts } from "./consts";
-import Loading from "@/app/dashboard/loading";
+import dynamic from "next/dynamic";
+
+const Loading = dynamic(() => import("@/app/dashboard/loading"), {
+  ssr: false,
+});
 
 function SectionLayout({
   title,

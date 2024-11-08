@@ -21,7 +21,7 @@ function Image({
       draggable={draggable}
       priority={priority}
       className={classNames("select-none object-cover", className)}
-      loading="lazy"
+      loading={priority ? "eager" : "lazy"}
       {...rest}
     />
   );

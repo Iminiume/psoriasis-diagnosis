@@ -1,5 +1,7 @@
 import React from "react";
-import UiComponentView from "@/view/ui-components";
+import dynamic from "next/dynamic";
+
+const UiComponentView = dynamic(() => import("@/view/ui-components"));
 
 function Page() {
   return <UiComponentView />;

@@ -1,5 +1,9 @@
-import DoctorRequestsLayout from "@/view/dashboard/doctor/requests";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const DoctorRequestsLayout = dynamic(
+  () => import("@/view/dashboard/doctor/requests"),
+);
 
 function Page() {
   return <DoctorRequestsLayout />;

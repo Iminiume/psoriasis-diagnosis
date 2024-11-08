@@ -6,7 +6,6 @@ import { Items } from "../../consts";
 import { useUserContext } from "@/utils/context/useUserContext";
 import { usePathname } from "next/navigation";
 import { RoleEnum } from "@/utils/enum/role-enum";
-import TextLogo from "@/public/images/textLogo.png";
 import classNames from "classnames";
 import IconRenderer from "@/components/icon/IconRenderer";
 import Typography from "@/components/typography";
@@ -28,7 +27,7 @@ function DashboardSideBarContent() {
     <>
       <div className="self-center">
         <Link href="/">
-          <Image src={TextLogo} />
+          <Image src="/images/textLogo.png" width={72} height={130} priority />
         </Link>
       </div>
       <div>

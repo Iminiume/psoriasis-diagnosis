@@ -1,5 +1,9 @@
-import CreatePatient from "@/view/dashboard/doctor/requests/create-patient";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const CreatePatient = dynamic(
+  () => import("@/view/dashboard/doctor/requests/create-patient"),
+);
 
 function Page() {
   return <CreatePatient />;

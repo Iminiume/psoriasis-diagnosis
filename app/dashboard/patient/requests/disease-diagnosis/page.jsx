@@ -1,5 +1,9 @@
-import DiseaseDiagnosis from "@/view/dashboard/patient/requests/disease-diagnosis";
+import dynamic from "next/dynamic";
 import React from "react";
+
+const DiseaseDiagnosis = dynamic(
+  () => import("@/view/dashboard/patient/requests/disease-diagnosis"),
+);
 
 function Page() {
   return <DiseaseDiagnosis />;

@@ -3,12 +3,16 @@
 import PatientAPI from "@/api/patient";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useUserContext } from "@/utils/context/useUserContext";
-import DashboardLayout from "@/view/dashboard/DashboardLayout";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import Loading from "../loading";
 import { RoleEnum } from "@/utils/enum/role-enum";
 import { PatientProvider } from "@/context/patient-context";
+import dynamic from "next/dynamic";
+
+const DashboardLayout = dynamic(
+  () => import("@/view/dashboard/DashboardLayout"),
+);
+const Loading = dynamic(() => import("../loading"), { ssr: false });
 
 export default function Layout({ children }) {
   const { state, dispatch } = useUserContext();
