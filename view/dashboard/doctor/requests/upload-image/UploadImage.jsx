@@ -12,7 +12,7 @@ import SectionLayout from "@/view/dashboard/components/section-layout";
 import DoctorAPI from "@/api/doctor";
 import { usePatientContext } from "@/utils/context/usePatientContext";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { psoriazisType } from "@/utils/psoriazisType";
 
 function UploadImage() {
@@ -24,7 +24,8 @@ function UploadImage() {
   const { patientData } = usePatientContext();
   const { addNotification } = useNotificationContext();
   const router = useRouter();
-
+  const pathname = usePathname();
+  
   const [{ data, loading, error }, refetch] = DoctorAPI.UploadImage({
     token: state.token,
   });
@@ -38,7 +39,9 @@ function UploadImage() {
 
   useEffect(() => {
     if (!patientData) {
-      router.replace("/dashboard/doctor/requests/create-patient");
+      router.replace(
+        `/dashboard/doctor/requests/create-patient?referrer=${encodeURIComponent(pathname)}`,
+      );
       addNotification({
         id: Date.now(),
         type: "error",

@@ -9,7 +9,7 @@ import ModalContent from "../../../components/modal-content";
 import { Consts, FormItems, PsoriazisTypes } from "./consts";
 import SectionLayout from "../../../components/section-layout";
 import DoctorAPI from "@/api/doctor";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { usePatientContext } from "@/utils/context/usePatientContext";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import { psoriazisType } from "@/utils/psoriazisType";
@@ -22,7 +22,8 @@ function DiseaseTypeDiagnosis() {
   const { patientData } = usePatientContext();
   const { addNotification } = useNotificationContext();
   const router = useRouter();
-
+  const pathname = usePathname();
+  
   const [{ data, error, loading }, refetch] = DoctorAPI.DiagnosisType({
     token: state.token,
   });
@@ -36,7 +37,9 @@ function DiseaseTypeDiagnosis() {
 
   useEffect(() => {
     if (!patientData) {
-      router.replace("/dashboard/doctor/requests/create-patient");
+      router.replace(
+        `/dashboard/doctor/requests/create-patient?referrer=${encodeURIComponent(pathname)}`,
+      );
       addNotification({
         id: Date.now(),
         type: "error",

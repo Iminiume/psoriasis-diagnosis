@@ -1,6 +1,6 @@
 import Button from "@/components/button";
 import Typography from "@/components/typography";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 import { Consts } from "./consts";
 import IconRenderer from "@/components/icon/IconRenderer";
@@ -18,6 +18,20 @@ const ModalContent = ({
   const router = useRouter();
   const { state } = useUserContext();
   const { role } = state;
+  const searchParams = useSearchParams();
+  const referrer = searchParams.get("referrer");
+
+  const handleButtonClick = () => {
+    if (referrer) {
+      router.replace(referrer);
+    } else {
+      router.replace(
+        role === RoleEnum.PATIENT
+          ? "/dashboard/patient/requests"
+          : "/dashboard/doctor/requests",
+      );
+    }
+  };
 
   return (
     <div className="flex min-w-[30rem] flex-col items-center justify-center gap-4">
@@ -46,13 +60,7 @@ const ModalContent = ({
       <div className="flex w-full justify-center gap-4 pt-4">
         <Button
           mode="primary"
-          onClick={() =>
-            router.replace(
-              role === RoleEnum.PATIENT
-                ? "/dashboard/patient/requests"
-                : "/dashboard/doctor/requests",
-            )
-          }
+          onClick={() => handleButtonClick()}
           className="basis-1/2"
         >
           {Consts.confirmAndContinue}

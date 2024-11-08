@@ -5,11 +5,6 @@ export const Consts = Object.freeze({
 
 export const FormItems = [
   {
-    label: "تشکیل پرونده برای بیمار",
-    icon: "request",
-    link: "/dashboard/doctor/requests/create-patient",
-  },
-  {
     label: "کمک به تشخیص احتمال ابتلا",
     icon: "request",
     link: "/dashboard/doctor/requests/disease-diagnosis",
