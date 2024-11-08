@@ -63,7 +63,7 @@ function DiseaseTypeDiagnosis() {
       <ModalContent
         title={
           diagnosisType
-            ? `${Consts.systemRecommendation} ${diagnosisType.title} ${Consts.is}`
+            ? `${Consts.systemRecommendation} ${diagnosisType} ${Consts.is}`
             : Consts.notDeterminedFa
         }
         mainSubtitle={Consts.shouldCheckedByDoctor}

@@ -8,6 +8,7 @@ import DoctorAPI from "@/api/doctor";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import Modal from "@/components/modal";
 import ModalContent from "@/view/dashboard/components/modal-content";
+import { psoriazisType } from "@/utils/psoriazisType";
 
 function PatientForm({ data, slug }) {
   const [patient, setPatient] = useState(null);
@@ -61,6 +62,8 @@ function PatientForm({ data, slug }) {
     );
   };
 
+  if (!patient) return null;
+
   return (
     <SectionLayout
       isButtonDisabled={loading || !comment}
@@ -73,10 +76,19 @@ function PatientForm({ data, slug }) {
           <div className="flex flex-col gap-4">
             <Text title={Consts.firstName} text={patient?.FirstName} />
             <Text title={Consts.lastName} text={patient?.LastName} />
-            <Text title={Consts.diseaseType} text={patient?.FormResult} />
+            <Text
+              title={Consts.diseaseType}
+              text={
+                patient?.FormResult &&
+                Consts.psoriasis + " " + psoriazisType(patient?.FormResult)
+              }
+            />
             <Text
               title={Consts.diseaseTypeBasedOnImage}
-              text={patient?.ImageResult}
+              text={
+                patient?.ImageResult &&
+                Consts.psoriasis + " " + psoriazisType(patient?.ImageResult)
+              }
             />
             <Text
               title={Consts.status}

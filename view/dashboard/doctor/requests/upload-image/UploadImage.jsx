@@ -71,7 +71,6 @@ function UploadImage() {
 
   const handleModalContent = () => {
     if (!data) return;
-
     const diagnosisType = psoriazisType(data);
 
     return (
@@ -79,7 +78,7 @@ function UploadImage() {
         title={
           Consts.result +
           " " +
-          (diagnosisType ? diagnosisType.title : Consts.notDeterminedFa) +
+          (diagnosisType ? diagnosisType : Consts.notDeterminedFa) +
           " " +
           Consts.is
         }

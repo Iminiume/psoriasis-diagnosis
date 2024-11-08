@@ -14,4 +14,5 @@ export const Consts = Object.freeze({
   yes: "بله",
   no: "خیر",
   formModalCompleted: "کامنت شما برای بیمار ثبت شد",
+  psoriasis: "پسوریازیس",
 });

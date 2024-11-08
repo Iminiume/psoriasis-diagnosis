@@ -62,7 +62,7 @@ function UploadImage() {
         title={
           Consts.result +
           " " +
-          (diagnosisType ? diagnosisType.title : Consts.notDeterminedFa) +
+          (diagnosisType ? diagnosisType : Consts.notDeterminedFa) +
           " " +
           Consts.is
         }
