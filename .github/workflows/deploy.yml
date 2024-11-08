@@ -45,7 +45,7 @@ jobs:
 
       - name: Deploy to server
         run: |
-          ssh -o StrictHostKeyChecking=no root@139.59.166.85 << 'EOF'
+          ssh -o StrictHostKeyChecking=no root@188.121.106.125 << 'EOF'
 
             set -x
 
