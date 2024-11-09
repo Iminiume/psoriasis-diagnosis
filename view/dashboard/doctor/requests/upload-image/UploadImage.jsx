@@ -111,6 +111,7 @@ function UploadImage() {
           " " +
           Consts.is
         }
+        mainSubtitle={Consts.shouldCheckedByDoctor}
         handleModalClose={handleModalClose}
       />
     );

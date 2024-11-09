@@ -68,7 +68,7 @@ function UploadImage() {
       setPreviewUrl(URL.createObjectURL(selectedFile));
     }
   };
-  
+
   const handleSubmit = async () => {
     if (!file) return;
 
@@ -92,6 +92,7 @@ function UploadImage() {
           " " +
           Consts.is
         }
+        mainSubtitle={Consts.shouldCheckedByDoctor}
         handleModalClose={handleModalClose}
       />
     );
