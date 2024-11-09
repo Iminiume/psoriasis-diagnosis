@@ -5,7 +5,7 @@ import Typography from "@/components/typography";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import React, { useEffect, useRef, useState } from "react";
 import ImageUpload from "@/public/images/UploadImage.png";
-import Image from "@/components/image";
+import CustomImage from "@/components/image";
 import { Consts, PsoriazisTypes } from "./consts";
 import ModalContent from "@/view/dashboard/components/modal-content";
 import SectionLayout from "@/view/dashboard/components/section-layout";
@@ -25,7 +25,7 @@ function UploadImage() {
   const { addNotification } = useNotificationContext();
   const router = useRouter();
   const pathname = usePathname();
-  
+
   const [{ data, loading, error }, refetch] = DoctorAPI.UploadImage({
     token: state.token,
   });
@@ -53,6 +53,32 @@ function UploadImage() {
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
+      if (
+        selectedFile.type !== "image/jpeg" ||
+        selectedFile.name.split(".").pop().toLowerCase() !== "jpg"
+      ) {
+        addNotification({
+          id: Date.now(),
+          type: "error",
+          message: Consts.imageFormatError,
+        });
+        return;
+      }
+
+      const img = new Image();
+      img.src = URL.createObjectURL(selectedFile);
+
+      // img.onload = () => {
+      //   if (img.width !== 640 || img.height !== 640) {
+      //     addNotification({
+      //       id: Date.now(),
+      //       type: "error",
+      //       message: Consts.imageDimensionError,
+      //     });
+      //     return;
+      //   }
+      // };
+
       const formData = new FormData();
       formData.append("file", selectedFile);
       setFile(formData);
@@ -102,7 +128,7 @@ function UploadImage() {
           <div>
             {isFileUploaded ? (
               // TODO: Should change this section to react drop zone and react dnd
-              <Image
+              <CustomImage
                 src={previewUrl}
                 alt="Uploaded Preview"
                 width={500}
@@ -110,7 +136,7 @@ function UploadImage() {
                 className="object-contain"
               />
             ) : (
-              <Image src={ImageUpload} alt="Upload Icon" />
+              <CustomImage src={ImageUpload} alt="Upload Icon" />
             )}
           </div>
 

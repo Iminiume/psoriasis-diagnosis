@@ -6,19 +6,20 @@ import Typography from "@/components/typography";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import React, { useEffect, useRef, useState } from "react";
 import ImageUpload from "@/public/images/UploadImage.png";
-import Image from "@/components/image";
-import { Consts, PsoriazisTypes } from "./consts";
+import CustomImage from "@/components/image";
+import { Consts } from "./consts";
 import ModalContent from "@/view/dashboard/components/modal-content";
 import SectionLayout from "@/view/dashboard/components/section-layout";
 import { psoriazisType } from "@/utils/psoriazisType";
+import { useNotificationContext } from "@/utils/context/useNotificationContext";
 
 function UploadImage() {
   const [isFileUploaded, setIsFileUploaded] = useState(false);
-  const [progress, setProgress] = useState(0);
   const [file, setFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const modalRef = useRef();
   const { state } = useAuthContext();
+  const { addNotification } = useNotificationContext();
 
   const [{ data, loading, error }, refetch] = PatientAPI.UploadImage({
     token: state.token,
@@ -34,15 +35,40 @@ function UploadImage() {
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     if (selectedFile) {
+      if (
+        selectedFile.type !== "image/jpeg" ||
+        selectedFile.name.split(".").pop().toLowerCase() !== "jpg"
+      ) {
+        addNotification({
+          id: Date.now(),
+          type: "error",
+          message: Consts.imageFormatError,
+        });
+        return;
+      }
+
+      const img = new Image();
+      img.src = URL.createObjectURL(selectedFile);
+
+      // img.onload = () => {
+      //   if (img.width !== 640 || img.height !== 640) {
+      //     addNotification({
+      //       id: Date.now(),
+      //       type: "error",
+      //       message: Consts.imageDimensionError,
+      //     });
+      //     return;
+      //   }
+      // };
+
       const formData = new FormData();
       formData.append("file", selectedFile);
       setFile(formData);
       setIsFileUploaded(true);
-      setProgress(0);
       setPreviewUrl(URL.createObjectURL(selectedFile));
     }
   };
-
+  
   const handleSubmit = async () => {
     if (!file) return;
 
@@ -84,7 +110,7 @@ function UploadImage() {
           <div>
             {isFileUploaded ? (
               // TODO: Should change this section to react drop zone and react dnd
-              <Image
+              <CustomImage
                 src={previewUrl}
                 alt="Uploaded Preview"
                 width={500}
@@ -92,7 +118,7 @@ function UploadImage() {
                 className="object-contain"
               />
             ) : (
-              <Image src={ImageUpload} alt="Upload Icon" />
+              <CustomImage src={ImageUpload} alt="Upload Icon" />
             )}
           </div>
 
@@ -113,17 +139,6 @@ function UploadImage() {
             onChange={handleFileChange}
             className="absolute right-0 top-0 h-full w-full cursor-pointer opacity-0"
           />
-
-          {progress > 0 && (
-            <div className="relative mt-4 w-full">
-              <div className="h-2 w-full rounded bg-gray-200">
-                <div
-                  style={{ width: `${progress}%` }}
-                  className="h-2 rounded bg-blue-500"
-                ></div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
 

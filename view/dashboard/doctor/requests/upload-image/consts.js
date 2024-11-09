@@ -11,4 +11,6 @@ export const Consts = Object.freeze({
   patientPhoneNumberPlaceHolder: "شماره تلفن بیمار را وارد کنید",
   noPatientError:
     "پرونده ای برای بیمار ساخته نشده، لطفا بعد از تشکیل پرونده به صفحه ی تشخیص نوع بیماری برگردید",
+  imageDimensionError: "ابعاد عکس شما باید 640*640 باشد",
+  imageFormatError: "فرمت عکس شما باید .jpg باشد",
 });
