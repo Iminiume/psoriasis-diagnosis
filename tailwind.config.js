@@ -36,6 +36,7 @@ module.exports = {
       animation: { fadeIn: "fadeIn 0.1s ease-in-out" },
       maxWidth: {
         custom: "1440px",
+        "3xl": "1920px",
       },
       colors: {
         background: "var(--background)",
@@ -57,7 +58,7 @@ module.exports = {
         navbarBg: "var(--navbar-bg)",
         footerBg: "var(--foter-bg)",
         loginBg: "var(--login-bg)",
-        
+
         loginBorder: "var(--login-border)",
         cardBg: "var(--card-bg)",
         pinkShadowBg: "var(--ping-shadow-bg)",

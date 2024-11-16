@@ -1,1 +1,1 @@
-export { default } from "./DiseaseTypeDiagnosis";
+export { default } from "./PatientDiagnosisType";

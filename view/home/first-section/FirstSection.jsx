@@ -17,11 +17,8 @@ const Texts = {
 
 function FirstSection() {
   return (
-    <section
-      className="relative px-8"
-      style={{ height: "calc(100vh - 106px)" }}
-    >
-      <div className="mx-auto flex h-full max-w-custom items-center justify-center">
+    <section className="relative h-[calc(100vh-106px)] px-8">
+      <div className="max-w-custom mx-auto flex h-full items-center justify-center">
         <div className="flex w-full basis-full flex-col items-center justify-center gap-6 pt-12 lg:basis-1/2">
           <Typography
             weight="bold"

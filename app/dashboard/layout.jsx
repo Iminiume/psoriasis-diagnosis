@@ -28,19 +28,19 @@ export default function Layout({ children }) {
     else {
       if (!state.role) router.replace("/login/role-selection");
     }
-  }, [state, authState]);
+  }, [state, authState, router]);
 
   useEffect(() => {
     if (state.role === RoleEnum.PATIENT) {
       dispatch({ type: "SET_USER_DATA", payload: data });
     }
-  }, [data, state.role]);
+  }, [data, state.role, dispatch]);
 
   useEffect(() => {
     if (state.role === RoleEnum.PATIENT) {
       refetch();
     }
-  }, [state.role]);
+  }, [state.role, refetch]);
 
   if (loading) return <Loading />;
 

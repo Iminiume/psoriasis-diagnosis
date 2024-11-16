@@ -17,8 +17,8 @@ function DashboardLayout({ children, data }) {
   const handleDrawerClose = () => drawerRef.current.close();
 
   return (
-    <section className="h-screen bg-pinkShadow bg-contain bg-right bg-no-repeat lg:px-8">
-      <div className="mx-auto flex h-full max-w-custom">
+    <section className="h-screen bg-pinkShadow bg-contain bg-right bg-no-repeat">
+      <div className="mx-auto flex h-full max-w-3xl">
         <div className="hidden h-full w-[300px] flex-col justify-start gap-12 bg-custom-gradient py-12 lg:flex">
           <DashboardSidebarContent />
         </div>

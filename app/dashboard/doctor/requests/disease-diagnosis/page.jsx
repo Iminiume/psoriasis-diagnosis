@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import React from "react";
 
 const DiseaseDiagnosis = dynamic(
-  () => import("@/view/dashboard/doctor/requests/disease-diagnosis"),
+  () => import("@/view/dashboard/doctor/requests/diagnosis"),
 );
 
 function Page() {

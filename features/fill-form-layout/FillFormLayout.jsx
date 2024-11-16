@@ -4,19 +4,22 @@ import Modal from "@/components/modal";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import React, { useEffect, useRef, useState } from "react";
-import ModalContent from "../../components/modal-content";
-import { Consts, FormItems } from "./consts";
+import ModalContent from "@/view/dashboard/components/modal-content";
 import Datepicker from "@/components/datepicker";
-import SectionLayout from "../../components/section-layout";
-import DoctorAPI from "@/api/doctor";
+import SectionLayout from "@/view/dashboard/components/section-layout";
 
-function FillFormLayout() {
+function FillFormLayout({
+  title,
+  subTitle,
+  formItems,
+  api,
+  constants,
+  onSuccess,
+}) {
   const { state: authState, setToken } = useAuthContext();
   const [formValues, setFormValues] = useState({});
   const [isFormComplete, setIsFormComplete] = useState(false);
-  const [{ data, loading, error }, refetch] = DoctorAPI.CreateDoctor({
-    token: authState.token,
-  });
+  const [{ data, loading, error }, refetch] = api({ token: authState.token });
   const { addNotification } = useNotificationContext();
   const modalRef = useRef(null);
 
@@ -24,7 +27,7 @@ function FillFormLayout() {
   const handleModalOpen = () => modalRef.current.open();
 
   useEffect(() => {
-    const requiredFields = FormItems.map((item) => item.key);
+    const requiredFields = formItems.map((item) => item.key);
     setIsFormComplete(
       requiredFields.every((key) => formValues[key] !== undefined),
     );
@@ -34,11 +37,12 @@ function FillFormLayout() {
     if (data) {
       setToken(data?.token);
       handleModalOpen();
+      onSuccess?.(data);
     } else if (error) {
       addNotification({
         id: Date.now(),
         type: "error",
-        message: Consts.fillFormError,
+        message: constants.fillFormError,
       });
     }
   }, [data, error]);
@@ -57,21 +61,21 @@ function FillFormLayout() {
       addNotification({
         id: Date.now(),
         type: "error",
-        message: Consts.fillFormIncomplete,
+        message: constants.fillFormIncomplete,
       });
     }
   };
 
   return (
     <SectionLayout
-      title={Consts.title}
-      subTitle={Consts.subTitle}
+      title={title}
+      subTitle={subTitle}
       isButtonDisabled={!isFormComplete || loading}
       handleSubmit={handleSubmit}
       loading={loading}
     >
       <div className="grid grid-cols-4 gap-6">
-        {FormItems.map((item) => {
+        {formItems.map((item) => {
           const colSpanClass = {
             "1/4": "col-span-1",
             "1/2": "col-span-2",
@@ -123,7 +127,7 @@ function FillFormLayout() {
 
       <Modal ref={modalRef}>
         <ModalContent
-          title={Consts.formModalCompleted}
+          title={constants.formModalCompleted}
           handleModalClose={handleModalClose}
         />
       </Modal>
