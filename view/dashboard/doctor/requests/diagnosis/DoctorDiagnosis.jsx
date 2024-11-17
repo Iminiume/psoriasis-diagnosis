@@ -3,7 +3,7 @@ import React from "react";
 import { Consts, FormItems } from "./consts";
 import DiagnosisLayout from "@/features/diagnosis-layout";
 
-function DiseaseDiagnosis() {
+function DoctorDiagnosis() {
   const calculateResult = (answers) => {
     const yesCount = answers.filter((answer) => answer === true).length;
     const percentage = (yesCount / FormItems.length) * 0.75 * 100;
@@ -22,4 +22,4 @@ function DiseaseDiagnosis() {
   );
 }
 
-export default DiseaseDiagnosis;
+export default DoctorDiagnosis;

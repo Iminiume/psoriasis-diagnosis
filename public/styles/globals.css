@@ -50,6 +50,10 @@ body {
   font-family: Yekan-Bakh-FaN-Regular, Yekan-Bakh-En-Medium;
 }
 
+#nprogress {
+  z-index: 50;
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

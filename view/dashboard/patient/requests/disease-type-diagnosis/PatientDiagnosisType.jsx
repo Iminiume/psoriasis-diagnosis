@@ -5,7 +5,7 @@ import { psoriazisType } from "@/utils/psoriazisType";
 import DynamicDiagnosisTypeLayout from "@/features/diagnosis-type-layout";
 import PatientAPI from "@/api/patient";
 
-function DoctorDiagnosisType() {
+function PatientDiagnosisType() {
   const { patientData } = usePatientContext();
 
   return (
@@ -26,4 +26,4 @@ function DoctorDiagnosisType() {
   );
 }
 
-export default DoctorDiagnosisType;
+export default PatientDiagnosisType;

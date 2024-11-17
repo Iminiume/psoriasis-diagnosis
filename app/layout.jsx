@@ -6,6 +6,7 @@ import React from "react";
 
 import "@/public/styles/fonts.css";
 import "@/public/styles/globals.css";
+import NProgressProvider from "@/features/nprogress-provider";
 
 export const metadata = {
   title: "Hamyar Psoriasis",
@@ -23,7 +24,9 @@ function RootLayout({ children }) {
         <ClientLayout>
           <UserProvider>
             <AuthProvider>
-              <NotificationProvider>{children}</NotificationProvider>
+              <NotificationProvider>
+                <NProgressProvider>{children}</NProgressProvider>
+              </NotificationProvider>
             </AuthProvider>
           </UserProvider>
         </ClientLayout>
