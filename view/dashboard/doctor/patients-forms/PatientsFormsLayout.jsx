@@ -34,10 +34,10 @@ function PatientsFormsLayout({ data }) {
           <div
             className={classNames(
               "flex gap-2 rounded p-2",
-              item?.IsVerifiedByDoctor ? "bg-greenColor" : "bg-redColor",
+              item?.DoctorComment ? "bg-greenColor" : "bg-redColor",
             )}
           >
-            {item?.IsVerifiedByDoctor ? (
+            {item?.DoctorComment ? (
               <IconRenderer icon="check" />
             ) : (
               <IconRenderer icon="xClose" />

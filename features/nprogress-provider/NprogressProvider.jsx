@@ -12,9 +12,6 @@ export default function NProgressProvider({ children }) {
         color="#ff4187"
         options={{ showSpinner: false }}
         shallowRouting
-        // style={`
-           
-        //   `}
       />
     </>
   );
