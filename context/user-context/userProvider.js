@@ -3,6 +3,7 @@
 import { useEffect, useReducer } from "react";
 import UserContext from "./userContext";
 import useLocalStorage from "@/utils/hooks/useLocalStorage";
+import { setCookie, getCookie, removeCookie } from "@/utils/hooks/useCookie";
 
 // Define initial state
 const initialState = {
@@ -27,7 +28,7 @@ const userReducer = (state, action) => {
 
 export const UserProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, initialState);
-  const [role, setRoleLS, removeRole] = useLocalStorage("role", null);
+  const role = getCookie("role");
 
   useEffect(() => {
     if (role) {
@@ -39,9 +40,13 @@ export const UserProvider = ({ children }) => {
   }, [role]);
 
   const setRole = (user) => {
-    setRoleLS(user);
+    setCookie("role", user);
     dispatch({ type: "SET_ROLE", payload: role });
     dispatch({ type: "SET_LOADING", payload: false });
+  };
+
+  const removeRole = () => {
+    removeCookie("role");
   };
 
   return (

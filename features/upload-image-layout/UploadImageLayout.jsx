@@ -93,7 +93,7 @@ function UploadImageLayout({
       loading={loading}
     >
       <div className="flex h-full flex-col items-center justify-center gap-8">
-        <div className="relative flex min-h-[15rem] min-w-[30rem] flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-primaryColor bg-[#26335D] p-8">
+        <div className="relative flex min-h-[15rem] max-w-[30rem] flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-primaryColor bg-[#26335D] p-8">
           <div>
             {isFileUploaded ? (
               <CustomImage

@@ -36,12 +36,20 @@ export const AuthProvider = ({ children }) => {
     } else {
       dispatch({ type: "SET_LOADING", payload: false });
     }
+    const currentTime = Date.now();
+
+    if (decodedToken > currentTime || token === "undefined") {
+      logout();
+    }
   }, []);
 
   const login = (token) => {
+    if (token) {
+      setToken(token);
+      dispatch({ type: "LOGIN", payload: token });
+    }
+
     const decodedToken = JWT.decode(token);
-    setToken(token);
-    dispatch({ type: "LOGIN", payload: token });
     setRole(decodedToken.role);
   };
 

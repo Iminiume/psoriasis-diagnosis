@@ -19,21 +19,19 @@ function SectionLayout({
   hasButton = true,
 }) {
   return (
-    <div className="flex h-full flex-col gap-10">
+    <div className="flex h-full flex-col gap-10 overflow-y-auto">
       <div className="flex flex-col gap-6 p-8 text-center lg:text-start">
-        <Typography size="5xl" weight="bold">
+        <Typography size="4xl" weight="bold">
           {title}
         </Typography>
         {subTitle && (
-          <Typography size="2xl" className="text-primaryColor">
+          <Typography size="xl" className="text-primaryColor">
             {subTitle}
           </Typography>
         )}
       </div>
 
-      <div className="flex-grow overflow-y-auto px-8 scrollbar-hide">
-        {children}
-      </div>
+      <div className="px-8 grow">{children}</div>
 
       {hasButton && (
         <div className="flex w-full items-center justify-between p-8">

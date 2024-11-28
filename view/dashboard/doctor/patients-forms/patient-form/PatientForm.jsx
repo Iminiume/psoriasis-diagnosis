@@ -26,11 +26,8 @@ function PatientForm({ data, slug }) {
   const handleModalOpen = () => modalRef.current.open();
 
   useEffect(() => {
-    const selectedPatient = data.find(
-      (patient) => patient?.ID === Number(slug),
-    );
-    setPatient(selectedPatient || null);
-  }, [data, slug]);
+    setPatient(data);
+  }, [data]);
 
   useEffect(() => {
     setIsVerifiedByDoctor(patient?.IsVerifiedByDoctor);
@@ -63,7 +60,7 @@ function PatientForm({ data, slug }) {
   };
 
   if (!patient) return null;
-
+  console.log(patient);
   return (
     <SectionLayout
       isButtonDisabled={loading || !comment}
@@ -74,8 +71,8 @@ function PatientForm({ data, slug }) {
       <div className="flex h-full flex-col justify-between pb-8">
         <div className="flex justify-between">
           <div className="flex flex-col gap-4">
-            <Text title={Consts.firstName} text={patient?.FirstName} />
-            <Text title={Consts.lastName} text={patient?.LastName} />
+            <Text title={Consts.firstName} text={patient?.first_name} />
+            <Text title={Consts.lastName} text={patient?.last_name} />
             <Text
               title={Consts.diseaseType}
               text={

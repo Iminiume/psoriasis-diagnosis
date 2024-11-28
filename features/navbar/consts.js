@@ -1,5 +1,5 @@
 export const NavbarItemsList = [
-  { title: "خدمات عمومی", link: "/#public-service" },
+  { title: "اطلاع رسانی", link: "/#public-service" },
   { title: "خدمات تخصصی بیماران", link: "/learn" },
   { title: "راهنمای سامانه", link: "/suggestions" },
   { title: "درباره ما", link: "/about-us" },

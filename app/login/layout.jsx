@@ -2,7 +2,6 @@
 
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useEffect } from "react";
-import Jwt from "jsonwebtoken";
 import { useRouter } from "next/navigation";
 
 export default function Layout({ children }) {
@@ -11,12 +10,7 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     if (state.token) {
-      const decodedToken = Jwt.decode(state.token);
-      if (decodedToken?.role) {
-        router.replace("/dashboard");
-      } else {
-        router.replace("/login/role-selection");
-      }
+      router.replace("/dashboard");
     }
   }, [state]);
 

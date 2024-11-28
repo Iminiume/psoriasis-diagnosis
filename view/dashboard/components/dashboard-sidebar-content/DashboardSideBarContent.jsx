@@ -31,7 +31,7 @@ function DashboardSideBarContent() {
         </Link>
       </div>
       <div>
-        {roleBasedItems.map((item) => {
+        {roleBasedItems.map((item, index) => {
           const isActive = pathname === item.link;
           return (
             <div
@@ -39,6 +39,7 @@ function DashboardSideBarContent() {
                 "relative px-[40px] py-[20px]",
                 isActive && "text-primaryColor",
               )}
+              key={`sidebar-item-${role}-${index}`}
             >
               <Link href={item.link} className="flex gap-4">
                 <IconRenderer icon="request" />

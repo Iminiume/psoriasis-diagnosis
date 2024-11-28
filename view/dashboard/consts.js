@@ -1,5 +1,12 @@
 export const Items = [
   {
+    label: "داشبورد",
+    link: "/dashboard",
+    icon: "request",
+    forPatient: true,
+    forDoctor: true,
+  },
+  {
     label: "تشکیل / ویرایش پرونده",
     link: "/dashboard/patient/fill-form",
     icon: "request",
@@ -11,12 +18,12 @@ export const Items = [
     icon: "request",
     forPatient: true,
   },
-  {
-    label: "تشکیل / ویرایش پرونده",
-    link: "/dashboard/doctor/fill-form",
-    icon: "request",
-    forDoctor: true,
-  },
+  // {
+  //   label: "تشکیل / ویرایش پرونده",
+  //   link: "/dashboard/doctor/fill-form",
+  //   icon: "request",
+  //   forDoctor: true,
+  // },
   {
     label: "کمک یار پزشک",
     link: "/dashboard/doctor/requests",

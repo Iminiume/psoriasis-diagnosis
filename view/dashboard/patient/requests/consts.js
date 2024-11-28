@@ -3,7 +3,7 @@ export const Consts = Object.freeze({
   subTitle: "",
 });
 
-export const FormItems = (adviceDisable = true) => [
+export const FormItems = (diagnosisDisabled = true, adviceDisable = true) => [
   {
     label: "تشخیص بیماری",
     icon: "request",
@@ -13,11 +13,13 @@ export const FormItems = (adviceDisable = true) => [
     label: "تشخیص نوع پسوریازیس",
     icon: "request",
     link: "/dashboard/patient/requests/disease-type-diagnosis",
+    disabled: diagnosisDisabled,
   },
   {
     label: "بارگذاری تصویر",
     icon: "request",
     link: "/dashboard/patient/requests/upload-image",
+    disabled: diagnosisDisabled,
   },
   {
     label: "دریافت توصیه نامه",

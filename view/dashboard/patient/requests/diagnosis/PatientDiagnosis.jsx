@@ -2,6 +2,7 @@
 import React from "react";
 import { Consts, FormItems } from "./consts";
 import DiagnosisLayout from "@/features/diagnosis-layout";
+import PatientAPI from "@/api/patient";
 
 function PatientDiagnosis() {
   const calculateResult = (answers) => {
@@ -18,6 +19,7 @@ function PatientDiagnosis() {
       formItems={FormItems}
       constants={Consts}
       calculateResult={calculateResult}
+      api={PatientAPI.Questionnaire}
     />
   );
 }

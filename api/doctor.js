@@ -78,10 +78,23 @@ DoctorAPI.UploadImage = ({ token }) => {
   );
 };
 
-DoctorAPI.GetPatients = () => {
+DoctorAPI.GetPatients = ({ token }) => {
   return useAxios({
     url: `${API_BASE_URL}/api/get_patients`,
     method: "GET",
+    headers: {
+      Auth: token,
+    },
+  });
+};
+
+DoctorAPI.GetPatientDetails = ({ token, slug }) => {
+  return useAxios({
+    url: `${API_BASE_URL}/api/get_patient_details/${slug}`,
+    method: "GET",
+    headers: {
+      Auth: token,
+    },
   });
 };
 

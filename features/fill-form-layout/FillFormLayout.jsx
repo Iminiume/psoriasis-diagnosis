@@ -1,137 +1,168 @@
 "use client";
 import Input from "@/components/input";
 import Modal from "@/components/modal";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import React, { useEffect, useRef, useState } from "react";
 import ModalContent from "@/view/dashboard/components/modal-content";
 import Datepicker from "@/components/datepicker";
 import SectionLayout from "@/view/dashboard/components/section-layout";
+import classNames from "classnames";
+import { isMobile } from "react-device-detect";
+import MultiSelect from "@/components/multi-select-input";
 
 function FillFormLayout({
   title,
   subTitle,
   formItems,
-  api,
+  initialValues,
+  validationSchema,
   constants,
-  onSuccess,
+  api,
 }) {
   const { state: authState, setToken } = useAuthContext();
-  const [formValues, setFormValues] = useState({});
-  const [isFormComplete, setIsFormComplete] = useState(false);
-  const [{ data, loading, error }, refetch] = api({ token: authState.token });
   const { addNotification } = useNotificationContext();
+  const [{ loading }, refetch] = api({ token: authState.token });
   const modalRef = useRef(null);
 
   const handleModalClose = () => modalRef.current.close();
   const handleModalOpen = () => modalRef.current.open();
 
-  useEffect(() => {
-    const requiredFields = formItems.map((item) => item.key);
-    setIsFormComplete(
-      requiredFields.every((key) => formValues[key] !== undefined),
-    );
-  }, [formValues]);
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      const { data } = await refetch({ data: values });
 
-  useEffect(() => {
-    if (data) {
       setToken(data?.token);
       handleModalOpen();
-      onSuccess?.(data);
-    } else if (error) {
+
+      addNotification({
+        id: Date.now(),
+        type: "success",
+        message: constants.formModalCompleted,
+      });
+    } catch (error) {
       addNotification({
         id: Date.now(),
         type: "error",
-        message: constants.fillFormError,
+        message: error.message || constants.fillFormError,
       });
-    }
-  }, [data, error]);
-
-  const handleChange = (key, value, type) => {
-    setFormValues((prev) => ({
-      ...prev,
-      [key]: type === "date" ? value?.toDate() : value,
-    }));
-  };
-
-  const handleSubmit = async () => {
-    if (isFormComplete) {
-      refetch({ data: formValues });
-    } else {
-      addNotification({
-        id: Date.now(),
-        type: "error",
-        message: constants.fillFormIncomplete,
-      });
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
-    <SectionLayout
-      title={title}
-      subTitle={subTitle}
-      isButtonDisabled={!isFormComplete || loading}
-      handleSubmit={handleSubmit}
-      loading={loading}
+    <Formik
+      initialValues={initialValues}
+      validationSchema={validationSchema}
+      onSubmit={handleSubmit}
     >
-      <div className="grid grid-cols-4 gap-6">
-        {formItems.map((item) => {
-          const colSpanClass = {
-            "1/4": "col-span-1",
-            "1/2": "col-span-2",
-            full: "col-span-4",
-          }[item.width];
-          return (
-            <div key={item.label} className={`${colSpanClass} flex flex-col`}>
-              {item.type === "date" ? (
-                <div className="flex flex-col">
+      {({ isSubmitting, setFieldValue, values, submitForm, isValid }) => (
+        <SectionLayout
+          title={title}
+          subTitle={subTitle}
+          handleSubmit={submitForm}
+          loading={isSubmitting || loading}
+        >
+          <Form className="grid grid-cols-4 gap-6">
+            {formItems.map((item) => {
+              if (item.condition && !item.condition(values)) {
+                return null;
+              }
+
+              const colSpanClass = {
+                "1/4": "col-span-1",
+                "1/2": "col-span-2",
+                full: "col-span-4",
+              }[item.width];
+
+              return (
+                <div
+                  key={item.key}
+                  className={classNames(
+                    "flex flex-col gap-1",
+                    isMobile ? "col-span-4" : colSpanClass,
+                  )}
+                >
                   <label className="mb-2 font-medium">{item.label}</label>
-                  <Datepicker
-                    value={formValues[item.key]}
-                    onChange={(date) => handleChange(item.key, date, "date")}
-                    placeholder={item.placeholder}
+                  {item.type === "date" ? (
+                    <Datepicker
+                      value={values[item.key]}
+                      onChange={(date) =>
+                        setFieldValue(item.key, date.toDate())
+                      }
+                      placeholder={item.placeholder}
+                    />
+                  ) : item.type === "radio" ? (
+                    <div className="flex gap-6">
+                      {item.options.map((option) => (
+                        <label key={option.label} className="flex gap-2">
+                          <Field
+                            type="radio"
+                            name={item.key}
+                            value={option.value}
+                            checked={
+                              String(values[item.key]) === String(option.value)
+                            }
+                            as={Input}
+                            onChange={() =>
+                              setFieldValue(item.key, option.value)
+                            }
+                          />
+                          {option.label}
+                        </label>
+                      ))}
+                    </div>
+                  ) : item.type === "checkbox" ? (
+                    <div className="flex flex-wrap gap-6">
+                      {item.options.map((option) => (
+                        <label key={option} className="flex gap-2">
+                          <Field
+                            type="checkbox"
+                            name={item.key}
+                            value={option}
+                            as={Input}
+                          />
+                          {option}
+                        </label>
+                      ))}
+                    </div>
+                  ) : item.type === "select" ? (
+                    <MultiSelect
+                      options={item.options}
+                      value={values[item.key] || []}
+                      onChange={(selected) => setFieldValue(item.key, selected)}
+                      placeholder={item.label}
+                    />
+                  ) : (
+                    <Field
+                      name={item.key}
+                      as={Input}
+                      type={item.type}
+                      placeholder={item.placeholder}
+                    />
+                  )}
+                  <ErrorMessage
+                    name={item.key}
+                    component="div"
+                    className="text-sm text-red-500"
                   />
                 </div>
-              ) : item.type === "radio" ? (
-                <div>
-                  <label className="mb-2 font-medium">{item.label}</label>
-                  <div className="flex gap-4">
-                    {item.options.map((option) => (
-                      <Input
-                        key={option.label}
-                        type="radio"
-                        name={item.key}
-                        label={option.label}
-                        value={option.value}
-                        className="cursor-pointer"
-                        checked={formValues[item.key] === option.value}
-                        onChange={() => handleChange(item.key, option.value)}
-                      />
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <Input
-                  label={item.label}
-                  placeholder={item.placeholder}
-                  type={item.type}
-                  onChange={(e) =>
-                    handleChange(item.key, e.target.value, item.type)
-                  }
-                />
-              )}
-            </div>
-          );
-        })}
-      </div>
+              );
+            })}
+          </Form>
 
-      <Modal ref={modalRef}>
-        <ModalContent
-          title={constants.formModalCompleted}
-          handleModalClose={handleModalClose}
-        />
-      </Modal>
-    </SectionLayout>
+          {/* Success Modal */}
+          <Modal ref={modalRef}>
+            <ModalContent
+              title={constants.formModalCompleted}
+              handleModalClose={handleModalClose}
+            />
+          </Modal>
+        </SectionLayout>
+      )}
+    </Formik>
   );
 }
 

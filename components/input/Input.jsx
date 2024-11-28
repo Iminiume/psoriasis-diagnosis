@@ -38,7 +38,7 @@ const Input = forwardRef(function Input(
     {
       "h-12 rounded-md border border-[#465370] px-2 focus:border-white active:border-white":
         type !== "radio" && type !== "checkbox",
-      "h-6 w-6 rounded border border-[#465370] appearance-none checked:bg-primaryColor checked:border-primaryColor focus:outline-none":
+      "h-6 w-6 rounded border border-[#465370] appearance-none cursor-pointer checked:bg-primaryColor checked:border-primaryColor focus:outline-none":
         type === "radio" || type === "checkbox",
     },
     disabled

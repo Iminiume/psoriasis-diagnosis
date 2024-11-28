@@ -12,7 +12,7 @@ import Modal from "@/components/modal";
 import Button from "@/components/button";
 
 const Texts = {
-  title: "خدمات عمومی ما",
+  title: "اطلاع رسانی",
   download: "دانلود",
   selectChoice: "گزینه مورد نظر خود را وارد کنید",
 };
@@ -94,7 +94,10 @@ function FourthSection() {
         <div className="flex w-full flex-col gap-4">
           {advices.map((item) => {
             return (
-              <div className="flex w-full items-center justify-between gap-8">
+              <div
+                className="flex w-full items-center justify-between gap-8"
+                key={`content-item-modal-${item}`}
+              >
                 <Typography size="xl">{item.title}</Typography>
                 <Link href={item.link}>
                   <Button>{Texts.download}</Button>

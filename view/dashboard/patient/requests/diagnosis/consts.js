@@ -1,8 +1,10 @@
 export const Consts = Object.freeze({
   title: "به سوالات زیر پاسخ دهید",
   subTitle: "لطفا به تمامی سوالات زیر با بله یا خیر با دقت پاسخ دهید",
-  yes: "بله",
-  no: "نه",
+  yes: "Yes",
+  yesFa: "بله",
+  no: "No",
+  noFa: "نه",
   continue: "ادامه",
   alarm: "پیام هشدار",
   diagnosis: "احتمال پیشنهادی برای تشخیص بیماری شما",

@@ -2,24 +2,22 @@
 import Input from "@/components/input";
 import Modal from "@/components/modal";
 import Typography from "@/components/typography";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import SectionLayout from "@/view/dashboard/components/section-layout";
 import ModalContent from "@/view/dashboard/components/modal-content";
+import { useNotificationContext } from "@/utils/context/useNotificationContext";
+import { useAuthContext } from "@/utils/context/useAuthContext";
 
-function DiagnosisLayout({
-  title,
-  subTitle,
-  formItems,
-  constants,
-  onSubmit,
-  calculateResult,
-}) {
+function DiagnosisLayout({ title, subTitle, formItems, constants, api }) {
   const [selectedAnswers, setSelectedAnswers] = useState(
     Array(formItems.length).fill(null),
   );
+  const { state } = useAuthContext();
   const [isFormComplete, setIsFormComplete] = useState(false);
   const [formResult, setFormResult] = useState(null);
   const modalRef = useRef();
+  const [{ data, loading }, refetch] = api({ token: state.token });
+  const { addNotification } = useNotificationContext();
 
   const handleModalClose = () => modalRef.current.close();
   const handleModalOpen = () => modalRef.current.open();
@@ -29,16 +27,36 @@ function DiagnosisLayout({
       i === index ? value : answer,
     );
     setSelectedAnswers(updatedAnswers);
-
     setIsFormComplete(updatedAnswers.every((answer) => answer !== null));
   };
 
   const handleSubmit = () => {
-    const result = calculateResult(selectedAnswers);
-    setFormResult(result);
-    handleModalOpen();
-    onSubmit?.(selectedAnswers, result);
+    const responses = selectedAnswers.map((answer, index) => ({
+      question: formItems[index].title,
+      answer: answer ? constants.yes : constants.no,
+    }));
+    try {
+      refetch({ data: { responses } });
+    } catch (err) {
+      addNotification({
+        id: Date.now(),
+        type: "success",
+        message: err,
+      });
+    }
   };
+
+  useEffect(() => {
+    if (data) {
+      const percentage = data?.percentageScore * 0.75;
+
+      setFormResult({
+        percentage: percentage,
+        isAfflicted: percentage > 18.75,
+      });
+      handleModalOpen();
+    }
+  }, [data]);
 
   const handleModalContent = () => {
     if (!formResult) return null;
@@ -95,11 +113,12 @@ function DiagnosisLayout({
       title={title}
       subTitle={subTitle}
       handleSubmit={handleSubmit}
-      isButtonDisabled={!isFormComplete}
+      isButtonDisabled={!isFormComplete || loading}
+      loading={loading}
     >
       <div className="flex w-full justify-end gap-10 px-5 py-2">
-        <Typography size="lg">{constants.yes}</Typography>
-        <Typography size="lg">{constants.no}</Typography>
+        <Typography size="lg">{constants.yesFa}</Typography>
+        <Typography size="lg">{constants.noFa}</Typography>
       </div>
       {formItems.map((item, index) => (
         <MakeFormRow key={index} item={item} index={index} />

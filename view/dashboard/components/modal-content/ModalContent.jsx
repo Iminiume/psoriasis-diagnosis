@@ -7,7 +7,6 @@ import IconRenderer from "@/components/icon/IconRenderer";
 import Image from "@/components/image";
 import SuccessImage from "@/public/images/successImage.png";
 import { useUserContext } from "@/utils/context/useUserContext";
-import { RoleEnum } from "@/utils/enum/role-enum";
 
 const ModalContent = ({
   title,
@@ -25,11 +24,7 @@ const ModalContent = ({
     if (referrer) {
       router.replace(referrer);
     } else {
-      router.replace(
-        role === RoleEnum.PATIENT
-          ? "/dashboard/patient/requests"
-          : "/dashboard/doctor/requests",
-      );
+      router.replace("/dashboard");
     }
   };
 

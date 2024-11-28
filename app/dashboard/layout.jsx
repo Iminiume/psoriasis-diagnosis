@@ -3,7 +3,6 @@
 import PatientAPI from "@/api/patient";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import { useUserContext } from "@/utils/context/useUserContext";
-import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { RoleEnum } from "@/utils/enum/role-enum";
 import { PatientProvider } from "@/context/patient-context";
@@ -17,18 +16,10 @@ const Loading = dynamic(() => import("../loading"), { ssr: false });
 export default function Layout({ children }) {
   const { state, dispatch } = useUserContext();
   const { state: authState } = useAuthContext();
-  const router = useRouter();
 
   const [{ data, error, loading }, refetch] = PatientAPI.GetPatient({
     token: authState.token,
   });
-
-  useEffect(() => {
-    if (!authState.token) router.replace("/login");
-    else {
-      if (!state.role) router.replace("/login/role-selection");
-    }
-  }, [state, authState, router]);
 
   useEffect(() => {
     if (state.role === RoleEnum.PATIENT) {

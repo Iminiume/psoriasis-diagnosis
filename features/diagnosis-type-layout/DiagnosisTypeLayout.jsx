@@ -81,7 +81,7 @@ function DiagnosisTypeLayout({
         </span>
         <Typography size="2xl">{item.title}</Typography>
       </div>
-      <div className="grid grid-cols-2 gap-8">
+      <div className="grid gap-8 sm:grid-cols-1 lg:grid-cols-2">
         {item.items.map((itemInputs) => (
           <div
             className="col-span-1 flex flex-row items-center justify-start gap-8"

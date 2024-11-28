@@ -7,6 +7,8 @@ import { RoleEnum, RoleEnumFa } from "@/utils/enum/role-enum";
 import Drawer from "@/components/drawer";
 import Button from "@/components/button";
 import DashboardSidebarContent from "./components/dashboard-sidebar-content";
+import Image from "@/components/image";
+import BlueShadow from "@/public/images/blueShadow.png";
 
 function DashboardLayout({ children, data }) {
   const { state } = useUserContext();
@@ -17,7 +19,7 @@ function DashboardLayout({ children, data }) {
   const handleDrawerClose = () => drawerRef.current.close();
 
   return (
-    <section className="h-screen bg-pinkShadow bg-contain bg-right bg-no-repeat">
+    <section className="h-screen overflow-y-hidden bg-pinkShadow bg-contain bg-right bg-no-repeat">
       <div className="mx-auto flex h-full max-w-3xl">
         <div className="hidden h-full w-[300px] flex-col justify-start gap-12 bg-custom-gradient py-12 lg:flex">
           <DashboardSidebarContent />
@@ -40,8 +42,8 @@ function DashboardLayout({ children, data }) {
             <div className="flex gap-6">
               <div className="flex items-center gap-1">
                 <IconRenderer icon="user" />
-                <Typography>{data?.FirstName}</Typography>
-                <Typography>{data?.LastName}</Typography>
+                <Typography>{data?.first_name}</Typography>
+                <Typography>{data?.last_name}</Typography>
               </div>
             </div>
           </div>
@@ -53,6 +55,9 @@ function DashboardLayout({ children, data }) {
           <DashboardSidebarContent />
         </div>
       </Drawer>
+      <div className="absolute left-0 top-0 -z-10 h-full overflow-hidden">
+        <Image src={BlueShadow} alt={"blu-shadow"} />
+      </div>
     </section>
   );
 }

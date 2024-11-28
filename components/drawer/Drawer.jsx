@@ -1,6 +1,7 @@
 import { useState, useEffect, forwardRef, useImperativeHandle } from "react";
 import { createPortal } from "react-dom";
 import classNames from "classnames";
+import { usePathname } from "next/navigation";
 
 const Drawer = forwardRef(function Drawer(
   { direction = "right", children, className },
@@ -8,18 +9,20 @@ const Drawer = forwardRef(function Drawer(
 ) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     setMounted(true);
-
-    // Handle body scroll when drawer is open
     document.body.style.overflow = isOpen ? "hidden" : "";
-
     return () => {
       document.body.style.overflow = "";
       setMounted(false);
     };
   }, [isOpen]);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   useImperativeHandle(ref, () => ({
     open: () => setIsOpen(true),

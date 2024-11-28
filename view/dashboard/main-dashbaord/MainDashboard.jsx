@@ -1,14 +1,19 @@
 "use client";
 import React from "react";
-import { Consts } from "./consts";
-import Typography from "@/components/typography";
+import { useUserContext } from "@/utils/context/useUserContext";
+import { RoleEnum } from "@/utils/enum/role-enum";
+import PatientDashboard from "../patient/patient-dashboard";
+import DoctorDashboard from "../doctor/doctor-dashborad";
 
 function MainDashboard() {
+  const { state } = useUserContext();
   return (
-    <div className="flex h-full w-full items-center justify-center text-center">
-      <Typography weight="bold" size="4xl">
-        {Consts.welcome}
-      </Typography>
+    <div className="flex p-12">
+      {state.role === RoleEnum.PATIENT ? (
+        <PatientDashboard />
+      ) : (
+        <DoctorDashboard />
+      )}
     </div>
   );
 }

@@ -8,10 +8,39 @@ import { useUserContext } from "@/utils/context/useUserContext";
 
 function PatientRequestsLayout() {
   const { state } = useUserContext();
+  const { userData } = state;
+
+  const getLatestDiagnosis = (diagnosisObj) => {
+    const diagnosisEntries = Object.values(diagnosisObj);
+    const latestDiagnosis = diagnosisEntries.sort(
+      (a, b) => (b.id || 0) - (a.id || 0),
+    )[0];
+    return latestDiagnosis;
+  };
+
+  const latestQuestionnaireDiagnosis = getLatestDiagnosis(
+    userData?.diagnosis_by_questionnaire || {},
+  );
+  const latestFormDiagnosis = getLatestDiagnosis(
+    userData?.diagnosis_by_form || {},
+  );
+  const latestImageDiagnosis = getLatestDiagnosis(
+    userData?.diagnosis_by_image || {},
+  );
+
+  const isDisabled = {
+    questionnaire: latestQuestionnaireDiagnosis?.Comments?.length > 0,
+    form: latestFormDiagnosis?.Comments?.length > 0,
+    image: latestImageDiagnosis?.Comments?.length > 0,
+  };
+
   return (
     <SectionLayout hasButton={false} title={Consts.title}>
       <div className="flex flex-wrap justify-center gap-[30px]">
-        {FormItems(!state?.userData?.DoctorComment).map((item) =>
+        {FormItems(
+          !isDisabled.questionnaire,
+          !isDisabled.form || isDisabled.image,
+        ).map((item) =>
           item.disabled ? (
             <div key={item.label} className="pointer-events-none">
               <StepCard
