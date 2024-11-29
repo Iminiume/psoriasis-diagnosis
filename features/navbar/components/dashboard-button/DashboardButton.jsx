@@ -8,7 +8,7 @@ function DashboardButton() {
   return (
     <Link href={"/dashboard"}>
       <Button mode="secondary">
-        <Typography size="2xl" weight="medium">
+        <Typography size="xl" weight="medium">
           {Consts.dashboard}
         </Typography>
       </Button>

@@ -2,6 +2,7 @@ import useAxios from "@/utils/hooks/useAxios";
 
 const DoctorAPI = {};
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const STAGE_API_BASE_URL = process.env.NEXT_PUBLIC_API_STAGE_BASE_URL;
 
 DoctorAPI.CreateDoctor = ({ token }) => {
   return useAxios(
@@ -91,6 +92,16 @@ DoctorAPI.GetPatients = ({ token }) => {
 DoctorAPI.GetPatientDetails = ({ token, slug }) => {
   return useAxios({
     url: `${API_BASE_URL}/api/get_patient_details/${slug}`,
+    method: "GET",
+    headers: {
+      Auth: token,
+    },
+  });
+};
+
+DoctorAPI.GetReport = ({ token, slug }) => {
+  return useAxios({
+    url: `${STAGE_API_BASE_URL}/api/get_report`,
     method: "GET",
     headers: {
       Auth: token,

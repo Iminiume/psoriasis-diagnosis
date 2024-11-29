@@ -67,7 +67,7 @@ function FormModule() {
 
   return (
     <div className="flex w-full flex-col gap-8 pt-[81px]">
-      <Typography size="6xl">
+      <Typography size="5xl">
         {isEnteringNumber ? Consts.login : Consts.sentCode}
       </Typography>
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">

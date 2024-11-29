@@ -13,7 +13,7 @@ function Button({
   const isPrimary = mode === "primary";
 
   const buttonClass = classNames(
-    "h-13 rounded-lg px-8 py-3 disabled:cursor-not-allowed shadow-lg text-xl",
+    "h-13 rounded-lg px-4 lg:px-8 py-3 disabled:cursor-not-allowed shadow-lg text-xl",
 
     isPrimary &&
       !disabled &&

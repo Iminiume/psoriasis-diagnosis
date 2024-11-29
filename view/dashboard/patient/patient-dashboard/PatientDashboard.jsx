@@ -16,7 +16,9 @@ const StaticCards = ({ title, link = "#" }) => {
         {title}
       </Typography>
       <Link href={link}>
-        <Button className="w-full">{Consts.click}</Button>
+        <Button className="w-full">
+          <Typography size="md">{Consts.click}</Typography>
+        </Button>
       </Link>
     </div>
   );
@@ -74,7 +76,7 @@ function PatientDashboard() {
   }, [userData]);
 
   return (
-    <div className="flex w-full flex-col items-center justify-start gap-8 text-center">
+    <div className="flex w-full flex-col items-center justify-start gap-12 text-center">
       <div className="flex w-full flex-col items-center justify-center gap-6 rounded-xl bg-[#26335D] px-6 py-8 shadow-lg">
         {userData && (
           <Image src={SuccessImage} alt="Success" className="object-contain" />

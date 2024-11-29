@@ -12,7 +12,7 @@ function LoginButton({ isLoggedIn, onClick }) {
       onClick={onClick}
     >
       <IconRenderer icon={isLoggedIn ? "exit" : "user"} />
-      <Typography size="2xl" weight="medium">
+      <Typography size="xl" weight="medium">
         {isLoggedIn ? Consts.logOut : Consts.comeIn}
       </Typography>
     </Button>
