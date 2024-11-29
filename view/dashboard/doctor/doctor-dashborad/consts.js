@@ -1,6 +1,19 @@
 export const Consts = Object.freeze({
   patientCounts: "تعداد کل بیماران",
   doctorCounts: "تعداد پزشکان سامانه",
+  diagnosisChart: "فراوانی نوع پسوریازیس",
+  psoriazis: "پسوریازیس",
+  maleFa: "مرد",
+  male: "Male",
+  femaleFa: "زن",
+  female: "Female",
+  unknownGender: "ناشناخته",
+  genderStats: "جنسیت بیماران",
+  lastPateints: "آخرین بیماران ثبت شده",
+  threeDots: "...",
+  fullName: "نام و نام خانوادگی",
+  nationalId: "کد ملی",
+  timeStamp: "تاریخ ثبت",
 });
 
 export const formItems = [

@@ -81,7 +81,7 @@ DoctorAPI.UploadImage = ({ token }) => {
 
 DoctorAPI.GetPatients = ({ token }) => {
   return useAxios({
-    url: `${API_BASE_URL}/api/get_patients`,
+    url: `${STAGE_API_BASE_URL}/api/get_patients`,
     method: "GET",
     headers: {
       Auth: token,
