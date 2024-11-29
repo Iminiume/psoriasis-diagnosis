@@ -20,6 +20,7 @@ function FillFormLayout({
   validationSchema,
   constants,
   api,
+  onSuccess,
 }) {
   const { state: authState, setToken } = useAuthContext();
   const { addNotification } = useNotificationContext();
@@ -41,6 +42,8 @@ function FillFormLayout({
         type: "success",
         message: constants.formModalCompleted,
       });
+
+      onSuccess?.(data);
     } catch (error) {
       addNotification({
         id: Date.now(),

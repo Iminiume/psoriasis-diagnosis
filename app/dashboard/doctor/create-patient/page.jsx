@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 import React from "react";
 
 const CreatePatient = dynamic(
-  () => import("@/view/dashboard/doctor/requests/create-patient"),
+  () => import("@/view/dashboard/doctor/create-patient"),
 );
 
 function Page() {

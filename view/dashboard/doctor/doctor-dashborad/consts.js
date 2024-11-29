@@ -31,6 +31,6 @@ export const formItems = [
   },
   {
     title: "ثبت بیمار جدید",
-    link: "/dashboard/doctor/requests/create-patient",
+    link: "/dashboard/doctor/create-patient",
   },
 ];

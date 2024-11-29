@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Consts, formItems } from "./consts";
 import Typography from "@/components/typography";
@@ -9,8 +10,7 @@ import { RoleEnum } from "@/utils/enum/role-enum";
 import DoughnutChart from "@/components/doughnut-chart";
 import { psoriazisType } from "@/utils/psoriazisType";
 import StatsList from "@/components/stats-list";
-import DiagnosisTable from "@/features/diagnosis-table";
-import ConvertToShamsiDate from "@/utils/convertToShamsiDate";
+import PatientsTable from "@/features/patients-table";
 
 const StaticCard = ({ title, icon, count }) => {
   return (
@@ -33,7 +33,7 @@ function DoctorDashboard() {
   const [{ data, loading }] = DoctorAPI.GetReport({ token: state.token });
   const [{ data: patientsData, loading: patientsLoading }] =
     DoctorAPI.GetPatients({ token: state.token });
-  console.log(patientsData);
+
   return (
     <div className="flex w-full flex-col justify-start gap-12 text-center">
       <div className="grid w-full grid-cols-1 justify-between gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -104,56 +104,7 @@ function DoctorDashboard() {
           <Typography weight="bold" size="3xl">
             {Consts.lastPateints}
           </Typography>
-          <div className="w-full">
-            <div className="grid grid-cols-2 gap-4 border-[#ffffff20] p-4 lg:grid-cols-4">
-              {" "}
-              {/* Adjust last column width */}
-              <div className="text-nowrap">
-                <Typography weight="bold">{Consts.fullName}</Typography>
-              </div>
-              <div className="hidden lg:block">
-                <Typography weight="bold">{Consts.nationalId}</Typography>
-              </div>
-              <div className="hidden lg:block">
-                <Typography weight="bold">{Consts.timeStamp}</Typography>
-              </div>
-              <div></div>
-            </div>
-            <div className="flex flex-col gap-4">
-              {patientsData?.slice(0, 10).map((patient, index) => {
-                const convertedDate = ConvertToShamsiDate(patient?.CreatedAt);
-                return (
-                  <div
-                    key={`patient-${index}`}
-                    className="grid grid-cols-2 flex-nowrap gap-4 overflow-x-auto rounded-xl border-[#ffffff20] bg-[#303F70] p-4 lg:grid-cols-4"
-                  >
-                    <div className="flex items-center justify-center gap-1 text-nowrap">
-                      <Typography>{patient?.FirstName}</Typography>
-                      <Typography>{patient?.LastName}</Typography>
-                    </div>
-                    <div className="hidden text-nowrap lg:block">
-                      <Typography>{patient?.NationalId}</Typography>
-                    </div>
-                    <div className="hidden text-nowrap lg:block">
-                      <Typography className="text-secondTextColor">
-                        {convertedDate?.timeStamp +
-                          " - " +
-                          convertedDate.formattedDate}
-                      </Typography>
-                    </div>
-                    {/* Icon Renderer stays fixed */}
-                    <div className="flex items-end justify-end bg-[#303F70]">
-                      {" "}
-                      {/* Adjust width for icon */}
-                      <Link href="#">
-                        <IconRenderer icon="ellipsis" />
-                      </Link>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
+          <PatientsTable data={patientsData} consts={Consts} />
         </div>
       )}
     </div>

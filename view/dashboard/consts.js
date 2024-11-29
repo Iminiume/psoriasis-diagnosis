@@ -6,6 +6,7 @@ export const Items = [
     forPatient: true,
     forDoctor: true,
   },
+
   {
     label: "تشکیل / ویرایش پرونده",
     link: "/dashboard/patient/fill-form",
@@ -18,21 +19,28 @@ export const Items = [
     icon: "request",
     forPatient: true,
   },
-  // {
-  //   label: "تشکیل / ویرایش پرونده",
-  //   link: "/dashboard/doctor/fill-form",
-  //   icon: "request",
-  //   forDoctor: true,
-  // },
+
   {
-    label: "کمک یار پزشک",
+    label: "دستیار پزشک",
     link: "/dashboard/doctor/requests",
+    icon: "request",
+    forDoctor: true,
+  },
+  {
+    label: "ثبت بیمار جدید",
+    link: "/dashboard/doctor/create-patient",
     icon: "request",
     forDoctor: true,
   },
   {
     label: "پرونده الکترونیک بیماران",
     link: "/dashboard/doctor/patients-forms",
+    icon: "request",
+    forDoctor: true,
+  },
+  {
+    label: "جستجوی بیماران",
+    link: "/dashboard/doctor/search-patients",
     icon: "request",
     forDoctor: true,
   },

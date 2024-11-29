@@ -7,7 +7,7 @@ const STAGE_API_BASE_URL = process.env.NEXT_PUBLIC_API_STAGE_BASE_URL;
 DoctorAPI.CreateDoctor = ({ token }) => {
   return useAxios(
     {
-      url: `${API_BASE_URL}/api/create_doctor`,
+      url: `${STAGE_API_BASE_URL}/api/create_doctor`,
       method: "POST",
       headers: {
         Auth: token,
@@ -22,7 +22,7 @@ DoctorAPI.CreateDoctor = ({ token }) => {
 DoctorAPI.CreatePatient = ({ token }) => {
   return useAxios(
     {
-      url: `${API_BASE_URL}/api/doctor_create_patient`,
+      url: `${STAGE_API_BASE_URL}/api/doctor_create_patient`,
       method: "POST",
       headers: {
         Auth: token,
@@ -37,7 +37,7 @@ DoctorAPI.CreatePatient = ({ token }) => {
 DoctorAPI.AddComment = ({ token }) => {
   return useAxios(
     {
-      url: `${API_BASE_URL}/api/add_doctor_comment`,
+      url: `${STAGE_API_BASE_URL}/api/add_doctor_comment`,
       method: "POST",
       headers: {
         Auth: token,
@@ -52,7 +52,7 @@ DoctorAPI.AddComment = ({ token }) => {
 DoctorAPI.DiagnosisType = ({ token }) => {
   return useAxios(
     {
-      url: `${API_BASE_URL}/api/doctor_diagnosis`,
+      url: `${STAGE_API_BASE_URL}/api/doctor_diagnosis`,
       method: "POST",
       headers: {
         Auth: token,
@@ -67,7 +67,7 @@ DoctorAPI.DiagnosisType = ({ token }) => {
 DoctorAPI.UploadImage = ({ token }) => {
   return useAxios(
     {
-      url: `${API_BASE_URL}/api/doctor_diagnosis_image`,
+      url: `${STAGE_API_BASE_URL}/api/doctor_diagnosis_image`,
       method: "POST",
       headers: {
         Auth: token,
@@ -91,7 +91,7 @@ DoctorAPI.GetPatients = ({ token }) => {
 
 DoctorAPI.GetPatientDetails = ({ token, slug }) => {
   return useAxios({
-    url: `${API_BASE_URL}/api/get_patient_details/${slug}`,
+    url: `${STAGE_API_BASE_URL}/api/get_patient_details/${slug}`,
     method: "GET",
     headers: {
       Auth: token,
@@ -99,13 +99,21 @@ DoctorAPI.GetPatientDetails = ({ token, slug }) => {
   });
 };
 
-DoctorAPI.GetReport = ({ token, slug }) => {
+DoctorAPI.GetReport = ({ token }) => {
   return useAxios({
     url: `${STAGE_API_BASE_URL}/api/get_report`,
     method: "GET",
     headers: {
       Auth: token,
     },
+  });
+};
+
+DoctorAPI.GetUsersExcel = () => {
+  return useAxios({
+    url: `${STAGE_API_BASE_URL}/api/get_users_excel`,
+    method: "GET",
+    responseType: "blob",
   });
 };
 

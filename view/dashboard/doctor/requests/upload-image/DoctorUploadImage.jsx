@@ -18,7 +18,7 @@ function DoctorUploadImage() {
   useEffect(() => {
     if (!patientData) {
       router.replace(
-        `/dashboard/doctor/requests/create-patient?referrer=${encodeURIComponent(pathname)}`,
+        `/dashboard/doctor/create-patient?referrer=${encodeURIComponent(pathname)}`,
       );
       addNotification({
         id: Date.now(),

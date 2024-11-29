@@ -5,4 +5,7 @@ export const Consts = Object.freeze({
   isChecked: "پاسخ داده شده",
   verifiedStatus: "وضعیت: ",
   more: "بیشتر",
+  fullName: "نام و نام خانوادگی",
+  nationalId: "کد ملی",
+  timeStamp: "تاریخ ثبت",
 });
