@@ -22,8 +22,8 @@ function RecieveAdvice() {
         <div className="flex flex-col gap-4">
           <Typography size="lg">{Consts.advice}</Typography>
           <div className="flex flex-wrap justify-start gap-4">
-            {Advices.map((item) => (
-              <Link href={item.link}>
+            {Advices.map((item, index) => (
+              <Link href={item.link} key={`advice-${index}`}>
                 <Button>
                   <Typography size="lg">{item.title}</Typography>
                 </Button>

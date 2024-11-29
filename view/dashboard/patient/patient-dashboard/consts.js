@@ -9,6 +9,10 @@ export const Consts = Object.freeze({
   noFile: "پرونده ای تشکیل نشده!",
   goMakeFile: "با رفتن به بخش تشکیل پرونده، پرونده الکترونیکی خود را بسازید",
   profileUpdate: "آپدیت پروفایل",
+  diagnosisByForm: "تشخیص نوع بیماری",
+  diagnosisByImage: "تشخیص از روی عکس",
+  diagnosisByQuestionnaire: "تشخیص بیماری",
+
   date: "تاریخ:",
   hours: "ساعت",
 });
