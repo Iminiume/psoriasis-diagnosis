@@ -1,3 +1,5 @@
+import { GenderEnum } from "@/utils/enum/gender-enum";
+
 export const Consts = Object.freeze({
   title: "اطلاعات بیمار را وارد کنید",
   subTitle: "تکمیل پرونده الکترونیکی سلامت",
@@ -64,7 +66,7 @@ export const FormItems = [
     ],
     width: "1/4",
     key: "is_pregnant",
-    condition: (formValues) => formValues.gender === "Female",
+    condition: (formValues) => formValues.gender === GenderEnum.FEMALE,
   },
   {
     label: "در حال شیردهی هستید؟",
@@ -75,7 +77,7 @@ export const FormItems = [
     ],
     width: "1/4",
     key: "is_breastfeeding",
-    condition: (formValues) => formValues.gender === "Female",
+    condition: (formValues) => formValues.gender === GenderEnum.FEMALE,
   },
   {
     label: "وضعیت تاهل",
@@ -140,6 +142,13 @@ export const FormItems = [
     type: "text",
     width: "1/2",
     key: "insurance",
+  },
+  {
+    label: "شماره تلفن",
+    placeholder: "شماره تلفن خود را وارد کنید",
+    type: "text",
+    width: "1/2",
+    key: "phone_number",
   },
   {
     label: "داروها",

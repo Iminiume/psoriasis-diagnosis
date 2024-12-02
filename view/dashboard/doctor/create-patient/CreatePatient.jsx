@@ -20,13 +20,14 @@ const initialValues = {
   address: "",
   job: "",
   education: "",
-  avg_salary: "",
+  avg_salary: 0,
   insurance: "",
-  age_in_first_sings: "",
+  age_in_first_sings: 0,
   medicines: [],
   treatments: [],
   last_doctor_visit: "",
   detection_time: "",
+  phone_number: 0,
 };
 
 const validationSchema = Yup.object().shape({
@@ -40,6 +41,7 @@ const validationSchema = Yup.object().shape({
   medicines: Yup.array().of(Yup.string()).nullable(),
   treatments: Yup.array().of(Yup.string()).nullable(),
   detection_time: Yup.date().required("زمان تشخیص الزامی است"),
+  phone_number: Yup.number().required("شماره تلفن الزامی است"),
 });
 
 function CreatePatient() {

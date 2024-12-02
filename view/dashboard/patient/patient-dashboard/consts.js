@@ -12,7 +12,7 @@ export const Consts = Object.freeze({
   diagnosisByForm: "تشخیص نوع بیماری",
   diagnosisByImage: "تشخیص از روی عکس",
   diagnosisByQuestionnaire: "تشخیص بیماری",
-
+  notificationTitle: "اعلانات اخیر",
   date: "تاریخ:",
   hours: "ساعت",
 });

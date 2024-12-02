@@ -7,6 +7,8 @@ import React from "react";
 import "@/public/styles/fonts.css";
 import "@/public/styles/globals.css";
 import NProgressProvider from "@/features/nprogress-provider";
+import Transition from "@/features/motion/transition";
+import { AnimatePresence } from "framer-motion";
 
 export const metadata = {
   title: "Hamyar Psoriasis",
@@ -21,15 +23,19 @@ function RootLayout({ children }) {
       <body
         className={`m-0 box-border flex min-h-screen flex-col p-0 antialiased`}
       >
-        <ClientLayout>
-          <UserProvider>
-            <AuthProvider>
-              <NotificationProvider>
-                <NProgressProvider>{children}</NProgressProvider>
-              </NotificationProvider>
-            </AuthProvider>
-          </UserProvider>
-        </ClientLayout>
+        <AnimatePresence>
+          <Transition>
+            <ClientLayout>
+              <UserProvider>
+                <AuthProvider>
+                  <NotificationProvider>
+                    <NProgressProvider>{children}</NProgressProvider>
+                  </NotificationProvider>
+                </AuthProvider>
+              </UserProvider>
+            </ClientLayout>
+          </Transition>
+        </AnimatePresence>
       </body>
     </html>
   );

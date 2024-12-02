@@ -117,4 +117,19 @@ DoctorAPI.GetUsersExcel = () => {
   });
 };
 
+DoctorAPI.DoctorQuestionnaire = ({ token }) => {
+  return useAxios(
+    {
+      url: `${STAGE_API_BASE_URL}/api/doctor_questionnaire`,
+      method: "POST",
+      headers: {
+        Auth: token,
+      },
+    },
+    {
+      manual: true,
+    },
+  );
+};
+
 export default DoctorAPI;

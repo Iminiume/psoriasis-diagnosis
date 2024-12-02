@@ -11,11 +11,12 @@ import DoughnutChart from "@/components/doughnut-chart";
 import { psoriazisType } from "@/utils/psoriazisType";
 import StatsList from "@/components/stats-list";
 import PatientsTable from "@/features/patients-table";
+import { GenderEnum, GenderEnumFa } from "@/utils/enum/gender-enum";
 
 const StaticCard = ({ title, icon, count }) => {
   return (
-    <div className="flex gap-6 rounded-xl border border-[#ffffff10] bg-[#252B42] p-6 shadow-lg">
-      <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full bg-[#393f54]">
+    <div className="bg-cardBg100 border-cardBorderOp10 flex gap-6 rounded-xl border p-6 shadow-lg">
+      <div className="border-cardBorderOp20 flex h-[60px] w-[60px] items-center justify-center rounded-full border bg-[#393f54]">
         <IconRenderer icon={icon} />
       </div>
       <div className="flex flex-col items-start">
@@ -40,7 +41,7 @@ function DoctorDashboard() {
         {formItems.map((item, index) => (
           <div
             key={`form-item-${index}`}
-            className="rounded-xl border border-[#ffffff30] bg-[#26335D] p-6 shadow-lg"
+            className="border-cardBorderOp30 bg-cardBg300 rounded-xl border p-6 shadow-lg"
           >
             <Link href={item.link}>
               <Typography>{item.title}</Typography>
@@ -66,7 +67,7 @@ function DoctorDashboard() {
       </div>
       {data && (
         <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="min-h-96 rounded-xl border border-[#ffffff10] bg-[#252B42] text-start shadow-lg">
+          <div className="bg-cardBg100 border-cardBorderOp10 min-h-96 rounded-xl border text-start shadow-lg">
             <DoughnutChart
               label={Consts.diagnosisChart}
               stats={data?.diagnosis_stats?.map((item) => ({
@@ -78,7 +79,7 @@ function DoctorDashboard() {
             />
           </div>
 
-          <div className="flex min-h-96 w-full flex-col items-center justify-start gap-6 rounded-xl border border-[#ffffff10] bg-[#252B42] p-8">
+          <div className="bg-cardBg100 border-cardBorderOp10 flex min-h-96 w-full flex-col items-center justify-start gap-6 rounded-xl border p-8">
             <Typography weight="bold" size="3xl">
               {Consts.genderStats}
             </Typography>
@@ -87,10 +88,10 @@ function DoctorDashboard() {
                 stats={data?.gender_stats.map((item, index) => ({
                   rank: index + 1,
                   name:
-                    item?.Gender === Consts.male
-                      ? Consts.maleFa
-                      : item?.Gender === Consts.female
-                        ? Consts.femaleFa
+                    item?.Gender === GenderEnum.MALE
+                      ? GenderEnumFa.MALE
+                      : item?.Gender === GenderEnum.FEMALE
+                        ? GenderEnumFa.FEMALE
                         : Consts.unknownGender,
                   percentage: item.Percentage,
                 }))}
@@ -100,8 +101,8 @@ function DoctorDashboard() {
         </div>
       )}
       {patientsData && (
-        <div className="flex flex-col items-start gap-8 rounded-xl border border-[#ffffff10] bg-[#252B42] p-8 shadow-lg">
-          <Typography weight="bold" size="3xl">
+        <div className="border-cardBorderOp10 bg-cardBg100 flex flex-col items-start gap-8 rounded-xl border p-8 shadow-lg">
+          <Typography weight="bold" size="2xl">
             {Consts.lastPateints}
           </Typography>
           <PatientsTable data={patientsData} consts={Consts} />

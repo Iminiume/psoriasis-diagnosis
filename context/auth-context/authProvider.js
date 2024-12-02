@@ -31,26 +31,23 @@ export const AuthProvider = ({ children }) => {
     const token = getCookie("token");
     const decodedToken = token ? JWT.decode(token) : null;
     if (token) {
-      dispatch({ type: "LOGIN", payload: token });
-      if (decodedToken?.role) setRole(decodedToken.role);
+      login(token);
     } else {
       dispatch({ type: "SET_LOADING", payload: false });
     }
     const currentTime = Date.now();
-
+    console.log(token);
     if (decodedToken > currentTime || token === "undefined") {
       logout();
     }
   }, []);
 
   const login = (token) => {
-    if (token) {
-      setToken(token);
-      dispatch({ type: "LOGIN", payload: token });
-    }
+    setToken(token);
+    dispatch({ type: "LOGIN", payload: token });
 
     const decodedToken = JWT.decode(token);
-    setRole(decodedToken.role);
+    setRole(decodedToken?.role);
   };
 
   const logout = () => {

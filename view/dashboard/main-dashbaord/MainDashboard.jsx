@@ -8,7 +8,7 @@ import DoctorDashboard from "../doctor/doctor-dashborad";
 function MainDashboard() {
   const { state } = useUserContext();
   return (
-    <div className="flex h-full overflow-y-auto p-12">
+    <div className="flex h-full overflow-y-auto p-8">
       {state.role === RoleEnum.PATIENT ? (
         <PatientDashboard />
       ) : (

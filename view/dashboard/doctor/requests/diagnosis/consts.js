@@ -1,8 +1,10 @@
 export const Consts = Object.freeze({
   title: "به سوالات زیر در مورد بیمار پاسخ دهید",
   subTitle: "لطفا به تمامی سوالات زیر با بله یا خیر با دقت پاسخ دهید",
-  yes: "بله",
-  no: "نه",
+  yes: "Yes",
+  yesFa: "بله",
+  no: "No",
+  noFa: "نه",
   continue: "ادامه",
   alarm: "پیام هشدار",
   diagnosis: "احتمال پیشنهادی برای تشخیص بیماری",
@@ -10,6 +12,8 @@ export const Consts = Object.freeze({
   isAfflicted: "بیمار به پسوریازیس مبتلا است ",
   notAfflicted: "بیمار به پسوریازیس مبتلا نیست ",
   confirmIsOnDoctor: "تشخیص نهایی بیماری بیمار بر عهده پزشک می باشد",
+  noPatientError:
+    "پرونده ای برای بیمار ساخته نشده، لطفا بعد از تشکیل پرونده به صفحه ی تشخیص بیماری برگردید",
 });
 
 export const FormItems = [

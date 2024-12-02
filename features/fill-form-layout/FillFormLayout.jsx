@@ -23,6 +23,7 @@ function FillFormLayout({
   onSuccess,
 }) {
   const { state: authState, setToken } = useAuthContext();
+
   const { addNotification } = useNotificationContext();
   const [{ loading }, refetch] = api({ token: authState.token });
   const modalRef = useRef(null);
@@ -34,7 +35,7 @@ function FillFormLayout({
     try {
       const { data } = await refetch({ data: values });
 
-      setToken(data?.token);
+      if (data?.token) setToken(data?.token);
       handleModalOpen();
 
       addNotification({
@@ -43,7 +44,7 @@ function FillFormLayout({
         message: constants.formModalCompleted,
       });
 
-      onSuccess?.(data);
+      onSuccess?.(values);
     } catch (error) {
       addNotification({
         id: Date.now(),

@@ -7,11 +7,11 @@ import Typography from "@/components/typography";
 import { Consts } from "./consts";
 import Button from "@/components/button";
 import Link from "next/link";
-import ConvertToShamsiDate from "@/utils/convertToShamsiDate";
+import convertToShamsiDate from "@/utils/convertToShamsiDate";
 
 const StaticCards = ({ title, link = "#" }) => {
   return (
-    <div className="flex basis-1/2 flex-col gap-6 rounded-xl bg-[#26335D] p-6 shadow-lg">
+    <div className="bg-cardBg200 border-cardBorderOp30 flex flex-col gap-6 rounded-xl border p-6 shadow-lg">
       <Typography size="xl" weight="semibold">
         {title}
       </Typography>
@@ -29,14 +29,6 @@ function PatientDashboard() {
   const { state } = useUserContext();
 
   const userData = state.userData;
-
-  const getLatestDiagnosis = (diagnosisObj) => {
-    const diagnosisEntries = Object.values(diagnosisObj);
-    const latestDiagnosis = diagnosisEntries.sort(
-      (a, b) => (b.id || 0) - (a.id || 0),
-    )[0];
-    return latestDiagnosis;
-  };
 
   const handleArrangeData = (title, field) => {
     return Object.values(field || {})?.map((item) => {
@@ -77,7 +69,7 @@ function PatientDashboard() {
 
   return (
     <div className="flex w-full flex-col items-center justify-start gap-12 text-center">
-      <div className="flex w-full flex-col items-center justify-center gap-6 rounded-xl bg-[#26335D] px-6 py-8 shadow-lg">
+      <div className="border-cardBorderOp30 bg-cardBg200 flex w-full flex-col items-center justify-center gap-6 rounded-xl border px-6 py-8 shadow-lg">
         {userData && (
           <Image src={SuccessImage} alt="Success" className="object-contain" />
         )}
@@ -92,19 +84,22 @@ function PatientDashboard() {
         </div>
       </div>
 
-      <div className="flex w-full gap-8">
+      <div className="grid w-full gap-8 md:grid-cols-2">
         <StaticCards title={Consts.dieseaseType} />
         <StaticCards title={Consts.selfCare} />
       </div>
 
       {notification && (
-        <div className="flex w-full flex-col items-start justify-start gap-6">
+        <div className="bg-cardBg100 border-cardBorderOp30 flex w-full flex-col items-start justify-start gap-6 rounded-xl border p-6 shadow-lg">
+          <Typography weight="bold" size="2xl">
+            {Consts.notificationTitle}
+          </Typography>
           {notification?.map((item, index) => {
-            const convertedDate = ConvertToShamsiDate(item?.time_stamp);
+            const convertedDate = convertToShamsiDate(item?.time_stamp);
 
             return (
               <div
-                className="flex w-full justify-between rounded-xl bg-[#26335D] p-6 shadow-lg"
+                className="bg-cardBg300 border-cardBorderOp10 flex w-full justify-between rounded-xl border p-6 shadow-lg"
                 key={`notification-${index}`}
               >
                 <Typography>{item?.title}</Typography>

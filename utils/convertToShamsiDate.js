@@ -1,11 +1,14 @@
 import jalaali from "jalaali-js";
 
-function ConvertToShamsiDate(isoDate) {
+function convertToShamsiDate(isoDate) {
   if (!isoDate) return null;
 
   const date = new Date(isoDate);
+  const { jy, jm, jd } = jalaali.toJalaali(date);
+
   const hours = date.getHours().toString().padStart(2, "0");
   const minutes = date.getMinutes().toString().padStart(2, "0");
+  const timeStamp = `${hours}:${minutes}`;
 
   const daysOfWeek = [
     "یک‌شنبه",
@@ -17,8 +20,6 @@ function ConvertToShamsiDate(isoDate) {
     "شنبه",
   ];
   const dayOfWeek = daysOfWeek[date.getDay()];
-
-  const { jy, jm, jd } = jalaali.toJalaali(date);
 
   const persianMonths = [
     "فروردین",
@@ -35,11 +36,15 @@ function ConvertToShamsiDate(isoDate) {
     "اسفند",
   ];
   const monthName = persianMonths[jm - 1];
-
-  // Format the final output
   const formattedDate = `${dayOfWeek} ${jd} ${monthName}`;
-  const timeStamp = `${hours}:${minutes}`;
-  return { formattedDate: formattedDate, timeStamp: timeStamp };
+
+  const formattedDateInYear = `${jd} ${monthName} ${jy}`;
+
+  return {
+    formattedDate: formattedDate,
+    timeStamp: timeStamp,
+    formattedDateInYear: formattedDateInYear,
+  };
 }
 
-export default ConvertToShamsiDate;
+export default convertToShamsiDate;

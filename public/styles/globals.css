@@ -42,6 +42,14 @@
   --login-bg: #191f2d33;
   --login-border: #ffffff9c;
   --disabled-element-color: #737373;
+
+  --card-bg-100: #252b42;
+  --card-bg-200: #26335d;
+  --card-bg-300: #303f70;
+
+  --card-border-op-10: #ffffff10;
+  --card-border-op-20: #ffffff20;
+  --card-border-op-30: #ffffff20;
 }
 
 body {

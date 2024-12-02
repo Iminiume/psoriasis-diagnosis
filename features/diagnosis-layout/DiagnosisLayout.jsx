@@ -8,7 +8,14 @@ import ModalContent from "@/view/dashboard/components/modal-content";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 
-function DiagnosisLayout({ title, subTitle, formItems, constants, api }) {
+function DiagnosisLayout({
+  title,
+  subTitle,
+  formItems,
+  constants,
+  api,
+  userInfo,
+}) {
   const [selectedAnswers, setSelectedAnswers] = useState(
     Array(formItems.length).fill(null),
   );
@@ -35,8 +42,14 @@ function DiagnosisLayout({ title, subTitle, formItems, constants, api }) {
       question: formItems[index].title,
       answer: answer ? constants.yes : constants.no,
     }));
+    const payload = {
+      ...(userInfo
+        ? { user_info: userInfo, questionnaire: { responses } }
+        : { responses }),
+    };
+
     try {
-      refetch({ data: { responses } });
+      refetch({ data: payload });
     } catch (err) {
       addNotification({
         id: Date.now(),

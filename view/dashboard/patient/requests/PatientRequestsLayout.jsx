@@ -11,11 +11,9 @@ function PatientRequestsLayout() {
   const { userData } = state;
 
   const getLatestDiagnosis = (diagnosisObj) => {
-    const diagnosisEntries = Object.values(diagnosisObj);
-    const latestDiagnosis = diagnosisEntries.sort(
-      (a, b) => (b.id || 0) - (a.id || 0),
-    )[0];
-    return latestDiagnosis;
+    return Object.values(diagnosisObj).reduce((latest, current) => {
+      return !latest || (current.id || 0) > (latest.id || 0) ? current : latest;
+    }, null);
   };
 
   const latestQuestionnaireDiagnosis = getLatestDiagnosis(

@@ -66,6 +66,13 @@ module.exports = {
         buttonShadow: "var(--button-shadow)",
         buttonHover: "var(--button-hover)",
         disabledElementColor: "var(--disabled-element-color)",
+
+        cardBg100: "var(--card-bg-100)",
+        cardBg200: "var(--card-bg-200)",
+        cardBg300: "var(--card-bg-300)",
+        cardBorderOp10: "var(--card-border-op-10)",
+        cardBorderOp20: "var(--card-border-op-20)",
+        cardBorderOp30: "var(--card-border-op-30)",
       },
     },
   },

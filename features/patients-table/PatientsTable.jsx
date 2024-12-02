@@ -1,6 +1,6 @@
 import IconRenderer from "@/components/icon/IconRenderer";
 import Typography from "@/components/typography";
-import ConvertToShamsiDate from "@/utils/convertToShamsiDate";
+import convertToShamsiDate from "@/utils/convertToShamsiDate";
 import Link from "next/link";
 import React from "react";
 
@@ -21,11 +21,11 @@ const PatientsTable = ({ data, consts }) => {
       </div>
       <div className="flex flex-col gap-4">
         {data?.slice(0, 10).map((patient, index) => {
-          const convertedDate = ConvertToShamsiDate(patient?.CreatedAt);
+          const convertedDate = convertToShamsiDate(patient?.CreatedAt);
           return (
             <div
               key={`patient-${index}`}
-              className="grid grid-cols-2 flex-nowrap gap-4 overflow-x-auto rounded-xl border-[#ffffff20] bg-[#303F70] p-4 lg:grid-cols-4"
+              className="border-cardBorderOp10 bg-cardBg300 grid grid-cols-2 flex-nowrap gap-4 overflow-x-auto rounded-xl border p-5 shadow-lg lg:grid-cols-4"
             >
               <div className="flex items-center justify-center gap-1 text-nowrap">
                 <Typography>{patient?.FirstName}</Typography>
@@ -41,7 +41,7 @@ const PatientsTable = ({ data, consts }) => {
                     convertedDate.formattedDate}
                 </Typography>
               </div>
-              <div className="flex items-end justify-end bg-[#303F70]">
+              <div className="flex items-end justify-end">
                 <Link href={`/dashboard/doctor/patients-forms/${patient?.ID}`}>
                   <IconRenderer icon="ellipsis" />
                 </Link>
