@@ -2,7 +2,7 @@
 import DoctorAPI from "@/api/doctor";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import dynamic from "next/dynamic";
-import React from "react";
+import React, { use } from "react";
 
 const PatientForm = dynamic(
   () => import("@/view/dashboard/doctor/patients-forms/patient-form"),
@@ -11,12 +11,12 @@ const Loading = dynamic(() => import("@/app/dashboard/loading"), {
   ssr: false,
 });
 
-function Page(props) {
-  const { params } = props;
+function Page({ params }) {
+  const { slug } = use(params);
   const { state } = useAuthContext();
 
   const [{ data, loading, error }] = DoctorAPI.GetPatientDetails({
-    slug: params.slug,
+    slug: slug,
     token: state.token,
   });
 

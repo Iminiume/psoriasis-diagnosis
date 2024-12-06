@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image from "@/components/image";
 import Typography from "@/components/typography";
@@ -33,10 +34,7 @@ function ThirdSection() {
           </Typography>
           <div className="flex gap-6">
             <Button>{Texts.reserveNow}</Button>
-            <Button
-              mode="secondary"
-              onClick={() => router.replace("/login")}
-            >
+            <Button mode="secondary" onClick={() => router.replace("/login")}>
               {Texts.moreInfo}
             </Button>
           </div>

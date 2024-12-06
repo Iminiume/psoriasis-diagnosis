@@ -1,10 +1,10 @@
 "use client";
 
-import { LoadingNFS } from "@/components/loading";
+import { LoadingFS } from "@/components/loading";
 import React from "react";
 
 function Loading() {
-  return <LoadingNFS />;
+  return <LoadingFS />;
 }
 
 export default Loading;

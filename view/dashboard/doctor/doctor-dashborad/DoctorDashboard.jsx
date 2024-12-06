@@ -15,8 +15,8 @@ import { GenderEnum, GenderEnumFa } from "@/utils/enum/gender-enum";
 
 const StaticCard = ({ title, icon, count }) => {
   return (
-    <div className="bg-cardBg100 border-cardBorderOp10 flex gap-6 rounded-xl border p-6 shadow-lg">
-      <div className="border-cardBorderOp20 flex h-[60px] w-[60px] items-center justify-center rounded-full border bg-[#393f54]">
+    <div className="flex gap-6 rounded-xl border border-cardBorderOp10 bg-cardBg100 p-6 shadow-lg">
+      <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full border border-cardBorderOp20 bg-[#393f54]">
         <IconRenderer icon={icon} />
       </div>
       <div className="flex flex-col items-start">
@@ -41,7 +41,7 @@ function DoctorDashboard() {
         {formItems.map((item, index) => (
           <div
             key={`form-item-${index}`}
-            className="border-cardBorderOp30 bg-cardBg300 rounded-xl border p-6 shadow-lg"
+            className="rounded-xl border border-cardBorderOp30 bg-cardBg300 p-6 shadow-lg"
           >
             <Link href={item.link}>
               <Typography>{item.title}</Typography>
@@ -67,7 +67,7 @@ function DoctorDashboard() {
       </div>
       {data && (
         <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
-          <div className="bg-cardBg100 border-cardBorderOp10 min-h-96 rounded-xl border text-start shadow-lg">
+          <div className="min-h-96 rounded-xl border border-cardBorderOp10 bg-cardBg100 text-start shadow-lg">
             <DoughnutChart
               label={Consts.diagnosisChart}
               stats={data?.diagnosis_stats?.map((item) => ({
@@ -79,7 +79,7 @@ function DoctorDashboard() {
             />
           </div>
 
-          <div className="bg-cardBg100 border-cardBorderOp10 flex min-h-96 w-full flex-col items-center justify-start gap-6 rounded-xl border p-8">
+          <div className="flex min-h-96 w-full flex-col items-center justify-start gap-6 rounded-xl border border-cardBorderOp10 bg-cardBg100 p-8 shadow-lg">
             <Typography weight="bold" size="3xl">
               {Consts.genderStats}
             </Typography>
@@ -101,7 +101,7 @@ function DoctorDashboard() {
         </div>
       )}
       {patientsData && (
-        <div className="border-cardBorderOp10 bg-cardBg100 flex flex-col items-start gap-8 rounded-xl border p-8 shadow-lg">
+        <div className="flex flex-col items-start gap-8 rounded-xl border border-cardBorderOp10 bg-cardBg100 p-8 shadow-lg">
           <Typography weight="bold" size="2xl">
             {Consts.lastPateints}
           </Typography>

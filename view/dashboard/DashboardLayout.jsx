@@ -56,7 +56,7 @@ function DashboardLayout({ children, data }) {
         </div>
       </Drawer>
       <div className="absolute left-0 top-0 -z-10 h-full overflow-hidden">
-        <Image src={BlueShadow} alt={"blu-shadow"} />
+        <Image src={BlueShadow} alt="blu-shadow" />
       </div>
     </section>
   );

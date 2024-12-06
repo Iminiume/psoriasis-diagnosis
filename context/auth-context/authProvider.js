@@ -23,8 +23,11 @@ const authReducer = (state, action) => {
   }
 };
 
-export const AuthProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, initialState);
+export const AuthProvider = ({ children, initialAuthState }) => {
+  const [state, dispatch] = useReducer(authReducer, {
+    ...initialState,
+    ...initialAuthState,
+  });
   const { setRole, removeRole } = useUserContext();
 
   useEffect(() => {
@@ -36,7 +39,6 @@ export const AuthProvider = ({ children }) => {
       dispatch({ type: "SET_LOADING", payload: false });
     }
     const currentTime = Date.now();
-    console.log(token);
     if (decodedToken > currentTime || token === "undefined") {
       logout();
     }

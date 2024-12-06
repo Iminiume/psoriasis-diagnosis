@@ -5,6 +5,7 @@ import { Consts } from "./consts";
 import Button from "@/components/button";
 import Typography from "@/components/typography";
 import DoctorAPI from "@/api/doctor";
+import isSSR from "@/utils/isSSR";
 
 function SystemReport() {
   const [{ data }, refetch] = DoctorAPI.GetUsersExcel();
@@ -12,7 +13,7 @@ function SystemReport() {
   const handleDownload = async () => {
     try {
       refetch();
-      const url = window.URL.createObjectURL(new Blob([data]));
+      const url = !isSSR() && window.URL.createObjectURL(new Blob([data]));
       const link = document.createElement("a");
       link.href = url;
       link.setAttribute("download", "system-report.xlsx");

@@ -27,7 +27,13 @@ function DashboardSideBarContent() {
     <>
       <div className="self-center">
         <Link href="/">
-          <Image src="/images/textLogo.png" width={72} height={130} priority />
+          <Image
+            src="/images/textLogo.png"
+            width={72}
+            height={130}
+            priority
+            alt="text-logo"
+          />
         </Link>
       </div>
       <div>
@@ -47,7 +53,7 @@ function DashboardSideBarContent() {
               </Link>
               {isActive && (
                 <div className="absolute right-0 top-1/2 -translate-y-1/2">
-                  <Image src={ActiveMark} />
+                  <Image src={ActiveMark} alt="active-mark" />
                 </div>
               )}
             </div>

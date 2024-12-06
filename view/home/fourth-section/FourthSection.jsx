@@ -7,7 +7,6 @@ import IconRenderer from "@/components/icon/IconRenderer";
 import Link from "next/link";
 import TitleIndicator from "@/components/title-indicator";
 import IconGlass from "@/public/images/iconImage.png";
-import OrangeShadow from "@/public/images/orangeShadow.png";
 import Modal from "@/components/modal";
 import Button from "@/components/button";
 
@@ -92,11 +91,11 @@ function FourthSection() {
         </div>
 
         <div className="flex w-full flex-col gap-4">
-          {advices.map((item) => {
+          {advices.map((item, index) => {
             return (
               <div
                 className="flex w-full items-center justify-between gap-8"
-                key={`content-item-modal-${item}`}
+                key={`content-item-modal-${index}`}
               >
                 <Typography size="xl">{item.title}</Typography>
                 <Link href={item.link}>

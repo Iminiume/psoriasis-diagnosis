@@ -93,8 +93,8 @@ function FifthSection() {
         </div>
       </div>
 
-      <div className="absolute left-0 top-0 -translate-y-[35%] z-[-1]">
-        <Image src={OrangeShadow} />
+      <div className="absolute left-0 top-0 z-[-1] -translate-y-[35%]">
+        <Image src={OrangeShadow} alt="orange-shadow" />
       </div>
     </section>
   );

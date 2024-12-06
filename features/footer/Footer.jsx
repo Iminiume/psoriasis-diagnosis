@@ -8,6 +8,7 @@ import Image from "@/components/image";
 
 import BlueShadowBottom from "@/public/images/blueShadowBottom.png";
 import { Consts, ContactDetails, NavigationLinks, PolicyLinks } from "./consts";
+import Logo from "@/public/images/textLogo.png";
 
 const HoverText = ({ children }) => (
   <Typography size="lg" className="transition-colors hover:text-mainTextColor">
@@ -48,13 +49,7 @@ function Footer() {
     <footer className="relative w-full rounded-t-3xl bg-footerBg py-[70px] backdrop-blur-[10px]">
       <div className="flex flex-col items-center justify-center gap-4 px-8 lg:flex-row lg:items-start lg:justify-start lg:px-[124px]">
         <div className="flex basis-2/5 flex-col items-center gap-6 lg:items-start">
-          <Image
-            src="/images/textLogo.png"
-            alt="text-logo"
-            priority
-            width={72}
-            height={130}
-          />
+          <Image src={Logo} alt="text-logo" priority width={72} height={130} />
           <Typography
             size="sm"
             className="text-center opacity-50 lg:text-start"

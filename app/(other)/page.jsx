@@ -1,4 +1,3 @@
-"use cache";
 import Package from "@/package.json";
 import dynamic from "next/dynamic";
 

@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 import IconRenderer from "../icon/IconRenderer";
 import ReactDOM from "react-dom";

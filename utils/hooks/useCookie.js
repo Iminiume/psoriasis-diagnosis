@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import isSSR from "../isSSR";
 
 const isBrowser = typeof window !== "undefined";
 
@@ -19,7 +20,7 @@ export function stringifyOptions(options) {
 }
 
 export const setCookie = (name, value, options) => {
-  if (!isBrowser) return;
+  if (isSSR() && !isBrowser) return;
 
   const optionsWithDefaults = {
     days: 7,

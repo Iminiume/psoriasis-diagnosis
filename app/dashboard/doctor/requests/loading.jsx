@@ -10,7 +10,7 @@ function Loading() {
     >
       <svg
         aria-hidden="true"
-        class="h-16 w-16 animate-spin fill-primaryColor text-gray-200 dark:text-gray-600"
+        className="h-16 w-16 animate-spin fill-primaryColor text-gray-200 dark:text-gray-600"
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

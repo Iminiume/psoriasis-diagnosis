@@ -1,3 +1,4 @@
+"use client";
 const { createContext } = require("react");
 
 const PatientContext = createContext();

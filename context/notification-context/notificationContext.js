@@ -1,5 +1,4 @@
 "use client";
-
 import { createContext } from "react";
 
 const NotificationContext = createContext();

@@ -1,18 +1,14 @@
 "use client";
-
 import { useEffect, useReducer } from "react";
 import UserContext from "./userContext";
-import useLocalStorage from "@/utils/hooks/useLocalStorage";
 import { setCookie, getCookie, removeCookie } from "@/utils/hooks/useCookie";
 
-// Define initial state
 const initialState = {
   role: null,
   userData: null,
   loading: true,
 };
 
-// Define actions
 const userReducer = (state, action) => {
   switch (action.type) {
     case "SET_ROLE":
@@ -26,8 +22,11 @@ const userReducer = (state, action) => {
   }
 };
 
-export const UserProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(userReducer, initialState);
+export const UserProvider = ({ children, initialUserState }) => {
+  const [state, dispatch] = useReducer(userReducer, {
+    ...initialState,
+    ...initialUserState,
+  });
   const role = getCookie("role");
 
   useEffect(() => {

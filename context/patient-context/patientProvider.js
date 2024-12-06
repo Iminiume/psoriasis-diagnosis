@@ -1,5 +1,5 @@
 "use client";
-import React, {   useState } from "react";
+import React, { useState } from "react";
 import PatientContext from "./patientContext";
 
 export const PatientProvider = ({ children }) => {

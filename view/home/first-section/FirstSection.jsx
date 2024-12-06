@@ -4,9 +4,7 @@ import Button from "@/components/button";
 import Typography from "@/components/typography";
 
 import BigLogo from "@/public/images/bigLogo.png";
-import Stats from "@/public/images/stats.png";
 import PinkShadow from "@/public/images/pinkShadow.png";
-import VectorBG from "@/public/images/vector.png";
 import SecondVectorBG from "@/public/images/vector2.png";
 
 const Texts = {
@@ -18,7 +16,7 @@ const Texts = {
 function FirstSection() {
   return (
     <section className="relative h-[calc(100vh-106px)] px-8">
-      <div className="max-w-custom mx-auto flex h-full items-center justify-center">
+      <div className="mx-auto flex h-full max-w-custom items-center justify-center">
         <div className="flex w-full basis-full flex-col items-center justify-center gap-6 pt-12 lg:basis-1/2">
           <Typography
             weight="bold"

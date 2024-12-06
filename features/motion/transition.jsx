@@ -15,7 +15,8 @@ export default function Transition({ children }) {
       animate="enter"
       exit="exit"
       variants={variants}
-      transition={{ ease: "easeInOut", duration: 0.3 }}
+      style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}
+      transition={{ ease: "easeInOut", duration: 0.2 }}
     >
       {children}
     </motion.div>

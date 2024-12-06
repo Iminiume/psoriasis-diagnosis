@@ -1,4 +1,3 @@
-"use client";
 import Navbar from "@/features/navbar";
 import Footer from "@/features/footer";
 

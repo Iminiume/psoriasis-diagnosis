@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -8,6 +8,8 @@ import Image from "@/components/image";
 import Drawer from "@/components/drawer";
 import { useScrollPosition } from "@/utils/hooks/useScrollPosition";
 import { useAuthContext } from "@/utils/context/useAuthContext";
+import Logo from "@/public/images/logo.png";
+import TextLogo from "@/public/images/textLogo.png";
 
 import NavbarContent from "./components/navbar-content";
 import DrawerContent from "./components/drawer-content";
@@ -53,7 +55,7 @@ function Navbar() {
       <Link href="/">
         <div className={logoStyles(isScrolled)}>
           <Image
-            src={isScrolled ? "/images/logo.png" : "/images/textLogo.png"}
+            src={isScrolled ? Logo : TextLogo}
             width={72}
             height={isScrolled ? 72 : 130}
             alt="logo"
