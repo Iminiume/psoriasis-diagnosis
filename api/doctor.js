@@ -1,7 +1,6 @@
 import useAxios from "@/utils/hooks/useAxios";
 
 const DoctorAPI = {};
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 const STAGE_API_BASE_URL = process.env.NEXT_PUBLIC_API_STAGE_BASE_URL;
 
 DoctorAPI.CreateDoctor = ({ token }) => {

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { AnimatePresence } from "framer-motion";
 
 import Transition from "@/features/motion/transition";
@@ -11,9 +11,11 @@ import NProgressProvider from "@/features/nprogress-provider";
 
 function ClientLayout({ children }) {
   const pathname = usePathname();
+  const isDashboardPath = pathname.startsWith("/dashboard");
+
   return (
     <>
-      <AnimatePresence key={pathname}>
+      <AnimatePresence key={isDashboardPath ? "dashboard" : pathname}>
         <Transition>
           <UserProvider>
             <AuthProvider>

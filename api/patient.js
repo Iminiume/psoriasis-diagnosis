@@ -1,12 +1,12 @@
 import useAxios from "@/utils/hooks/useAxios";
 
 const PatientAPI = {};
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_STAGE_BASE_URL;
+const STAGE_API_BASE_URL = process.env.NEXT_PUBLIC_API_STAGE_BASE_URL;
 
 PatientAPI.CreatePatient = ({ token }) => {
   return useAxios(
     {
-      url: `${API_BASE_URL}/api/create_health_file`,
+      url: `${STAGE_API_BASE_URL}/api/create_health_file`,
       method: "POST",
       headers: {
         Auth: token,
@@ -21,7 +21,7 @@ PatientAPI.CreatePatient = ({ token }) => {
 PatientAPI.UpdatePatient = ({ token }) => {
   return useAxios(
     {
-      url: `${API_BASE_URL}/api/update_patient`,
+      url: `${STAGE_API_BASE_URL}/api/update_patient`,
       method: "PUT",
       headers: {
         Auth: token,
@@ -36,7 +36,7 @@ PatientAPI.UpdatePatient = ({ token }) => {
 PatientAPI.DiagnosisType = ({ token }) => {
   return useAxios(
     {
-      url: `${API_BASE_URL}/api/diagnosis`,
+      url: `${STAGE_API_BASE_URL}/api/diagnosis`,
       method: "POST",
       headers: {
         Auth: token,
@@ -51,7 +51,7 @@ PatientAPI.DiagnosisType = ({ token }) => {
 PatientAPI.UploadImage = ({ token }) => {
   return useAxios(
     {
-      url: `${API_BASE_URL}/api/diagnosis_image`,
+      url: `${STAGE_API_BASE_URL}/api/diagnosis_image`,
       method: "POST",
       headers: {
         Auth: token,
@@ -66,7 +66,7 @@ PatientAPI.UploadImage = ({ token }) => {
 PatientAPI.GetPatient = ({ token }) => {
   return useAxios(
     {
-      url: `${API_BASE_URL}/api/get_patient`,
+      url: `${STAGE_API_BASE_URL}/api/get_patient`,
       method: "GET",
       headers: {
         Auth: token,
@@ -81,7 +81,7 @@ PatientAPI.GetPatient = ({ token }) => {
 PatientAPI.Questionnaire = ({ token }) => {
   return useAxios(
     {
-      url: `${API_BASE_URL}/api/questionnaire`,
+      url: `${STAGE_API_BASE_URL}/api/questionnaire`,
       method: "POST",
       headers: {
         Auth: token,
