@@ -35,7 +35,7 @@ function DashboardLayout({ children, data }) {
             <div>
               <Typography>
                 {(role === RoleEnum.PATIENT && RoleEnumFa.PATIENT) ||
-                  (role === RoleEnum.DOCTOR && RoleEnumFa.PATIENT)}
+                  (role === RoleEnum.DOCTOR && RoleEnumFa.DOCTOR)}
               </Typography>
             </div>
             <div className="flex gap-6">
