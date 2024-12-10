@@ -107,10 +107,6 @@ function PatientForm({ data, slug }) {
   const renderModalContent = () => {
     return (
       <div className="flex min-w-[350px] flex-col gap-6">
-        <Typography size="2xl" weight="bold">
-          {Consts.commentModal}
-        </Typography>
-
         {selectedDiagnosis?.diagnosis?.Comments?.length > 0 ? (
           <div className="flex flex-col gap-2">
             {selectedDiagnosis?.diagnosis?.Comments.map(
@@ -279,7 +275,9 @@ function PatientForm({ data, slug }) {
         </div>
       </div>
 
-      <Modal ref={modalRef}>{selectedDiagnosis && renderModalContent()}</Modal>
+      <Modal title={Consts.commentModal} ref={modalRef}>
+        {selectedDiagnosis && renderModalContent()}
+      </Modal>
     </SectionLayout>
   );
 }

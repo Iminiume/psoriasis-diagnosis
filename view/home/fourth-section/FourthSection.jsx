@@ -77,35 +77,21 @@ function FourthSection() {
 
   const ModalContent = () => {
     return (
-      <>
-        <div className="flex flex-col gap-2">
-          <div className="cursor-pointer" onClick={handleModalClose}>
-            <IconRenderer icon="xClose" />
-          </div>
-          <Typography
-            size="xl"
-            className="mb-4 border-b border-[#737373] pb-6 text-center"
-          >
-            {Texts.selectChoice}
-          </Typography>
-        </div>
-
-        <div className="flex w-full flex-col gap-4">
-          {advices.map((item, index) => {
-            return (
-              <div
-                className="flex w-full items-center justify-between gap-8"
-                key={`content-item-modal-${index}`}
-              >
-                <Typography size="xl">{item.title}</Typography>
-                <Link href={item.link}>
-                  <Button>{Texts.download}</Button>
-                </Link>
-              </div>
-            );
-          })}
-        </div>
-      </>
+      <div className="flex w-full flex-col gap-4">
+        {advices.map((item, index) => {
+          return (
+            <div
+              className="flex w-full items-center justify-between gap-8"
+              key={`content-item-modal-${index}`}
+            >
+              <Typography size="xl">{item.title}</Typography>
+              <Link href={item.link}>
+                <Button>{Texts.download}</Button>
+              </Link>
+            </div>
+          );
+        })}
+      </div>
     );
   };
 
@@ -165,7 +151,7 @@ function FourthSection() {
         </div>
       </div>
 
-      <Modal ref={modalRef}>
+      <Modal ref={modalRef} title={Texts.selectChoice}>
         <ModalContent />
       </Modal>
     </section>

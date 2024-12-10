@@ -77,7 +77,7 @@ function PatientDashboard() {
     );
 
     const sortedNotifications = flattenedNotification?.sort((a, b) => {
-      return new Date(b.time_stamp) - new Date(a.time_stamp); 
+      return new Date(b.time_stamp) - new Date(a.time_stamp);
     });
 
     setNotification(sortedNotifications);
@@ -86,9 +86,6 @@ function PatientDashboard() {
   const RenderCommentModal = () => {
     return (
       <div className="flex min-w-[350px] flex-col gap-6">
-        <Typography weight="bold" size="2xl">
-          {Consts.doctorComments}
-        </Typography>
         <div className="flex flex-col gap-2">
           {modalContent?.map((item, index, array) => (
             <div
@@ -185,7 +182,7 @@ function PatientDashboard() {
           })}
         </div>
       )}
-      <Modal ref={modalRef}>
+      <Modal ref={modalRef} title={Consts.doctorComments}>
         <RenderCommentModal />
       </Modal>
     </div>
