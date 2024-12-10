@@ -5,6 +5,7 @@ import FillFormLayout from "@/features/fill-form-layout";
 import * as Yup from "yup";
 import { useUserContext } from "@/utils/context/useUserContext";
 import { useEffect, useState } from "react";
+import { LoadingNFS } from "@/components/loading";
 
 const initialValues = {
   first_name: "",
@@ -13,16 +14,16 @@ const initialValues = {
   birth_date: "",
   gender: "",
   is_married: "",
-  number_of_children: 0,
+  number_of_children: null,
   is_pregnant: false,
   is_breastfeeding: false,
   city: "",
   address: "",
   job: "",
   education: "",
-  avg_salary: 0,
+  avg_salary: null,
   insurance: "",
-  age_in_first_sings: 0,
+  age_in_first_sings: null,
   medicines: [],
   treatments: [],
   last_doctor_visit: "",
@@ -45,22 +46,22 @@ const validationSchema = Yup.object().shape({
 function PatientForm() {
   const [userData, setUserData] = useState(null);
   const { state } = useUserContext();
-  const { userData: userDataContext, loading } = state;
+  const { userData: userDataContext, role } = state;
   const [isFirstTime, setIsFirstTime] = useState(true);
 
   useEffect(() => {
-    setUserData(userDataContext || initialValues);
-    userData?.first_name ? setIsFirstTime(false) : setIsFirstTime(true);
+    setUserData(userDataContext);
+    role ? setIsFirstTime(false) : setIsFirstTime(true);
   }, [userDataContext]);
 
-  if (!userData) return;
+  if (role && !userData) return <LoadingNFS />;
 
   return (
     <FillFormLayout
       title={Consts.title}
       subTitle={Consts.subTitle}
       formItems={FormItems}
-      initialValues={userData}
+      initialValues={role ? userData : initialValues}
       validationSchema={validationSchema}
       constants={Consts}
       api={isFirstTime ? PatientAPI.CreatePatient : PatientAPI.UpdatePatient}

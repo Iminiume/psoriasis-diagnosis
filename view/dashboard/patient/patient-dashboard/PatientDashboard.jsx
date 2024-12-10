@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "@/components/image";
 import { useUserContext } from "@/utils/context/useUserContext";
 import SuccessImage from "@/public/images/successImage.png";
@@ -8,10 +8,13 @@ import { Consts } from "./consts";
 import Button from "@/components/button";
 import Link from "next/link";
 import convertToShamsiDate from "@/utils/convertToShamsiDate";
+import IconRenderer from "@/components/icon/IconRenderer";
+import Modal from "@/components/modal";
+import classNames from "classnames";
 
 const StaticCards = ({ title, link = "#" }) => {
   return (
-    <div className="bg-cardBg200 border-cardBorderOp30 flex flex-col gap-6 rounded-xl border p-6 shadow-lg">
+    <div className="flex flex-col gap-6 rounded-xl border border-cardBorderOp30 bg-cardBg200 p-6 shadow-lg">
       <Typography size="xl" weight="semibold">
         {title}
       </Typography>
@@ -27,14 +30,23 @@ const StaticCards = ({ title, link = "#" }) => {
 function PatientDashboard() {
   const [notification, setNotification] = useState(null);
   const { state } = useUserContext();
+  const modalRef = useRef();
+  const [modalContent, setModalContent] = useState(null);
 
   const userData = state.userData;
+  const userRole = state.role;
+
+  const handleModalOpen = (comment) => {
+    setModalContent(comment);
+    modalRef?.current?.open();
+  };
 
   const handleArrangeData = (title, field) => {
     return Object.values(field || {})?.map((item) => {
       return {
         title: title,
         time_stamp: item?.CreatedAt,
+        ...(item?.Comments.length > 0 && { comments: item?.Comments }),
       };
     });
   };
@@ -64,23 +76,72 @@ function PatientDashboard() {
       (item) => item || [],
     );
 
-    setNotification(flattenedNotification);
+    const sortedNotifications = flattenedNotification?.sort((a, b) => {
+      return new Date(b.time_stamp) - new Date(a.time_stamp); 
+    });
+
+    setNotification(sortedNotifications);
   }, [userData]);
+
+  const RenderCommentModal = () => {
+    return (
+      <div className="flex min-w-[350px] flex-col gap-6">
+        <Typography weight="bold" size="2xl">
+          {Consts.doctorComments}
+        </Typography>
+        <div className="flex flex-col gap-2">
+          {modalContent?.map((item, index, array) => (
+            <div
+              key={`comment-${index}`}
+              className={classNames(
+                "relative flex w-full flex-col gap-1 rounded-t-xl rounded-br-xl bg-[#194CC2] p-4",
+                index === array.length - 1
+                  ? "before:absolute before:left-0 before:top-full before:border-r-[10px] before:border-t-[10px] before:border-r-transparent before:border-t-[#194CC2]"
+                  : "rounded-bl-sm",
+              )}
+            >
+              <Typography size="md">
+                {Consts.comment + item?.Comment}
+              </Typography>
+              {item?.DoctorDiagnosis && (
+                <Typography size="md">
+                  {Consts.diagnosisTypeByDoctor +
+                    Consts.type +
+                    " " +
+                    item?.DoctorDiagnosis}
+                </Typography>
+              )}
+              <Typography size="md">
+                {item?.IsVerified
+                  ? Consts.doctorVerified
+                  : Consts.doctorDidnotVerified}
+              </Typography>{" "}
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="flex w-full flex-col items-center justify-start gap-12 text-center">
-      <div className="border-cardBorderOp30 bg-cardBg200 flex w-full flex-col items-center justify-center gap-6 rounded-xl border px-6 py-8 shadow-lg">
+      <div className="flex w-full flex-col items-center justify-center gap-6 rounded-xl border border-cardBorderOp30 bg-cardBg200 px-6 py-8 shadow-lg">
         {userData && (
           <Image src={SuccessImage} alt="Success" className="object-contain" />
         )}
         <Typography weight="semibold" size="2xl">
           {userData ? Consts.congrats : Consts.noFile}
         </Typography>
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <Typography size="lg">
             {userData ? Consts.fileCreated : Consts.goMakeFile}
           </Typography>
           {userData && <Typography size="lg">{Consts.canContinue}</Typography>}
+          {!userRole && (
+            <Link href={"/dashboard/patient/fill-form"}>
+              <Button>{Consts.createFile}</Button>
+            </Link>
+          )}
         </div>
       </div>
 
@@ -89,30 +150,44 @@ function PatientDashboard() {
         <StaticCards title={Consts.selfCare} />
       </div>
 
-      {notification && (
-        <div className="bg-cardBg100 border-cardBorderOp30 flex w-full flex-col items-start justify-start gap-6 rounded-xl border p-6 shadow-lg">
+      {notification?.length > 0 && (
+        <div className="flex w-full flex-col items-start justify-start gap-6 rounded-xl border border-cardBorderOp30 bg-cardBg100 p-6 shadow-lg">
           <Typography weight="bold" size="2xl">
             {Consts.notificationTitle}
           </Typography>
           {notification?.map((item, index) => {
             const convertedDate = convertToShamsiDate(item?.time_stamp);
-
             return (
               <div
-                className="bg-cardBg300 border-cardBorderOp10 flex w-full justify-between rounded-xl border p-6 shadow-lg"
+                className="flex w-full items-center justify-between rounded-xl border border-cardBorderOp10 bg-cardBg300 p-6 shadow-lg"
                 key={`notification-${index}`}
               >
-                <Typography>{item?.title}</Typography>
-                <Typography className="text-secondTextColor">
-                  {convertedDate.timeStamp +
-                    " - " +
-                    convertedDate.formattedDate}
-                </Typography>
+                <div>
+                  <Typography>{item?.title}</Typography>
+                </div>
+
+                <div className="flex items-center gap-4">
+                  <Typography className="text-secondTextColor">
+                    {convertedDate.timeStamp +
+                      " - " +
+                      convertedDate.formattedDate}
+                  </Typography>
+                  {item?.comments && (
+                    <Button onClick={() => handleModalOpen(item?.comments)}>
+                      <Typography size="sm">
+                        {Consts.seeDoctorComment}
+                      </Typography>
+                    </Button>
+                  )}
+                </div>
               </div>
             );
           })}
         </div>
       )}
+      <Modal ref={modalRef}>
+        <RenderCommentModal />
+      </Modal>
     </div>
   );
 }

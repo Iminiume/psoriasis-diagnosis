@@ -9,10 +9,10 @@ function MainDashboard() {
   const { state } = useUserContext();
   return (
     <div className="flex h-full overflow-y-auto p-8">
-      {state.role === RoleEnum.PATIENT ? (
-        <PatientDashboard />
-      ) : (
+      {state.role === RoleEnum.DOCTOR ? (
         <DoctorDashboard />
+      ) : (
+        <PatientDashboard />
       )}
     </div>
   );

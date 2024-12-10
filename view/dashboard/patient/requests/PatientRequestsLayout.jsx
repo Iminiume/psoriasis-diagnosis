@@ -11,11 +11,12 @@ function PatientRequestsLayout() {
   const { userData } = state;
 
   const getLatestDiagnosis = (diagnosisObj) => {
-    return Object.values(diagnosisObj).reduce((latest, current) => {
-      return !latest || (current.id || 0) > (latest.id || 0) ? current : latest;
+    return Object.entries(diagnosisObj).reduce((latest, [id, diagnosis]) => {
+      return !latest || (Number(id) || 0) > (Number(latest.id) || 0)
+        ? { id, diagnosis }
+        : latest;
     }, null);
   };
-
   const latestQuestionnaireDiagnosis = getLatestDiagnosis(
     userData?.diagnosis_by_questionnaire || {},
   );
@@ -27,9 +28,10 @@ function PatientRequestsLayout() {
   );
 
   const isDisabled = {
-    questionnaire: latestQuestionnaireDiagnosis?.Comments?.length > 0,
-    form: latestFormDiagnosis?.Comments?.length > 0,
-    image: latestImageDiagnosis?.Comments?.length > 0,
+    questionnaire:
+      latestQuestionnaireDiagnosis?.diagnosis?.Comments?.length > 0,
+    form: latestFormDiagnosis?.diagnosis?.Comments?.length > 0,
+    image: latestImageDiagnosis?.diagnosis?.Comments?.length > 0,
   };
 
   return (

@@ -5,6 +5,9 @@ import Link from "next/link";
 import React from "react";
 
 const PatientsTable = ({ data, consts }) => {
+  const sortedPatients = data?.sort((a, b) => {
+    return new Date(b.CreatedAt) - new Date(a.CreatedAt);
+  });
   return (
     <div className="w-full">
       <div className="grid grid-cols-2 gap-4 border-[#ffffff20] p-4 lg:grid-cols-4">
@@ -20,19 +23,19 @@ const PatientsTable = ({ data, consts }) => {
         <div></div>
       </div>
       <div className="flex flex-col gap-4">
-        {data?.slice(0, 10).map((patient, index) => {
-          const convertedDate = convertToShamsiDate(patient?.CreatedAt);
+        {sortedPatients?.slice(0, 10).map((item, index) => {
+          const convertedDate = convertToShamsiDate(item?.CreatedAt);
           return (
             <div
               key={`patient-${index}`}
-              className="border-cardBorderOp10 bg-cardBg300 grid grid-cols-2 flex-nowrap gap-4 overflow-x-auto rounded-xl border p-5 shadow-lg lg:grid-cols-4"
+              className="grid grid-cols-2 flex-nowrap gap-4 overflow-x-auto rounded-xl border border-cardBorderOp10 bg-cardBg300 p-5 shadow-lg lg:grid-cols-4"
             >
               <div className="flex items-center justify-center gap-1 text-nowrap">
-                <Typography>{patient?.FirstName}</Typography>
-                <Typography>{patient?.LastName}</Typography>
+                <Typography>{item?.FirstName}</Typography>
+                <Typography>{item?.LastName}</Typography>
               </div>
               <div className="hidden text-nowrap lg:block">
-                <Typography>{patient?.NationalId}</Typography>
+                <Typography>{item?.NationalId}</Typography>
               </div>
               <div className="hidden text-nowrap lg:block">
                 <Typography className="text-secondTextColor">
@@ -42,7 +45,7 @@ const PatientsTable = ({ data, consts }) => {
                 </Typography>
               </div>
               <div className="flex items-end justify-end">
-                <Link href={`/dashboard/doctor/patients-forms/${patient?.ID}`}>
+                <Link href={`/dashboard/doctor/patients-forms/${item?.ID}`}>
                   <IconRenderer icon="ellipsis" />
                 </Link>
               </div>

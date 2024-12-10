@@ -13,6 +13,7 @@ import Button from "@/components/button/Button";
 import MultiSelect from "@/components/multi-select-input";
 import Input from "@/components/input";
 import { isObjectEmpty } from "@/utils/object";
+import classNames from "classnames";
 
 function PatientForm({ data, slug }) {
   const [patient, setPatient] = useState(null);
@@ -52,7 +53,7 @@ function PatientForm({ data, slug }) {
 
   const MultiItemText = ({ title, field }) => {
     return (
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         <Typography size="lg">{title}</Typography>
         {field.map((item, index) => (
           <Typography key={`treatment-${index}`} size="lg">
@@ -65,12 +66,9 @@ function PatientForm({ data, slug }) {
 
   const DiagnosisCard = ({ title, diagnosis }) => {
     return (
-      <div
-        className="flex w-full cursor-pointer items-center justify-between rounded-xl border border-[#ffffff10] bg-[#252B42] p-4 shadow-lg"
-        onClick={() => handleModalOpen(diagnosis)}
-      >
+      <div className="flex w-full items-center justify-between rounded-xl border border-[#ffffff10] bg-[#252B42] p-4 shadow-lg">
         <Typography size="lg">{title}</Typography>
-        <Button>
+        <Button onClick={() => handleModalOpen(diagnosis)}>
           <Typography>{Consts.click}</Typography>
         </Button>
       </div>
@@ -106,6 +104,79 @@ function PatientForm({ data, slug }) {
     }, null);
   };
 
+  const renderModalContent = () => {
+    return (
+      <div className="flex min-w-[350px] flex-col gap-6">
+        <Typography size="2xl" weight="bold">
+          {Consts.commentModal}
+        </Typography>
+
+        {selectedDiagnosis?.diagnosis?.Comments?.length > 0 ? (
+          <div className="flex flex-col gap-2">
+            {selectedDiagnosis?.diagnosis?.Comments.map(
+              (item, index, array) => (
+                <div key={index} className="flex">
+                  <div
+                    className={classNames(
+                      "relative flex w-full flex-col gap-1 rounded-t-xl rounded-br-xl bg-[#194CC2] p-4",
+                      index === array.length - 1
+                        ? "before:absolute before:left-0 before:top-full before:border-r-[10px] before:border-t-[10px] before:border-r-transparent before:border-t-[#194CC2]"
+                        : "rounded-bl-sm",
+                    )}
+                  >
+                    <Typography size="md">
+                      {Consts.comment + item?.Comment}
+                    </Typography>
+                    {item?.DoctorDiagnosis && (
+                      <Typography size="md">
+                        {Consts.diagnosisTypeByDoctor +
+                          Consts.type +
+                          " " +
+                          item?.DoctorDiagnosis}
+                      </Typography>
+                    )}
+                    <Typography size="md">
+                      {item?.IsVerified
+                        ? Consts.doctorVerified
+                        : Consts.doctorDidnotVerified}
+                    </Typography>
+                  </div>
+                </div>
+              ),
+            )}
+          </div>
+        ) : (
+          <Typography size="md">{Consts.noComments} </Typography>
+        )}
+
+        <textarea
+          className="w-full rounded border border-cardBorderOp30 bg-inputBg p-2"
+          placeholder={Consts.enterCommentHere}
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+        />
+
+        <MultiSelect
+          options={diagnosisOptions}
+          value={selectedDiagnosisType}
+          onChange={(selected) => setSelectedDiagnosisType(selected)}
+          placeholder={Consts.selectDiagnosisType}
+        />
+
+        <div className="flex items-center gap-2 text-center">
+          <Input
+            type="checkbox"
+            checked={isVerifiedByDoctor}
+            onChange={(e) => setIsVerifiedByDoctor(e.target.checked)}
+          />
+          <Typography size="md">{Consts.isVerified}</Typography>
+        </div>
+
+        <Button onClick={handleSubmitComment}>{Consts.addComment}</Button>
+      </div>
+    );
+  };
+
   const latestQuestionnaireDiagnosis = getLatestDiagnosis(
     patient?.diagnosis_by_questionnaire || {},
   );
@@ -119,6 +190,7 @@ function PatientForm({ data, slug }) {
   const diagnosisOptions = ["A", "B", "C"];
 
   if (!patient) return null;
+
   return (
     <SectionLayout title={Consts.title} hasButton={false}>
       <div className="flex flex-col justify-between gap-12 pb-8">
@@ -207,54 +279,7 @@ function PatientForm({ data, slug }) {
         </div>
       </div>
 
-      <Modal ref={modalRef}>
-        {selectedDiagnosis && (
-          <div className="flex min-w-[500px] flex-col gap-6">
-            <Typography size="2xl" weight="bold">
-              {Consts.commentModal}
-            </Typography>
-
-            {selectedDiagnosis?.diagnosis?.Comments?.length > 0 ? (
-              <div className="flex flex-col gap-4">
-                {selectedDiagnosis?.diagnosis?.Comments.map((item, index) => (
-                  <div key={index} className="flex">
-                    <div className="w-full rounded-t-xl rounded-br-xl border border-cardBorderOp20 bg-[#194CC2] p-3">
-                      <Typography size="lg">{item?.Comment}</Typography>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <Typography size="lg">{Consts.noComments} </Typography>
-            )}
-
-            <textarea
-              className="w-full rounded border border-cardBorderOp30 bg-inputBg p-2"
-              placeholder={Consts.enterCommentHere}
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            />
-
-            <MultiSelect
-              options={diagnosisOptions}
-              value={selectedDiagnosisType}
-              onChange={(selected) => setSelectedDiagnosisType(selected)}
-              placeholder={Consts.selectDiagnosisType}
-            />
-
-            <div className="flex items-center gap-2 text-center">
-              <Input
-                type="checkbox"
-                checked={isVerifiedByDoctor}
-                onChange={(e) => setIsVerifiedByDoctor(e.target.checked)}
-              />
-              <Typography size="md">{Consts.isVerifeid}</Typography>
-            </div>
-
-            <Button onClick={handleSubmitComment}>{Consts.addComment}</Button>
-          </div>
-        )}
-      </Modal>
+      <Modal ref={modalRef}>{selectedDiagnosis && renderModalContent()}</Modal>
     </SectionLayout>
   );
 }

@@ -55,7 +55,6 @@
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Yekan-Bakh-FaN-Regular, Yekan-Bakh-En-Medium;
 }
 
 ::-webkit-scrollbar {

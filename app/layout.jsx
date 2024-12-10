@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import classNames from "classnames";
 
 import "@/public/styles/globals.css";
+import "@/public/styles/fonts.css";
 
 const myFont = localFont({
   src: [

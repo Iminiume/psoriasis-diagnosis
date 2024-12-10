@@ -11,7 +11,6 @@ import dynamic from "next/dynamic";
 const DashboardLayout = dynamic(
   () => import("@/view/dashboard/DashboardLayout"),
 );
-const Loading = dynamic(() => import("../loading"), { ssr: false });
 
 export default function Layout({ children }) {
   const { state, dispatch } = useUserContext();
@@ -31,9 +30,7 @@ export default function Layout({ children }) {
     if (state.role === RoleEnum.PATIENT) {
       refetch();
     }
-  }, [state.role, refetch]);
-
-  if (loading) return <Loading />;
+  }, [state.role]);
 
   return (
     <main className="w-full flex-grow">

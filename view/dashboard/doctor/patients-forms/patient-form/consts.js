@@ -13,19 +13,28 @@ export const Consts = Object.freeze({
   isBreastFeeding: "آیا در حال شیردهی است:",
   yes: "بله",
   no: "خیر",
+
+  type: "پسوریازیس نوع",
+  status: "وضعیت: ",
+  formModalCompleted: "کامنت شما برای بیمار ثبت شد",
+  psoriasis: "پسوریازیس",
+
+  click: "کلیک کنید",
+
+  isVerified: "آیا تایید میکنید؟",
+  doctorVerified: "دکتر پیشنهاد سامانه را تایید است",
+  doctorDidnotVerified: "دکتر پیشنهاد سامانه را تایید نکرده است",
+
   diagnosisForm: "احتمال ابتلا",
   diagnosisType: "نوع بیماری بر اساس فرم",
   diagnosisImage: "نوع بیماری بر اساس عکس",
-  click: "کلیک کنید",
-  isVerifeid: "آیا تایید میکنید؟",
   selectDiagnosisType: "انتخاب نوع بیماری",
+  diagnosisTypeByDoctor: "نوع بیماری تشخیص داده شده توسط دکتر: ",
+
   addComment: "اضافه کردن کامنت",
   comments: "کامنت های دکتر",
   noComments: "کامنتی وجود ندارد",
   enterCommentHere: "کامنت خود را اینجا وارد کنید",
   commentModal: "کامنت های مربوطه",
-
-  status: "وضعیت: ",
-  formModalCompleted: "کامنت شما برای بیمار ثبت شد",
-  psoriasis: "پسوریازیس",
+  comment: "نظر دکتر: ",
 });

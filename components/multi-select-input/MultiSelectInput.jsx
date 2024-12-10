@@ -47,7 +47,7 @@ function MultiSelect({ options, value, onChange, placeholder }) {
             {value.map((selected) => (
               <div
                 key={selected}
-                className="flex items-center justify-center gap-1 rounded bg-[rgba(38,34,80,0.65)] px-2 py-1 text-white"
+                className="flex items-center justify-center gap-1 rounded bg-cardBg200 px-2 py-1 text-white"
               >
                 <Typography className="text-center">{selected}</Typography>
                 <div
@@ -76,9 +76,9 @@ function MultiSelect({ options, value, onChange, placeholder }) {
 
       {isOpen && (
         <div className="absolute z-10 mt-1 max-h-40 w-full overflow-y-auto rounded border bg-inputBg shadow">
-          {options.map((option) => (
+          {options.map((option, index) => (
             <div
-              key={option}
+              key={`multiselect-item-${index}-${option}`}
               className={classNames(
                 "cursor-pointer rounded-sm p-2 transition-colors hover:bg-[#21293a]",
                 value.includes(option) ? "bg-[#21293a]" : "",

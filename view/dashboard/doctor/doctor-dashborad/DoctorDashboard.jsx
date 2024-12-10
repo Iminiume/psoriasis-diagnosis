@@ -61,7 +61,7 @@ function DoctorDashboard() {
           title={Consts.doctorCounts}
           icon="heart"
           count={data?.role_stats?.map(
-            (item) => item.Role !== RoleEnum.PATIENT && item?.Count,
+            (item) => item.Role === RoleEnum.DOCTOR && item?.Count,
           )}
         />
       </div>

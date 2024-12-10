@@ -5,9 +5,12 @@ import React from "react";
 import { Consts } from "./consts";
 import dynamic from "next/dynamic";
 
-const Loading = dynamic(() => import("@/app/dashboard/loading"), {
-  ssr: false,
-});
+const Loading = dynamic(
+  () => import("@/components/loading").then((mod) => mod.LoadingNFS),
+  {
+    ssr: false,
+  },
+);
 
 function SectionLayout({
   title,
@@ -31,7 +34,7 @@ function SectionLayout({
         )}
       </div>
 
-      <div className="px-8 grow">{children}</div>
+      <div className="grow px-8">{children}</div>
 
       {hasButton && (
         <div className="flex w-full items-center justify-between p-8">
