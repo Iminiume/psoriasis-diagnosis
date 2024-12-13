@@ -3,10 +3,12 @@ import doctorMiddleware from "./app/dashboard/doctor/doctorMiddleware";
 import patientMiddleware from "./app/dashboard/patient/patientMiddleware";
 import dashboardMiddleware from "./app/dashboard/dashboardMiddleware";
 import loginMiddleware from "./app/login/loginMiddleware";
+import adminMiddleware from "./app/dashboard/admin/adminMiddleware";
 
 const middlewareMap = [
   // { pathname: "/dashboard/patient", middlewareFn: patientMiddleware },
   { pathname: "/dashboard/doctor", middlewareFn: doctorMiddleware },
+  { pathname: "/dashboard/admin", middlewareFn: adminMiddleware },
   {
     pathname: "/dashboard",
     middlewareFn: dashboardMiddleware,

@@ -1,12 +1,14 @@
 export const Items = [
+  // General Side bar
   {
     label: "داشبورد",
     link: "/dashboard",
     icon: "request",
     forPatient: true,
     forDoctor: true,
+    forAdmin: true,
   },
-
+  // Patient Side bar
   {
     label: "تشکیل / ویرایش پرونده",
     link: "/dashboard/patient/fill-form",
@@ -20,6 +22,7 @@ export const Items = [
     forPatient: true,
   },
 
+  // Doctor Side bar
   {
     label: "دستیار پزشک",
     link: "/dashboard/doctor/requests",
@@ -49,5 +52,37 @@ export const Items = [
     link: "/dashboard/doctor/system-report",
     icon: "request",
     forDoctor: true,
+  },
+
+  // Admin Side bar
+  {
+    label: "ثبت پزشک جدید",
+    link: "/dashboard/admin/create-doctor",
+    icon: "request",
+    forAdmin: true,
+  },
+  {
+    label: "ثبت بیمار جدید",
+    link: "/dashboard/admin/create-patient",
+    icon: "request",
+    forAdmin: true,
+  },
+  {
+    label: "پرونده الکترونیک بیماران",
+    link: "/dashboard/admin/patients-forms",
+    icon: "request",
+    forAdmin: true,
+  },
+  {
+    label: "جستجوی بیماران",
+    link: "/dashboard/admin/search-patients",
+    icon: "request",
+    forAdmin: true,
+  },
+  {
+    label: "گزارش از سامانه",
+    link: "/dashboard/admin/system-report",
+    icon: "request",
+    forAdmin: true,
   },
 ];

@@ -4,11 +4,11 @@ import SectionLayout from "../../components/section-layout";
 import { Consts } from "./consts";
 import Button from "@/components/button";
 import Typography from "@/components/typography";
-import DoctorAPI from "@/api/doctor";
 import isSSR from "@/utils/isSSR";
+import ReportAPI from "@/api/report";
 
 function SystemReport() {
-  const [{ data }, refetch] = DoctorAPI.GetUsersExcel();
+  const [{ data }, refetch] = ReportAPI.GetUsersExcel();
 
   const handleDownload = async () => {
     try {

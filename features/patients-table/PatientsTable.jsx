@@ -1,13 +1,18 @@
 import IconRenderer from "@/components/icon/IconRenderer";
 import Typography from "@/components/typography";
+import { useUserContext } from "@/utils/context/useUserContext";
 import convertToShamsiDate from "@/utils/convertToShamsiDate";
+import { RoleEnum } from "@/utils/enum/role-enum";
 import Link from "next/link";
 import React from "react";
 
 const PatientsTable = ({ data, consts }) => {
+  const { state } = useUserContext();
+  const role = state.role;
   const sortedPatients = data?.sort((a, b) => {
     return new Date(b.CreatedAt) - new Date(a.CreatedAt);
   });
+
   return (
     <div className="w-full">
       <div className="grid grid-cols-2 gap-4 border-[#ffffff20] p-4 lg:grid-cols-4">
@@ -45,7 +50,9 @@ const PatientsTable = ({ data, consts }) => {
                 </Typography>
               </div>
               <div className="flex items-end justify-end">
-                <Link href={`/dashboard/doctor/patients-forms/${item?.ID}`}>
+                <Link
+                  href={`/dashboard/${(role === RoleEnum.DOCTOR && "doctor") || (role === RoleEnum.ADMIN && "admin")}/patients-forms/${item?.ID}`}
+                >
                   <IconRenderer icon="ellipsis" />
                 </Link>
               </div>

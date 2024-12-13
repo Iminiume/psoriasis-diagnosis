@@ -15,8 +15,6 @@ const ModalContent = ({
   handleModalClose,
 }) => {
   const router = useRouter();
-  const { state } = useUserContext();
-  const { role } = state;
   const searchParams = useSearchParams();
   const referrer = searchParams.get("referrer");
 

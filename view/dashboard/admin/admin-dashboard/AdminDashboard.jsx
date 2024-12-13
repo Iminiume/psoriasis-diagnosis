@@ -1,16 +1,15 @@
-"use client";
+import ReportAPI from "@/api/report";
+import Typography from "@/components/typography";
+import PatientsTable from "@/features/patients-table";
+import { useAuthContext } from "@/utils/context/useAuthContext";
 import React from "react";
 import { Consts, formItems } from "./consts";
-import Typography from "@/components/typography";
-import Link from "next/link";
-import { useAuthContext } from "@/utils/context/useAuthContext";
+import DiagnosisCard from "../../doctor/doctor-dashborad/components/diagnosis-card";
 import { RoleEnum } from "@/utils/enum/role-enum";
-import PatientsTable from "@/features/patients-table";
-import ReportAPI from "@/api/report";
-import DiagnosisCard from "./components/diagnosis-card";
-import StatsRow from "./components/stats-row";
+import StatsRow from "../../doctor/doctor-dashborad/components/stats-row";
+import Link from "next/link";
 
-function DoctorDashboard() {
+function AdminDashboard() {
   const { state } = useAuthContext();
   const [{ data, loading }] = ReportAPI.GetReport({ token: state.token });
   const [{ data: patientsData, loading: patientsLoading }] =
@@ -18,7 +17,7 @@ function DoctorDashboard() {
 
   return (
     <div className="flex w-full flex-col justify-start gap-12 text-center">
-      <div className="grid w-full grid-cols-1 justify-between gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div className="grid w-full grid-cols-1 justify-between gap-4 md:grid-cols-2 ">
         {formItems.map((item, index) => (
           <div
             key={`form-item-${index}`}
@@ -60,4 +59,4 @@ function DoctorDashboard() {
   );
 }
 
-export default DoctorDashboard;
+export default AdminDashboard;

@@ -11,6 +11,7 @@ import convertToShamsiDate from "@/utils/convertToShamsiDate";
 import IconRenderer from "@/components/icon/IconRenderer";
 import Modal from "@/components/modal";
 import classNames from "classnames";
+import DiagnosisInfoModal from "../../doctor/patients-forms/patient-form/components/diagnosis-info-modal";
 
 const StaticCards = ({ title, link = "#" }) => {
   return (
@@ -28,10 +29,12 @@ const StaticCards = ({ title, link = "#" }) => {
 };
 
 function PatientDashboard() {
-  const [notification, setNotification] = useState(null);
   const { state } = useUserContext();
   const modalRef = useRef();
+  const infoModalRef = useRef();
+  const [notification, setNotification] = useState(null);
   const [modalContent, setModalContent] = useState(null);
+  const [selectedDiagnosis, setSelectedDiagnosis] = useState();
 
   const userData = state.userData;
   const userRole = state.role;
@@ -41,12 +44,17 @@ function PatientDashboard() {
     modalRef?.current?.open();
   };
 
-  const handleArrangeData = (title, field) => {
+  const handleInfoModalOpen = (diagnosis) => {
+    setSelectedDiagnosis(diagnosis);
+    infoModalRef?.current?.open();
+  };
+
+  const handleArrangeData = (title, field, isDiagnosis) => {
     return Object.values(field || {})?.map((item) => {
       return {
         title: title,
         time_stamp: item?.CreatedAt,
-        ...(item?.Comments.length > 0 && { comments: item?.Comments }),
+        ...(isDiagnosis && { diagnosis: item }),
       };
     });
   };
@@ -61,14 +69,17 @@ function PatientDashboard() {
       diagnosisByForm: handleArrangeData(
         Consts.diagnosisByForm,
         userData?.diagnosis_by_form,
+        true,
       ),
       diagnosisByImage: handleArrangeData(
         Consts.diagnosisByImage,
         userData?.diagnosis_by_image,
+        true,
       ),
       diagnosisByQuestionnaire: handleArrangeData(
         Consts.diagnosisByQuestionnaire,
         userData?.diagnosis_by_questionnaire,
+        true,
       ),
     };
 
@@ -154,24 +165,41 @@ function PatientDashboard() {
           </Typography>
           {notification?.map((item, index) => {
             const convertedDate = convertToShamsiDate(item?.time_stamp);
+            console.log(item);
             return (
               <div
-                className="flex w-full items-center justify-between rounded-xl border border-cardBorderOp10 bg-cardBg300 p-6 shadow-lg"
+                className={classNames(
+                  "flex w-full flex-col items-center justify-between gap-4 rounded-xl border p-6 shadow-lg lg:flex-row",
+                  item?.diagnosis?.Comments?.length > 0
+                    ? "border-cardBorderOp30 bg-greenColor"
+                    : "border-cardBorderOp10 bg-cardBg300",
+                )}
                 key={`notification-${index}`}
               >
-                <div>
+                <div className="flex w-full justify-between">
                   <Typography>{item?.title}</Typography>
-                </div>
-
-                <div className="flex items-center gap-4">
-                  <Typography className="text-secondTextColor">
+                  <Typography>
                     {convertedDate.timeStamp +
                       " - " +
                       convertedDate.formattedDate}
                   </Typography>
-                  {item?.comments && (
-                    <Button onClick={() => handleModalOpen(item?.comments)}>
-                      <Typography size="sm">
+                </div>
+
+                <div className="flex items-center gap-4">
+                  {item?.diagnosis && (
+                    <Button
+                      onClick={() => handleInfoModalOpen(item?.diagnosis)}
+                    >
+                      <Typography size="sm" className="text-nowrap">
+                        {Consts.seeFormInfo}
+                      </Typography>
+                    </Button>
+                  )}
+                  {item?.diagnosis?.Comments?.length > 0 && (
+                    <Button
+                      onClick={() => handleModalOpen(item?.diagnosis?.Comments)}
+                    >
+                      <Typography className="text-nowrap" size="sm">
                         {Consts.seeDoctorComment}
                       </Typography>
                     </Button>
@@ -184,6 +212,9 @@ function PatientDashboard() {
       )}
       <Modal ref={modalRef} title={Consts.doctorComments}>
         <RenderCommentModal />
+      </Modal>
+      <Modal ref={infoModalRef}>
+        <DiagnosisInfoModal selectedDiagnosis={selectedDiagnosis} />
       </Modal>
     </div>
   );

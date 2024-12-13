@@ -3,21 +3,6 @@ import useAxios from "@/utils/hooks/useAxios";
 const DoctorAPI = {};
 const STAGE_API_BASE_URL = process.env.NEXT_PUBLIC_API_STAGE_BASE_URL;
 
-DoctorAPI.CreateDoctor = ({ token }) => {
-  return useAxios(
-    {
-      url: `${STAGE_API_BASE_URL}/api/create_doctor`,
-      method: "POST",
-      headers: {
-        Auth: token,
-      },
-    },
-    {
-      manual: true,
-    },
-  );
-};
-
 DoctorAPI.CreatePatient = ({ token }) => {
   return useAxios(
     {
@@ -78,44 +63,6 @@ DoctorAPI.UploadImage = ({ token }) => {
   );
 };
 
-DoctorAPI.GetPatients = ({ token }) => {
-  return useAxios({
-    url: `${STAGE_API_BASE_URL}/api/get_patients`,
-    method: "GET",
-    headers: {
-      Auth: token,
-    },
-  });
-};
-
-DoctorAPI.GetPatientDetails = ({ token, slug }) => {
-  return useAxios({
-    url: `${STAGE_API_BASE_URL}/api/get_patient_details/${slug}`,
-    method: "GET",
-    headers: {
-      Auth: token,
-    },
-  });
-};
-
-DoctorAPI.GetReport = ({ token }) => {
-  return useAxios({
-    url: `${STAGE_API_BASE_URL}/api/get_report`,
-    method: "GET",
-    headers: {
-      Auth: token,
-    },
-  });
-};
-
-DoctorAPI.GetUsersExcel = () => {
-  return useAxios({
-    url: `${STAGE_API_BASE_URL}/api/get_users_excel`,
-    method: "GET",
-    responseType: "blob",
-  });
-};
-
 DoctorAPI.DoctorQuestionnaire = ({ token }) => {
   return useAxios(
     {
@@ -130,5 +77,6 @@ DoctorAPI.DoctorQuestionnaire = ({ token }) => {
     },
   );
 };
+
 
 export default DoctorAPI;

@@ -20,6 +20,7 @@ function DashboardSideBarContent() {
   const roleBasedItems = Items.filter((item) => {
     if (role === RoleEnum.PATIENT && item.forPatient) return true;
     if (role === RoleEnum.DOCTOR && item.forDoctor) return true;
+    if (role === RoleEnum.ADMIN && item.forAdmin) return true;
     return false;
   });
 

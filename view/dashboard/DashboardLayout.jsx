@@ -16,7 +16,6 @@ function DashboardLayout({ children, data }) {
   const drawerRef = useRef(null);
 
   const handleDrawerOpen = () => drawerRef.current.open();
-  const handleDrawerClose = () => drawerRef.current.close();
 
   return (
     <section className="h-screen overflow-y-hidden bg-pinkShadow bg-contain bg-right bg-no-repeat">
@@ -35,7 +34,8 @@ function DashboardLayout({ children, data }) {
             <div>
               <Typography>
                 {(role === RoleEnum.PATIENT && RoleEnumFa.PATIENT) ||
-                  (role === RoleEnum.DOCTOR && RoleEnumFa.DOCTOR)}
+                  (role === RoleEnum.DOCTOR && RoleEnumFa.DOCTOR) ||
+                  (role === RoleEnum.ADMIN && RoleEnumFa.ADMIN)}
               </Typography>
             </div>
             <div className="flex gap-6">

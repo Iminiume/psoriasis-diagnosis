@@ -21,6 +21,7 @@ export const Consts = Object.freeze({
   doctorVerified: "دکتر پیشنهاد سامانه را تایید است",
   doctorDidnotVerified: "دکتر پیشنهاد سامانه را تایید نکرده است",
   type: "پسوریازیس نوع",
+  seeFormInfo: "مشاهده ی فرم",
   comment: "نظر دکتر: ",
   diagnosisTypeByDoctor: "نوع بیماری تشخیص داده شده توسط دکتر: ",
 });
