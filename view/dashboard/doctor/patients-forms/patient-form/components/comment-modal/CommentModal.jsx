@@ -4,6 +4,7 @@ import MultiSelect from "@/components/multi-select-input";
 import Typography from "@/components/typography";
 import React from "react";
 import { Consts } from "../../consts";
+import classNames from "classnames";
 
 function CommentModal({
   selectedDiagnosis,
@@ -20,26 +21,32 @@ function CommentModal({
   return (
     <div className="flex min-w-[350px] flex-col gap-6">
       {selectedDiagnosis?.[1]?.Comments?.length > 0 ? (
-        selectedDiagnosis[1].Comments.map((item, index) => (
-          <div
-            key={`comment-${index}`}
-            className="rounded-xl bg-[#194CC2] p-4 text-white"
-          >
-            <Typography size="md">{Consts.doctorName + item.Name}</Typography>
-            <Typography size="md">{Consts.comment + item.Comment}</Typography>
-            {item.DoctorDiagnosis && (
+        selectedDiagnosis[1].Comments.map((item, index, array) => (
+          <div key={`comment-${index}`} className="rounded-xl text-white">
+            <div
+              className={classNames(
+                "relative flex w-full flex-col gap-1 rounded-t-xl rounded-br-xl bg-[#194CC2] p-6",
+                index === array.length - 1
+                  ? "before:absolute before:left-0 before:top-full before:border-r-[10px] before:border-t-[10px] before:border-r-transparent before:border-t-[#194CC2]"
+                  : "rounded-bl-sm",
+              )}
+            >
+              <Typography size="md">{Consts.doctorName + item.Name}</Typography>
+              <Typography size="md">{Consts.comment + item.Comment}</Typography>
+              {item.DoctorDiagnosis && (
+                <Typography size="md">
+                  {Consts.diagnosisTypeByDoctor +
+                    Consts.type +
+                    " " +
+                    item.DoctorDiagnosis}
+                </Typography>
+              )}
               <Typography size="md">
-                {Consts.diagnosisTypeByDoctor +
-                  Consts.type +
-                  " " +
-                  item.DoctorDiagnosis}
+                {item.IsVerified
+                  ? Consts.doctorVerified
+                  : Consts.doctorDidnotVerified}
               </Typography>
-            )}
-            <Typography size="md">
-              {item.IsVerified
-                ? Consts.doctorVerified
-                : Consts.doctorDidnotVerified}
-            </Typography>
+            </div>
           </div>
         ))
       ) : (

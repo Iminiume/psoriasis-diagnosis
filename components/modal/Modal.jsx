@@ -42,15 +42,16 @@ const Modal = forwardRef(function Modal(
             "fixed inset-0 z-50 bg-black bg-opacity-50 transition-opacity duration-300",
             isOpen ? "opacity-100" : "opacity-0",
           )}
-          onClick={() => closeModal()} // Toggleable overlay click close
+          onClick={() => closeModal()}
         />
       )}
       <div
         className={classNames(
-          "right-1/2 top-1/2 z-[60] max-h-[90%] min-w-[350px] -translate-y-1/2 translate-x-1/2 transform overflow-y-auto transition-all duration-300",
-          "rounded-xl bg-[#26335D] p-6 shadow-lg",
+          "right-1/2 top-1/2 z-[60] -translate-y-1/2 translate-x-1/2 transform overflow-y-auto transition-all duration-300",
+          "rounded-xl bg-cardBg200 p-6 shadow-lg",
+          "max-h-[90%] min-w-[350px] max-w-[90%]",
           className,
-          isOpen ? "fixed" : "hidden", // Smooth fade and scale
+          isOpen ? "fixed" : "hidden",
         )}
         aria-hidden={!isOpen}
         role="dialog"

@@ -24,6 +24,9 @@ export const Consts = Object.freeze({
   doctorDidnotVerified: "دکتر پیشنهاد سامانه را تایید نکرده است",
   doctorName: "اسم دکتر: ",
 
+  systemRecommendation: "پیشنهاد سامانه: ",
+  filledForm: "فرم بیمار: ",
+
   diagnosisForm: "احتمال ابتلا",
   diagnosisType: "نوع بیماری بر اساس فرم",
   diagnosisImage: "نوع بیماری بر اساس عکس",
