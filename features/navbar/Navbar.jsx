@@ -23,12 +23,7 @@ const navStyles = (isScrolled) =>
   );
 
 const logoStyles = (isScrolled) =>
-  classNames(
-    "rounded-bl-3xl px-6 py-4",
-    isScrolled
-      ? "translate-y-0 h-[106px] w-[122px]"
-      : "border border-primaryColor bg-background translate-y-7 translate-x-[1px] h-[165px] w-[122px]",
-  );
+  classNames("rounded-bl-3xl ", "translate-y-0");
 
 function Navbar() {
   const drawerRef = useRef(null);
@@ -54,13 +49,7 @@ function Navbar() {
     <header className={navStyles(isScrolled)}>
       <Link href="/">
         <div className={logoStyles(isScrolled)}>
-          <Image
-            src={isScrolled ? Logo : TextLogo}
-            width={72}
-            height={isScrolled ? 72 : 130}
-            alt="logo"
-            priority
-          />
+          <Image src={Logo} alt="logo" priority width={100} height={100} />
         </div>
       </Link>
 

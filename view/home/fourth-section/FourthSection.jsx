@@ -14,6 +14,8 @@ const Texts = {
   title: "اطلاع رسانی",
   download: "دانلود",
   selectChoice: "گزینه مورد نظر خود را وارد کنید",
+  enterPage: "ورود به صفحه",
+  choose: "انتخاب گزینه‌ها",
 };
 
 const cards = [
@@ -52,15 +54,15 @@ const colorClasses = {
 const advices = [
   {
     title: "توصیه های ورزشی برای پسوریازیس",
-    link: "/files/pesoriazis_advice_1.docx",
+    link: "/advices/exercise-advice",
   },
   {
     title: "توصیه های تغذیه ای برای پسوریازیس",
-    link: "/files/pesoriazis_advice_2.docx",
+    link: "/advices/food-advice",
   },
   {
     title: "توصیه های روانشناسی ای برای پسوریازیس",
-    link: "/files/pesoriazis_advice_3.docx",
+    link: "/advices/psychological-advice",
   },
 ];
 
@@ -69,10 +71,6 @@ function FourthSection() {
 
   const handleModalOpen = (index) => {
     modalRef.current.open(); // Open modal for the second card
-  };
-
-  const handleModalClose = (index) => {
-    modalRef.current.close(); // Open modal for the second card
   };
 
   const ModalContent = () => {
@@ -86,7 +84,10 @@ function FourthSection() {
             >
               <Typography size="xl">{item.title}</Typography>
               <Link href={item.link}>
-                <Button>{Texts.download}</Button>
+                <Button className="flex items-center gap-2">
+                  <Typography>{Texts.enterPage}</Typography>
+                  <IconRenderer icon="arrowLeft" />
+                </Button>
               </Link>
             </div>
           );
@@ -130,7 +131,7 @@ function FourthSection() {
                     )}
                     onClick={handleModalOpen}
                   >
-                    <Typography>{Texts.download}</Typography>
+                    <Typography>{Texts.choose}</Typography>
                     <IconRenderer icon="arrowLeft" />
                   </div>
                 ) : (

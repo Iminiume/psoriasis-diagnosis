@@ -10,6 +10,7 @@ import classNames from "classnames";
 import IconRenderer from "@/components/icon/IconRenderer";
 import Typography from "@/components/typography";
 import ActiveMark from "@/public/images/activeMark.png";
+import Logo from "@/public/images/logo.png";
 
 function DashboardSideBarContent() {
   const pathname = usePathname();
@@ -28,13 +29,7 @@ function DashboardSideBarContent() {
     <>
       <div className="self-center">
         <Link href="/">
-          <Image
-            src="/images/textLogo.png"
-            width={72}
-            height={130}
-            priority
-            alt="text-logo"
-          />
+          <Image src={Logo} width={120} height={120} priority alt="text-logo" />
         </Link>
       </div>
       <div>
