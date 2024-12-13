@@ -31,12 +31,6 @@ const ModalContent = ({
   return (
     <div className="flex min-w-[30rem] flex-col items-center justify-center gap-4">
       <div className="relative flex w-full items-center justify-center px-4">
-        <div
-          className="absolute right-0 top-0 cursor-pointer"
-          onClick={handleModalClose}
-        >
-          <IconRenderer icon="xClose" />
-        </div>
         <Image src={SuccessImage} alt="Success" className="object-contain" />
       </div>
 

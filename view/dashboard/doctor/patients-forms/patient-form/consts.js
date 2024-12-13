@@ -19,11 +19,10 @@ export const Consts = Object.freeze({
   formModalCompleted: "کامنت شما برای بیمار ثبت شد",
   psoriasis: "پسوریازیس",
 
-  click: "کلیک کنید",
-
   isVerified: "آیا تایید میکنید؟",
   doctorVerified: "دکتر پیشنهاد سامانه را تایید است",
   doctorDidnotVerified: "دکتر پیشنهاد سامانه را تایید نکرده است",
+  doctorName: "اسم دکتر: ",
 
   diagnosisForm: "احتمال ابتلا",
   diagnosisType: "نوع بیماری بر اساس فرم",
@@ -37,4 +36,7 @@ export const Consts = Object.freeze({
   enterCommentHere: "کامنت خود را اینجا وارد کنید",
   commentModal: "کامنت های مربوطه",
   comment: "نظر دکتر: ",
+
+  formNumber: "فرم شماره ی ",
+  seeFormInfo: "مشاهده ی فرم",
 });

@@ -5,7 +5,10 @@ import classNames from "classnames";
 import IconRenderer from "../icon/IconRenderer";
 import Typography from "../typography";
 
-const Modal = forwardRef(function Modal({ children, className, title }, ref) {
+const Modal = forwardRef(function Modal(
+  { children, className, title, onClose },
+  ref,
+) {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -21,10 +24,15 @@ const Modal = forwardRef(function Modal({ children, className, title }, ref) {
 
   useImperativeHandle(ref, () => ({
     open: () => setIsOpen(true),
-    close: () => setIsOpen(false),
+    close: () => closeModal(),
   }));
 
   if (!mounted) return null;
+
+  const closeModal = () => {
+    onClose && onClose();
+    setIsOpen(false);
+  };
 
   return createPortal(
     <>
@@ -34,7 +42,7 @@ const Modal = forwardRef(function Modal({ children, className, title }, ref) {
             "fixed inset-0 z-50 bg-black bg-opacity-50 transition-opacity duration-300",
             isOpen ? "opacity-100" : "opacity-0",
           )}
-          onClick={() => setIsOpen(false)} // Toggleable overlay click close
+          onClick={() => closeModal()} // Toggleable overlay click close
         />
       )}
       <div
@@ -49,7 +57,7 @@ const Modal = forwardRef(function Modal({ children, className, title }, ref) {
       >
         <div className="flex flex-col gap-4">
           <div className="flex w-full justify-start">
-            <div className="cursor-pointer" onClick={() => setIsOpen(false)}>
+            <div className="cursor-pointer" onClick={() => closeModal()}>
               <IconRenderer icon="xClose" />
             </div>
           </div>

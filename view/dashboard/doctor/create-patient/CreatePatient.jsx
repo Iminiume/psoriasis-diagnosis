@@ -34,14 +34,15 @@ const validationSchema = Yup.object().shape({
   first_name: Yup.string().required("نام الزامی است"),
   last_name: Yup.string().required("نام خانوادگی الزامی است"),
   national_id: Yup.string().required("کد ملی الزامی است"),
-  birth_date: Yup.date().required("تاریخ تولد الزامی است"),
   gender: Yup.string().required("جنسیت الزامی است"),
   is_married: Yup.boolean().required("وضعیت تاهل الزامی است"),
-  avg_salary: Yup.number().positive("درآمد باید عدد مثبت باشد"),
+  avg_salary: Yup.number().positive("درآمد باید عدد مثبت باشد").nullable(),
   medicines: Yup.array().of(Yup.string()).nullable(),
   treatments: Yup.array().of(Yup.string()).nullable(),
-  detection_time: Yup.date().required("زمان تشخیص الزامی است"),
   phone_number: Yup.number().required("شماره تلفن الزامی است"),
+  birth_date: Yup.date().required("تاریخ تولد الزامی است"),
+  detection_time: Yup.date().required("زمان تشخیص الزامی است"),
+  last_doctor_visit: Yup.date().required("آخرین مراجعه به پزشک الزامی است"),
 });
 
 function CreatePatient() {

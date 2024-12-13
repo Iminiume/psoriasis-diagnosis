@@ -62,8 +62,9 @@ function DiagnosisTypeLayout({
 
   const handleSubmit = () => {
     const payload = {
-      ...(userInfo && { user_info: userInfo }),
-      diagnosis: selectedAnswers,
+      ...(userInfo
+        ? { user_info: userInfo, diagnosis: selectedAnswers }
+        : { ...selectedAnswers }),
     };
 
     try {
