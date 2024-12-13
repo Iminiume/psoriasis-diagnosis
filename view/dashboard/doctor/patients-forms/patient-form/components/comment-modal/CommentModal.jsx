@@ -5,6 +5,8 @@ import Typography from "@/components/typography";
 import React from "react";
 import { Consts } from "../../consts";
 import classNames from "classnames";
+import { useUserContext } from "@/utils/context/useUserContext";
+import { RoleEnum } from "@/utils/enum/role-enum";
 
 function CommentModal({
   selectedDiagnosis,
@@ -17,6 +19,8 @@ function CommentModal({
   setIsVerifiedByDoctor,
 }) {
   const diagnosisOptions = ["A", "B", "C"];
+  const { state } = useUserContext();
+  const { role } = state;
 
   return (
     <div className="flex min-w-[350px] flex-col gap-6">
@@ -53,30 +57,31 @@ function CommentModal({
         <Typography size="md">{Consts.noComments}</Typography>
       )}
 
-      <textarea
-        className="w-full rounded border bg-inputBg p-2"
-        placeholder={Consts.enterCommentHere}
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-      />
-
-      <MultiSelect
-        options={diagnosisOptions}
-        value={selectedDiagnosisType}
-        onChange={setSelectedDiagnosisType}
-        placeholder={Consts.selectDiagnosisType}
-      />
-
-      <div className="flex items-center gap-2">
-        <Input
-          type="checkbox"
-          checked={isVerifiedByDoctor}
-          onChange={(e) => setIsVerifiedByDoctor(e.target.checked)}
-        />
-        <Typography size="md">{Consts.isVerified}</Typography>
-      </div>
-
-      <Button onClick={handleSubmitComment}>{Consts.addComment}</Button>
+      {role === RoleEnum.DOCTOR && (
+        <>
+          <textarea
+            className="w-full rounded border bg-inputBg p-2"
+            placeholder={Consts.enterCommentHere}
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <MultiSelect
+            options={diagnosisOptions}
+            value={selectedDiagnosisType}
+            onChange={setSelectedDiagnosisType}
+            placeholder={Consts.selectDiagnosisType}
+          />
+          <div className="flex items-center gap-2">
+            <Input
+              type="checkbox"
+              checked={isVerifiedByDoctor}
+              onChange={(e) => setIsVerifiedByDoctor(e.target.checked)}
+            />
+            <Typography size="md">{Consts.isVerified}</Typography>
+          </div>
+          <Button onClick={handleSubmitComment}>{Consts.addComment}</Button>
+        </>
+      )}
     </div>
   );
 }

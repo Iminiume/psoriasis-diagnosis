@@ -4,6 +4,8 @@ import Typography from "@/components/typography";
 import React, { useState } from "react";
 import { Consts } from "../../consts";
 import classNames from "classnames";
+import { useUserContext } from "@/utils/context/useUserContext";
+import { RoleEnum } from "@/utils/enum/role-enum";
 
 function DiagnosisRow({
   title,
@@ -12,6 +14,9 @@ function DiagnosisRow({
   handleModalOpen,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const {
+    state: { role },
+  } = useUserContext();
 
   return (
     <div className="flex flex-col gap-2">
@@ -45,7 +50,11 @@ function DiagnosisRow({
                 <Typography>{Consts.seeFormInfo}</Typography>
               </Button>
               <Button onClick={() => handleModalOpen([key, value])}>
-                <Typography>{Consts.addComment}</Typography>
+                <Typography>
+                  {role === RoleEnum.DOCTOR
+                    ? Consts.addComment
+                    : Consts.seeComments}
+                </Typography>
               </Button>
             </div>
           </div>

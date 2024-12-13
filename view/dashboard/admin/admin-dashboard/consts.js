@@ -10,10 +10,10 @@ export const Consts = Object.freeze({
 export const formItems = [
   {
     title: "ثبت پزشک جدید",
-    link: "/dashboard/doctor/requests/disease-diagnosis",
+    link: "/dashboard/admin/create-doctor",
   },
   {
     title: "ثبت بیمار جدید",
-    link: "/dashboard/doctor/requests/disease-type-diagnosis",
+    link: "/dashboard/admin/create-patient",
   },
 ];

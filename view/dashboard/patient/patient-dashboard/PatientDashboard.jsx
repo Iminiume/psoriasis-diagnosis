@@ -165,7 +165,6 @@ function PatientDashboard() {
           </Typography>
           {notification?.map((item, index) => {
             const convertedDate = convertToShamsiDate(item?.time_stamp);
-            console.log(item);
             return (
               <div
                 className={classNames(

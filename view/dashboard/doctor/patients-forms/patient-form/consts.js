@@ -39,6 +39,7 @@ export const Consts = Object.freeze({
   enterCommentHere: "کامنت خود را اینجا وارد کنید",
   commentModal: "کامنت های مربوطه",
   comment: "نظر دکتر: ",
+  seeComments: "مشاهده ی کامنت ها",
 
   formNumber: "فرم شماره ی ",
   seeFormInfo: "مشاهده ی فرم",
