@@ -26,7 +26,7 @@ function LoginLayout() {
           <div className="flex w-full basis-1/2 flex-col items-center justify-center px-8">
             <div className="flex items-center justify-center gap-4">
               <Typography size="2xl">{Consts.to}</Typography>
-              <Image alt="logo" src={Logo} />
+              <Image alt="logo" src={Logo} width={80} height={80} />
               <Typography size="2xl">{Consts.welcome}</Typography>
             </div>
             <FormModule />
