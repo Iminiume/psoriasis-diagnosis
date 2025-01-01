@@ -9,7 +9,6 @@ import AdminDashboard from "../admin/admin-dashboard";
 
 function MainDashboard() {
   const { state } = useUserContext();
-  console.log(state.role);
   return (
     <div className="flex h-full overflow-y-auto p-8">
       {state.role === RoleEnum.DOCTOR ? (
