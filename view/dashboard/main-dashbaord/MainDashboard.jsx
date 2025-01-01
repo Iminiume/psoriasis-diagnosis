@@ -9,11 +9,16 @@ import AdminDashboard from "../admin/admin-dashboard";
 
 function MainDashboard() {
   const { state } = useUserContext();
+  console.log(state.role);
   return (
     <div className="flex h-full overflow-y-auto p-8">
-      {(state.role === RoleEnum.DOCTOR && <DoctorDashboard />) ||
-        (state.role === RoleEnum.PATIENT && <PatientDashboard />) ||
-        (state.role === RoleEnum.ADMIN && <AdminDashboard />)}
+      {state.role === RoleEnum.DOCTOR ? (
+        <DoctorDashboard />
+      ) : state.role === RoleEnum.ADMIN ? (
+        <AdminDashboard />
+      ) : (
+        <PatientDashboard />
+      )}
     </div>
   );
 }
