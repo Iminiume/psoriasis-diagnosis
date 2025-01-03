@@ -31,7 +31,7 @@ export default function Layout({ children }) {
       refetch();
     }
   }, [state.role]);
-
+  
   return (
     <main className="w-full flex-grow">
       <PatientProvider>

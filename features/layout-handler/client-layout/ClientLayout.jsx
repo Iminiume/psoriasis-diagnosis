@@ -14,19 +14,17 @@ function ClientLayout({ children }) {
   const isDashboardPath = pathname.startsWith("/dashboard");
 
   return (
-    <>
-      <AnimatePresence key={isDashboardPath ? "dashboard" : pathname}>
-        <Transition>
-          <UserProvider>
-            <AuthProvider>
-              <NotificationProvider>
-                <NProgressProvider>{children}</NProgressProvider>
-              </NotificationProvider>
-            </AuthProvider>
-          </UserProvider>
-        </Transition>
-      </AnimatePresence>
-    </>
+    <AnimatePresence key={isDashboardPath ? "dashboard" : pathname}>
+      <Transition>
+        <UserProvider>
+          <AuthProvider>
+            <NotificationProvider>
+              <NProgressProvider>{children}</NProgressProvider>
+            </NotificationProvider>
+          </AuthProvider>
+        </UserProvider>
+      </Transition>
+    </AnimatePresence>
   );
 }
 

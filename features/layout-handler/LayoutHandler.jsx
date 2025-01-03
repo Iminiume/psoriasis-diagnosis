@@ -2,19 +2,17 @@
 
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import isSSR from "@/utils/isSSR";
 
-const ClientLayout = dynamic(() => import("./client-layout"), { ssr: false });
+const ClientLayout = dynamic(() => import("./client-layout"));
 const ServerLayout = dynamic(() => import("./server-layout"));
 
 function LayoutHandler({ children }) {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  // if (!isClient) return <ServerLayout>{children}</ServerLayout>;
-  return <ClientLayout>{children}</ClientLayout>;
+  return isSSR ? (
+    <ServerLayout>{children}</ServerLayout>
+  ) : (
+    <ClientLayout>{children}</ClientLayout>
+  );
 }
 
 export default LayoutHandler;
