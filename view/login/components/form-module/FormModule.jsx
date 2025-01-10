@@ -66,7 +66,15 @@ function FormModule() {
           <Input
             placeholder="09123456789"
             value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            onChange={(e) => {
+              const englishDigitsOnly = e.target.value.replace(
+                /[۰-۹]/g,
+                (match) => {
+                  return String.fromCharCode(match.charCodeAt(0) - 0x0660);
+                },
+              );
+              setPhoneNumber(englishDigitsOnly);
+            }}
             label={Consts.inputLabel}
           />
         ) : (

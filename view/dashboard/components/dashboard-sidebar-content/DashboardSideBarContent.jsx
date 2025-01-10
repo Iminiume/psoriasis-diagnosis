@@ -43,8 +43,11 @@ function DashboardSideBarContent() {
               )}
               key={`sidebar-item-${role}-${index}`}
             >
-              <Link href={item.link} className="flex gap-4">
-                <IconRenderer icon="request" />
+              <Link
+                href={item.link}
+                className={classNames("flex gap-4", item.color)}
+              >
+                <IconRenderer icon={item.icon} />
                 <Typography>{item.label}</Typography>
               </Link>
               {isActive && (

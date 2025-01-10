@@ -12,6 +12,7 @@ function DiagnosisRow({
   diagnosis,
   handleInfoModalOpen,
   handleModalOpen,
+  isImageForm = false,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const {
@@ -43,7 +44,7 @@ function DiagnosisRow({
             )}
           >
             <Typography size="lg">
-              {Consts.formNumber} {index + 1}
+              {isImageForm ? Consts.imageNumber : Consts.formNumber} {index + 1}
             </Typography>
             <div className="flex gap-2">
               <Button onClick={() => handleInfoModalOpen(value)}>

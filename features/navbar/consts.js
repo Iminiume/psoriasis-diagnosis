@@ -1,7 +1,7 @@
 export const NavbarItemsList = [
   { title: "اطلاع رسانی", link: "/#public-service" },
   { title: "خدمات تخصصی بیماران", link: "/learn" },
-  { title: "راهنمای سامانه", link: "/suggestions" },
+  { title: "راهنمای سامانه", link: "/system-guide" },
   { title: "درباره ما", link: "/about-us" },
 ];
 

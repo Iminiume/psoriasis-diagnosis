@@ -7,6 +7,7 @@ import ThirdThumbnail from "@/public/images/thumbSection3.png";
 import Button from "@/components/button";
 import TitleIndicator from "@/components/title-indicator";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const Texts = {
   title: "تشخیص بیماری از روی تصویر",
@@ -33,10 +34,9 @@ function ThirdSection() {
             {Texts.description}
           </Typography>
           <div className="flex gap-6">
-            <Button>{Texts.reserveNow}</Button>
-            <Button mode="secondary" onClick={() => router.replace("/login")}>
-              {Texts.moreInfo}
-            </Button>
+            <Link href={"/login"}>
+              <Button>{Texts.reserveNow}</Button>
+            </Link>
           </div>
         </div>
       </div>

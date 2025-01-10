@@ -27,7 +27,7 @@ export default function Layout({ children }) {
   }, [data, state.role, dispatch]);
 
   useEffect(() => {
-    if (state.role === RoleEnum.PATIENT) {
+    if (state.role === RoleEnum.PATIENT || state.role === "") {
       refetch();
     }
   }, [state.role]);

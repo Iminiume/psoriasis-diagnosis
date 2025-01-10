@@ -153,6 +153,7 @@ function PatientForm({ data, slug }) {
               handleInfoModalOpen={handleInfoModalOpen}
             />
           )}
+
           {!isObjectEmpty(patient?.diagnosis_by_form) && (
             <DiagnosisRow
               title={Consts.diagnosisType}
@@ -161,10 +162,12 @@ function PatientForm({ data, slug }) {
               handleInfoModalOpen={handleInfoModalOpen}
             />
           )}
+
           {!isObjectEmpty(patient?.diagnosis_by_image) && (
             <DiagnosisRow
               title={Consts.diagnosisImage}
               diagnosis={patient?.diagnosis_by_image}
+              isImageForm={true}
               handleModalOpen={handleModalOpen}
               handleInfoModalOpen={handleInfoModalOpen}
             />

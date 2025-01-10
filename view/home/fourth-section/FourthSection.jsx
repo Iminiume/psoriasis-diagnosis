@@ -23,7 +23,7 @@ const cards = [
     title: "انواع بیماری پسوریازیس",
     iconImage: IconGlass,
     color: "greenColor",
-    link: "/files/pesoriazis_types.docx",
+    link: "/disease-types",
     description:
       "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.",
   },
@@ -39,7 +39,7 @@ const cards = [
     title: "لیست انواع درمان های مختلف بیماری پسوریازیس",
     iconImage: IconGlass,
     color: "darkPinkColor",
-    link: "/files/pesoriazis_cures.docx",
+    link: "/disease-treatments",
     description:
       "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است.",
   },
@@ -142,7 +142,7 @@ function FourthSection() {
                       "flex items-center justify-center gap-1",
                     )}
                   >
-                    <Typography>{Texts.download}</Typography>
+                    <Typography>{Texts.enterPage}</Typography>
                     <IconRenderer icon="arrowLeft" />
                   </Link>
                 )}

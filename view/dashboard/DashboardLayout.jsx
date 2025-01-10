@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Typography from "@/components/typography";
 import IconRenderer from "@/components/icon/IconRenderer";
 import { useUserContext } from "@/utils/context/useUserContext";
@@ -9,11 +9,18 @@ import Button from "@/components/button";
 import DashboardSidebarContent from "./components/dashboard-sidebar-content";
 import Image from "@/components/image";
 import BlueShadow from "@/public/images/blueShadow.png";
+import { DropDownItems } from "./consts";
+import classNames from "classnames";
+import { useAuthContext } from "@/utils/context/useAuthContext";
+import { useRouter } from "next/navigation";
 
 function DashboardLayout({ children, data }) {
   const { state } = useUserContext();
   const { role } = state;
   const drawerRef = useRef(null);
+  const { logout } = useAuthContext();
+  const [isDropDownOpen, setIsDropDownOpen] = useState(false);
+  const router = useRouter();
 
   const handleDrawerOpen = () => drawerRef.current.open();
 
@@ -39,10 +46,44 @@ function DashboardLayout({ children, data }) {
               </Typography>
             </div>
             <div className="flex gap-6">
-              <div className="flex items-center gap-1">
+              <div
+                className="relative flex cursor-pointer items-center gap-1"
+                onClick={() => setIsDropDownOpen((prev) => !prev)}
+              >
                 <IconRenderer icon="user" />
                 <Typography>{data?.first_name}</Typography>
                 <Typography>{data?.last_name}</Typography>
+                <div
+                  className={classNames(
+                    "relative transition-transform",
+                    isDropDownOpen ? "rotate-180" : "rotate-0",
+                  )}
+                >
+                  <IconRenderer icon="chevronDown" />
+                </div>
+
+                {isDropDownOpen && (
+                  <div className="absolute left-0 top-10 flex flex-col">
+                    {DropDownItems.map((item) => (
+                      <div
+                        className={classNames(
+                          "flex gap-4 text-nowrap rounded-md border border-cardBorderOp20 bg-cardBg200 p-3 transition-colors hover:bg-cardBg100",
+                          item.color,
+                        )}
+                        onClick={() => {
+                          logout();
+                          router.refresh();
+                          router.push("/");
+                        }}
+                      >
+                        <div>
+                          <IconRenderer icon={item.icon} />
+                        </div>
+                        <Typography>{item.label}</Typography>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           </div>

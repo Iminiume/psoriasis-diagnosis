@@ -107,7 +107,7 @@ export const FormItems = [
     key: "education",
   },
   {
-    label: "درآمد ماهانه",
+    label: "درآمد ماهانه (به تومان)",
     placeholder: "درآمد ماهانه بیمار را وارد کنید",
     type: "number",
     width: "1/2",

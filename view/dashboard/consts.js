@@ -85,4 +85,17 @@ export const Items = [
     icon: "request",
     forAdmin: true,
   },
+  {
+    label: "خروج از داشبورد",
+    link: "/",
+    icon: "exit",
+    color: "text-redColor",
+    forAdmin: true,
+    forDoctor: true,
+    forPatient: true,
+  },
+];
+
+export const DropDownItems = [
+  { label: "خروج از حساب کاربری", icon: "exit", color: "text-redColor" },
 ];

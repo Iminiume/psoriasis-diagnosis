@@ -5,7 +5,6 @@ const FirstSection = dynamic(() => import("./first-section"));
 const SecondSection = dynamic(() => import("./second-section"));
 const ThirdSection = dynamic(() => import("./third-section"));
 const FourthSection = dynamic(() => import("./fourth-section"));
-const SixthSection = dynamic(() => import("./sixth-section"));
 
 function Home() {
   return (
@@ -14,7 +13,6 @@ function Home() {
       <SecondSection />
       <ThirdSection />
       <FourthSection />
-      <SixthSection />
     </>
   );
 }

@@ -1,12 +1,12 @@
 import React from "react";
-import AdviceLayout from "../components/advice-layout";
+import PostsLayout from "../../../features/posts-layout";
 import ExerciseImage from "@/public/images/exerciseAdvice.png";
 import Typography from "@/components/typography";
 import { Consts } from "./consts";
 
 function ExerciseAdvice() {
   return (
-    <AdviceLayout image={ExerciseImage}>
+    <PostsLayout image={ExerciseImage}>
       <div className="flex flex-col gap-4">
         <Typography size="2xl" weight="bold">
           {Consts.title}
@@ -22,7 +22,7 @@ function ExerciseAdvice() {
         ))}
         <Typography size="lg">{Consts.note}</Typography>
       </div>
-    </AdviceLayout>
+    </PostsLayout>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import AdviceLayout from "../components/advice-layout";
+import AdviceLayout from "../../../features/posts-layout";
 import Typography from "@/components/typography";
 import { Consts } from "./consts";
 import PsychologogicalAdvice from "@/public/images/psychologicalAdvice.jpg";

@@ -24,9 +24,11 @@ function SectionLayout({
   return (
     <div className="flex h-full flex-col gap-10 overflow-y-auto">
       <div className="flex flex-col gap-6 p-8 text-center lg:text-start">
-        <Typography size="4xl" weight="bold">
-          {title}
-        </Typography>
+        {title && (
+          <Typography size="4xl" weight="bold">
+            {title}
+          </Typography>
+        )}
         {subTitle && (
           <Typography size="xl" className="text-primaryColor">
             {subTitle}

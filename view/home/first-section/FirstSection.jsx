@@ -7,6 +7,7 @@ import BigLogo from "@/public/images/logo.png";
 import Vector from "@/public/images/vector.png";
 import SecondVectorBG from "@/public/images/vector2.png";
 import PinkShadow from "@/public/images/pinkShadow.png";
+import Link from "next/link";
 
 const Texts = {
   bigTitle: "همــــــــــــــــیار پسوریازیس",
@@ -27,12 +28,11 @@ function FirstSection() {
             {Texts.bigTitle}
           </Typography>
           <div className="flex w-full items-center justify-center gap-6 lg:justify-start">
-            <Button>
-              <Typography>{Texts.reserve}</Typography>
-            </Button>
-            <Button mode="secondary">
-              <Typography>{Texts.moreInfo}</Typography>
-            </Button>
+            <Link href={"/login"}>
+              <Button>
+                <Typography>{Texts.reserve}</Typography>
+              </Button>
+            </Link>
           </div>
         </div>
 

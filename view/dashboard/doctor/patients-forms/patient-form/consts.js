@@ -42,5 +42,6 @@ export const Consts = Object.freeze({
   seeComments: "مشاهده ی کامنت ها",
 
   formNumber: "فرم شماره ی ",
+  imageNumber: "عکس شماره ی ",
   seeFormInfo: "مشاهده ی فرم",
 });
