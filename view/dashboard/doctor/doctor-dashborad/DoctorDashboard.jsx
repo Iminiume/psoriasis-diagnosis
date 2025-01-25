@@ -10,6 +10,7 @@ import ReportAPI from "@/api/report";
 import DiagnosisCard from "./components/diagnosis-card";
 import StatsRow from "./components/stats-row";
 import classNames from "classnames";
+import StepCard from "../../components/step-card";
 
 function DoctorDashboard() {
   const { state } = useAuthContext();
@@ -21,24 +22,16 @@ function DoctorDashboard() {
     <div className="flex w-full flex-col justify-start gap-12 text-center">
       <div className="grid w-full grid-cols-1 justify-between gap-4 md:grid-cols-2 lg:grid-cols-4">
         {formItems.map((item, index) => {
-          const itemColors = {
-            0: "bg-[#268AFF]",
-            1: "bg-[#1ED6FF]",
-            2: "bg-[#3DFFDC]",
-            3: "bg-[#36F097]",
-          };
           return (
-            <div
-              key={`form-item-${index}`}
-              className={classNames(
-                "rounded-xl border border-cardBorderOp30 p-6 shadow-lg",
-                itemColors[index],
-              )}
-            >
-              <Link href={item.link}>
-                <Typography className="text-black">{item.title}</Typography>
-              </Link>
-            </div>
+            <Link href={item.link} key={`request-${index}`}>
+              <StepCard
+                disabled={false}
+                icon={item.icon}
+                disabled={false}
+                label={item.label}
+                index={index}
+              />
+            </Link>
           );
         })}
       </div>

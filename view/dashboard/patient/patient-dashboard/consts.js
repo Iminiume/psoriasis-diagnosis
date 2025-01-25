@@ -24,4 +24,6 @@ export const Consts = Object.freeze({
   seeFormInfo: "مشاهده ی فرم",
   comment: "نظر دکتر: ",
   diagnosisTypeByDoctor: "نوع بیماری تشخیص داده شده توسط دکتر: ",
+  createOrChangeForm: "تشکیل / ویرایش پرونده",
+  myRequests: "درخواست های من",
 });

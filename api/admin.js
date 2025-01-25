@@ -32,4 +32,20 @@ AdminAPI.CreatePatient = ({ token }) => {
     },
   );
 };
+
+AdminAPI.GetAdmin = ({ token }) => {
+  return useAxios(
+    {
+      url: `${STAGE_API_BASE_URL}/api/get_admin`,
+      method: "GET",
+      headers: {
+        Auth: token,
+      },
+    },
+    {
+      manual: true,
+    },
+  );
+};
+
 export default AdminAPI;

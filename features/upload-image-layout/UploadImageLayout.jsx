@@ -9,6 +9,7 @@ import ModalContent from "@/view/dashboard/components/modal-content";
 import ImageUpload from "@/public/images/UploadImage.png";
 import { useNotificationContext } from "@/utils/context/useNotificationContext";
 import { useAuthContext } from "@/utils/context/useAuthContext";
+import { Consts } from "./consts";
 
 function UploadImageLayout({
   title,
@@ -92,7 +93,8 @@ function UploadImageLayout({
       isButtonDisabled={!isFileUploaded || loading}
       loading={loading}
     >
-      <div className="flex h-full flex-col items-center justify-center gap-8">
+      <div className="flex h-full flex-col items-center justify-between gap-8">
+        <div></div>
         <div className="relative flex min-h-[15rem] max-w-[30rem] flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-primaryColor bg-[#26335D] p-8">
           <div>
             {isFileUploaded ? (
@@ -125,6 +127,19 @@ function UploadImageLayout({
             onChange={handleFileChange}
             className="absolute right-0 top-0 h-full w-full cursor-pointer opacity-0"
           />
+        </div>
+
+        <div className="flex w-full flex-col items-start justify-start gap-4">
+          <Typography size="xl" weight="bold" className="text-primaryColor">
+            {Consts.instruction}
+          </Typography>
+          <ul className="list-disc pr-4">
+            {Consts.imageHints.map((item, index) => (
+              <li key={`image-hint-${index}`}>
+                <Typography size="lg">{item}</Typography>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
 

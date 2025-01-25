@@ -27,33 +27,37 @@ function DoctorRequestsLayout() {
               </Typography>
             </div>
             <ul className="flex list-disc flex-col gap-4 px-6 leading-loose">
-              {Consts.instruction.map((item) => (
-                <li>
-                  <Typography size="xl">{item}</Typography>
+              {Consts.instruction.map((item, index) => (
+                <li key={`hint-${index}`}>
+                  <Typography size="lg">{item}</Typography>
                 </li>
               ))}
             </ul>
           </div>
         )}
-        {FormItems.map((item) =>
-          item.disabled ? (
-            <div key={item.label} className="pointer-events-none">
-              <StepCard
-                icon={item.icon}
-                label={item.label}
-                disabled={item.disabled}
-              />
-            </div>
-          ) : (
-            <Link key={item.label} href={item.link}>
-              <StepCard
-                icon={item.icon}
-                label={item.label}
-                disabled={item.disabled}
-              />
-            </Link>
-          ),
-        )}
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {FormItems.map((item, index) =>
+            item.disabled ? (
+              <div key={item.label} className="pointer-events-none">
+                <StepCard
+                  icon={item.icon}
+                  label={item.label}
+                  disabled={false}
+                  index={index}
+                />
+              </div>
+            ) : (
+              <Link key={item.label} href={item.link}>
+                <StepCard
+                  icon={item.icon}
+                  label={item.label}
+                  disabled={false}
+                  index={index}
+                />
+              </Link>
+            ),
+          )}
+        </div>
       </div>
     </SectionLayout>
   );

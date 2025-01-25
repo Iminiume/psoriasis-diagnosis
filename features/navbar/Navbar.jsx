@@ -9,7 +9,6 @@ import Drawer from "@/components/drawer";
 import { useScrollPosition } from "@/utils/hooks/useScrollPosition";
 import { useAuthContext } from "@/utils/context/useAuthContext";
 import Logo from "@/public/images/logo.png";
-import TextLogo from "@/public/images/textLogo.png";
 
 import NavbarContent from "./components/navbar-content";
 import DrawerContent from "./components/drawer-content";

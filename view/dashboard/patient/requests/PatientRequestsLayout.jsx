@@ -36,17 +36,18 @@ function PatientRequestsLayout() {
 
   return (
     <SectionLayout hasButton={false} title={Consts.title}>
-      <div className="flex flex-wrap justify-center gap-[30px]">
+      <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {FormItems(
           !isDisabled.questionnaire,
           !isDisabled.form || isDisabled.image,
-        ).map((item) =>
-          item.disabled ? (
+        ).map((item, index) => {
+          return item.disabled ? (
             <div key={item.label} className="pointer-events-none">
               <StepCard
                 icon={item.icon}
                 label={item.label}
                 disabled={item.disabled}
+                index={index}
               />
             </div>
           ) : (
@@ -55,10 +56,11 @@ function PatientRequestsLayout() {
                 icon={item.icon}
                 label={item.label}
                 disabled={item.disabled}
+                index={index}
               />
             </Link>
-          ),
-        )}
+          );
+        })}
       </div>
     </SectionLayout>
   );

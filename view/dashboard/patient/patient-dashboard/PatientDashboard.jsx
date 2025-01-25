@@ -8,7 +8,6 @@ import { Consts } from "./consts";
 import Button from "@/components/button";
 import Link from "next/link";
 import convertToShamsiDate from "@/utils/convertToShamsiDate";
-import IconRenderer from "@/components/icon/IconRenderer";
 import Modal from "@/components/modal";
 import classNames from "classnames";
 import DiagnosisInfoModal from "../../doctor/patients-forms/patient-form/components/diagnosis-info-modal";
@@ -133,9 +132,13 @@ function PatientDashboard() {
 
   return (
     <div className="flex w-full flex-col items-center justify-start gap-12 text-center">
-      <div className="flex w-full flex-col items-center justify-center gap-6 rounded-xl border border-cardBorderOp30 bg-cardBg200 px-6 py-8 shadow-lg">
+      <div className="flex w-full flex-col items-center justify-center gap-6 rounded-xl border border-cardBorderOp30 bg-[#268bff7c] px-6 py-8 shadow-lg">
         {userData && (
-          <Image src={SuccessImage} alt="Success" className="object-contain" />
+          <Image
+            src={SuccessImage}
+            alt="Success"
+            className="rounded-full border border-cardBorderOp30 object-contain"
+          />
         )}
         <Typography weight="semibold" size="2xl">
           {userData ? Consts.congrats : Consts.noFile}
@@ -154,8 +157,14 @@ function PatientDashboard() {
       </div>
 
       <div className="grid w-full gap-8 md:grid-cols-2">
-        <StaticCards title={Consts.dieseaseType} />
-        <StaticCards title={Consts.selfCare} />
+        <StaticCards
+          title={Consts.createOrChangeForm}
+          link="/dashboard/patient/fill-form"
+        />
+        <StaticCards
+          title={Consts.myRequests}
+          link="/dashboard/patient/requests"
+        />
       </div>
 
       {notification?.length > 0 && (

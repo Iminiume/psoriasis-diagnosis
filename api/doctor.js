@@ -33,6 +33,21 @@ DoctorAPI.AddComment = ({ token }) => {
   );
 };
 
+DoctorAPI.GetDoctor = ({ token }) => {
+  return useAxios(
+    {
+      url: `${STAGE_API_BASE_URL}/api/get_doctor`,
+      method: "GET",
+      headers: {
+        Auth: token,
+      },
+    },
+    {
+      manual: true,
+    },
+  );
+};
+
 DoctorAPI.DiagnosisType = ({ token }) => {
   return useAxios(
     {
@@ -77,6 +92,5 @@ DoctorAPI.DoctorQuestionnaire = ({ token }) => {
     },
   );
 };
-
 
 export default DoctorAPI;

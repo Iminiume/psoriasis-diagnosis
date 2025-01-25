@@ -6,13 +6,13 @@ import { RoleEnum } from "@/utils/enum/role-enum";
 import Link from "next/link";
 import React from "react";
 
-const PatientsTable = ({ data, consts }) => {
+const PatientsTable = ({ data, consts, hasLimit = true }) => {
   const { state } = useUserContext();
   const role = state.role;
   const sortedPatients = data?.sort((a, b) => {
     return new Date(b.CreatedAt) - new Date(a.CreatedAt);
   });
-
+  const mainData = hasLimit ? sortedPatients?.slice(0, 10) : sortedPatients;
   return (
     <div className="w-full">
       <div className="grid grid-cols-2 gap-4 border-[#ffffff20] p-4 lg:grid-cols-4">
@@ -28,7 +28,7 @@ const PatientsTable = ({ data, consts }) => {
         <div></div>
       </div>
       <div className="flex flex-col gap-4">
-        {sortedPatients?.slice(0, 10).map((item, index) => {
+        {mainData?.map((item, index) => {
           const convertedDate = convertToShamsiDate(item?.CreatedAt);
           return (
             <div

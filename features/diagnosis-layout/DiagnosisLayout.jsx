@@ -100,7 +100,7 @@ function DiagnosisLayout({
         <span className="w-[40px] text-center">
           <Typography size="2xl">{index + 1}</Typography>
         </span>
-        <Typography size="2xl">{item.title}</Typography>
+        <Typography size="xl">{item.title}</Typography>
       </div>
       <div className="flex gap-8">
         <Input

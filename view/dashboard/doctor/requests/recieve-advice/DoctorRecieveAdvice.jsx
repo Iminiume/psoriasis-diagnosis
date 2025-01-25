@@ -1,9 +1,8 @@
-"use client";
-import React from "react";
 import RecieveAdviceLayout from "@/features/recieve-advice-layout";
+import React from "react";
 
-function RecieveAdvice() {
+function DoctorRecieveAdvice() {
   return <RecieveAdviceLayout />;
 }
 
-export default RecieveAdvice;
+export default DoctorRecieveAdvice;

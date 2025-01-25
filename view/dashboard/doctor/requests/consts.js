@@ -25,4 +25,9 @@ export const FormItems = [
     icon: "request",
     link: "/dashboard/doctor/requests/upload-image",
   },
+  {
+    label: "دریافت توصیه",
+    icon: "request",
+    link: "/dashboard/doctor/requests/recieve-advice",
+  },
 ];

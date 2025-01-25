@@ -8,7 +8,7 @@ function PatientsFormsLayout({ data }) {
   return (
     <SectionLayout title={Consts.title} hasButton={false}>
       <div className="flex text-center">
-        <PatientsTable data={data} consts={Consts} />
+        <PatientsTable data={data} consts={Consts} hasLimit={false} />
       </div>
     </SectionLayout>
   );

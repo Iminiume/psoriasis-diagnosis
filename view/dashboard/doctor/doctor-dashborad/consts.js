@@ -14,19 +14,23 @@ export const Consts = Object.freeze({
 
 export const formItems = [
   {
-    title: "تشخیص احتمال ابتلا",
+    label: "تشخیص احتمال ابتلا",
     link: "/dashboard/doctor/requests/disease-diagnosis",
+    icon: "request",
   },
   {
-    title: "تشخیص نوع بیماری",
+    label: "تشخیص نوع بیماری",
     link: "/dashboard/doctor/requests/disease-type-diagnosis",
+    icon: "request",
   },
   {
-    title: "تشخیص بیماری از روی تصویر",
+    label: "تشخیص بیماری از روی تصویر",
     link: "/dashboard/doctor/requests/upload-image",
+    icon: "request",
   },
   {
-    title: "ثبت بیمار جدید",
+    label: "ثبت بیمار جدید",
     link: "/dashboard/doctor/create-patient",
+    icon: "userPlus",
   },
 ];

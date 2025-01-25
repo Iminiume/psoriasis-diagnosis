@@ -64,8 +64,9 @@ function DashboardLayout({ children, data }) {
 
                 {isDropDownOpen && (
                   <div className="absolute left-0 top-10 flex flex-col">
-                    {DropDownItems.map((item) => (
+                    {DropDownItems.map((item, index) => (
                       <div
+                        key={`dashboard-dropdown-${item}`}
                         className={classNames(
                           "flex gap-4 text-nowrap rounded-md border border-cardBorderOp20 bg-cardBg200 p-3 transition-colors hover:bg-cardBg100",
                           item.color,
